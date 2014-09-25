@@ -10,7 +10,7 @@ Start virtual environment: <code>virtualenv prenv; source prenv/bin/activate</co
 Install requirements: <code>cd PeerReview; pip install -r requirements.txt</code><br>
 
 
-In windows:
+In windows:<br>
 Install virtual environment: <code>pip install virtualenv</code><br>
 Start virtual environment: <code>virtualenv prenv; prenv\Scripts\activate;</code><br>
 Install django in virtual environment: <code>pip install django;</code><br>
