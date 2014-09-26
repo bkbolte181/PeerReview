@@ -13,5 +13,4 @@ Install requirements: <code>cd PeerReview; pip install -r requirements.txt</code
 In windows:<br>
 Install virtual environment: <code>pip install virtualenv</code><br>
 Start virtual environment: <code>virtualenv prenv; prenv\Scripts\activate;</code><br>
-Install django in virtual environment: <code>pip install django;</code><br>
 Install requirements: <code>cd PeerReview; pip install -r requirements.txt;  </code><br>
