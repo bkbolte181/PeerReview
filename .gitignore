@@ -52,3 +52,15 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Virtual Environment
+prenv/
+
+# Database information file
+database_info.py
+
+# Migrations
+migrations/
+
+# sqlite database
+db.sqlite3

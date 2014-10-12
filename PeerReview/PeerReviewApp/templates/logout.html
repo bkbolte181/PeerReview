@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<!-- Logout page. -->
+<style>
+.center {
+	width: 300px;
+	height: 500px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	text-align: right;
+}
+.logo {
+	font-size: 50px;
+	padding: 0;
+	margin: 0;
+	padding-bottom: 10px;
+}
+.form-div {
+	padding-bottom: 5px;
+}
+.errorlist {
+	font-size: 10px;
+	color: red;
+	display: inline;
+}	
+.errorlist li {
+	display: inline
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="center">
+	<p class="logo">Log Out</p>
+	You have been logged out. Thanks for using the site!
+	</form>
+</div>
+{% endblock %}

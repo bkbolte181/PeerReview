@@ -1,0 +1,93 @@
+/* Main stylesheet for the whole project */
+
+/* Font faces */
+@font-face {
+	font-family: 'Monterey';
+	src: url('../fonts/monterey/MontereyFLF.ttf');
+}
+@font-face {
+	font-family: 'Raleway';
+	src: url('../fonts/raleway/Raleway-Regular.ttf');
+}
+
+html {
+	background-color: #404040;
+	color: white;
+	font-family: 'Raleway';
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+a:hover { text-decoration: overline; }
+
+/* Relating to the header */
+.header .logo {
+	font-family: 'Monterey';
+	font-size: 30px;
+	position: fixed;
+	left: 10px;
+	top: 3px;
+}
+.header .navigation {
+	font-size: 13px;
+	position: fixed;
+	right: 10px;
+	top: 10px;
+	text-align: right;
+}
+.header .navigation ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+.header .navigation ul li {
+	display: inline;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.header .navigation .more_nav_items {
+	margin: 0;
+	padding: 0;
+}
+/* --------------------------------------- */
+
+/* Relating to the body */
+.body {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+/* --------------------------------------- */
+
+/* Relating to the footer */
+.footer {
+	position: fixed;
+	right: 2px;
+	left: 2px;
+	bottom: 2px;
+	text-align: right;
+	font-size: 13px;
+}
+.footer ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+.footer ul li{
+	display: inline;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+/* --------------------------------------- */
+
+/* Fontfaces as class tags */
+.raleway {
+	/* Raleway fontface */
+	font-family: 'Raleway';
+}
+.monterey {
+	/* Monterey fontface */
+	font-family: 'Monterey';
+}
+/* --------------------------------------- */

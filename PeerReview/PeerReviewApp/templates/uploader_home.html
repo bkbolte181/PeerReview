@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+.review_period {
+	outline: 1px solid white;
+	padding: 5px 5px 5px 5px;
+}
+.review_period ul {
+	padding: 0;
+	margin: 0;
+	padding-left: 25px;
+}
+.period_label {
+	padding-left: 15px;
+}
+.submission-form {
+	outline: 1px solid white;
+	padding: 5px 5px 5px 5px;
+	margin-top: 20px;
+}
+.submission-form h3 {
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+.form-div {
+	padding-bottom: 5px;
+}
+.errorlist {
+	font-size: 10px;
+	color: red;
+	display: inline;
+}	
+.errorlist li {
+	display: inline
+}
+.field-div {
+	margin-right: 5px;
+}
+.field-div input, textarea {
+	width: 100%;
+}
+.field-help-text {
+	font-size: 13px;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<h1>Upload Manuscript</h1>
+{% if no_period_available %}
+Sorry, we are not accepting manuscripts at this time.
+{% else %}
+	<!-- Current period -->
+	<div class="review_period">
+		Deadlines for the current review period
+		<ul>
+			<li>{{ period.start_date|date:"d M Y" }}<span class="period_label">Period begins</span></li>
+			<li>{{ period.submission_deadline|date:"d M Y" }}<span class="period_label">Deadline for submissions</span></li>
+			<li>{{ period.review_deadline|date:"d M Y" }}<span class="period_label">Deadline for reviewers</span></li>
+			<li>{{ period.group_meeting_time|date:"d M Y" }}<span class="period_label">Group meeting date</span></li>
+		</ul>
+	</div>
+	<form class="submission-form" action="{% url 'upload' %}" method="post">
+		<h3>Submit</h3>
+		{% csrf_token %}
+		{% for field in form %}
+			<div class="form-div">
+				{% if field.errors %}{{ field.errors }}<br/>{% endif %}{{ field.label_tag }}<div class="field-div">{{ field }}</div>
+				{% if field.help_text %}<div class="field-help-text">{{ field.help_text }}</div>{% endif %}
+			</div>
+		{% endfor %}
+		<input type="submit" value="Upload Manuscript">
+	</form>
+{% endif %}
+{% endblock %}

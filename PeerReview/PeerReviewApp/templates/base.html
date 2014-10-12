@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PeerReview</title>
+		{% load staticfiles %}
+		<link rel="stylesheet" href="{% static 'css/main.css' %}">
+		{% block head %}{% endblock %}
+	</head>
+	<body>
+		<div class="header">
+			<div class="logo"><a href="{% url 'index' %}">PeerReview</a></div>
+			<div class="navigation">
+				{% if user.is_authenticated %}
+				<!-- If the user is logged in -->
+				<ul>
+					<li><a href="{% url 'index' %}">Home</a></li>
+					<li><a href="{% url 'review' %}">Review</a></li>
+					<li><a href="{% url 'upload' %}">Submit</a></li>
+					<li><a href="{% url 'logout' %}">Log Out</a></li>
+					<li><a href="#" class="more_nav">More</a></li>
+				</ul>
+				<ul class="more_nav_items">
+					<li><a href="{% url 'account' %}">Account</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Submit Feedback</a></li>
+					<li><a href="#">Help<a></li>
+					<li><a href="#">Admin Login</a></li>
+				</ul>
+				{% else %}
+				<!-- If the user is not logged in -->
+				<ul>
+					<li><a href="{% url 'index' %}">Home</a></li>
+					<li><a href="{% url 'login' %}">Log In</a></li>
+					<li><a href="{% url 'signup' %}">Sign Up</a></li>
+				</ul>
+				{% endif %}
+			</div>
+		</div>
+		<div class="body">
+			{% block body %}{% endblock %}
+		</div>
+		<div class="footer">
+			{% if user.is_authenticated %}
+			Logged in as <a href="{% url 'account' %}">{{ user }}</a>
+			{% else %}
+			Not logged in.
+			{% endif %}
+		</div>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+	</body>
+</html>

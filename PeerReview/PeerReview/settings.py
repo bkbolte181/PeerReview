@@ -22,10 +22,9 @@ SECRET_KEY = '2(+vh4q025k69rj_t@@o*n*nyj_$^=e@k6j(hai2m@^eq5g^jx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -36,6 +35,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+	'PeerReviewApp',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,7 +48,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'PeerReview.urls'
+ROOT_URLCONF = 'PeerReviewApp.urls'
 
 WSGI_APPLICATION = 'PeerReview.wsgi.application'
 
@@ -56,12 +56,23 @@ WSGI_APPLICATION = 'PeerReview.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+'''
+	This is to make sure we keep the database information secure. If you want
+	to use another database, make a file called database_info.py and store it in
+	the same directory as your settings file. Then you can duplicate the DATABASES
+	variable there. Otherwise the system will default to a local sqlite database.
+	Make sure that the database_info.py file is included in .gitignore
+'''
+try:
+	from database_info import DATABASES
+except ImportError:
+	DATABASES = {
+		'default': {
+			'ENGINE': 'django.db.backends.sqlite3',
+			'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+		}
+	}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -76,8 +87,19 @@ USE_L10N = True
 
 USE_TZ = True
 
+TEMPLATE_DIRS = [
+	os.path.join(BASE_DIR, '..', 'PeerReviewApp', 'templates'),
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+	os.path.join(BASE_DIR, 'static'),
+)
+
+AUTH_USER_MODEL = 'PeerReviewApp.SiteUser'
+
+LOGIN_URL = '/login/'
