@@ -6,6 +6,15 @@ class LoginForm(forms.Form):
 	password = forms.CharField(widget=forms.PasswordInput())
 
 class AccountForm(forms.ModelForm):
+	def __init__(self, *args, **kwargs):
+		super(AccountForm, self).__init__(*args, **kwargs)
+		try:
+			has_agreed = self.instance.agreed_to_form
+		except AttributeError:
+			has_agreed = True
+		if has_agreed:
+			self.fields['agreed_to_form'].widget = forms.widgets.HiddenInput()
+		
 	class Meta:
 		model = SiteUser
 		exclude = ('id', 'password','last_login','email',)

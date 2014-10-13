@@ -48,7 +48,7 @@
 		{% csrf_token %}
 		{% for field in form %}
 			<div class="form-div">
-				{% if field.errors %}{{ field.errors }}<br/>{% endif %}{{ field.label_tag }} {{ field }}
+				{% if not field.is_hidden %}{% if field.errors %}{{ field.errors }}<br/>{% endif %}{{ field.label_tag }} {% endif %}{{ field }}
 				{% if field.help_text %}<div class="field-help-text">{{ field.help_text }}</div>{% endif %}
 			</div>
 		{% endfor %}
