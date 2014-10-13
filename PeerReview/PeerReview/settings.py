@@ -100,6 +100,13 @@ STATICFILES_DIRS = (
 	os.path.join(BASE_DIR, 'static'),
 )
 
+# For handling file uploads
+MEDIA_ROOT = os.path.join(BASE_DIR, 'PeerReviewApp', 'media')
+MEDIA_URL = '/media/'
+
+# Points at the custom user model
 AUTH_USER_MODEL = 'PeerReviewApp.SiteUser'
 
+# The default url for handling logging in. This is necessary so that views that
+# require a logged in user can redirect to the correct place.
 LOGIN_URL = '/login/'

@@ -56,7 +56,7 @@ Sorry, we are not accepting manuscripts at this time.
 {% else %}
 	<!-- Information about the current period -->
 	<!-- Form for submitting a new manuscript -->
-	<form class="submission-form" action="{% url 'upload' %}" method="post">
+	<form class="submission-form" action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
 		<h3>Submit</h3>
 		{% csrf_token %}
 		{% for field in form %}

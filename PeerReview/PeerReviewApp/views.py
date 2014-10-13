@@ -133,9 +133,11 @@ def uploader_home(request):
 	context['period'] = current_period
 	current_user = SiteUser.objects.get(email=request.user.email)
 	if request.method == 'POST':
-		form = SubmitManuscript(request.POST)
+		form = SubmitManuscript(request.POST, request.FILES)
 		if form.is_valid():
 			form.save(review_period=current_period, authors=current_user)
+		else:
+			print form.cleaned_data
 	else:
 		form = SubmitManuscript()
 	context['form'] = form
@@ -158,3 +160,12 @@ def account(request):
 		form = AccountForm(instance=user)
 	context['form'] = form
 	return render(request, 'account.html', context)
+
+@login_required
+def auth_admin(request):
+	context = {}
+	user = SiteUser.objects.get(email=request.user.email)
+	if user.email != 'b.k.bolte@emory.edu': # Update admin authentication at some point
+		return HttpResponseRedirect(reverse('index'))
+	context['all_users'] = SiteUser.objects.all()
+	return render(request, 'admin_home.html', context)

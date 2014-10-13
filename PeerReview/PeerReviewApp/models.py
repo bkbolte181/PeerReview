@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.forms import ModelForm
+from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from custom_fields import SeparatedValuesField
 from datetime import datetime
@@ -92,3 +93,5 @@ class Manuscript(models.Model):
 	title = models.CharField(max_length=200, unique=True)
 	keywords = SeparatedValuesField(max_length=1000, help_text='Keywords, separated by a comma') # Custom field for storing python lists
 	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript")
+	manuscript_file = models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
+	review_file = models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')

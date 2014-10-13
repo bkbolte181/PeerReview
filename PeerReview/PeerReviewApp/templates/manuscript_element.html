@@ -17,6 +17,16 @@
 		{% endfor %}
 	</p>
 	{% endif %}
+	{% if manuscript.manuscript_file %}
+	<p class="manuscript-files" style="padding: 0; margin: 0; font-size: 14px;">
+		<a href="/media/{{ manuscript.manuscript_file }}">Download manuscript</a>
+	</p>
+	{% endif %}
+	{% if manuscript.review_file %}
+	<p class="manuscript-files" style="padding: 0; margin: 0; font-size: 14px;">
+		<a href="/media/{{ manuscript.review_file }}">Download review</a>
+	</p>
+	{% endif %}
 	<p class="manuscript-keywords" style="padding: 0; padding-top: 7px; margin: 0; font-size: 12px;">
 		Keywords: 
 		{% for keyword in manuscript.keywords %}

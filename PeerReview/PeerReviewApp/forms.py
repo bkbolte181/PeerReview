@@ -83,4 +83,4 @@ class SubmitManuscript(forms.ModelForm):
 	
 	class Meta:
 		model = Manuscript
-		exclude = ('review_period', 'authors', 'reviewers',)
+		exclude = ('review_period', 'authors', 'reviewers','review_file')
