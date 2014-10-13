@@ -20,19 +20,21 @@ a {
 	text-decoration: none;
 	color: inherit;
 }
-a:hover { text-decoration: overline; }
+a:hover {
+	text-decoration: underline;
+}
 
 /* Relating to the header */
 .header .logo {
 	font-family: 'Monterey';
 	font-size: 30px;
-	position: fixed;
+	position: absolute;
 	left: 10px;
 	top: 3px;
 }
 .header .navigation {
 	font-size: 13px;
-	position: fixed;
+	position: absolute;
 	right: 10px;
 	top: 10px;
 	text-align: right;

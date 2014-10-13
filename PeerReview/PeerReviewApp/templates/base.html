@@ -23,7 +23,7 @@
 					<li><a href="{% url 'account' %}">Account</a></li>
 					<li><a href="#">About</a></li>
 					<li><a href="#">Submit Feedback</a></li>
-					<li><a href="#">Help<a></li>
+					<li><a href="#">Help</a></li>
 					<li><a href="#">Admin Login</a></li>
 				</ul>
 				{% else %}
@@ -43,7 +43,7 @@
 			{% if user.is_authenticated %}
 			Logged in as <a href="{% url 'account' %}">{{ user }}</a>
 			{% else %}
-			Not logged in.
+			Not <a href="{% url 'login' %}">logged in</a>.
 			{% endif %}
 		</div>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

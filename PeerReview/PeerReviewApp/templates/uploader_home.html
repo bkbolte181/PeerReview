@@ -3,21 +3,15 @@
 {% block head %}
 <style>
 .review_period {
-	outline: 1px solid white;
-	padding: 5px 5px 5px 5px;
+	margin-top: 20px;
 }
-.review_period ul {
+.review_period h3 {
+	text-align: center;
 	padding: 0;
 	margin: 0;
-	padding-left: 25px;
 }
 .period_label {
 	padding-left: 15px;
-}
-.submission-form {
-	outline: 1px solid white;
-	padding: 5px 5px 5px 5px;
-	margin-top: 20px;
 }
 .submission-form h3 {
 	text-align: center;
@@ -44,6 +38,14 @@
 .field-help-text {
 	font-size: 13px;
 }
+.my-manuscripts {
+	margin-top: 20px;
+}
+.my-manuscripts h3 {
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
 </style>
 {% endblock %}
 
@@ -52,26 +54,34 @@
 {% if no_period_available %}
 Sorry, we are not accepting manuscripts at this time.
 {% else %}
-	<!-- Current period -->
-	<div class="review_period">
-		Deadlines for the current review period
-		<ul>
-			<li>{{ period.start_date|date:"d M Y" }}<span class="period_label">Period begins</span></li>
-			<li>{{ period.submission_deadline|date:"d M Y" }}<span class="period_label">Deadline for submissions</span></li>
-			<li>{{ period.review_deadline|date:"d M Y" }}<span class="period_label">Deadline for reviewers</span></li>
-			<li>{{ period.group_meeting_time|date:"d M Y" }}<span class="period_label">Group meeting date</span></li>
-		</ul>
-	</div>
+	<!-- Information about the current period -->
+	<!-- Form for submitting a new manuscript -->
 	<form class="submission-form" action="{% url 'upload' %}" method="post">
 		<h3>Submit</h3>
 		{% csrf_token %}
 		{% for field in form %}
 			<div class="form-div">
-				{% if field.errors %}{{ field.errors }}<br/>{% endif %}{{ field.label_tag }}<div class="field-div">{{ field }}</div>
+				{{ field.label_tag }}{{ field.errors }}<div class="field-div">{{ field }}</div>
 				{% if field.help_text %}<div class="field-help-text">{{ field.help_text }}</div>{% endif %}
 			</div>
 		{% endfor %}
+		<input type="hidden" value="{{ period.id }}" name="review_period">
 		<input type="submit" value="Upload Manuscript">
 	</form>
+	
+	<div class="review_period">
+		<h3>Current Review Period</h3>
+		{% include 'review_period_element.html' %}
+	</div>
 {% endif %}
+
+
+<!-- My manuscripts -->
+<div class="my-manuscripts">
+	<h3>My Manuscripts</h3>
+	{% for manuscript in user.authors.all %}
+		{% include 'manuscript_element.html' %}
+		{% if not forloop.last %}<hr>{% endif %}
+	{% endfor %}
+</div>
 {% endblock %}

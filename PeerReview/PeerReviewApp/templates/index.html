@@ -29,7 +29,7 @@
 		<p>Logged in as <a href="{% url 'account' %}">{% if user.first_name %}{{ user.first_name }} {{ user.last_name }}{% else %}{{ user.email }}{% endif %}</a></p>
 		<p style="font-size: 25px;"><a href="{% url 'review' %}">Review</a> - <a href="{% url 'upload' %}">Submit</a>
 	{% else %}
-		<p>Have your paper reviewed before submitting it</p>
+		<p style="font-size: 25px;"><a href="{% url 'login' %}">Log In</a> - <a href="{% url 'signup' %}">Sign Up</a>
 	{% endif %}
 </div>
 {% endblock %}

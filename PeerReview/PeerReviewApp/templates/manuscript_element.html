@@ -1,0 +1,26 @@
+<!-- All the elements associated with a single manuscript. Used in both uploader and reviewer view -->
+<div class="manuscript" style="padding: 5px 5px 5px 5px;">
+	<p class="manuscript-title" style="padding: 0; padding-bottom: 3px; margin: 0; font-size: 20px;">
+		{{ manuscript.title }}
+	</p>
+	<p class="manuscript-authors" style="padding: 0; margin: 0; font-size: 13px;">
+		Authored by
+		{% for person in manuscript.authors.all %}
+			{{ person.first_name }} {{ person.last_name }}{% if forloop.last %}.{% elif forloop.revcounter == 2 %} and {% else %}, {% endif %}
+		{% endfor %}
+	</p>
+	{% if manuscript.reviewers.count %}
+	<p class="manuscript-reviewers" style="padding: 0; margin: 0; font-size: 13px;">
+		Reviewed by
+		{% for person in manuscript.reviewers.all %}
+			{{ person.first_name }} {{ person.last_name }}{% if person.papers_reviewed == person.MORE_THAN_FIVE %} (experienced reviewer){% endif %}{% if forloop.last %}.{% elif forloop.revcounter == 2 %} and {% else %}, {% endif %}
+		{% endfor %}
+	</p>
+	{% endif %}
+	<p class="manuscript-keywords" style="padding: 0; padding-top: 7px; margin: 0; font-size: 12px;">
+		Keywords: 
+		{% for keyword in manuscript.keywords %}
+			{{ keyword }}{% if not forloop.last %} | {% endif %}
+		{% endfor %}
+	</p>
+</div>

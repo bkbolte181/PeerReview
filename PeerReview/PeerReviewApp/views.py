@@ -105,11 +105,20 @@ def auth_logout(request):
 	return render(request, 'logout.html', context)
 
 def has_agreed(user):
-	return user.agreed_to_form
+	if user.is_authenticated():
+		return user.agreed_to_form
+	else:
+		return False
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def reviewer_home(request):
 	context = {}
+	# Get Review Periods with submission deadlines in the future and which are not full
+	current_period = ReviewPeriod.objects.filter(review_deadline__gt=datetime.now()).filter(is_full=False)
+	if not current_period.count():
+		# If there are no review periods which satisfy the above requirement
+		return render(request, 'uploader_home.html', {'no_period_available': True})
+	context['periods'] = current_period.order_by('review_deadline')
 	return render(request, 'reviewer_home.html', context)
 
 @user_passes_test(has_agreed, login_url='/agreement/')
@@ -120,9 +129,15 @@ def uploader_home(request):
 	if not current_period.count():
 		# If there are no review periods which satisfy the above requirement
 		return render(request, 'uploader_home.html', {'no_period_available': True})
-	context['period'] = current_period.earliest('submission_deadline')
-	if request.method == 'POST': form = SubmitManuscript(request.POST)
-	else: form = SubmitManuscript()
+	current_period = current_period.earliest('submission_deadline')
+	context['period'] = current_period
+	current_user = SiteUser.objects.get(email=request.user.email)
+	if request.method == 'POST':
+		form = SubmitManuscript(request.POST)
+		if form.is_valid():
+			form.save(review_period=current_period, authors=current_user)
+	else:
+		form = SubmitManuscript()
 	context['form'] = form
 	return render(request, 'uploader_home.html', context)
 

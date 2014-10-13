@@ -1,10 +1,38 @@
 {% extends 'base.html' %}
 
 {% block head %}
-
+<style>
+.papers_this_period {
+	margin-top: 20px;
+}
+.papers_this_period h3 {
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+</style>
 {% endblock %}
 
 {% block body %}
-<h1>Reviewer Landing Page</h1>
-<p>This is the main reviewer page.</p>
+<h1>Review Manuscripts</h1>
+{% if no_period_available %}
+Sorry, we are not accepting manuscripts at this time.
+{% else %}
+	<!-- Current period -->
+	<div class="review_period">
+	{% for period in periods.all %}
+		{% include 'review_period_element.html' %}
+		{% if not forloop.last %}<hr>{% endif %}
+	{% endfor %}
+	</div>
+	<div class="papers_this_period">
+		<h3>Review</h3>
+		{% for period in periods %}
+			{% for manuscript in period.manuscripts.all %}
+				{% include 'manuscript_element.html' %}
+				{% if not forloop.last %}<hr>{% endif %}
+			{% endfor %}
+		{% endfor %}
+	</div>
+{% endif %}
 {% endblock %}

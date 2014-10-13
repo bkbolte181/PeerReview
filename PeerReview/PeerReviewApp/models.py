@@ -89,6 +89,6 @@ class Manuscript(models.Model):
 	'''
 	reviewers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="reviewers", related_query_name="reviewer")
 	authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="authors", related_query_name="author")
-	title = models.CharField(max_length=200)
+	title = models.CharField(max_length=200, unique=True)
 	keywords = SeparatedValuesField(max_length=1000, help_text='Keywords, separated by a comma') # Custom field for storing python lists
 	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript")
