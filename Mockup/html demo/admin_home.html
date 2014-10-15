@@ -1,0 +1,233 @@
+
+<!doctype html>
+<html>
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="wraper">
+    <div class="header">
+      <div class="container">
+        <a href="#" class="logo-icon">
+          <img src="fig/Icon_WriteArticles.png">
+          <p class="logo-text">Manuscript Review</p>
+        </a>
+
+        <ul class="menu">
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="content">
+      <div class="container">
+      	<div id="admin-nav">
+      	<div class="row" >
+	      	<div class="col-sm-offset-4 col-sm-4">
+				<ul class="nav nav-pills" role="tablist" >
+				  <li class="active"><a href="#manuscripts" role="tab" data-toggle="tab">Manuscripts/Reviewers</a></li>
+				  <li><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
+				</ul>
+	      	</div>      	
+      	</div>
+      	<div class="row">
+			<div class="tab-content">
+		  		<div class="tab-pane active" id="manuscripts">
+		  			<div class="row" >
+		  				<div class="col-sm-6" id="deadline-ad">
+		  				<h5>Deadline</h5>
+		  				<p>Deadline for paper submission is Nov. 10, 2014.<br/>
+		  				Deadline for paper submission is Dec. 10, 2014.</p>
+		  				</div>
+		  			</div>
+		  			<div class="row" >
+		  				<div class="col-sm-6" id="meeting-ad">
+		  				<h5>Meeting</h5>
+		  				<p>No meeting time available.</p>
+		  				</div>
+		  			</div>
+		  			<div class="row">
+		  				<!-- manuscripts / reviewers  -->
+	      				<div class="col-sm-6">
+	      					<h5 class="subtitle">Manuscripts</h5>
+	      					<div id="manuscript-list">
+	      						<div id="manuscript1">
+		      						<h5>1. PCA versus LDA</h5>   	      		
+		      						<p class="manuscript-detail">
+		      						<strong>Author</strong>: <span class="user">Arial Martinez(<a href="">mar@emory.edu</a>)</span>  ...<br/>
+		      						<strong>Assigned reviewers</strong>: <span class="user">John Lee*(<a href="">lee@emory.edu</a>)</span>, <span class="user">Emily White(<a href="">ewhite@emory.edu</a>)</span><br/>
+		      						<strong>Recommend reviewers</strong>: <span class="user">Mary Green*(<a href="">mgreen@emory.edu</a>)</span>,...
+		      						</p>
+		      						<div class="btns">
+		      							<button type="button" class="btn btn-default btn-sm">Feedback</button>
+		      							<button type="button" class="btn btn-default pull-right btn-sm">Edit</button>
+		      							<button type="button" class="btn btn-default pull-right btn-sm">Submit</button>
+		      						</div>
+
+	      						</div>
+	      						<div id="manuscript2">
+		      						<h5>2. PCA versus LDA</h5>
+		      						<p class="manuscript-detail">
+		      						<strong>Author</strong>: <span class="user">Arial Martinez(<a href="">ewhite@emory.edu</a>)<a href="wsi5@emory.edu"></a></span><br/>
+		      						<strong>Assigned reviewers</strong>: <span class="user">John Lee*(<a href="">ewhite@emory.edu</a>)</span>, <span class="user">Emily White(<a href="">ewhite@emory.edu</a>)</span><br/>
+		      						<strong>Recommend reviewers</strong>: <span class="user">Mary Green*(<a href="">ewhite@emory.edu</a>)</span>,...
+		      						</p>
+		      						<div class="btns">
+		      							<button type="button" class="btn btn-default btn-sm">Feedback</button>
+		      							<button type="button" class="btn btn-default pull-right btn-sm">Edit</button>		      				
+		      							<button type="button" class="btn btn-default pull-right btn-sm">Submit</button>						
+		      						</div>		      						
+	      						</div>
+	      						<div id="manuscript3">
+		      						<h5>3. Eigenfaces for Recognition</h5>
+		      						<p class="manuscript-detail">
+		      						<strong>Author</strong>: <span class="user">Arial Martinez(<a href="">ewhite@emory.edu</a>)<a href="wsi5@emory.edu"></a></span><br/>
+		      						<strong>Reviewers</strong>: <span class="user">John Lee*(<a href="">ewhite@emory.edu</a>)</span>, <span class="user">Emily White(<a href="">ewhite@emory.edu</a>)</span>
+		      						</p>
+		      						<div class="btns">
+		      							<button type="button" class="btn btn-default btn-sm">Feedback</button>					
+		      						</div>		      						
+	      						</div>      						
+
+	      					</div>
+	      				</div>
+
+	      				<div class="col-sm-6">
+	      					<h5 class="subtitle">Reviewers</h5>
+	      					<div id="reviewer-list">
+	      						<div id="reviewer1">
+	      							<h5>John Lee*</h5>
+	      							<p class="reviewer-detail">
+	      								<strong>Number of manuscripts reviewed</strong>: 4<br/>
+	      								<strong>Research interests</strong>: CS, Bios<br/>
+	      								<strong>Email</strong>: <a href="">lee@emory.edu</a>
+	      							</p>
+	      						</div>
+	      						<div id="reviewer2">
+	      							<h5>Mary Green*</h5>
+	      							<p class="reviewer-detail">
+	      								<strong>Number of manuscripts reviewed</strong>: 3<br/>
+	      								<strong>Research interests</strong>: CS, Bios<br/>
+	      								<strong>Email</strong>: <a href="">lee@emory.edu</a>
+	      							</p>	      							
+	      						</div>
+	      						<div id="reviewer3">
+	      							<h5>Alex White</h5>
+	      							<p class="reviewer-detail">
+	      								<strong>Number of manuscripts reviewed</strong>: 3<br/>
+	      								<strong>Research interests</strong>: Math, Bios<br/>
+	      								<strong>Email</strong>: <a href="">elex@emory.edu</a>
+	      							</p>	      							
+	      						</div>    
+	      						<div id="reviewer4">
+	      							<h5>Emily Green</h5>
+	      							<p class="reviewer-detail">
+	      								<strong>Number of manuscripts reviewed</strong>: 2<br/>
+	      								<strong>Research interests</strong>: CS, Bios<br/>
+	      								<strong>Email</strong>: <a href="">lee@emory.edu</a>
+	      							</p>
+
+	      						</div>  
+	      						<div id="reviewer5">
+	      							<h5>Emily White</h5>
+	      							<p class="reviewer-detail">
+	      								<strong>Number of manuscripts reviewed</strong>: 4<br/>
+	      								<strong>Research interests</strong>: CS, Bios<br/>
+	      								<strong>Email</strong>: <a href="">lee@emory.edu</a>
+	      							</p>	      							
+	      						</div>  
+	      						<div id="reviewer6">
+	      							<h5>Emily Green</h5>
+	      							<p class="reviewer-detail">
+	      								<strong>Number of manuscripts reviewed</strong>: 1<br/>
+	      								<strong>Research interests</strong>: Math<br/>
+	      								<strong>Email</strong>: <a href="">lee@emory.edu</a>
+	      							</p>	      							
+	      						</div>  
+	      						<div id="reviewer7">
+	      							<h5>Emily White</h5>
+	      						</div>        						      					
+	      						<div id="reviewer8">
+	      							<h5>Emily White</h5>
+	      						</div>        							      				
+	      						<div id="reviewer9">
+	      							<h5>Emily White</h5>
+	      						</div>  
+	      						<div id="reviewer10">
+	      							<h5>Emily White</h5>
+	      						</div>        						      					
+	      						<div id="reviewer11">
+	      							<h5>John Lee*</h5>
+	      						</div>
+	      						<div id="reviewer12">
+	      							<h5>Mary Green*</h5>
+	      						</div>
+	      						<div id="reviewer13">
+	      							<h5>Emily White</h5>
+	      						</div>    
+	      						<div id="reviewer14">
+	      							<h5>Emily White</h5>
+	      						</div>  
+	      						<div id="reviewer15">
+	      							<h5>Emily White</h5>
+	      						</div>  
+	      						<div id="reviewer16">
+	      							<h5>Emily White</h5>
+	      						</div>  
+	      						<div id="reviewer17">
+	      							<h5>Emily White</h5>
+	      						</div>        						      					
+	      						<div id="reviewer18">
+	      							<h5>Emily White</h5>
+	      						</div>        							      				
+	      						<div id="reviewer19">
+	      							<h5>Emily White</h5>
+	      						</div>  
+	      						<div id="reviewer20">
+	      							<h5>Emily White</h5>
+	      						</div>        						      								      									
+
+
+
+	      					</div>
+	      				</div>		  				
+
+		  			</div>
+
+	
+
+
+
+
+				</div>
+				<div class="tab-pane" id="settings">settings
+					<!-- settings  -->
+      				<div class="col-sm-12">
+
+      				</div>
+
+
+				</div>
+			</div>     			
+		</div>
+		</div>
+      </div>
+    </div>
+
+
+</script>
+
+    <div class="footer">
+      <div class="container">
+        &copy;2014 Copyright 
+      </div>
+    </div>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
+

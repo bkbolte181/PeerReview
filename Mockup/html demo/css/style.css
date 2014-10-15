@@ -1,0 +1,163 @@
+
+/* General */
+
+.container {
+  width: 960px;
+  margin-top: auto;
+  margin-bottom: auto; 
+  /*border: 1px solid black; */ 
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  height: 800px;
+}
+.wraper{
+  min-height: 100%;
+  position: relative;
+}
+/* Header */
+
+.header {
+  background-color: rgba(222, 255, 207, 0.95); /*#DEFDCF*/
+  border-bottom: 1px solid #ddd;
+
+  font-weight: 300;
+
+  font-size: 17px;
+  padding: 15px;
+}
+.header .logo-icon img{
+  width: 50px;
+  height: 50px;
+  float: left;
+}
+.header .logo-text {
+  font-family: cursive;
+  font-size: 40px;
+  float: left;
+}
+.footer {
+	border-top: 1px solid #ddd;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color: rgba(222, 255, 207, 0.95); /*#DEFDCF*/  
+  font-size: 14px;
+}
+.footer .container {
+  text-align: center;
+  padding: 6px;
+  /*border: 1px solid black;*/
+}
+
+.content {
+  font-size: 13px;
+}
+
+.content .login {
+  padding-top: 80px;
+  width: 50%;
+  margin: auto;
+  /*border: 1px solid black;*/
+}
+/* Menu */
+
+.header .menu {
+	font-size: 14px;
+  float: right;
+  list-style: none;
+  margin-top: 1px;
+}
+
+.menu > li {
+  display: inline;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.header a {
+  color: black;
+}
+#admin-nav {
+  padding-top: 10px; 
+  margin-bottom: 20px;
+}
+
+.nav-pills > li > a{
+  color: grey;
+}
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus{
+    color: black;
+    background-color: rgba(114, 196, 180, 0.95); /*#17A589*/
+    font-weight: bold; 
+} 
+#manuscripts .subtitle {
+  margin: 0px 0px 5px 0px;
+  text-align: center;
+}
+
+#manuscript-list, #reviewer-list {
+  padding: 5px;
+  height: 550px;
+  border-top: 2px solid rgba(222, 255, 207, 0.95);
+  border-bottom: 2px solid rgba(222, 255, 207, 0.95);
+  border-right: 1px solid rgba(222, 255, 207, 0.95);
+  border-left: 1px solid rgba(222, 255, 207, 0.95);  
+  overflow: auto;
+}
+.manuscript-detail, .reviewer-detail{
+  margin-left: 2rem;
+}
+#deadline h5, #meeting h5, #feedback h5, #settings h5 {
+	text-align: center;
+	margin-top: 0rem;
+	/*border: 1px solid black;*/
+}
+h5, h5 label {
+  font-weight: bold;
+}
+#manuscript-list h5, #reviewer-list h5 {
+  background-color: rgba(222, 255, 207, 0.95); /*#DEFDCF*/  
+  padding: 3px;
+  border-radius: 3px;
+}
+a {
+  color: black;
+}
+
+#reviewer-list .checkbox input {
+  margin-top: 2px;
+  margin-bottom:2px;
+}
+
+.btns {
+  margin: 0rem 0rem 4rem 0;
+}
+form {
+	margin-top: 0px;
+}
+
+.checkbox {
+  display: inline;
+}
+.manuscript {
+  clear: both;
+}
+#add-icon {
+  margin-top: 20%;
+}
+.user {
+	/*text-decoration: underline;*/
+}
+.hide {
+	display:none;
+}
+.hide1 {
+	visibility: hidden;
+}

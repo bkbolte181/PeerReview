@@ -1,0 +1,294 @@
+<!doctype html>
+<html>
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="wraper">
+    <div class="header">
+      <div class="container">
+        <a href="#" class="logo-icon">
+          <img src="fig/Icon_WriteArticles.png">
+          <p class="logo-text">Manuscript Review</p>
+        </a>
+
+        <ul class="menu">
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="content">
+      <div class="container">
+      	<div id="admin-nav">
+      	<div class="row" >
+	      	<div class="col-sm-offset-2 col-sm-8">
+				<ul class="nav nav-pills" role="tablist" >
+				  <li class="active"><a href="#manuscripts" role="tab " data-toggle="tab" title="Browse lists of manuscripts/reviewers and make final decisions.">Manuscripts/Reviewers</a></li>
+				  <li><a href="#deadline" role="tab" data-toggle="tab" title="Check deadlines.">Deadlines</a></li>
+				  <li><a href="#meeting" role="tab" data-toggle="tab" title="Check meetings.">Meetings</a></li>
+				  <li><a href="#feedback" role="tab" data-toggle="tab" title="Check and request feedbacks.">Feedback</a></li>
+				  <li><a href="#settings" role="tab" data-toggle="tab" title="Setup max pool, email reminder dates.">Settings</a></li>
+				</ul>
+	      	</div>      	
+      	</div>
+		</div>
+		<div class="tab-content">
+			<div class="tab-pane" id="feedback">
+				<div class="row" >
+					<div class="col-sm-3 col-sm-offset-4">
+					<h5>Feedback</h5>
+					<p>No feedback information available.</p>
+					</div>
+				</div>				
+			</div>			
+			<div class="tab-pane" id="deadline">
+				<div class="row" >
+					<div class="col-sm-4 col-sm-offset-4">
+					<h5>Deadlines</h5>
+					<p>Deadline for paper submission is Nov. 10, 2014.<br/>
+					Deadline for paper submission is Dec. 10, 2014.</p>
+					</div>
+				</div>				
+			</div>
+			<div class="tab-pane" id="meeting">
+				<div class="row" >
+					<div class="col-sm-3 col-sm-offset-4">
+					<h5>Meetings</h5>
+					<p>No meeting information available.</p>
+					</div>
+				</div>					
+			</div>				
+			<div class="tab-pane active" id="manuscripts">
+				<!--
+				<div class="row" >
+					<div class="col-sm-5 col-sm-offset-2" id="deadline-ad">
+					<h5>Deadline</h5>
+					<p>Deadline for paper submission is Nov. 10, 2014.<br/>
+					Deadline for paper submission is Dec. 10, 2014.</p>
+					</div>
+					<div class="col-sm-5" id="meeting-ad">
+					<h5>Meeting</h5>
+					<p>No meeting time available.</p>
+					</div>
+				</div>
+				-->
+				<div class="row">
+					<!-- manuscripts / reviewers  -->
+					<div class="col-sm-7">
+						<h5 class="subtitle">Manuscripts</h5>
+						
+						<div id="manuscript-list">
+						<form class="form-inline" role="form">
+							<div class = "manuscript" id="manuscript1">
+								<h5>1. PCA versus LDA</h5>   	      		
+								<div class="manuscript-detail">
+									<strong>Author</strong>: <span class="user" >Arial Martinez(<a href="">mar@emory.edu</a>)</span><br/>	
+								
+									<strong>Assigned reviewers</strong>: 
+									<span class="user " data-toggle="popover" title="Email address" data-content="ewhite@emory.edu">
+										<div class="checkbox"><input type="checkbox" checked="checked"></div>
+										John Lee*(<a href="">lee@emory.edu</a>)
+									</span>,
+									<span class="user ">
+										<div class="checkbox"><input type="checkbox" checked="checked"></div>
+										Emily White(<a href="">ewhite@emory.edu</a>)
+									</span>								
+									<br/>
+									
+									<strong>Recommend reviewers</strong>: 
+									<span class="user ">
+										<div class="checkbox"><input type="checkbox" ></div>
+										Mary Green*(<a href="">mgreen@emory.edu</a>)
+									</span>,										
+									<span class="user ">
+										<div class="checkbox"><input type="checkbox" ></div>
+										Mary Green*(<a href="">mgreen@emory.edu</a>)
+									</span>...
+								</div>
+								<div class="btns ">
+									<button type="button" class="btn btn-default btn-sm pull-right" data-toggle="tooltip" title="Add additional reviewers from reviewer list on the right to this manuscript!">Add</button>		      				
+									<button type="submit" class="btn btn-default  btn-sm pull-right" data-toggle="tooltip" title="Save and finish edit.">Finish Edit</button>						
+								</div>	
+								<div class="btns hide">
+									<button type="button" class="btn btn-default btn-sm pull-right">Edit</button>
+									<button type="submit" class="btn btn-default btn-sm pull-right">Submit</button>	
+								</div>										
+							</div>
+							<div class = "manuscript" id="manuscript2">
+								<h5>2. PCA versus LDA</h5>
+								<div class="manuscript-detail">
+								<strong>Author</strong>: <span class="user" data-toggle="popover" data-content="ewhite@emory.edu">Arial Martinez<a href="wsi5@emory.edu"></a></span><br/>
+								<strong>Assigned reviewers</strong>: <span class="user" data-toggle="popover" data-content="ewhite@emory.edu">John Lee*</span>, <span class="user" data-toggle="popover" data-content="ehouse@emory.edu">Emily House</span><br/>
+								<strong>Recommend reviewers</strong>: <span class="user" data-toggle="popover" data-content="mary@emory.edu">Mary Green*</span>,...
+								</div>
+								<div class="btns hide">
+									<button type="button" class="btn btn-default btn-sm pull-right" data-toggle="tooltip" title="Add additional reviewers from reviewer list on the right to this manuscript!">Add</button>		      				
+									<button type="submit" class="btn btn-default  btn-sm pull-right" data-toggle="tooltip" title="Save and finish edit.">Finish Edit</button>						
+								</div>	
+								<div class="btns ">
+									<button type="button" class="btn btn-default btn-sm pull-right" data-toggle="tooltip" title="Edit reviewers for the manuscript.">Edit</button>
+									<button type="submit" class="btn btn-default btn-sm pull-right" data-toggle="tooltip" title="Submit final matching decision.">Submit</button>	
+								</div>		      						
+							</div>
+							<div class = "manuscript" id="manuscript3">
+								<h5>3. Eigenfaces for Recognition</h5>
+								<div class="manuscript-detail">
+								<strong>Author</strong>: <span class="user">Arial Martinez(<a href="">ewhite@emory.edu</a>)<a href="wsi5@emory.edu"></a></span><br/>
+								<strong>Reviewers</strong>: <span class="user">John Lee*(<a href="">ewhite@emory.edu</a>)</span>, <span class="user">Emily White(<a href="">ewhite@emory.edu</a>)</span>
+								</div>	      						
+							</div>      						
+						</form>
+						</div>
+						
+					</div>
+					<!--
+					<div class="col-sm-1" id="add-icon">
+						<button type="button" class="btn btn-default"><i class="glyphicon glyphicon-chevron-left"></i></button>
+					</div>
+					-->
+					<div class="col-sm-5">
+						<h5 class="subtitle">Reviewers</h5>
+						<div id="reviewer-list">
+							<div id="reviewer1">
+								<h5><div class="checkbox">  
+									<label>
+									<input type="checkbox" >John Lee*</label></div></h5>
+								<h5 class="hide">John Lee*</h5>										
+								<p class="reviewer-detail">
+									<strong>Number of manuscripts reviewed</strong>: 4<br/>
+									<strong>Research fields</strong>: CS, Bios<br/>
+									<strong>Email</strong>: <a href="">lee@emory.edu</a>
+								</p>
+							</div>
+							<div id="reviewer2">
+								<h5><div class="checkbox">  
+									<label>
+									<input type="checkbox" >Mary Green*</label></div></h5>
+								<h5 class="hide">Mary Green*</h5>	
+								<p class="reviewer-detail">
+									<strong>Number of manuscripts reviewed</strong>: 3<br/>
+									<strong>Research fields</strong>: CS, Bios<br/>
+									<strong>Email</strong>: <a href="">lee@emory.edu</a>
+								</p>	      							
+							</div>
+							<div id="reviewer3">
+								<h5><div class="checkbox">  
+									<label>
+									<input type="checkbox" >Alex White</label></div></h5>
+								<h5 class="hide">Alex White</h5>
+								<p class="reviewer-detail">
+									<strong>Number of manuscripts reviewed</strong>: 3<br/>
+									<strong>Research fields</strong>: Math, Bios<br/>
+									<strong>Email</strong>: <a href="">elex@emory.edu</a>
+								</p>	      							
+							</div>    
+							<div id="reviewer4">
+								<h5><div class="checkbox">  
+									<label>
+									<input type="checkbox" >
+									Emily Green</label></div></h5>
+								<h5 class="hide">Emily Green</h5>
+								<p class="reviewer-detail">
+									<strong>Number of manuscripts reviewed</strong>: 2<br/>
+									<strong>Research fields</strong>: CS, Bios<br/>
+									<strong>Email</strong>: <a href="">lee@emory.edu</a>
+								</p>
+
+							</div>  
+							<div id="reviewer5">
+								<h5><div class="checkbox">  
+									<label>
+									<input type="checkbox" >Emily White</label></div></h5>
+								<h5 class="hide">Emily Green</h5>
+								<p class="reviewer-detail">
+									<strong>Number of manuscripts reviewed</strong>: 4<br/>
+									<strong>Research fields</strong>: CS, Bios<br/>
+									<strong>Email</strong>: <a href="">lee@emory.edu</a>
+								</p>	      							
+							</div>  
+							<div id="reviewer6">
+								<h5><div class="checkbox">  
+									<label>
+									<input type="checkbox" >Emily Green</label></div></h5>
+								<h5 class="hide">Emily Green</h5>
+								<p class="reviewer-detail">
+									<strong>Number of manuscripts reviewed</strong>: 1<br/>
+									<strong>Research fields</strong>: Math<br/>
+									<strong>Email</strong>: <a href="">lee@emory.edu</a>
+								</p>	      							
+							</div>  
+							<div id="reviewer7">
+								<h5>Emily White</h5>
+							</div>        						      					
+							<div id="reviewer8">
+								<h5>Emily White</h5>
+							</div>        							      				
+							<div id="reviewer9">
+								<h5>Emily White</h5>
+							</div>  
+							<div id="reviewer10">
+								<h5>Emily White</h5>
+							</div>        						      					
+							<div id="reviewer11">
+								<h5>John Lee*</h5>
+							</div>
+							<div id="reviewer12">
+								<h5>Mary Green*</h5>
+							</div>
+							<div id="reviewer13">
+								<h5>Emily White</h5>
+							</div>    
+							<div id="reviewer14">
+								<h5>Emily White</h5>
+							</div>  
+							<div id="reviewer15">
+								<h5>Emily White</h5>
+							</div>  
+							<div id="reviewer16">
+								<h5>Emily White</h5>
+							</div>  
+							<div id="reviewer17">
+								<h5>Emily White</h5>
+							</div>        						      					
+							<div id="reviewer18">
+								<h5>Emily White</h5>
+							</div>        							      				
+							<div id="reviewer19">
+								<h5>Emily White</h5>
+							</div>  
+							<div id="reviewer20">
+								<h5>Emily White</h5>
+							</div> 
+
+						</div>
+					</div>		  				
+
+				</div>
+
+			</div>
+			<div class="tab-pane" id="settings">
+				<!-- settings  -->
+				<div class="col-sm-3 col-sm-offset-4">
+					<h5>Settings</h5>
+					<p>....</p>
+				</div>
+			</div>
+		</div>     			
+	  </div>
+	</div>
+    
+    <div class="footer">
+      <div class="container">
+        &copy;2014 Copyright 
+      </div>
+    </div>
+	</div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
+
