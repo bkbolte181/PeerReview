@@ -23,7 +23,7 @@ body {
 .header {
   background-color: rgba(222, 255, 207, 0.95); /*#DEFDCF*/
   border-bottom: 1px solid #ddd;
-
+  width: 100%;
   font-weight: 300;
 
   font-size: 17px;
@@ -39,12 +39,20 @@ body {
   font-size: 40px;
   float: left;
 }
+
+/* footer stick to the bottom */
+.footerholder {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+}
 .footer {
 	border-top: 1px solid #ddd;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 40px;
+  height: 32px;
+  width: auto;
+  margin: auto;
   background-color: rgba(222, 255, 207, 0.95); /*#DEFDCF*/  
   font-size: 14px;
 }
