@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="wraper">
+    <div class="header">
+      <div class="container">
+        <a href="#" class="logo-icon">
+          <img src="fig/Icon_WriteArticles.png">
+          <p class="logo-text">Manuscript Review</p>
+        </a>
+
+        <ul class="menu">
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="content">
+      <div class="container">
+		<div class="row admin-nav">
+		<div class="col-sm-4">
+		  <span><a href="admin_home.html">
+			Home
+		  </a></span>
+		  > <span>Manuscript detail</span>
+		</div>
+		</div>	  
+	  
+        <div class = "row manuscript_detail">
+		
+		
+			<div class="col-sm-8 col-sm-offset-2">
+				<table class="table table-hover">
+				  <caption>PCA versus LDA</caption>
+				  <thead>
+					<tr>
+					  <th class="col-sm-3"></th>
+					  <th class="col-sm-9"></th>
+					</tr>
+				  </thead>
+				  <tbody>			  
+					<tr>
+					  <td>ID</td>
+					  <td>1</td>
+					</tr>
+					<tr>
+					  <td>Author</td>
+					  <td>Arial Martinez</td>
+					</tr>					
+					<tr>
+					  <td>Assigned reviewers</td>
+					  <td>John Lee*, Emily White</td>
+					</tr>
+					<tr>
+					  <td>Recommended reviewers</td>
+					  <td>Benjamin Bolte*, Peng Ji, Jiulin Hu, Johnny Tan</td>
+					</tr>	
+					<tr>
+					  <td>Abstract</td>
+					  <td>In the context of the appearance-based paradigm for object recognition, it is generally believed that algorithms based on LDA (Linear Discriminant Analysis) are superior to those based on PCA (Principal Components Analysis). In this communication, we show that this is not always the case. We present our case first by using intuitively plausible arguments and, then, by showing actual results on a face database. Our overall conclusion is that when the training data set is small, PCA can outperform LDA and, also, that PCA is less sensitive to different training data sets.</td>
+					</tr>	
+					<tr>
+					  <td>Keywords</td>
+					  <td>face recognition, pattern recognition, principal components analysis, linear discriminant analysis, learning from undersampled distributions, small training data sets</td>
+					</tr>	
+					<tr>
+					  <td>Feedback</td>
+					  <td>No feedback available. <br/>
+							Click <a class="adecor"href="">here</a> to request feedback from the author.</td>
+					</tr>						
+				  </tbody>
+				</table>
+				<button type="button" class="btn btn-default pull-right home" data-tooltip="tooltip" title="Go back to manuscripts/reviewers list.">Back</button>
+			</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        &copy;2014 Copyright 
+      </div>
+    </div>
+	</div>
+	
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
