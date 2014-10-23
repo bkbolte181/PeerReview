@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="wraper">
+    <div class="header">
+      <div class="container">
+        <a href="#" class="logo-icon">
+          <img src="fig/Icon_WriteArticles.png">
+          <p class="logo-text">Manuscript Review</p>
+        </a>
+
+        <ul class="menu">
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+	
+    <div class="content">
+      <div class="container">
+		<div class="row admin-nav">
+		<div class="col-sm-4">
+		  <span><a href="admin_home.html">
+			Home
+		  </a></span>
+		  > <span>Manuscript detail</span>
+		</div>
+		</div>	  	  
+        <div class = "row manuscript_detail">
+			<div class="col-sm-8 col-sm-offset-2">
+				<table class="table table-hover">
+				  <caption>Eigenfaces for Recognition</caption>
+				  <thead>
+					<tr>
+					  <th class="col-sm-3"></th>
+					  <th class="col-sm-9"></th>
+					</tr>
+				  </thead>
+				  <tbody>			  
+					<tr>
+					  <td>ID</td>
+					  <td>2</td>
+					</tr>
+					<tr>
+					  <td>Author</td>
+					  <td>Arial Martinez</td>
+					</tr>					
+					<tr>
+					  <td>Reviewers</td>
+					  <td>John Lee*, Emily White,Mary Green*, Mary Green*, Mary Green*</td>
+					</tr>
+					<tr>
+					  <td>Abstract</td>
+					  <td>We have developed a near-real-time computer system that can locate and track a subject's head, and then recognize the person by comparing characteristics of the face to those of known individuals. The computational approach taken in this system is motivated by both physiology and information theory, as well as by the practical requirements of near-real-time performance and accuracy. Our approach treats the face recognition problem as an intrinsically two-dimensional (2-D) recognition problem rather than requiring recovery of three-dimensional geometry, taking advantage of the fact that faces are normally upright and thus may be described by a small set of 2-D characteristic views. The system functions by projecting face images onto a feature space that spans the significant variations among known face images. The significant features are known as "eigenfaces," because they are the eigenvectors (principal components) of the set of faces; they do not necessarily correspond to features such as eyes, ears, and noses. The projection operation characterizes an individual face by a weighted sum of the eigenface features, and so to recognize a particular face it is necessary only to compare these weights to those of known individuals. Some particular advantages of our approach are that it provides for the ability to learn and later recognize new faces in an unsupervised manner, and that it is easy to implement using a neural network architecture.</td>
+					</tr>	
+					<tr>
+					  <td>Keywords</td>
+					  <td>face recognition, pattern recognition, principal components analysis, linear discriminant analysis, learning from undersampled distributions, small training data sets</td>
+					</tr>	
+					<tr>
+					  <td>Feedback</td>
+					  <td>No feedback available. <br/>
+							Click <a class="adecor"href="">here</a> to request feedback from the author.</td>
+					</tr>						
+				  </tbody>
+				</table>
+				<button type="button" class="btn btn-default pull-right home" data-tooltip="tooltip" title="Go back to manuscripts/reviewers list.">Back</button>				
+			</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        &copy;2014 Copyright 
+      </div>
+    </div>
+	</div>
+	
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
