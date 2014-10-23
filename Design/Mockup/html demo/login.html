@@ -2,6 +2,7 @@
 <!doctype html>
 <html>
   <head>
+    <title> Manuscript Review - Login </title>
     <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet'>
     <link href="http://s3.amazonaws.com/codecademy-content/courses/ltp2/css/bootstrap.min.css" rel="stylesheet">
     <link type="text/css" href="css/style.css" rel="stylesheet">
@@ -23,6 +24,8 @@
       </div>
       <div class="content">
         <div class="container">
+          <br>   <!-- leave lines for error info -->
+          <br>   <!-- leave lines for error info -->
           <div class = "login">
           <form class="form-horizontal" role="form">
             <div class="form-group">
@@ -38,8 +41,13 @@
               </div>
             </div> 
             <div class="form-group">
-              <div class="col-sm-offset-3 col-sm-9">
-                <button type="submit" class="btn btn-default">Log in</button>
+              <div class="col-sm-offset-9 col-sm-9">
+                <a href="user_home.html">
+                  <!--
+                  <button type="submit" class="btn btn-default">Log in</button>
+                  -->
+                  <button type="button" class="btn btn-default">Log in</button>
+                </a>
               </div>
             </div>                    
           </form>
@@ -57,6 +65,6 @@
     </div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="app.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
