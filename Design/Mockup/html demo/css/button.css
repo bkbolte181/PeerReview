@@ -1,3 +1,9 @@
+#sign-up label {
+  margin-top: auto;
+  margin-bottom:auto; 
+  padding-top: 7px;
+}
+
 /* button */
 /* ref http://jsfiddle.net/bseth99/dJDHd/ */
 .btn-input {
