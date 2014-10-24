@@ -34,11 +34,11 @@ $(document).ready(function() {
 				//console.log(cur_listedReviewers[j]);
 				if (reviewers[i].find('a').text() === cur_listedReviewers[j]) {
 					console.log("--------");
-					reviewers[i].parent().parent().addClass('hide');
-					/*
+					/*reviewers[i].parent().parent().addClass('hide');*/
+					
 					reviewers[i].find('span').removeClass('hide');
 					reviewers[i].addClass('highlight-disable');
-					*/
+					
 					/*
 					console.log(reviewers[i].find("input[type='checkbox']"));
 					reviewers[i].find("input[type='checkbox']").prop('disabled',true);
