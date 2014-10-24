@@ -1,103 +1,137 @@
-
 <!doctype html>
 <html>
   <head>
-    <title> Manuscript Review Register</title>
+    <title> Manuscript Review - Register Confirmation</title>
     <link href="http://fonts.googleapis.com/css?family=Oswald:400,300" rel="stylesheet">
-    <link href="http://s3.amazonaws.com/codecademy-content/courses/ltp2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link type="text/css" href="css/style.css" rel="stylesheet">
     <link type="text/css" href="css/button.css" rel="stylesheet">
-    </head>
+  </head>
   <body>
-  <div class="wraper">
-    <div class="header">
-      <div class="container">
-        <a href="home.html" class="logo-icon">
-        <img src="fig/Icon_WriteArticles.png">
-        <p class="logo-text">Manuscript Review</p>
-        </a>
-    
-        <ul class="menu">
-        <li><a href="#">Help</a></li>
-        <!--<li><a href="#">Logout</a></li>-->
-        </ul>
-      </div>
-    </div>
-    <div class="container ">
-      <div class="col-md-8 col-md-offset-2">
-        <br>        
-        <!--form class="form-horizontal" role="form">
-          <div class="form-group"-->
-
-        <div class="input-group" style="width:100%">
-          <input type="text" class="form-control" style = "text-align:center" placeholder="First Name" required>
-        </div>
-        <br>
-        <div class="input-group" style="width:100%">
-          <input type="text" class="form-control" style = "text-align:center" placeholder="Last Name">
-        </div>
-        <br>
-        <div class="input-group" style="width:100%">
-          <input type="email" class="form-control" style = "text-align:center" placeholder="Email" rquired>
-        </div>
-        <br>
-        <div class="input-group" style="width:100%">
-          <input type="password" class="form-control" style = "text-align:center" placeholder="Password" required>
-        </div>
-        <br>
-        <div class="input-group" style="width:100%">
-          <input type="password" class="form-control" style = "text-align:center" placeholder="Confirm Password" required>
-        </div>
-        <br>
-
-        <div class="btn-group btn-input clearfix">
-          <button type="button" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown" required>
-            <span data-bind="label" style="text-align:center">Choose Your School</span>&nbsp;<span class="caret"></span>
-          </button>
-            <ul class="dropdown-menu" role="menu" style="width:100%">
-              <li><a href="#" style="text-align:center">GOIZUETA BUSINESSS SCHOOL</a></li>
-              <li><a href="#"style="text-align:center">LANEY GRADUATE SCHOOL</a></li>
-              <li><a hGref="#"style="text-align:center">SCHOOL OF LAW</a></li>
-              <li><a href="#"style="text-align:center">SCHOOL OF MEDICINE</a></li>
-              <li><a href="#"style="text-align:center">NELL HODGSON WOODRUFF SCHOOL OF NURSING</a></li>
-              <li><a href="#"style="text-align:center">ROLLINS SCHOOL OF PUBLIC HEALTH</a></li>
-              <li><a href="#"style="text-align:center">CANDLER SCHOOL OF THEOLOGY</a></li>
-              <li><a href="#"style="text-align:center">OTHERS</a></li>
-              <!--li class="divider"></li-->
-            </ul>                 
-        </div>
-        <br>
-
-        <div class="input-group" style="width:100%">
-          <input type="text" class="form-control" style = "text-align:center" placeholder="Lab/PI" required>
-        </div>
-        <br>
-        <div class="input-group" style="width:100%">
-          <input type="text" class="form-control" style = "text-align:center" placeholder="Research Interest" required> 
-        </div>
-        <br>
-        <div class="input-group" style="width:100%">
-          <input type="text" class="form-control" style = "text-align:center" placeholder="Research Field" required>
-        </div>
-
-        <div class = "hot-container" style = "text-align:center">
-          <a href="home.html" class="btn btn-green">Cancel</a>
-          <a href="email_validation.html" class="btn btn-green" type="submit">Submit</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="footerholder">
-      <div class="footer">
+    <div class="wraper">
+      <div class="header">
         <div class="container">
-        &copy;2014 Copyright 
+          <a href="home.html" class="logo-icon">
+            <img src="fig/Icon_WriteArticles.png">
+            <p class="logo-text">Manuscript Review</p>
+          </a>
+          <ul class="menu">
+          <li><a href="#">Help</a></li>
+          <!--<li><a href="#">Logout</a></li>-->
+          </ul>
+        </div>
+      </div> <!-- header -->
+      <br>
+      <div class="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+              <form class="form-horizontal" role="form">
+                <div class="form-group">
+                  <label for="firstName" class="col-sm-3 text-right control-lable">First Name</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control text-center" id="firstName" placeholder="First Name" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="lastName" class="col-sm-3 text-right control-lable">Last Name</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control text-center" id="lastName" placeholder="Last Name" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="emailAdress" class="col-sm-3 text-right control-lable">Emory Email</label>
+                  <div class="col-sm-9">
+                    <input type="email" class="form-control text-center" id="emailAdress" placeholder="Emory Email Adress" required>
+                  </div>
+                </div>          
+                <div class="form-group">
+                  <label for="firstPasswd" class="col-sm-3 text-right control-lable">Password</label>
+                  <div class="col-sm-9">
+                    <input type="password" class="form-control text-center" id="firstPasswd" placeholder="Set Up Your Password" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="repeatPasswd" class="col-sm-3 text-right control-lable">Password Again</label>
+                  <div class="col-sm-9">
+                    <input type="password" class="form-control text-center" id="repeatPasswd" placeholder="Repeat Your Password" required>
+                  </div>
+                </div>
+<!--   -->          
+                <div class="form-group">
+                  <label for="school" class="col-sm-3 text-right control-lable">School</label>
+                  <div class="col-sm-9">
+                    <select class="selectpicker form-control text-center" id="school" style="display: " required>
+                      <optgroup class="text-center" label="Choose your shcool">
+                        <option class="text-center">GOIZUETA BUSINESSS SCHOOL</option>
+                        <option class="text-center">LANEY GRADUATE SCHOOL</option>
+                        <option class="text-center">SCHOOL OF LAW</option>
+                        <option class="text-center">SCHOOL OF MEDICINE</option>
+                        <option class="text-center">NELL HODGSON WOODRUFF SCHOOL OF NURSING</option>
+                        <option class="text-center">ROLLINS SCHOOL OF PUBLIC HEALTH</option>
+                        <option class="text-center">CANDLER SCHOOL OF THEOLOGY</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                </div>
+<!--   -->
+      <div class="form-group">
+        <lable for="schoolList" class="col-sm-3 text-right control-label">School</lable>
+        <div class="col-sm-9">
+          <div class="btn-group btn-input clearfix">
+            <button type="button" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown" id="schoolList" required>
+              <span data-bind="label" style="text-align:center">Choose Your School</span>&nbsp;<span class="caret"></span>
+            </button>
+              <ul class="dropdown-menu" role="menu" style="width:100%">
+                <li><a href="#" style="text-align:center">GOIZUETA BUSINESSS SCHOOL</a></li>
+                <li><a href="#"style="text-align:center">LANEY GRADUATE SCHOOL</a></li>
+                <li><a hGref="#"style="text-align:center">SCHOOL OF LAW</a></li>
+                <li><a href="#"style="text-align:center">SCHOOL OF MEDICINE</a></li>
+                <li><a href="#"style="text-align:center">NELL HODGSON WOODRUFF SCHOOL OF NURSING</a></li>
+                <li><a href="#"style="text-align:center">ROLLINS SCHOOL OF PUBLIC HEALTH</a></li>
+                <li><a href="#"style="text-align:center">CANDLER SCHOOL OF THEOLOGY</a></li>
+                <li><a href="#"style="text-align:center">OTHERS</a></li>
+                <li class="divider"></li>
+              </ul>                 
+          </div>
+        </div>
+      </div>
+                <div class="form-group">
+                  <label for="labPI" class="col-sm-3 text-right control-lable">Lab/PI</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control text-center" id="labPI" placeholder="Name of Your Lab / Name of the PI" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="resField" class="col-sm-3 text-right control-lable">Research Field</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control text-center" id="resField" placeholder="Research Field, e.g. Computer Sciences or Human Genetics" required>
+                  </div>
+                </div>                
+                <div class="form-group">
+                  <label for="resInterest" class="col-sm-3 text-right control-lable">Research Interest</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control text-center" id="resInterest" placeholder="Research Interest, e.g. Machine Learning or Epigenetics" required>
+                  </div>
+                </div>
+              </form>
+
+              <div class = "hot-container text-center">
+                <a href="home.html" class="btn btn-green">Cancel</a>
+                <a href="email_validation.html" class="btn btn-green" type="submit">Submit</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-   <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <script src="js/app.js"></script>
+    <div class="footer">
+      <div class="container">
+      &copy;2014 Copyright 
+      </div>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>

@@ -156,3 +156,9 @@ $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValid
 
 /* assigned by element */
 $(function(){$(".validated").jqBootstrapValidation();});
+
+/* selectpicker */
+$('.selectpicker').selectpicker({
+    style: 'btn-info',
+    size: 4
+    });
