@@ -69,7 +69,7 @@ a.btn {
 /* big button */
 a.btn.btn-large {
   padding: 20px 40px;
-  border-radius: 20px;
+  border-radius: 50%;
   border: 2px solid rgba(0,0,0,0.3);
   margin-left: 50px;
   margin-right: 50px;
