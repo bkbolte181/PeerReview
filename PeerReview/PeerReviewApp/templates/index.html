@@ -1,35 +1,20 @@
 {% extends 'base.html' %}
 
-{% block head %}
-<!-- Landing page for the website. -->
-<style>
-.landing-page {
-	width: 500px;
-	height: 300px;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: auto;
-	text-align: center;
-}
-.logo {
-	font-size: 100px;
-	padding: 0;
-	margin: 0;
-}
-</style>
-{% endblock %}
-
 {% block body %}
 <div class="landing-page">
-	<p class="monterey logo">PeerReview</p>
+	<h2 title = "Introduction" style="text-align:center"> Brief introduction to the WebApp </h2>
+    <p title = "Current session" style="text-align:center; margin-top:40px;">
+        Manuscript uploading is available till <strong>Dec 22, 2014</strong>.<br>
+        All review forms need to be finished by <strong>Jan 15, 2015</strong>.
+      </p>
 	{% if user.is_authenticated %}
 		<p>Logged in as <a href="{% url 'account' %}">{% if user.first_name %}{{ user.first_name }} {{ user.last_name }}{% else %}{{ user.email }}{% endif %}</a></p>
 		<p style="font-size: 25px;"><a href="{% url 'review' %}">Review</a> - <a href="{% url 'upload' %}">Submit</a>
 	{% else %}
-		<p style="font-size: 25px;"><a href="{% url 'login' %}">Log In</a> - <a href="{% url 'signup' %}">Sign Up</a>
+    <div class = "hot-container" style = "text-align:center">
+      <a href="{% url 'signup' %}" class="btn btn-green" style="width:12%">New User</a>
+      <a href="{% url 'login' %}" class="btn btn-green" style="width:12%">Log in</a>
+    </div>
 	{% endif %}
 </div>
 {% endblock %}
