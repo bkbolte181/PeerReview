@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
   <head>
-    <title> Manuscript Review - Login </title>
+    <title> Manuscript Review - Email Validation </title>
     <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet'>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link type="text/css" href="css/style.css" rel="stylesheet">
@@ -23,25 +23,35 @@
           </ul>
         </div>
       </div> <!-- header -->
-      <div class="container">
-        <p > 
-          <br>
-          <h5 style="text-align:center">
-            Thank you for your registration!<br><br>
-            We just sent a confirmation number to your provided email address.<br><br>
-            please type in the number to finish your registration
-          </h5>
-        </p>
-        <br><br>      
-        <div class="col-sm-6 col-sm-offset-3">
-          <div class="input-group" style="width:100%">
-            <input type="text" class="form-control" style = "text-align:center" placeholder="Enter the confirmation number to get into the system" required="">
+      <div class="content">
+        <br>
+        <div class="container">
+          <div class="row">
+            <p><h5 class="text-center">
+              Thank you for your registration!
+            </h5></p>
+            <p><h5 class="text-center">
+              We just sent a confirmation number to your provided email address.
+            </h5></p>
+            <p><h5 class="text-center">
+              please type in the number to finish your registration
+            </h5></p>
           </div>
+          <br><br>   
+          <div class="row">   
+            <div class="col-sm-6 col-sm-offset-3">
+              <div class="row">
+                <input type="text" class="form-control text-center" placeholder="Enter the confirmation number to get into the system" required="">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class = "hot-container text-center">
+                <a href="user_home.html" class="btn btn-green">Submit</a>
+              </div>
+            </div>
+          </div>        
         </div>
-        <br><br>
-        <div class = "hot-container" style = "text-align:center">
-          <a href="user_home.html" class="btn btn-green">Submit</a>
-        </div>        
       </div>
       <div class="footer">
         <div class="container">
