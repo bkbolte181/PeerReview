@@ -313,3 +313,33 @@ span.glyphicon-ok {
 .hide1 {
 	visibility: hidden;
 }
+
+#admin-home-nav1 {
+	margin-top:1px;
+	margin-left:2rem;
+}
+.admin-nav2 .breadcrumb {
+	background-color: white;
+}
+.btn-primary {
+	background-color: rgba(222, 255, 207, 0.95);
+	color: black;
+	border-color: #CCC;
+}
+.btn-primary:hover {
+	background-color: rgba(200, 255, 195, 0.95);
+	color: black;
+	border-color: #CCC;	
+}
+
+.admin-home-nav1 .nav-tabs > li, .admin-home-nav1.nav-pills > li {
+    float:none;
+    display:inline-block;
+}
+
+.admin-home-nav1 .nav-tabs {
+    text-align:center;
+}
+.manuscripts1 .subtitle{
+	text-align: center;
+}

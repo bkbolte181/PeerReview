@@ -126,20 +126,20 @@ $(document).ready(function() {
 		location.href="admin_finish_edit.html";
 	});
 	$(".submit-no-btn").click(function(){
-		location.href="admin_home.html";
+		location.href="admin_browselist.html";
 	});
 
 	$(".confirm-yes-btn").click(function(){
 		location.href="admin_submit_success.html";
 	});
 	$(".home").click(function(){
-		location.href="admin_home.html";
+		location.href="admin_browselist.html";
 	});
 	$(".click").click(function(){
-		location.href="admin_home.html";
+		location.href="admin_browselist.html";
 	});
 	$(".submit-success-btn").click(function(){
-		location.href="admin_home.html";
+		location.href="admin_browselist.html";
 	});
 });
 $( document.body ).on( 'click', '.dropdown-menu li', function( event ) {
