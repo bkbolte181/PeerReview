@@ -1,7 +1,7 @@
 .breadcrumb {
   background-color: white;
 }
-#sign-up label {
+#form-fill label {
   margin-top: auto;
   margin-bottom:auto; 
   padding-top: 7px;
@@ -76,9 +76,9 @@ a.btn.btn-large {
   border: 1px solid rgba(0,0,0,0.3);
   border-bottom-width: 0px;
 
-  -webkit-box-shadow: inset 0 1px 0 0 white, 0 9px 6px -6px black;
-     -moz-box-shadow: inset 0 1px 0 0 white, 0 9px 6px -6px black;
-          box-shadow: inset 0 1px 0 0 white, 0 9px 6px -6px black;
+  -webkit-box-shadow: inset 0 1px 0 0 white, 0 12px 6px -6px #888888;
+     -moz-box-shadow: inset 0 1px 0 0 white, 0 12px 6px -6px #888888;
+          box-shadow: inset 0 1px 0 0 white, 0 12px 6px -6px #888888;
 
   margin-left: 50px;
   margin-right: 50px;

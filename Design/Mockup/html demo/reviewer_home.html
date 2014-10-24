@@ -1,69 +1,52 @@
-
 <!doctype html>
 <html>
   <head>
-  <title> Manuscript Review ReviewerHome </title>
-  <link href="http://fonts.googleapis.com/css?family=Oswald:400,300" rel="stylesheet">
-  <link href="http://s3.amazonaws.com/codecademy-content/courses/ltp2/css/bootstrap.min.css" rel="stylesheet">
-  <link type="text/css" href="css/style.css" rel="stylesheet">
-  <link type="text/css" href="css/button.css" rel="stylesheet">
+    <title> Manuscript Review Reviewer Home </title>
+    <link href="http://fonts.googleapis.com/css?family=Oswald:400,300" rel="stylesheet">
+    <link href="http://s3.amazonaws.com/codecademy-content/courses/ltp2/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="css/style.css" rel="stylesheet">
+    <link type="text/css" href="css/button.css" rel="stylesheet">
   </head>
   <body>
   <div class="wraper">
     <div class="header">
-    <div class="container">
-      <a href="#" class="logo-icon">
-      <img src="fig/Icon_WriteArticles.png">
-      <p class="logo-text">Manuscript Review</p>
-      </a>
-   
-      <ul class="menu">
-      <li><a href="#">Help</a></li>
-      <li><a href="home.html">Logout</a></li>
-      <!--<li><a href="#">Logout</a></li>-->
-      </ul>
-    </div>
-    </div>
-
-    <div class="container">
-      <ol class="breadcrumb">
-        <li><a href="user_home.html">Home</a></li>
-        <li class="active">Reviewer Center</li>
-      </ol>
-    <br>
-    </div>
-
-    <div class="container">
-      <div>
-        <h3 style="text-align:center"> <strong>Notice: Deadline for review accomplishment is</strong></h3>
-        <h2 style="text-align:center"> <strong style="color:red">Jan 15, 2015</strong></h2>
-      </div>
-    <!--     
-      <div style="text-align:center" >
-        <a href="reviewer_home.html">
-        <button type="button" class="btn btn-info btn-lg col-md-offset-3 col-md-2">Browse<br><br>manuscripts list</button>
+      <div class="container">
+        <a href="#" class="logo-icon">
+          <img src="fig/Icon_WriteArticles.png">
+          <p class="logo-text">Manuscript Review</p>
         </a>
-        <a href="reviewer_home.html">
-        <button type="button" class="btn btn-info btn-lg col-md-offset-2 col-md-2">My assigned<br><br>manuscripts</button>
-        </a>
-      </div>
-    -->
-      <div class = "hot-container" style="text-align:center">
-        <a href="manuscript_list.html" class="btn btn-green btn-large" title="All manuscripts in current session"><p>Browse</p><p>manuscripts list</p></a>
-        <a href="manuscript_assigned.html" class="btn btn-green btn-large" title="pick up manuscripts and upload review form"><p>My assigned</p><p>manuscripts</p></a>
+        <ul class="menu">
+          <li><a href="#">Help</a></li>
+          <li><a href="home.html">Logout</a></li>
+          <!--<li><a href="#">Logout</a></li>-->
+        </ul>
       </div>
     </div>
-
-    <div class="footerholder">
+    <div class="content">
+      <div class="container">
+        <ol class="breadcrumb">
+          <li><a href="user_home.html">Home</a></li>
+          <li class="active">Reviewer Center</li>
+        </ol>
+        <br>
+        <div class="row">
+          <h3 class="text-center"> <strong>Notice: Deadline for review accomplishment is</strong></h3>
+          <h2 class="text-center"> <strong style="color:red">Jan 15, 2015</strong></h2>
+        </div>
+        <div class="row">
+          <div class = "hot-container text-center">
+            <a href="manuscript_list.html" class="btn btn-green btn-large" title="All manuscripts in current session"><p>Browse</p><p>manuscripts list</p></a>
+            <a href="manuscript_assigned.html" class="btn btn-green btn-large" title="pick up manuscripts and upload review form"><p>My assigned</p><p>manuscripts</p></a>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="footer">
       <div class="container">
       &copy;2014 Copyright 
       </div>
     </div>
-    </div>
-
   </div>
-
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script src="js/app.js"></script>
