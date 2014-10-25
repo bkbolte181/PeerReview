@@ -326,7 +326,7 @@ span.glyphicon-ok {
 	color: black;
 	border-color: #CCC;
 }
-.btn-primary:hover {
+.btn-primary:hover,.btn-primary:active,.btn-primary:focus {
 	background-color: rgba(200, 255, 195, 0.95);
 	color: black;
 	border-color: #CCC;	
@@ -342,4 +342,35 @@ span.glyphicon-ok {
 }
 .manuscripts1 .subtitle{
 	text-align: center;
+}
+.submit-success-msg {
+	margin-left: 5px;
+}
+.hot-container1 {
+	margin-top:30px;
+	word-wrap: break-word;
+	text-align:center;
+}
+
+  a.btn.btn-green.btn-1:active {
+  background-color: #BFFCA0;;
+  border-color: rgba(255,255,255,0.9);
+  color:black;
+  }
+a.btn.btn-1{
+  padding: 25px 45px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.3);
+  border-bottom-width: 0px;
+
+  -webkit-box-shadow: inset 0 1px 0 0 white, 0 9px 6px -6px black;
+     -moz-box-shadow: inset 0 1px 0 0 white, 0 9px 6px -6px black;
+          box-shadow: inset 0 1px 0 0 white, 0 9px 6px -6px black;
+
+  width: 25%;
+  min-width: 230px;
+  word-wrap: break-word;
+}
+.msg {
+	color: red;
 }
