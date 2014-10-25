@@ -14,7 +14,7 @@
 }
 
 .btn-input .btn.form-control {
-    text-align: center;
+  text-align: center;
 }
 
 .btn-input .btn.form-control span:first-child {
@@ -46,9 +46,9 @@ a.btn {
   display: inline-block;
   color: #666;
   background-color: #eee;
-/*  text-transform: uppercase; */
+  text-transform: uppercase; 
 /*  letter-spacing: 2px; */
-/*  font-size: 12px; */
+  font-size: 12px; 
   padding: 10px 30px;
   border-radius: 5px;
   -moz-border-radius: 5px;
@@ -77,8 +77,23 @@ a.btn.btn-large {
   border-bottom-width: 0px;
 
   -webkit-box-shadow: inset 0 1px 0 0 white, 0 12px 6px -6px #888888;
-     -moz-box-shadow: inset 0 1px 0 0 white, 0 12px 6px -6px #888888;
-          box-shadow: inset 0 1px 0 0 white, 0 12px 6px -6px #888888;
+   -moz-box-shadow: inset 0 1px 0 0 white, 0 12px 6px -6px #888888;
+      box-shadow: inset 0 1px 0 0 white, 0 12px 6px -6px #888888;
+
+  margin-left: 50px;
+  margin-right: 50px;
+  width: 25%;
+  min-width: 150px;
+}
+
+a.btn.btn-large-square {
+  padding: 20px 40px;
+  border: 1px solid rgba(0,0,0,0.3);
+  border-bottom-width: 0px;
+  border-radius: 20px;
+  -webkit-box-shadow: inset 0 1px 0 0 white, 0 12px 6px -6px #888888;
+   -moz-box-shadow: inset 0 1px 0 0 white, 0 12px 6px -6px #888888;
+      box-shadow: inset 0 1px 0 0 white, 0 12px 6px -6px #888888;
 
   margin-left: 50px;
   margin-right: 50px;
@@ -159,22 +174,22 @@ a.btn.btn-red {
   
   -webkit-transition: all 0.3s linear;
    -khtml-transition: all 0.3s linear;
-     -moz-transition: all 0.3s linear;
-     -o-transition: all 0.3s linear;
-      transition: all 0.3s linear;
+   -moz-transition: all 0.3s linear;
+   -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
 }
 .buttonref1:hover{
   -webkit-box-shadow:rgba(0,0,0,0.7) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
    -khtml-box-shadow:rgba(0,0,0,0.7) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
-     -moz-box-shadow:rgba(0,0,0,0.7) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
-     -o-box-shadow:rgba(0,0,0,0.7) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
-      box-shadow:rgba(0,0,0,0.7) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+   -moz-box-shadow:rgba(0,0,0,0.7) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+   -o-box-shadow:rgba(0,0,0,0.7) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    box-shadow:rgba(0,0,0,0.7) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
 }
 .buttonref1:active {
   -webkit-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
    -khtml-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-     -moz-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-     -o-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-      box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+   -moz-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+   -o-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+    box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
   text-shadow:1px 1px 1px #eee;
 }
