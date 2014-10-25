@@ -39,7 +39,7 @@ def auth_login(request):
 			context['errors'] = 'Authentication failed.'
 	context['form'] = form
 	return render_to_response('login.html', context, context_instance=RequestContext(request))
-	
+
 def signup(request):
 	context = {}
 	if request.method == 'POST': form = SignupForm(request.POST)
@@ -50,17 +50,17 @@ def signup(request):
 		if form.cleaned_data['password'] != form.cleaned_data['retype_password']:
 			context['errors'] = 'The passwords you entered do not match.'
 			return render(request, 'signup.html', context)
-		
+
 		# Not an Emory email address
 		if form.cleaned_data['email'][-10:] != '@emory.edu':
 			context['errors'] = 'Sorry! This service is only available within Emory University.'
 			return render(request, 'signup.html', context)
-		
+
 		# A user already exists with this email
 		if SiteUser.objects.filter(email=form.cleaned_data['email']).count():
 			context['errors'] = 'A user already exists with this email.'
 			return render(request, 'signup.html', context)
-		
+
 		# Create the new user
 		'''
 			If we are going to add email authentication, this would be the place to add it.
@@ -123,30 +123,22 @@ def browse_manuscripts(request, current_page):
 	context = {}
 	all_manuscripts = Manuscript.objects.all()
 	paginator = Paginator(all_manuscripts, 10)
-	
+
 	try:
 		page = paginator.page(current_page)
 	except PageNotAnInteger:
 		page = paginator.page(1)
 	except EmptyPage:
 		page = paginator.page(paginator.num_pages)
-	
+
 	context['page'] = page
 	return render(request, 'browse_manuscripts.html', context)
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def assigned_manuscripts(request,current_page):
-    context = {}
-    manuscripts_assigned = Manuscript.object.get(reviewers=request.user.email)
-    paginator = Paginator(manuscripts_assigned, 10)
-    try:
-		page = paginator.page(current_page)
-	except PageNotAnInteger:
-		page = paginator.page(1)
-	except EmptyPage:
-		page = paginator.page(paginator.num_pages)
-
-	context['page'] = page
+	context = {}
+	manuscripts_assigned = Manuscript.object.get(reviewers=request.user.email)
+	context['manuscript_assigned'] = manuscripts_assigned
 	return render(request, 'manuscript_assigned.html', context)
 
 @user_passes_test(has_agreed, login_url='/agreement/')
