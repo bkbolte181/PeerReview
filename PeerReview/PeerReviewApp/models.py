@@ -26,6 +26,16 @@ class SiteUserManager(BaseUserManager):
 		
 	def create_superuser(self, email, password, first_name=None, last_name=None, department=None, lab=None, pi=None, **extra_fields):
 		return self._create_user(email, password)
+Schools = (
+	'GOIZUETA BUSINESS SCHOOL',
+	'LANEY GRADUATE SCHOOL',
+	'SCHOOL OF LAW',
+	'SCHOOL OF MEDICINE',
+	'NELL HODGSON WOODRUFF SCHOOL OF NURSING',
+	'ROLLINS SCHOOL OF PUBLIC HEALTH',
+	'CANDLER SCHOOL OF THEOLOGY',
+)
+Schools = [(x, x) for x in Schools]
 
 class SiteUser(AbstractBaseUser):
 	'''
@@ -51,7 +61,8 @@ class SiteUser(AbstractBaseUser):
 	department = models.CharField(max_length=200)
 	lab = models.CharField(max_length=200)
 	pi = models.CharField(max_length=200)
-	
+	school = models.CharField(max_length = 200, choices=Schools)
+
 	NONE = '0'
 	LESS_THAN_FIVE = '1'
 	MORE_THAN_FIVE = '2'
