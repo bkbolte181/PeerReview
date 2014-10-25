@@ -1,87 +1,46 @@
 {% extends 'base.html' %}
 
-{% block head %}
-<style>
-.review_period {
-	margin-top: 20px;
-}
-.review_period h3 {
-	text-align: center;
-	padding: 0;
-	margin: 0;
-}
-.period_label {
-	padding-left: 15px;
-}
-.submission-form h3 {
-	text-align: center;
-	padding: 0;
-	margin: 0;
-}
-.form-div {
-	padding-bottom: 5px;
-}
-.errorlist {
-	font-size: 10px;
-	color: red;
-	display: inline;
-}	
-.errorlist li {
-	display: inline
-}
-.field-div {
-	margin-right: 5px;
-}
-.field-div input, textarea {
-	width: 100%;
-}
-.field-help-text {
-	font-size: 13px;
-}
-.my-manuscripts {
-	margin-top: 20px;
-}
-.my-manuscripts h3 {
-	text-align: center;
-	padding: 0;
-	margin: 0;
-}
-</style>
-{% endblock %}
-
 {% block body %}
-<h1>Upload Manuscript</h1>
-{% if no_period_available %}
-Sorry, we are not accepting manuscripts at this time.
-{% else %}
-	<!-- Information about the current period -->
-	<!-- Form for submitting a new manuscript -->
-	<form class="submission-form" action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
-		<h3>Submit</h3>
-		{% csrf_token %}
-		{% for field in form %}
-			<div class="form-div">
-				{{ field.label_tag }}{{ field.errors }}<div class="field-div">{{ field }}</div>
-				{% if field.help_text %}<div class="field-help-text">{{ field.help_text }}</div>{% endif %}
+<div class="row">
+	<h4 class="text-center">Deadline for Manuscript Submission:</h4>
+	<h3 class="text-center" style="color:red;">Deadline</h3>
+</div>
+
+<div class="row">
+	<div class="col-sm-10 col-sm-offset-1">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<p>My Manuscripts</p>
 			</div>
-		{% endfor %}
-		<input type="hidden" value="{{ period.id }}" name="review_period">
-		<input type="submit" value="Upload Manuscript">
-	</form>
-	
-	<div class="review_period">
-		<h3>Current Review Period</h3>
-		{% include 'review_period_element.html' %}
+			<div class="panel-body">
+				{% for manuscript in user.authors.all %}
+					<div class="row">
+						<div class="col-sm-8">
+							{{ manuscript.title }}
+						</div>
+						<div class="col-sm-2">
+							<em class="pull-right">{{ manuscript.status }}</em>
+						</div>
+						<div class="col-sm-2">
+							<button type="button" class="btn btn-default btn-xs pull-left" style="width:100%">View</button>
+						</div>
+					</div>
+					{% if not forloop.last %}<hr/>{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-10 col-sm-offset-1">
+				<p><a href="#">Submit</a> a new manuscript</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-10 col-sm-offset-1">
+				<div class="hot-container" style="text-align:right;">
+					<a href="{% url 'index' %}" class="abtn btn-green">Back</a>
+				</div>
+			</div>
+		</div>
 	</div>
-{% endif %}
-
-
-<!-- My manuscripts -->
-<div class="my-manuscripts">
-	<h3>My Manuscripts</h3>
-	{% for manuscript in user.authors.all %}
-		{% include 'manuscript_element.html' %}
-		{% if not forloop.last %}<hr>{% endif %}
-	{% endfor %}
 </div>
 {% endblock %}

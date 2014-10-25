@@ -1,10 +1,22 @@
 from django import forms
 from PeerReviewApp.models import *
 
+SCHOOLS = (
+	'Goizueta Business School',
+	'Laney Graduate School',
+	'School of Law',
+	'Schoolf of Medicine',
+	'Nell Hodgson Woodruff School of Nursing',
+	'Rollins School of Public Health',
+	'Candler School of Theology',
+	'College of Arts and Sciences',
+	'Other',
+)
+
 class LoginForm(forms.Form):
 	''' On log in, you only need an email and a password '''
-	email = forms.EmailField()
-	password = forms.CharField(widget=forms.PasswordInput())
+	email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Emory Email Address'}))
+	password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
 
 class AccountForm(forms.ModelForm):
 	''' This is a pythonic way of changing a single user's settings ''' 
@@ -34,13 +46,22 @@ class SignupForm(forms.ModelForm):
 		'password_mismatch': 'The two password fields didn\'t match.',
 	}
 	# Form needs two passwords to make sure the user doesn't mistype
-	password = forms.CharField(label='Password', widget=forms.PasswordInput())
-	retype_password = forms.CharField(label='Retype Password', widget=forms.PasswordInput(), help_text='Enter the same password as above, for verification.')
+	password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter your Password'}), label='Password', help_text='Choose a password')
+	retype_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control text-center', 'placeholder': 'Re-enter your password, for verification'}), label='Retype Password', help_text='Enter the same password as above, for verification.')
 	
 	class Meta:
 		model = SiteUser
 		# These are the fields that the user needs to input when they create their account
-		fields = ('email', 'first_name', 'last_name', 'department', 'lab', 'pi')
+		fields = ('email', 'first_name', 'last_name', 'department', 'lab', 'pi', 'school')
+		widgets = {
+			'email': forms.EmailInput(attrs={'class': 'form-control text-center', 'placeholder': 'Emory Email Address'}),
+			'first_name': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'First Name'}),
+			'last_name': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Last Name'}),
+			'department': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Department'}),
+			'lab': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Name of Lab'}),
+			'pi': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Name of Primary Investigator'}),
+			'school': forms.Select(attrs={'class': 'form-control text-center', 'placeholder': 'Choose your School'}),
+		}
 	
 	# This method validates that the two passwords are the same
 	# If they don't match it throws an error

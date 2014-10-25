@@ -1,52 +1,62 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>PeerReview</title>
+		<title>Manuscript Review</title>
 		{% load staticfiles %}
-		<link rel="stylesheet" href="{% static 'css/main.css' %}">
+		<link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'css/style.css' %}">
+		<link rel="stylesheet" href="{% static 'css/button.css' %}">
+		<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
 		{% block head %}{% endblock %}
 	</head>
 	<body>
 		<div class="header">
-			<div class="logo"><a href="{% url 'index' %}">PeerReview</a></div>
-			<div class="navigation">
-				{% if user.is_authenticated %}
+			<div class="container">
+				<a href="{% url 'index' %}" class="logo-icon">
+					<img src="{% static 'fig/Icon_WriteArticles.png' %}">
+					<p class="logo-text">Manuscript Review</p>
+				</a>
 				<!-- If the user is logged in -->
-				<ul>
+				<ul class="menu">
 					<li><a href="{% url 'index' %}">Home</a></li>
+					<li><a href="#" rel="tooltip" data-placement="bottom" title="Help text for this page will go here.">Help</a></li>
+				{% if user.is_authenticated %}
 					<li><a href="{% url 'review' %}">Review</a></li>
 					<li><a href="{% url 'upload' %}">Submit</a></li>
 					<li><a href="{% url 'logout' %}">Log Out</a></li>
 					<li><a href="#" class="more_nav">More</a></li>
+				{% else %}
+					<li><a href="{% url 'login' %}">Log In</a></li>
+					<li><a href="{% url 'signup' %}">Sign Up</a></li>
+				{% endif %}
 				</ul>
-				<ul class="more_nav_items">
+				{% if user.is_authenticated %}
+				<ul class="menu more_nav_items">
 					<li><a href="{% url 'account' %}">Account</a></li>
 					<li><a href="#">About</a></li>
 					<li><a href="#">Submit Feedback</a></li>
-					<li><a href="#">Help</a></li>
 					<li><a href="{% url 'admin_home' %}">Admin</a></li>
-				</ul>
-				{% else %}
-				<!-- If the user is not logged in -->
-				<ul>
-					<li><a href="{% url 'index' %}">Home</a></li>
-					<li><a href="{% url 'login' %}">Log In</a></li>
-					<li><a href="{% url 'signup' %}">Sign Up</a></li>
 				</ul>
 				{% endif %}
 			</div>
 		</div>
-		<div class="body">
-			{% block body %}{% endblock %}
+		<div class="content">
+			<div class="container">
+				{% block body %}{% endblock %}
+			</div>
 		</div>
 		<div class="footer">
-			{% if user.is_authenticated %}
-			Logged in as <a href="{% url 'account' %}">{{ user }}</a>
-			{% else %}
-			Not <a href="{% url 'login' %}">logged in</a>.
-			{% endif %}
+			<div class="container">
+				&copy;2014 Copyright
+				{% if user.is_authenticated %}
+				<a href="{% url 'account' %}">Logged in as {{ user }}</a>
+				{% else %}
+				<a href="{% url 'login' %}">Not logged in</a>
+				{% endif %}
+			</div>
 		</div>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 	</body>
 </html>

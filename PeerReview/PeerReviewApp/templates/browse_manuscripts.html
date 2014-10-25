@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="row">
+	<h4 class="text-center">Deadline for Manuscript Submission:</h4>
+	<h3 class="text-center" style="color:red;">Deadline</h3>
+</div>
+
+<div class="row">
+	<div class="col-sm-10 col-sm-offset-1">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<p>My Manuscripts</p>
+			</div>
+			<div class="panel-body">
+				{% for manuscript in page %}
+					<div class="row">
+						<div class="col-sm-10 col-sm-offset-1">
+							{{ manuscript.title }}
+							<button type="button" class="btn btn-default btn-sm pull-right" data-toggle="modal" data-target="#modal{{ manuscript.id }}">Abstract</button>
+						</div>
+					</div>
+					<div class="modal fade" id="modal{{ manuscript.id }}" role="dialog" tabindex="-1">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+									<h4 class="modal-title">{{ manuscript.title }}</h4>
+								</div>
+								<div class="modal-body">
+									<p>{{ manuscript.abstract }}</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-primary">Ask to Review</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% if not forloop.last %}<hr/>{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-10 col-sm-offset-1">
+				{% if page.number != 1%}<a href="{% url 'browse' 1 %}">First</a>{% endif %}
+				{% if page.has_previous %}<a href="{% url 'browse' page.previous_page_number %}">Previous</a>{% endif %}
+				{% if page.has_next %}<a href="{% url 'browse' page.next_page_number %}">Next</a>{% endif %}
+				{% if page.number != page.paginator.num_pages %}<a href="{% url 'browse' page.paginator.num_pages %}">Last</a>{% endif %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-10 col-sm-offset-1">
+				<div class="hot-container" style="text-align:right;">
+					<a href="{% url 'review' %}" class="abtn btn-green">Reviewer Home</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

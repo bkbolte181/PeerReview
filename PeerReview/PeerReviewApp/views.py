@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.forms.models import model_to_dict
 from datetime import datetime
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from PeerReviewApp.models import *
 from PeerReviewApp.forms import *
 
@@ -25,6 +27,7 @@ def auth_login(request):
 	if request.method == 'POST': form = LoginForm(request.POST)
 	else: form = LoginForm()
 	if form.is_valid() and 'email' in form.cleaned_data and 'password' in form.cleaned_data:
+		print 'hit 2'
 		user = authenticate(username=form.cleaned_data['email'], password=form.cleaned_data['password'])
 		if user is not None:
 			login(request, user)
@@ -113,34 +116,27 @@ def has_agreed(user):
 @user_passes_test(has_agreed, login_url='/agreement/')
 def reviewer_home(request):
 	context = {}
-	# Get Review Periods with submission deadlines in the future and which are not full
-	current_period = ReviewPeriod.objects.filter(review_deadline__gt=datetime.now()).filter(is_full=False)
-	if not current_period.count():
-		# If there are no review periods which satisfy the above requirement
-		return render(request, 'uploader_home.html', {'no_period_available': True})
-	context['periods'] = current_period.order_by('review_deadline')
 	return render(request, 'reviewer_home.html', context)
+
+@user_passes_test(has_agreed, login_url='/agreement/')
+def browse_manuscripts(request, current_page):
+	context = {}
+	all_manuscripts = Manuscript.objects.all()
+	paginator = Paginator(all_manuscripts, 10)
+	
+	try:
+		page = paginator.page(current_page)
+	except PageNotAnInteger:
+		page = paginator.page(1)
+	except EmptyPage:
+		page = paginator.page(paginator.num_pages)
+	
+	context['page'] = page
+	return render(request, 'browse_manuscripts.html', context)
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def uploader_home(request):
 	context = {}
-	# Get Review Periods with submission deadlines in the future and which are not full
-	current_period = ReviewPeriod.objects.filter(submission_deadline__gt=datetime.now()).filter(is_full=False)
-	if not current_period.count():
-		# If there are no review periods which satisfy the above requirement
-		return render(request, 'uploader_home.html', {'no_period_available': True})
-	current_period = current_period.earliest('submission_deadline')
-	context['period'] = current_period
-	current_user = SiteUser.objects.get(email=request.user.email)
-	if request.method == 'POST':
-		form = SubmitManuscript(request.POST, request.FILES)
-		if form.is_valid():
-			form.save(review_period=current_period, authors=current_user)
-		else:
-			print form.cleaned_data
-	else:
-		form = SubmitManuscript()
-	context['form'] = form
 	return render(request, 'uploader_home.html', context)
 
 @login_required

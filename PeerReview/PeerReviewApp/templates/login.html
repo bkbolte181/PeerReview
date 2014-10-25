@@ -3,26 +3,6 @@
 {% block head %}
 <!-- Login page. -->
 <style>
-.center {
-	width: 300px;
-	height: 500px;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: auto;
-	text-align: right;
-}
-.logo {
-	font-size: 50px;
-	padding: 0;
-	margin: 0;
-	padding-bottom: 10px;
-}
-.form-div {
-	padding-bottom: 5px;
-}
 .errorlist {
 	font-size: 10px;
 	color: red;
@@ -35,20 +15,23 @@
 {% endblock %}
 
 {% block body %}
-<div class="center">
-	<p class="logo">Log In</p>
-	{% if errors %}<p class="errorlist">{{ errors }}</p>{% endif %}
-	<form action="{% url 'login' %}" method="post">
-		{% csrf_token %}
-		{% for field in form %}
-			<div class="form-div">
-				{% if field.errors %}{{ field.errors }}<br/>{% endif %}{{ field.label_tag }} {{ field }}
+<div class="row" id="form-fill">
+	<div class="col-sm-5 col-sm-offset-3">
+		{% if errors %}<p class="errorlist">{{ errors }}</p>{% endif %}
+		<form class="form-horizontal" name="loginForm" role="form" method="post">
+			{% csrf_token %}
+			{% for field in form %}
+			<div class="form-group">
+				<label for="{{ field.id_for_label }}" class="col-sm-3 text-right control-lable">{{ field.label_tag }}</label>
+				<div class="col-sm-9">
+					{{ field }}
+				</div>
 			</div>
-		{% endfor %}
-		{% if next %}
-			<input type="hidden" name="next" value="{{ next }}">
-		{% endif %}
-		<input type="submit" value="Log In">
-	</form>
+			{% endfor %}
+			<div class="hot-container text-center">
+				<button class="abtn btn-green" type="submit">Submit</button>
+			</div>
+		</form>
+	</div>
 </div>
 {% endblock %}

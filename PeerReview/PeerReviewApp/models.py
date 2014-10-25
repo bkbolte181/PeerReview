@@ -6,6 +6,28 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from custom_fields import SeparatedValuesField
 from datetime import datetime
 
+SCHOOLS = (
+	'Goizueta Business School',
+	'Laney Graduate School',
+	'School of Law',
+	'Schoolf of Medicine',
+	'Nell Hodgson Woodruff School of Nursing',
+	'Rollins School of Public Health',
+	'Candler School of Theology',
+	'College of Arts and Sciences',
+	'Other',
+)
+
+NONE = '0'
+LESS_THAN_FIVE = '1'
+MORE_THAN_FIVE = '2'
+
+PAPERS_REVIEWED = (
+	(NONE, 'None'),
+	(LESS_THAN_FIVE, 'Less than 5'),
+	(MORE_THAN_FIVE, 'More than 5'),
+)
+
 class SiteUserManager(BaseUserManager):
 	'''
 		Manager for SiteUser model. This replaces the default manager used by Django, since the model
@@ -41,31 +63,19 @@ class SiteUser(AbstractBaseUser):
 		for forms to replace the built-ins that Django provides.
 	'''
 	email = models.EmailField('email address', max_length=200, unique=True,
-		error_messages = {
+		error_messages={
 			'unique': 'A user with that email already exists.',
-		})
-	first_name = models.CharField(max_length=100)
-	last_name = models.CharField(max_length=100)
+		}, help_text="Emory Email Address")
+	first_name = models.CharField(max_length=100, help_text="First Name")
+	last_name = models.CharField(max_length=100, help_text="Last Name")
 	
 	# Information about the user's scientific background
-	department = models.CharField(max_length=200)
-	lab = models.CharField(max_length=200)
-	pi = models.CharField(max_length=200)
-	
-	NONE = '0'
-	LESS_THAN_FIVE = '1'
-	MORE_THAN_FIVE = '2'
-	
-	PAPERS_REVIEWED = (
-		(NONE, 'None'),
-		(LESS_THAN_FIVE, 'Less than 5'),
-		(MORE_THAN_FIVE, 'More than 5'),
-	)
-	
+	department = models.CharField(max_length=200, help_text="Department")
+	lab = models.CharField(max_length=200, help_text="Name of Lab")
+	pi = models.CharField(max_length=200, help_text="Name of Primary Investigator")
+	school = models.CharField(max_length=100, choices=[(x, x) for x in SCHOOLS], default=SCHOOLS[0])
 	papers_reviewed = models.CharField(max_length=2, choices=PAPERS_REVIEWED, default=NONE)
-	
 	agreed_to_form = models.BooleanField(default=False) # Whether or not the user has agreed to to use form
-	
 	objects = SiteUserManager()
 	
 	# Required for custom user model
@@ -90,6 +100,8 @@ class Manuscript(models.Model):
 	'''
 	reviewers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="reviewers", related_query_name="reviewer")
 	authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="authors", related_query_name="author")
+	status = models.CharField(max_length=20, default='submitted')
+	abstract = models.CharField(max_length=200000, default='Empty')
 	title = models.CharField(max_length=200, unique=True)
 	keywords = SeparatedValuesField(max_length=1000, help_text='Keywords, separated by a comma') # Custom field for storing python lists
 	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript")

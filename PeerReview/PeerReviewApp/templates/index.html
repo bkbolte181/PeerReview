@@ -1,35 +1,27 @@
 {% extends 'base.html' %}
 
-{% block head %}
-<!-- Landing page for the website. -->
-<style>
-.landing-page {
-	width: 500px;
-	height: 300px;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: auto;
-	text-align: center;
-}
-.logo {
-	font-size: 100px;
-	padding: 0;
-	margin: 0;
-}
-</style>
-{% endblock %}
-
 {% block body %}
-<div class="landing-page">
-	<p class="monterey logo">PeerReview</p>
-	{% if user.is_authenticated %}
-		<p>Logged in as <a href="{% url 'account' %}">{% if user.first_name %}{{ user.first_name }} {{ user.last_name }}{% else %}{{ user.email }}{% endif %}</a></p>
-		<p style="font-size: 25px;"><a href="{% url 'review' %}">Review</a> - <a href="{% url 'upload' %}">Submit</a>
-	{% else %}
-		<p style="font-size: 25px;"><a href="{% url 'login' %}">Log In</a> - <a href="{% url 'signup' %}">Sign Up</a>
-	{% endif %}
+<div class="row">
+	<div class="col-sm-10 col-sm-offset-1">
+		<h2 title="Introduction" class="text-center">Have your manuscripts reviewed</h2>
+		<p title="Current Session" class="text-center">
+			<font size="3">
+				{% if user.is_authenticated %}
+				Information about manuscript uploading and review periods
+				{% else %}
+				Create a free account.
+				{% endif %}
+			</font>
+		</p>
+		<div class="hot-container" style="text-align: center;">
+			{% if user.is_authenticated %}
+			<a href="{% url 'upload' %}" class="abtn btn-green">Author Center</a>
+			<a href="{% url 'review' %}" class="abtn btn-green">Reviewer Center</a>
+			{% else %}
+			<a href="{% url 'signup' %}" class="abtn btn-green">New User</a>
+			<a href="{% url 'login' %}" class="abtn btn-green">Log In</a>
+			{% endif %}
+		</div>
+	</div>
 </div>
 {% endblock %}

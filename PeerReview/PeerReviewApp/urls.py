@@ -16,6 +16,7 @@ urlpatterns = patterns('',
 	url(r'^logout/$', views.auth_logout, name='logout'),
 	url(r'^upload/$', views.uploader_home, name='upload'),
 	url(r'^review/$', views.reviewer_home, name='review'),
+	url(r'^browse/(?P<current_page>\d+)/$',views.browse_manuscripts, name='browse'),
 	url(r'^agreement/$', views.agreement, name='agreement'),
 	# Media root for serving files when on a local dev server
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
