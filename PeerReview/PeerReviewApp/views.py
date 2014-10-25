@@ -135,6 +135,21 @@ def browse_manuscripts(request, current_page):
 	return render(request, 'browse_manuscripts.html', context)
 
 @user_passes_test(has_agreed, login_url='/agreement/')
+def assigned_manuscripts(request,current_page):
+    context = {}
+    manuscripts_assigned = Manuscript.object.get(reviewers=request.user.email)
+    paginator = Paginator(manuscripts_assigned, 10)
+    try:
+		page = paginator.page(current_page)
+	except PageNotAnInteger:
+		page = paginator.page(1)
+	except EmptyPage:
+		page = paginator.page(paginator.num_pages)
+
+	context['page'] = page
+	return render(request, 'manuscript_assigned.html', context)
+
+@user_passes_test(has_agreed, login_url='/agreement/')
 def uploader_home(request):
 	context = {}
 	return render(request, 'uploader_home.html', context)
