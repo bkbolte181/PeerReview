@@ -23,17 +23,16 @@
     <div class="content">
       <div class="container">
       	<div id="admin-finish-edit">
-		<div class="row admin-nav">
-		<div class="col-sm-4">
-		  <span><a href="admin_home.html">
-			Home
-		  </a></span>
+		<div class="row admin-nav2">
+		<div class="col-sm-12">
+		<ol class="breadcrumb">
+		  <li><a href="admin_homepage.html">Home</a></li>
+		</ol>		
 		</div>
-		</div>
-
+		</div>	
       	<div class="row" >
 			<div class="col-sm-7 col-sm-offset-2">
-				<p>Your current assignment for the following manuscript has been saved.</p>
+				<p>Your current assignment for the following manuscript has been saved to database.</p>
 				<div class="manu">
 				<p>PCA versus LDA (ID:XXXXX)</p>
 				<p>Author: Martinez, A.</p>
@@ -41,8 +40,8 @@
 				</div>
 				<p>Do you want to submit the final matching decision?</p>
 				<div class="btn-group pull-right">
-					<button type="button" class="btn btn-default home" data-tooltip="tooltip" title="Go back to manuscripts/reviewers list.">No</button>
-					<button type="button" class="btn btn-primary submit-yes-btn" data-toggle="modal" data-target=".bs-submit-confirm">Yes</button>										
+					<button type="button" class="btn btn-default home" data-tooltip="tooltip" onlick="admin_homepage.html" title="Go back to manuscripts/reviewers list.">No</button>
+					<button type="button" class="btn btn-primary confirm-yes-btn1" data-toggle="modal" data-target=".bs-submit-confirm">Yes</button>										
 				</div>				
 				
 				<div class="modal bs-submit-confirm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -50,24 +49,16 @@
 					<div class="modal-content">
 					  <div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<h4 class="modal-title" id="myModalLabel">Confirm</h4>
+						<h4 class="modal-title" id="myModalLabel">Success</h4>
 					  </div>
 					  <div class="modal-body">
-						<p>Confirm the final matching decision for the following manuscript:</p>
+						<p>Your final decision for the following manuscript has been made.</p>
 						<div class="manu">
 						<p>PCA versus LDA (ID:XXXXX)</p>
 						<p>Author: Martinez, A.</p>
 						<p>Reviewers: John Lee*, Emily White, Mary Green*, Jim Chen</p>
 						</div>
-					  </div>
-					  <div class="modal-footer">
-						
-						<form class="form-horizontal" role="form">
-							<div class="btn-group pull-right">
-								<button type="button" class="btn btn-default confirm-no-btn"  data-dismiss="modal">No</button>
-								<button type="button" class="btn btn-primary confirm-yes-btn" data-tooltip="tooltip" title="Submit final decision.">Yes</button>										
-							</div>
-						</form>	
+						<p>We have successfully send emails to the author and reviewers about the decision.</p>
 					  </div>
 					</div>
 				  </div>
