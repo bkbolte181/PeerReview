@@ -40,7 +40,7 @@ class SignupForm(forms.ModelForm):
 	class Meta:
 		model = SiteUser
 		# These are the fields that the user needs to input when they create their account
-		fields = ('email', 'first_name', 'last_name', 'department', 'lab', 'pi')
+		fields = ('email', 'first_name', 'last_name', 'department', 'lab', 'pi','school')
 	
 	# This method validates that the two passwords are the same
 	# If they don't match it throws an error
@@ -53,7 +53,8 @@ class SignupForm(forms.ModelForm):
 				code='password_mismatch',
 			)
 		return retype_password
-	
+
+
 	# This is the method for saving the newly created user
 	def save(self, commit=True):
 		user = super(SignupForm, self).save(commit=False)
