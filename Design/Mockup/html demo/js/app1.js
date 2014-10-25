@@ -18,6 +18,7 @@ $(document).ready(function() {
 	var cur_listedReviewers;
 	var reviewers;
 	$(".add-btn").click(function(){
+		$(".msg").addClass("hide");
 		console.log("click add-btn");
 		$(this).prop('disabled', true);
 		cur_form = $(this).closest("form");
@@ -72,6 +73,7 @@ $(document).ready(function() {
 			}
 	})
 	$(".edit-btn").click(function(){
+		$(".msg").addClass("hide");
 		var form = $(this).closest("form");
 		form.find('table').addClass("highlight");
 		form.find('caption').addClass("highlight");
@@ -123,9 +125,7 @@ $(document).ready(function() {
 	$(".submit-btn").click(function(){
 		$("#reviewer-list .checkbox").addClass("hide");
 	});
-	$(".finish-edit-btn").click(function(){
-		location.href="admin_finish_edit.html";
-	});
+
 	$(".submit-no-btn").click(function(){
 		location.href="admin_browselist.html";
 	});
@@ -150,9 +150,26 @@ $(document).ready(function() {
 	$(".submit-success-btn").click(function(){
 		location.href="admin_browselist.html";
 	});
-	$(".finish-edit-btn1").click(function(){
+	$(".finish-edit-btn").click(function(){
 		$(this).parent().parent().parent().parent().find('.msg').removeClass('hide');
+		var form = $(this).closest("form");
+		form.find('table').removeClass("highlight");
+		form.find('caption').removeClass("highlight");
+		
+		form.find('.checkbox').addClass('hide');
+		form.find(".add-btn").addClass("hide").prop('disabled', false);
+		form.find(".finish-edit-btn").addClass("hide").prop('disabled', false);
+		$("#manuscript-list .submit-btn").removeClass("hide").prop('disabled', false);
+		$("#manuscript-list .edit-btn").removeClass("hide").prop('disabled', false);
+		form.find(".add-reviewer").addClass("hide").prop('disabled', false);
 		//location.href="admin_browselist.html";
+		cur_row.find("#add-icon").addClass("hide");
+		$('#reviewer-list .reviewer').removeClass('hide');
+		$("#reviewer-list .checkbox").addClass("hide");
+
+		$('#reviewer-list caption').removeClass('highlight').removeClass('highlight-disable');
+		$('#reviewer-list caption span').addClass('hide');
+		$('#reviewer-list caption a').removeClass('disabled');		
 	});	
 });
 $( document.body ).on( 'click', '.dropdown-menu li', function( event ) {

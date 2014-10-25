@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+  <head>
+    <title> Manuscript Review Submission</title>
+    <link type="text/css" href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="css/style.css" rel="stylesheet">
+    <link type="text/css" href="css/button.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="wraper">
+      <div class="header">
+        <div class="container">
+          <a href="user_home.html" class="logo-icon">
+            <img src="fig/Icon_WriteArticles.png">
+            <p class="logo-text">Manuscript Review</p>
+          </a>      
+          <ul class="menu">
+            <li><a href="#">Help</a></li>
+            <li><a href="home.html">Logout</a></li>        
+            <!--<li><a href="#">Logout</a></li>-->
+          </ul>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="container">
+          <ol class="breadcrumb">
+            <li><a href="user_home.html">Home</a></li>
+            <li><a href="author_home.html">Author Center</a></li>
+          </ol>
+        <div class="row" id="form-fill">
+          <div class="col-md-10 col-md-offset-1">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="fullTitle" class="col-sm-2 text-right control-lable">Title</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="fullTitle" placeholder="Enter Manuscript Title" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="briefTitle" class="col-sm-2 text-right control-lable">Brief Title</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="briefTitle" placeholder="Enter a shorter title which contains less than 10 words" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="abstract" class="col-sm-2 text-right control-lable">Abstract</label>
+                <div class="col-sm-10">
+                  <textarea class="form-control" id="abstract" rows="6" placeholder="Enter Manuscript Abstract" required></textarea>
+                </div>
+                <div class="clearfix">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="keywords" class="col-sm-2 text-right control-lable">Keywords</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="keywords" placeholder="Keywords (no more than 10, seperate by comma)" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="journal" class="col-sm-2 text-right control-lable">Target Journal</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="journal" placeholder="Which journal you want this manuscript to be published in" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="fields" class="col-sm-2 text-right control-lable">Keywords</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="fields" placeholder="Manuscript Field e.g. CS, BIO, etc" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="textFiles" class="col-sm-2 text-right control-lable">Text Files</label>
+                <div class="col-sm-10">
+                  <input id="exampleInputFile" type="file">
+                </div>
+                <div class="col-sm-10 col-offset-2">
+                  <input type="text" class="form-control" id="textFiles" placeholder="your text files (.doc or .pdf)" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="textFiles" class="col-sm-2 text-right control-lable">Image Files</label>
+                <div class="col-sm-10">
+                  <input type="file">
+                </div>                
+                <div class="col-sm-10 col-offset-2">
+                  <input type="text" class="form-control" id="textFiles" placeholder=" your img files (.png or .pdf, size should below 1MB)" required>
+                </div>
+              </div>          
+            </form>
+            <div class = "hot-container" style = "text-align:center">
+              <a href="author_home.html" class="btn btn-green" style="width:15%">Save</a>
+              <a href="manuscript_submitted.html" class="btn btn-green" style="width:15%">Submit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footerholder">
+        <div class="footer">
+          <div class="container">
+          &copy;2014 Copyright 
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/app.js"></script>
+  </body>
+</html>

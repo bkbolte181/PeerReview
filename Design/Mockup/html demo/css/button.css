@@ -1,0 +1,195 @@
+.breadcrumb {
+  background-color: white;
+}
+#form-fill label {
+  margin-top: auto;
+  margin-bottom:auto; 
+  padding-top: 7px;
+}
+
+/* button */
+/* ref http://jsfiddle.net/bseth99/dJDHd/ */
+.btn-input {
+   display: block;
+}
+
+.btn-input .btn.form-control {
+  text-align: center;
+}
+
+.btn-input .btn.form-control span:first-child {
+   left: 10px;
+   overflow: hidden;
+   position: absolute;
+   right: 25px;
+}
+
+.btn-input .btn.form-control .caret {
+   margin-top: -1px;
+   position: absolute;
+   right: 10px;
+   top: 50%;
+}
+
+/* ref0 http://cssdeck.com/labs/purely-css */
+.hot-container p { margin-top: 10px; }
+a { text-decoration: none; margin: 0 10px; }
+
+.hot-container {
+  min-height: 80px;
+  margin-top: 5%;
+  width: 100%;
+  text-align: center;
+}
+
+a.btn {
+  display: inline-block;
+  color: #666;
+  background-color: #eee;
+  text-transform: uppercase; 
+/*  letter-spacing: 2px; */
+  font-size: 12px; 
+  padding: 10px 30px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid rgba(0,0,0,0.3);
+  border-bottom-width: 3px;
+}
+
+  a.btn:hover {
+  background-color: #e3e3e3;
+  border-color: rgba(0,0,0,0.5);
+  }
+  
+  a.btn:active {
+  background-color: #CCC;
+  border-color: rgba(0,0,0,0.9);
+  }
+
+/* small button */
+
+/* big button */
+a.btn.btn-large {
+  padding: 20px 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.3);
+  border-bottom-width: 0px;
+
+  -webkit-box-shadow: inset 0 1px 0 0 white, 0 12px 6px -6px #888888;
+   -moz-box-shadow: inset 0 1px 0 0 white, 0 12px 6px -6px #888888;
+      box-shadow: inset 0 1px 0 0 white, 0 12px 6px -6px #888888;
+
+  margin-left: 50px;
+  margin-right: 50px;
+  width: 25%;
+  min-width: 150px;
+}
+
+a.btn.btn-large-square {
+  padding: 20px 40px;
+  border: 1px solid rgba(0,0,0,0.3);
+  border-bottom-width: 0px;
+  border-radius: 20px;
+  -webkit-box-shadow: inset 0 1px 0 0 white, 0 12px 6px -6px #888888;
+   -moz-box-shadow: inset 0 1px 0 0 white, 0 12px 6px -6px #888888;
+      box-shadow: inset 0 1px 0 0 white, 0 12px 6px -6px #888888;
+
+  margin-left: 50px;
+  margin-right: 50px;
+  width: 25%;
+  min-width: 150px;
+}
+/* green button */
+
+a.btn.btn-green {
+  background-color: #DEFDCF;
+  border-color: rgba(0,0,0,0.3);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+  color: #000;
+}
+
+  a.btn.btn-green:hover {
+  background-color: #BFFCA0;
+  border-color: rgba(0,0,0,0.5);
+  }
+  
+  a.btn.btn-green:active {
+  background-color: #268907;
+  border-color: rgba(0,0,0,0.9);
+  color: #FFF;
+  }
+
+/* blue button */
+
+a.btn.btn-blue {
+  background-color: #699DB6;
+  border-color: rgba(0,0,0,0.3);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+  color: #FFF;
+}
+
+  a.btn.btn-blue:hover {
+  background-color: #4F87A2;
+  border-color: rgba(0,0,0,0.5);
+  }
+  
+  a.btn.btn-blue:active {
+  background-color: #3C677B;
+  border-color: rgba(0,0,0,0.9);
+  }
+
+/* red button */
+
+a.btn.btn-red {
+  background-color: #E48681;
+  border-color: rgba(0,0,0,0.3);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+  color: #FFF;
+}
+
+  a.btn.btn-red:hover {
+  background-color: #DA4F49;
+  border-color: rgba(0,0,0,0.5);
+  }
+  
+  a.btn.btn-red:active {
+  background-color: #B32C24;
+  border-color: rgba(0,0,0,0.9);
+  }
+/* ref1 */
+.buttonref1{
+  height:2em;
+  margin:20px 40px;
+  cursor:pointer;
+  display:inline-block;
+  color:#FFF;
+  font-size:1em;
+  border:1px solid #eee;
+  background:#eee;
+  border-radius:4px;
+  line-height:2em;
+  border:1px solid #aaa;
+  text-decoration:none;
+  
+  -webkit-transition: all 0.3s linear;
+   -khtml-transition: all 0.3s linear;
+   -moz-transition: all 0.3s linear;
+   -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+.buttonref1:hover{
+  -webkit-box-shadow:rgba(0,0,0,0.7) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+   -khtml-box-shadow:rgba(0,0,0,0.7) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+   -moz-box-shadow:rgba(0,0,0,0.7) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+   -o-box-shadow:rgba(0,0,0,0.7) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    box-shadow:rgba(0,0,0,0.7) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+}
+.buttonref1:active {
+  -webkit-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+   -khtml-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+   -moz-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+   -o-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+    box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+  text-shadow:1px 1px 1px #eee;
+}

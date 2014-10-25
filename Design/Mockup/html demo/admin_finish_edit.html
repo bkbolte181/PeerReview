@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="wraper">
+    <div class="header">
+      <div class="container">
+        <a href="#" class="logo-icon">
+          <img src="fig/Icon_WriteArticles.png">
+          <p class="logo-text">Manuscript Review</p>
+        </a>
+
+        <ul class="menu">
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="content">
+      <div class="container">
+      	<div id="admin-finish-edit">
+		<div class="row admin-nav2">
+		<div class="col-sm-12">
+		<ol class="breadcrumb">
+		  <li><a href="admin_homepage.html">Home</a></li>
+		</ol>		
+		</div>
+		</div>	
+      	<div class="row" >
+			<div class="col-sm-7 col-sm-offset-2">
+				<p>Your current assignment for the following manuscript has been saved to database.</p>
+				<div class="manu">
+				<p>PCA versus LDA (ID:XXXXX)</p>
+				<p>Author: Martinez, A.</p>
+				<p>Reviewers: John Lee*, Emily White, Mary Green*, Jim Chen</p>
+				</div>
+				<p>Do you want to submit the final matching decision?</p>
+				<div class="btn-group pull-right">
+					<button type="button" class="btn btn-default home" data-tooltip="tooltip" onlick="admin_homepage.html" title="Go back to manuscripts/reviewers list.">No</button>
+					<button type="button" class="btn btn-primary confirm-yes-btn1" data-toggle="modal" data-target=".bs-submit-confirm">Yes</button>										
+				</div>				
+				
+				<div class="modal bs-submit-confirm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="myModalLabel">Success</h4>
+					  </div>
+					  <div class="modal-body">
+						<p>Your final decision for the following manuscript has been made.</p>
+						<div class="manu">
+						<p>PCA versus LDA (ID:XXXXX)</p>
+						<p>Author: Martinez, A.</p>
+						<p>Reviewers: John Lee*, Emily White, Mary Green*, Jim Chen</p>
+						</div>
+						<p>We have successfully send emails to the author and reviewers about the decision.</p>
+					  </div>
+					</div>
+				  </div>
+				</div>					
+			</div>
+		</div>     			
+	  </div>
+	</div>
+    
+    <div class="footer">
+      <div class="container">
+        &copy;2014 Copyright 
+      </div>
+    </div>
+	</div>
+	
+	
+	
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
+

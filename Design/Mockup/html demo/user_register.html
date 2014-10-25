@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+  <head>
+    <title> Manuscript Review - Register</title>
+    <link type="text/css" href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="css/style.css" rel="stylesheet">
+    <link type="text/css" href="css/button.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="wraper">
+      <div class="header">
+        <div class="container">
+          <a href="home.html" class="logo-icon">
+            <img src="fig/Icon_WriteArticles.png">
+            <p class="logo-text">Manuscript Review</p>
+          </a>
+          <ul class="menu">
+          <li><a href="#">Help</a></li>
+          <!--<li><a href="#">Logout</a></li>-->
+          </ul>
+        </div>
+      </div> <!-- header -->
+      <br>
+      <div class="content">
+        <div class="container">
+          <div class="row" id="form-fill">
+            <div class="col-sm-10 col-sm-offset-1">
+              <form class="form-horizontal" role="form">
+                <div class="form-group">
+                  <label for="firstName" class="col-sm-3 text-right control-lable">First Name</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control text-center" id="firstName" placeholder="First Name" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="lastName" class="col-sm-3 text-right control-lable">Last Name</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control text-center" id="lastName" placeholder="Last Name" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="emailAdress" class="col-sm-3 text-right control-lable">Emory Email</label>
+                  <div class="col-sm-9">
+                    <input type="email" class="form-control text-center" id="emailAdress" placeholder="Emory Email Adress" required>
+                  </div>
+                </div>          
+                <div class="form-group">
+                  <label for="firstPasswd" class="col-sm-3 text-right control-lable">Password</label>
+                  <div class="col-sm-9">
+                    <input type="password" class="form-control text-center" id="firstPasswd" placeholder="Set Up Your Password" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="repeatPasswd" class="col-sm-3 text-right control-lable">Password Again</label>
+                  <div class="col-sm-9">
+                    <input type="password" class="form-control text-center" id="repeatPasswd" placeholder="Repeat Your Password" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <lable for="schoolList" class="col-sm-3 text-right control-label"><b>School</b></lable>
+                  <div class="col-sm-9">
+                    <div class="btn-group btn-input clearfix">
+                      <button type="button" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown" id="schoolList" required>
+                        <span data-bind="label" class="text-center">Choose Your School</span>&nbsp;<span class="caret"></span>
+                      </button>
+                        <ul class="dropdown-menu" role="menu" style="width:100%">
+                          <li><a href="#" style="text-align:center">GOIZUETA BUSINESSS SCHOOL</a></li>
+                          <li><a href="#"style="text-align:center">LANEY GRADUATE SCHOOL</a></li>
+                          <li><a hGref="#"style="text-align:center">SCHOOL OF LAW</a></li>
+                          <li><a href="#"style="text-align:center">SCHOOL OF MEDICINE</a></li>
+                          <li><a href="#"style="text-align:center">NELL HODGSON WOODRUFF SCHOOL OF NURSING</a></li>
+                          <li><a href="#"style="text-align:center">ROLLINS SCHOOL OF PUBLIC HEALTH</a></li>
+                          <li><a href="#"style="text-align:center">CANDLER SCHOOL OF THEOLOGY</a></li>
+                          <li><a href="#"style="text-align:center">OTHERS</a></li>
+                          <li class="divider"></li>
+                        </ul>                 
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="labPI" class="col-sm-3 text-right control-lable">Lab/PI</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control text-center" id="labPI" placeholder="Name of Your Lab / Name of the PI" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="resField" class="col-sm-3 text-right control-lable">Research Field</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control text-center" id="resField" placeholder="Research Field, e.g. Computer Sciences or Human Genetics" required>
+                  </div>
+                </div>                
+                <div class="form-group">
+                  <label for="resInterest" class="col-sm-3 text-right control-lable">Research Interest</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control text-center" id="resInterest" placeholder="Research Interest, e.g. Machine Learning or Epigenetics" required>
+                  </div>
+                </div>
+              </form>
+
+              <div class = "hot-container text-center">
+                <a href="home.html" class="btn btn-green">Cancel</a>
+                <a href="email_validation.html" class="btn btn-green" type="submit">Submit</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="container">
+        &copy;2014 Copyright 
+        </div>
+      </div>
+      <script src="js/jquery.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/app.js"></script>
+    </div>
+  </body>
+</html>
