@@ -18,6 +18,7 @@ urlpatterns = patterns('',
 	url(r'^review/$', views.reviewer_home, name='review'),
 	url(r'^browse/(?P<current_page>\d+)/$',views.browse_manuscripts, name='browse'),
 	url(r'^agreement/$', views.agreement, name='agreement'),
+    url(r'^assignedmanuscripts/$',views.assigned_manuscripts, name = 'assignedmanuscripts'),
 	# Media root for serving files when on a local dev server
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 )
