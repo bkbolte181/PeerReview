@@ -6,12 +6,13 @@ from django.test import Client
 from django.utils import unittest
 from django.core.urlresolvers import reverse
 from forms import *
+from views import *
 import datetime
 
 
-# Create your tests here.
+# Testing the Model
 
-class UserTest(TestCase):
+class CreateUserTest(TestCase):
 
     def create_user(self, email = 'johnny@emory.edu', password = '123', firstname = 'johnny', lastname= 'tan'):
         return SiteUser.objects.create(email = email, password = password, first_name = firstname, last_name = lastname)
@@ -23,7 +24,7 @@ class UserTest(TestCase):
         self.assertEqual(w.get_full_name(),('johnny','tan'))
 
 
-class ReviewPeriodTest(TestCase):
+class CreateReviewPeriodTest(TestCase):
 
     def create_review_period(self, isfull = 'false', startdate = timezone.now(), submissionsdeadline = timezone.now()+ datetime.timedelta(days = 30), reviewdeadline = timezone.now()+datetime.timedelta(days = 50), groupmeeting = timezone.now()+datetime.timedelta(days = 80)):
         return ReviewPeriod.objects.create(is_full = isfull, start_date = startdate, submission_deadline = submissionsdeadline, review_deadline = reviewdeadline, group_meeting_time = groupmeeting )
@@ -32,3 +33,82 @@ class ReviewPeriodTest(TestCase):
     def test_review_period(self):
         r = self.create_review_period()
         self.assertTrue(isinstance(r,ReviewPeriod))
+
+
+# class CreateManuscriptModelTest(TestCase):
+
+
+# Testing the Views
+# For status_code 302 is redirect urls, 200 is normal resp status code , 301 is permanently moved links
+
+
+class SignupView(TestCase):
+
+    def test_signup(self):
+        resp = self.client.get('/signup/')
+        self.assertEquals(resp.status_code,200)
+
+class AdminView(TestCase):
+
+    def test_admin(self):
+        resp = self.client.get('/admin/')
+        self.assertEquals(resp.status_code,302)
+
+class TermsView(TestCase):
+
+    def test_term(self):
+        resp = self.client.get('/terms/')
+        self.assertEqual(resp.status_code,200)
+
+class LoginView(TestCase):
+
+    def test_login(self):
+        resp = self.client.get('/login/')
+        self.assertEquals(resp.status_code,200)
+
+class AccountView(TestCase):
+
+    def test_account(self):
+        resp = self.client.get('/account/')
+        self.assertEquals(resp.status_code,302)
+
+class LogoutView(TestCase):
+
+    def test_logout(self):
+        resp = self.client.get('/logout/')
+        self.assertEquals(resp.status_code,302)
+
+class UploadView(TestCase):
+
+    def test_upload(self):
+        resp = self.client.get('/upload')
+        self.assertEquals(resp.status_code,301)
+
+class ReviewView(TestCase):
+
+    def test_review(self):
+        resp = self.client.get('/review/')
+        self.assertEquals(resp.status_code,302)
+
+class BrowseView(TestCase):
+
+    def test_browse(self):
+        resp = self.client.get('/browse/1')
+        self.assertEquals(resp.status_code,301)
+
+class AssignedManuscriptView(TestCase):
+
+    def test_assigned(self):
+        resp = self.client.get('/assignedmanuscripts/')
+        self.assertEquals(resp.status_code,302)
+
+class AgreementView(TestCase):
+
+    def test_agreement(self):
+        resp = self.client.get('/agreement/')
+        self.assertEquals(resp.status_code,302)
+
+
+
+
+
