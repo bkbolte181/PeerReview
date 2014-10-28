@@ -7,10 +7,3 @@ from django.test import Client
 # Create your tests here.
 
 
-class ReviewPeriodTest(TestCase):
-    def setUp(self):
-
-
-
-
-    def test_invalid_review_period(self):
