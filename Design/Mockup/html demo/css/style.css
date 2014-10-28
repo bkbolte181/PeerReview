@@ -340,6 +340,18 @@ span.glyphicon-ok {
 .admin-home-nav1 .nav-tabs {
     text-align:center;
 }
+.admin_cur_session, .admin_prev_session{
+	padding-left:15px;
+	padding-bottom: 8px;
+	font-size: 1.5rem;
+	text-decoration: underline;
+}
+.admin_prev_session {
+	padding-top: 15px;
+}
+div.admin_prev_session + ul {
+	padding-left:15px;
+}
 .manuscripts1 .subtitle{
 	text-align: center;
 }
