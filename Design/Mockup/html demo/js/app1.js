@@ -127,7 +127,7 @@ $(document).ready(function() {
 	});
 
 	$(".submit-no-btn").click(function(){
-		location.href="admin_browselist.html";
+		location.href="admin_browselist1.html";
 	});
 	$(".confirm-yes-btn1").click(function(){
 		
@@ -139,16 +139,18 @@ $(document).ready(function() {
 		var str = '<p>Your decision for the following manuscript has been made.</p><div class="'+'manu"'+'><p>PCA versus LDA (ID:XXXXX)</p><p>Author: Martinez, A.</p><p>Reviewers: John Lee*, Emily White, Mary Green*, Jim Chen</p></div><p>We have successfully send emails to the author and reviewers about the decision.</p>';
 		dom.html(str);;
 		dom.prev().find('h4').html("Success");
-		dom.next().hide();
+		console.log('Hello');
+		console.log(dom.next());
+		dom.next().html('<div class="'+'btn-group pull-right"'+'><button type="'+'button"'+ 'class="'+'btn btn-default confirm-no-btn"'+  'data-dismiss="'+'modal"'+'>OK</button></div>');		
 	});
 	$(".home").click(function(){
-		location.href="admin_browselist.html";
+		location.href="admin_browselist1.html";
 	});
 	$(".click").click(function(){
-		location.href="admin_browselist.html";
+		location.href="admin_browselist1.html";
 	});
 	$(".submit-success-btn").click(function(){
-		location.href="admin_browselist.html";
+		location.href="admin_browselist1.html";
 	});
 	$(".finish-edit-btn").click(function(){
 		$(this).parent().parent().parent().parent().find('.msg').removeClass('hide');

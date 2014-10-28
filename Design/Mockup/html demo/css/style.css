@@ -182,7 +182,8 @@ caption.highlight {
   border-radius: 3px;
 }
 table.highlight {
-  background-color: rgba(255, 255, 247, 0.95); /*#DEFDCF*/
+  /*background-color: rgba(255, 255, 247, 0.95); #DEFDCF*/
+  background-color: white;
   border-radius: 3px;
 }
 caption.highlight-hover {
@@ -364,11 +365,6 @@ div.admin_prev_session + ul {
 	text-align:center;
 }
 
-  a.btn.btn-green.btn-1:active {
-  background-color: #BFFCA0;;
-  border-color: rgba(255,255,255,0.9);
-  color:black;
-  }
 a.btn.btn-1{
   padding: 25px 45px;
   border-radius: 50%;
@@ -380,9 +376,25 @@ a.btn.btn-1{
           box-shadow: inset 0 1px 0 0 white, 0 9px 6px -6px black;
 
   width: 25%;
-  min-width: 230px;
+  min-width: 250px;
   word-wrap: break-word;
 }
+a.btn.btn-green1 {
+  background-color: #DEFDCF;
+  border-color: rgba(0,0,0,0.3);
+  /*text-shadow: 0 1px 0 rgba(0,0,0,0.5);*/
+  color: #000;
+}
+  a.btn.btn-green1:hover {
+  background-color: #BFFCA0;
+  border-color: rgba(0,0,0,0.5);
+  }
+  
+  a.btn.btn-green1:active {
+  background-color: #BFFCA0;;
+  border-color: rgba(255,255,255,0.9);
+  color:black;
+  }
 .msg {
 	color: red;
 }
