@@ -107,3 +107,6 @@ class Manuscript(models.Model):
 	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript")
 	manuscript_file = models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
 	review_file = models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
+	is_final = models.BooleanFiled(default=False) # If the final decision of this manuscript has been made
+
+
