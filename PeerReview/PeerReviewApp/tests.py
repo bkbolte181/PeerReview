@@ -95,6 +95,7 @@ class BrowseView(TestCase):
     def test_browse(self):
         resp = self.client.get('/browse/1')
         self.assertEquals(resp.status_code,301)
+        #self.assertTrue('all_manuscript' in resp.content)
 
 class AssignedManuscriptView(TestCase):
 
@@ -107,6 +108,10 @@ class AgreementView(TestCase):
     def test_agreement(self):
         resp = self.client.get('/agreement/')
         self.assertEquals(resp.status_code,302)
+
+
+# Form testing
+
 
 
 
