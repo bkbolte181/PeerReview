@@ -50,7 +50,7 @@
                     <em class="pull-right">submitted &nbsp;</em>
                   </div>
                   <div class="col-sm-2">
-                    <button type="button" class="btn btn-default btn-xs pull-left" style="width:100%" > View </button>
+                    <button type="button" class="btn btn-default btn-xs pull-left" style="width:100%" data-toggle="modal" data-target="#myModal_submission"> View </button>
                   </div>
                   <br><hr>
                   </div>
@@ -62,7 +62,7 @@
                     <em class="pull-right">submitted &nbsp;</em>
                   </div>
                   <div class="col-sm-2">
-                    <button type="button" class="btn btn-default btn-xs pull-left" style="width:100%" > View </button>
+                    <button type="button" class="btn btn-default btn-xs pull-left" style="width:100%" data-toggle="modal" data-target="#myModal_submission"> View </button>
                   </div>
                   <br><hr>
                   </div>                  
@@ -74,9 +74,108 @@
                     <em class="pull-right">saved &nbsp;</em>
                   </div>
                   <div class="col-sm-2">
-                    <button type="button" class="btn btn-default btn-xs pull-left" style="width:100%" > Edit </button>
+                    <a href="manuscript_submission_saved.html">
+                      <button type="button" class="btn btn-default btn-xs pull-left" style="width:100%">
+                      Edit</button>
+                    </a>
                   </div>
                   <br>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal 1 -->
+          <div class="row">
+            <div class="modal fade" id="myModal_submission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel1">Information for manuscirpt No</h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="input-group" style="width:100%">
+                      <div class="row">
+                        <div class="col-sm-3 text-right">
+                          <b>Title</b>
+                        </div>
+                        <div class="col-sm-9 text-left">
+                          Manuscript Title
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 text-right">
+                          <b>Brief Title</b>
+                        </div>
+                        <div class="col-sm-9 text-left">
+                          Manuscript Brief Title
+                        </div>
+                      </div>  
+                      <div class="row">
+                        <div class="col-sm-3 text-right">
+                          <b>Abstract</b>
+                        </div>
+                        <div class="col-sm-9 text-left">
+                          <textarea class="form-control text-center" rows="4" placeholder="Manuscript Abstract" readonly>Manuscript Abstract</textarea>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 text-right">
+                          <b>Field</b>
+                        </div>
+                        <div class="col-sm-9 text-left">
+                          Neuroscience
+                        </div>
+                      </div>                       
+                      <div class="row">
+                        <div class="col-sm-3 text-right">
+                          <b>Keywords</b>
+                        </div>
+                        <div class="col-sm-9 text-left">
+                          Keyword1, Keyword2, Keyword3, ...
+                        </div>
+                      </div>  
+                      <div class="row">
+                        <div class="col-sm-3 text-right">
+                          <b>Target Journal</b>
+                        </div>
+                        <div class="col-sm-9 text-left">
+                          Nature
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 text-right">
+                          <b>Text</b>
+                        </div>
+                        <div class="col-sm-9 text-left">
+                          Manuscript_text.doc
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 text-right">
+                          <b>Tables</b>
+                        </div>
+                        <div class="col-sm-9 text-left">
+                          Manuscript_tables.doc
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 text-right">
+                          <b>Figures</b>
+                        </div>
+                        <div class="col-sm-9 text-left">
+                          <ul>
+                            <li>figure1.png</li>
+                            <li>figure2.png</li>
+                            <li>figure3.png</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -101,6 +200,8 @@
         </div>
       </div>
     </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/app.js"></script>
   </body>
 </html>
