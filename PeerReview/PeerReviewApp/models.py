@@ -76,8 +76,9 @@ class SiteUser(AbstractBaseUser):
 	school = models.CharField(max_length=100, choices=[(x, x) for x in SCHOOLS], default=SCHOOLS[0])
 	papers_reviewed = models.CharField(max_length=2, choices=PAPERS_REVIEWED, default=NONE)
 	agreed_to_form = models.BooleanField(default=False) # Whether or not the user has agreed to to use form
+	#ManuscriptsReviewed = models.CharField(max_length=200, help_text="Manuscripts Reviewed")
 	objects = SiteUserManager()
-	
+
 	# Required for custom user model
 	USERNAME_FIELD = 'email'
 	REQUIRED_FIELDS = []
