@@ -366,7 +366,7 @@ div.admin_prev_session + ul {
 }
 
 a.btn.btn-1{
-  padding: 25px 45px;
+  padding: 30px 45px;
   border-radius: 50%;
   border: 1px solid rgba(0,0,0,0.3);
   border-bottom-width: 0px;
@@ -397,4 +397,22 @@ a.btn.btn-green1 {
   }
 .msg {
 	color: red;
+}
+.msg1 {
+	color: red;
+}
+.ad {
+	max-width: 350px;
+	min-width: 100px;
+	margin: auto;
+}
+.manu-count-title {
+	text-align: right;
+	max-width: 10rem;
+	margin-right: 0;
+	float: right;
+}
+.reviewer span.count {
+	float: right;
+	font-weight: normal;
 }

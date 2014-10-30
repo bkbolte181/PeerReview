@@ -22,36 +22,38 @@
     </div>
     <div class="content">
       <div class="container">
-      	<div id="admin-home-nav1">
-      	<div class="row" >
-	      	<!--<div class="col-sm-12">-->
-				<ul class="nav nav-tabs" role="tablist">
-				  <li class="active"><a href="#manuscripts" role="tab " data-toggle="tab" title="Browse lists of manuscripts/reviewers and make final decisions.">Manuscripts/Reviewers</a></li>
-				  <li><a href="#settings" role="tab" data-toggle="tab" title="Setup max pool, email reminder dates.">System Settings</a></li>
-				</ul>
-	      	<!--</div>  -->    	
-      	</div>
-		</div>
-
-		<div class="tab-content">
-			<div class="tab-pane active" id="manuscripts">
+		<div class="row admin-nav2">
+		<!--<div class="col-sm-12">-->
+		<ol class="breadcrumb">
+		  <li><a href="admin_homepage.html">Home</a></li>
+		  <li class="active">Manuscripts/Reviewers</li>
+		</ol>		
+		<!--</div>-->
+		</div>		  
+	  
+			<div class="row admin_cur_session">
+				Current session
+			</div>
 				<div class="row" id="announce">
 
 					<div class="col-sm-7" id="meeting-ad">
-					<h5>Meeting</h5>
-					<p>Time: Monday, Dec. 15, 2014, 2:00 p.m. to 4:00 p.m.</p>
-					<p>Venue: Room E404, MSC, Emory University, GA 30030.
-					</p>
+						<h5>Meeting</h5>
+						<div class='ad'>
+						Time: Monday, Dec. 15, 2014, 2:00 p.m. to 4:00 p.m.<br/>
+						Venue: Room E404, MSC, Emory University, GA 30030.
+						</div>
 					</div>
 					<div class="col-sm-5" id="deadline-ad">
-					<h5>Deadline</h5>
-					<p>Deadline for paper submission is Nov. 10, 2014.</p>
-					<p>Deadline for paper submission is Dec. 10, 2014.</p>
+						<h5>Deadline</h5>
+						<div class='ad'>
+						Deadline for manuscript submission is <span class="msg1">Nov. 10, 2014</span>.<br/>
+						Deadline for manuscript review is <span class="msg1">Dec. 10, 2014</span>.
+						</div>
 					</div>					
 					
 				</div>
-				<div class="row">
-					<!-- manuscripts / reviewers  -->
+				<div class="row manuscripts1">
+					<!-- Manuscripts  -->
 					<div class="col-sm-7">
 						<h5 class="subtitle">Manuscripts</h5>
 						
@@ -84,15 +86,19 @@
 										  <td>Added reviewers</td>
 										  <td></td>
 										</tr>	
+										<tr class="msg">
+										<td colspan=2>Assignment has been saved to database.<br/> Warning: The matching constrains are not satisfied because [reason]. </td>
+										<td></td>
+										</tr>										
 										<tr>
 											<td></td>
 											<td>
 											<div class="btn-group pull-right">
-												<button type="button" class="btn btn-default btn-sm finish-edit-btn" data-tooltip="tooltip" title="Save and finish edit.">Finish Edit</button>						
-												<button type="button" class="btn btn-default btn-sm add-btn" data-tooltip="tooltip" title="Add additional reviewers from reviewer list on the right to this manuscript!">Add more reviewers</button>		     
+												<button type="button" class="btn btn-default btn-sm finish-edit-btn"  title="Save and finish edit.">Finish Edit</button>						
+												<button type="button" class="btn btn-default btn-sm add-btn" title="Add additional reviewers from reviewer list on the right to this manuscript!">Add more reviewers</button>		     
 			
-												<button type="button" class="btn btn-default btn-sm submit-btn" data-tooltip="tooltip" title="Submit final matching decision." data-toggle="modal" data-target=".bs-submit-confirm1">Submit</button>	
-												<button type="button" class="btn btn-default btn-sm edit-btn" data-tooltip="tooltip" title="Edit reviewers for the manuscript.">Edit</button>												
+												<button type="button" class="btn btn-default btn-sm submit-btn" title="Submit final matching decision." data-toggle="modal" data-target=".bs-submit-confirm1">Make final decision</button>	
+												<button type="button" class="btn btn-default btn-sm edit-btn" title="Edit reviewers for the manuscript.">Edit</button>												
 											</div>
 											</td>							
 										</tr>										
@@ -129,15 +135,19 @@
 										  <td>Added reviewers</td>
 										  <td></td>
 										</tr>
+										<tr class="msg">
+										<td colspan=2>Assignment has been saved to database.<br/></td>
+										<td></td>
+										</tr>
 										<tr>
 											<td></td>
 											<td>
 											<div class="btn-group pull-right">
-												<button type="button" class="btn btn-default btn-sm finish-edit-btn" data-tooltip="tooltip" title="Save and finish edit.">Finish Edit</button>						
-												<button type="button" class="btn btn-default btn-sm add-btn" data-tooltip="tooltip" title="Add additional reviewers from reviewer list on the right to this manuscript!">Add more reviewers</button>		     
+												<button type="button" class="btn btn-default btn-sm finish-edit-btn"  title="Save and finish edit.">Finish Edit</button>						
+												<button type="button" class="btn btn-default btn-sm add-btn"  title="Add additional reviewers from reviewer list on the right to this manuscript!">Add more reviewers</button>		     
 			
-												<button type="button" class="btn btn-default btn-sm submit-btn" data-tooltip="tooltip" title="Submit final matching decision." data-toggle="modal" data-target=".bs-submit-confirm1">Submit</button>	
-												<button type="button" class="btn btn-default btn-sm edit-btn" data-tooltip="tooltip" title="Edit reviewers for the manuscript.">Edit</button>												
+												<button type="button" class="btn btn-default btn-sm submit-btn" title="Submit final matching decision." data-toggle="modal" data-target=".bs-submit-confirm2">Make final decision</button>	
+												<button type="button" class="btn btn-default btn-sm edit-btn"  title="Edit reviewers for the manuscript.">Edit</button>												
 											</div>
 											</td>							
 										</tr>
@@ -275,8 +285,8 @@
 										  <td>4</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -296,8 +306,8 @@
 										  <td>4</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -317,8 +327,8 @@
 										  <td>3</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -338,8 +348,8 @@
 										  <td>3</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -359,8 +369,8 @@
 										  <td>3</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -380,8 +390,8 @@
 										  <td>2</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -401,8 +411,8 @@
 										  <td>2</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -422,8 +432,8 @@
 										  <td>2</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -443,8 +453,8 @@
 										  <td>2</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -464,8 +474,8 @@
 										  <td>2</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -485,8 +495,8 @@
 										  <td>1</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -506,8 +516,8 @@
 										  <td>2</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -527,8 +537,8 @@
 										  <td>1</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -548,8 +558,8 @@
 										  <td>2</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -569,8 +579,8 @@
 										  <td>1</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -590,8 +600,8 @@
 										  <td>1</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -611,8 +621,8 @@
 										  <td>1</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -632,8 +642,8 @@
 										  <td>1</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -653,8 +663,8 @@
 										  <td>2</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -674,8 +684,8 @@
 										  <td>1</td>
 										</tr>	
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
 										</tr>											
 									</tbody>	
 								</table>							
@@ -686,26 +696,28 @@
 					</div>		  				
 
 				</div>
-
-			</div>
-			<div class="tab-pane" id="settings">
-				<!-- settings  -->
-				<div class="col-sm-3 col-sm-offset-4">
-					<h5>Settings</h5>
-					<p>....</p>
-				</div>
-			</div>
-		</div>     
-
+			<div class="row admin_prev_session" title="view list of manuscripts in previous sessions">
+				Previous sessions
+			</div>	
+			<ul>
+				<li><a href="" title="view list of manuscripts in session 4">Session 4 (2013 May - 2013 July)</a></li>
+				<li><a href="">Session 3 (2012 May - 2012 July)</a></li>
+				<li><a href="">Session 2 (2012 January - 2012 March)</a></li>
+				<li><a href="">Session 1 (2011 May - 2011 July)</a></li>
+			</ul>					
+				
+			
 		<div class="modal bs-submit-confirm1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 			<div class="modal-content">
+			
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 				<h4 class="modal-title" id="myModalLabel">Confirm</h4>
 			  </div>
 			  <div class="modal-body">
-				<p>Confirm the final matching decision for the following manuscript:</p>
+				<p class="warning" style="color:red">Warning: The matching constrains are not satisfied because [reason].</p>
+				<p>Are you sure you want to make the final matching decision for the following manuscript:</p>
 				<div class="manu">
 				<p>PCA versus LDA (ID:XXXXX)</p>
 				<p>Author: Martinez, A.</p>
@@ -716,13 +728,41 @@
 				<form class="form-horizontal" role="form">
 					<div class="btn-group pull-right">
 						<button type="button" class="btn btn-default confirm-no-btn"  data-dismiss="modal">No</button>
-						<button type="button" class="btn btn-primary confirm-yes-btn" data-tooltip="tooltip" title="Submit final decision.">Yes</button>										
+						<button type="button" class="btn btn-primary confirm-yes-btn" title="Submit final decision.">Yes</button>
 					</div>
 				</form>	
 			  </div>
 			</div>
 		  </div>
 		</div>			
+		<div class="modal bs-submit-confirm2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">Confirm</h4>
+			  </div>
+			  <div class="modal-body">
+				<p>Are you sure you want to make the final matching decision for the following manuscript:</p>
+				<div class="manu">
+				<p>PCA versus LDA (ID:XXXXX)</p>
+				<p>Author: Martinez, A.</p>
+				<p>Reviewers: John Lee*, Emily White, Mary Green*, Jim Chen</p>
+				</div>
+			  </div>
+			  <div class="modal-footer">
+				<form class="form-horizontal" role="form">
+					<div class="btn-group pull-right">
+						<button type="button" class="btn btn-default confirm-no-btn"  data-dismiss="modal">No</button>
+						<button type="button" class="btn btn-primary confirm-yes-btn" title="Submit final decision.">Yes</button>
+					</div>
+				</form>	
+			  </div>
+			</div>
+		  </div>
+		</div>				
+		
 	  </div>
 	</div>
     
@@ -734,7 +774,7 @@
 	</div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>   
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/app1.js"></script>
   </body>
 </html>
 
