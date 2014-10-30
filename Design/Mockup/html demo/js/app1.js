@@ -38,7 +38,7 @@ $(document).ready(function() {
 					console.log("--------");
 					/*reviewers[i].parent().parent().addClass('hide');*/
 					
-					reviewers[i].find('span').removeClass('hide');
+					reviewers[i].find('span.glyphicon-ok').removeClass('hide');
 					reviewers[i].addClass('highlight-disable');
 					
 					/*
@@ -58,7 +58,7 @@ $(document).ready(function() {
 			if (!$(this).hasClass('highlight-disable')) {
 				console.log("toggle hight"+ $(this));
 				$(this).toggleClass('highlight');
-				$(this).find('span').toggleClass('hide');
+				$(this).find('span.glyphicon-ok').toggleClass('hide');
 			}
 		}
 	})
@@ -118,7 +118,7 @@ $(document).ready(function() {
 		$("#reviewer-list .checkbox").addClass("hide");
 
 		$('#reviewer-list caption').removeClass('highlight').removeClass('highlight-disable');
-		$('#reviewer-list caption span').addClass('hide');
+		$('#reviewer-list caption span.glyphicon-ok').addClass('hide');
 		$('#reviewer-list caption a').removeClass('disabled');
 
 	});
@@ -170,7 +170,7 @@ $(document).ready(function() {
 		$("#reviewer-list .checkbox").addClass("hide");
 
 		$('#reviewer-list caption').removeClass('highlight').removeClass('highlight-disable');
-		$('#reviewer-list caption span').addClass('hide');
+		$('#reviewer-list caption span.glyphicon-ok').addClass('hide');
 		$('#reviewer-list caption a').removeClass('disabled');		
 	});	
 });

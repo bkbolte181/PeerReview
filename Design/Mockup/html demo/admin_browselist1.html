@@ -37,15 +37,18 @@
 				<div class="row" id="announce">
 
 					<div class="col-sm-7" id="meeting-ad">
-					<h5>Meeting</h5>
-					<p>Time: Monday, Dec. 15, 2014, 2:00 p.m. to 4:00 p.m.</p>
-					<p>Venue: Room E404, MSC, Emory University, GA 30030.
-					</p>
+						<h5>Meeting</h5>
+						<div class='ad'>
+						Time: Monday, Dec. 15, 2014, 2:00 p.m. to 4:00 p.m.<br/>
+						Venue: Room E404, MSC, Emory University, GA 30030.
+						</div>
 					</div>
 					<div class="col-sm-5" id="deadline-ad">
-					<h5>Deadline</h5>
-						<p>Deadline for manuscript submission is Nov. 10, 2014.</p>
-						<p>Deadline for manuscript review is Dec. 10, 2014.</p>			
+						<h5>Deadline</h5>
+						<div class='ad'>
+						Deadline for manuscript submission is <span class="msg1">Nov. 10, 2014</span>.<br/>
+						Deadline for manuscript review is <span class="msg1">Dec. 10, 2014</span>.
+						</div>
 					</div>					
 					
 				</div>
@@ -94,7 +97,7 @@
 												<button type="button" class="btn btn-default btn-sm finish-edit-btn"  title="Save and finish edit.">Finish Edit</button>						
 												<button type="button" class="btn btn-default btn-sm add-btn" title="Add additional reviewers from reviewer list on the right to this manuscript!">Add more reviewers</button>		     
 			
-												<button type="button" class="btn btn-default btn-sm submit-btn" title="Submit final matching decision." data-toggle="modal" data-target=".bs-submit-confirm1">Submit</button>	
+												<button type="button" class="btn btn-default btn-sm submit-btn" title="Submit final matching decision." data-toggle="modal" data-target=".bs-submit-confirm1">Make final decision</button>	
 												<button type="button" class="btn btn-default btn-sm edit-btn" title="Edit reviewers for the manuscript.">Edit</button>												
 											</div>
 											</td>							
@@ -143,7 +146,7 @@
 												<button type="button" class="btn btn-default btn-sm finish-edit-btn"  title="Save and finish edit.">Finish Edit</button>						
 												<button type="button" class="btn btn-default btn-sm add-btn"  title="Add additional reviewers from reviewer list on the right to this manuscript!">Add more reviewers</button>		     
 			
-												<button type="button" class="btn btn-default btn-sm submit-btn" title="Submit final matching decision." data-toggle="modal" data-target=".bs-submit-confirm2">Submit</button>	
+												<button type="button" class="btn btn-default btn-sm submit-btn" title="Submit final matching decision." data-toggle="modal" data-target=".bs-submit-confirm2">Make final decision</button>	
 												<button type="button" class="btn btn-default btn-sm edit-btn"  title="Edit reviewers for the manuscript.">Edit</button>												
 											</div>
 											</td>							
@@ -267,428 +270,402 @@
 					<div class="col-sm-5">
 						<h5 class="subtitle">Reviewers</h5>
 						<div id="reviewer-list">
-							<div class = "reviewer" id="reviewer1">
+							<div class = "reviewer">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">John Lee*</a></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-7"></th>
+										  <th class="col-sm-5"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>4</td>
-										</tr>	
+										  <td></td>
+										  <td style="text-align: right"># manuscripts reviewed</td>
+										</tr>											
+									</tbody>	
+								</table>	
+							</div>
+							<div class = "reviewer" id="reviewer1">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">John Lee*</a><span class="count">4</span></caption>
+									<thead>
 										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics, Chemistry</td>
+										  <td></td>
 										</tr>											
 									</tbody>	
 								</table>							
 							</div>
 							<div class = "reviewer" id="reviewer2">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Mary Green*</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Mary Green*</a><span class="count">4</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>4</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Chemistry, Physics, Biostatistics</td>
+										  <td></td>
 										</tr>											
 									</tbody>	
 								</table>							
 							</div>							
 							<div class = "reviewer" id="reviewer3">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Arial Martinez*</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Arial Martinez*</a><span class="count">3</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>3</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
 									</tbody>	
 								</table>							
 							</div>							
 							<div class = "reviewer" id="reviewer4">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Rick Buswell*</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Rick Buswell*</a><span class="count">3</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>3</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
-									</tbody>	
+									</tbody>		
 								</table>							
 							</div>		
 							<div class = "reviewer" id="reviewer5">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Benjamin Bolte*</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Benjamin Bolte*</a><span class="count">3</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>3</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
 									</tbody>	
 								</table>							
 							</div>	  
 							<div class = "reviewer" id="reviewer6">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Emily White</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Emily White</a><span class="count">2</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>2</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
 									</tbody>	
 								</table>							
 							</div>	  
 							<div class = "reviewer" id="reviewer7">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Peng Ji</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Peng Ji</a><span class="count">2</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>2</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
-									</tbody>	
+									</tbody>		
 								</table>							
 							</div>	 
 							<div class = "reviewer" id="reviewer8">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Jiulin Hu</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Jiulin Hu</a><span class="count">2</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>2</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
-									</tbody>	
+									</tbody>		
 								</table>							
 							</div>	 							
 							<div class = "reviewer" id="reviewer9">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Johnny Tan</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Johnny Tan</a><span class="count">2</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>2</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
-									</tbody>	
+									</tbody>		
 								</table>							
 							</div>	 
 							<div class = "reviewer" id="reviewer10">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Raul Doria</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Raul Doria</a><span class="count">2</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>2</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
-									</tbody>	
+									</tbody>		
 								</table>							
 							</div>	 
 							<div class = "reviewer" id="reviewer11">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Larry Villagrana</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Larry Villagrana</a><span class="count">1</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>1</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
 									</tbody>	
 								</table>							
 							</div>	 
 							<div class = "reviewer" id="reviewer12">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Cody Gagnon</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Cody Gagnon</a><span class="count">2</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>2</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
-									</tbody>	
+									</tbody>		
 								</table>							
 							</div>	 
 							<div class = "reviewer" id="reviewer13">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Zelma Clarkson</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Zelma Clarkson</a><span class="count">1</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>1</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
-									</tbody>	
+									</tbody>		
 								</table>							
 							</div>	 
 							<div class = "reviewer" id="reviewer14">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Emily Green</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Emily Green</a><span class="count">2</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>2</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
-									</tbody>	
+									</tbody>		
 								</table>							
 							</div>	 
 							<div class = "reviewer" id="reviewer15">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Emilie Bourn</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Emilie Bourn</a><span class="count">1</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>1</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
 									</tbody>	
 								</table>							
 							</div>	 
 							<div class = "reviewer" id="reviewer16">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Floretta Klingler</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Floretta Klingler</a><span class="count">1</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>1</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
 									</tbody>	
 								</table>							
 							</div>	 
 							<div class = "reviewer" id="reviewer17">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Candra Bulger</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Candra Bulger</a><span class="count">1</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>1</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
 									</tbody>	
 								</table>							
 							</div>	 
 							<div class = "reviewer" id="reviewer18">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Sudie Benham</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Sudie Benham</a><span class="count">1</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>1</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
 									</tbody>	
 								</table>							
 							</div>	 
 							<div class = "reviewer" id="reviewer19">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Jenna Geno</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Jenna Geno</a><span class="count">2</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>2</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
 									</tbody>	
 								</table>							
 							</div>	 
 							<div class = "reviewer" id="reviewer20">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Heide Woodley</a></caption>
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="user_detail.html">Heide Woodley</a><span class="count">1</span></caption>
 									<thead>
 										<tr>
-										  <th class="col-sm-6"></th>
-										  <th class="col-sm-6"></th>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
 										</tr>
 									</thead>	
 									<tbody>			  	
 										<tr>
-										  <td># manuscripts reviewed</td>
-										  <td>1</td>
-										</tr>	
-										<tr>
-										  <td>Research fields</td>
-										  <td>CS, Bios</td>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
 										</tr>											
 									</tbody>	
 								</table>							
 							</div>	 							
-
-
 						</div>
 					</div>		  				
 
