@@ -68,14 +68,32 @@ class SiteUser(AbstractBaseUser):
 		}, help_text="Emory Email Address")
 	first_name = models.CharField(max_length=100, help_text="First Name")
 	last_name = models.CharField(max_length=100, help_text="Last Name")
-	
+
+	@property
+	def is_superuser(self):
+		return self.is_admin
+
+	@property
+	def is_staff(self):
+		return self.is_admin
+	@property
+	def is_admin(self):
+		return True	
+	def has_perm(self, perm, obj=None):
+		return self.is_admin
+
+	def has_module_perms(self, app_label):
+		return self.is_admin		
+		
+		
+		
 	# Information about the user's scientific background
 	department = models.CharField(max_length=200, help_text="Department")
 	lab = models.CharField(max_length=200, help_text="Name of Lab")
 	pi = models.CharField(max_length=200, help_text="Name of Primary Investigator")
 	school = models.CharField(max_length=100, choices=[(x, x) for x in SCHOOLS], default=SCHOOLS[0])
 	papers_reviewed = models.CharField(max_length=2, choices=PAPERS_REVIEWED, default=NONE)
-	Review_Count = models.CharField(max_length=2, help_text = "Number of Manuscripts previously reviewed")
+	Review_Count = models.CharField(max_length=2, help_text = "Number of Manuscripts previously reviewed", null=True)
 	agreed_to_form = models.BooleanField(default=False) # Whether or not the user has agreed to to use form
 	objects = SiteUserManager()
 
@@ -105,7 +123,7 @@ class Manuscript(models.Model):
 	abstract = models.CharField(max_length=200000, default='Empty')
 	title = models.CharField(max_length=200, unique=True)
 	keywords = SeparatedValuesField(max_length=1000, help_text='Keywords, separated by a comma') # Custom field for storing python lists
-	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript")
+	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript", null=True)
 	manuscript_file = models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
 	review_file = models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
 	is_final = models.BooleanField(default=False) # If the final decision of this manuscript has been made

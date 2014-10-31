@@ -1,0 +1,67 @@
+{% extends 'admin_base.html' %}
+{% block body %}
+		<div class="row admin-nav2">
+		<div class="col-sm-12">
+		<ol class="breadcrumb">
+		  <li><a href="{% url 'admin_homepage' %}">Home</a></li>
+		  <li><a href="{% url 'admin_browselist' %}">Manuscripts/Reviewers</a></li>
+		  <li class="active">Manuscript Detail</li>
+		</ol>		
+		</div>
+		</div>		  
+        <div class = "row manuscript_detail">
+		
+		
+			<div class="col-sm-8 col-sm-offset-2">
+				<table class="table table-hover">
+				  <caption>PCA versus LDA</caption>
+				  <thead>
+					<tr>
+					  <th class="col-sm-3"></th>
+					  <th class="col-sm-9"></th>
+					</tr>
+				  </thead>
+				  <tbody>			  
+					<tr>
+					  <td>ID</td>
+					  <td>1</td>
+					</tr>
+					<tr>
+					  <td>Author</td>
+					  <td>Arial Martinez</td>
+					</tr>					
+					<tr>
+					  <td>Assigned reviewers</td>
+					  <td>John Lee*, Emily White</td>
+					</tr>
+					<tr>
+					  <td>Recommended reviewers</td>
+					  <td>Benjamin Bolte*, Peng Ji, Jiulin Hu, Johnny Tan</td>
+					</tr>	
+					<tr>
+					  <td>Abstract</td>
+					  <td>In the context of the appearance-based paradigm for object recognition, it is generally believed that algorithms based on LDA (Linear Discriminant Analysis) are superior to those based on PCA (Principal Components Analysis). In this communication, we show that this is not always the case. We present our case first by using intuitively plausible arguments and, then, by showing actual results on a face database. Our overall conclusion is that when the training data set is small, PCA can outperform LDA and, also, that PCA is less sensitive to different training data sets.</td>
+					</tr>	
+					<tr>
+					  <td>Keywords</td>
+					  <td>face recognition, pattern recognition, principal components analysis, linear discriminant analysis, learning from undersampled distributions, small training data sets</td>
+					</tr>
+					<tr>
+					  <td>Target journal</td>
+					  <td></td>
+					</tr>	
+					<tr>
+					  <td>Manuscript field</td>
+					  <td>BIOS</td>
+					</tr>						
+					<tr>
+					  <td>Feedback</td>
+					  <td>No feedback available. <br/>
+							Click <a class="adecor" href="">here</a> to request feedback from the author.</td>
+					</tr>						
+				  </tbody>
+				</table>
+				<button type="button" class="btn btn-default pull-right" title="Go back to manuscripts/reviewers list." onclick="location.href = '{% url 'admin_browselist' %}';">Back</button>
+			</div>
+        </div>
+{% endblock %} 

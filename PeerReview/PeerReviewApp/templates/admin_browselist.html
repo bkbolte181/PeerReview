@@ -1,0 +1,717 @@
+{% extends 'admin_base.html' %}
+{% block body %}
+		<div class="row admin-nav2">
+		<ol class="breadcrumb">
+		  <li><a href="{% url 'admin_homepage' %}">Home</a></li>
+		  <li class="active">Manuscripts/Reviewers</li>
+		</ol>		
+		</div>		  
+	  
+			<div class="row admin_cur_session">
+				Current session
+			</div>
+				<div class="row announce">
+
+					<div class="col-sm-7">
+						<h5>Meeting</h5>
+						<div class='ad meeting'>
+						Time: Monday, Dec. 15, 2014, 2:00 p.m. to 4:00 p.m.<br/>
+						Venue: Room E404, MSC, Emory University, GA 30030.
+						</div>
+					</div>
+					<div class="col-sm-5">
+						<h5>Deadline</h5>
+						<div class='ad deadline'>
+						Deadline for manuscript submission is <span class="msg1">Nov. 10, 2014</span>.<br/>
+						Deadline for manuscript review is <span class="msg1">Dec. 10, 2014</span>.
+						</div>
+					</div>					
+					
+				</div>
+				<div class="row manuscripts1">
+					<!-- Manuscripts  -->
+					<div class="col-sm-7">
+						<h5 class="subtitle">Manuscripts</h5>
+						
+						<div id="manuscript-list">
+						
+							<div class = "manuscript" id="manuscript1">
+							<form class="form-inline" id="form1" role="form">
+								<table class="table table-no-border table-condensed">
+									<caption>1. <a href="{% url 'manuscript_detail'  pk=1 %}">PCA versus LDA</a></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-9"></th>
+										</tr>
+									</thead>	
+									<tbody>			  
+										<tr>
+										  <td>Author</td>
+										  <td><a class="user" href="{% url 'user_detail' pk=1%}">Arial Martinez</a></td>
+										</tr>	
+										<tr>
+										  <td>Assigned reviewers</td>
+										  <td><span class="checkbox"><input type="checkbox" checked="checked"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">John Lee*</a>, <span class="checkbox"><input type="checkbox" checked="checked"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Emily White</a></td>
+										</tr>	
+										<tr>
+										  <td>Recommend reviewers</td>
+										  <td><span class="checkbox"><input type="checkbox"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Benjamin Bolte*</a>, <span class="checkbox"><input type="checkbox"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Peng Ji</a>, <span class="checkbox"><input type="checkbox"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Jiulin Hu</a>, <span class="checkbox"><input type="checkbox"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Johnny Tan</a></td>
+										</tr>	
+										<tr class='add-reviewer'>
+										  <td>Added reviewers</td>
+										  <td></td>
+										</tr>	
+										<tr class="msg">
+										<td colspan=2>Assignment has been saved to database.<br/> Warning: The matching constrains are not satisfied because [reason]. </td>
+										<td></td>
+										</tr>										
+										<tr>
+											<td></td>
+											<td>
+											<div class="btn-group pull-right">
+												<button type="button" class="btn btn-default btn-sm finish-edit-btn"  title="Save and finish edit.">Finish Edit</button>						
+												<button type="button" class="btn btn-default btn-sm add-btn" title="Add additional reviewers from reviewer list on the right to this manuscript!">Add more reviewers</button>		     
+			
+												<button type="button" class="btn btn-default btn-sm submit-btn" title="Submit final matching decision." data-toggle="modal" data-target=".bs-submit-confirm1">Submit final decision</button>	
+												<button type="button" class="btn btn-default btn-sm edit-btn" title="Edit reviewers for the manuscript.">Edit</button>												
+											</div>
+											</td>							
+										</tr>										
+									</tbody>	
+								</table>
+							</form>								
+							</div>
+
+
+							<div class = "manuscript" id="manuscript2">
+							<form class="form-inline" id="form2" role="form">
+								<table class="table table-no-border table-condensed">
+									<caption>2. <a href="{% url 'manuscript_detail'  pk=1 %}">Discriminant Analysis for Recognition of Human Face Images</a></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-9"></th>
+										</tr>
+									</thead>	
+									<tbody>			  
+										<tr>
+										  <td>Author</td>
+										  <td><a class="user" href="{% url 'user_detail'  pk=1 %}">Cody Gagnon</a></td>
+										</tr>	
+										<tr>
+										  <td>Assigned reviewers</td>
+										  <td><span class="checkbox"><input type="checkbox" checked="checked"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Arial Martinez*</a>, <span class="checkbox"><input type="checkbox" checked="checked"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Peng Ji</a></td>
+										</tr>	
+										<tr>
+										  <td>Recommend reviewers</td>
+										  <td><span class="checkbox"><input type="checkbox"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Rick Buswell*</a>, <span class="checkbox"><input type="checkbox"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Raul Doria</a>, <span class="checkbox"><input type="checkbox"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Larry Villagrana</a>, <span class="checkbox"><input type="checkbox"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Cody Gagnon</a></td>
+										</tr>	
+										<tr class='add-reviewer'>
+										  <td>Added reviewers</td>
+										  <td></td>
+										</tr>
+										<tr class="msg">
+										<td colspan=2>Assignment has been saved to database.<br/></td>
+										<td></td>
+										</tr>
+										<tr>
+											<td></td>
+											<td>
+											<div class="btn-group pull-right">
+												<button type="button" class="btn btn-default btn-sm finish-edit-btn"  title="Save and finish edit.">Finish Edit</button>						
+												<button type="button" class="btn btn-default btn-sm add-btn"  title="Add additional reviewers from reviewer list on the right to this manuscript!">Add more reviewers</button>		     
+			
+												<button type="button" class="btn btn-default btn-sm submit-btn" title="Submit final matching decision." data-toggle="modal" data-target=".bs-submit-confirm2">Submit final decision</button>	
+												<button type="button" class="btn btn-default btn-sm edit-btn"  title="Edit reviewers for the manuscript.">Edit</button>												
+											</div>
+											</td>							
+										</tr>
+									</tbody>	
+								</table>
+							</form>								
+							</div>
+
+							<div class = "manuscript" id="manuscript3">
+								<table class="table table-no-border table-condensed">
+									<caption>3. <a href="{% url 'manuscript_detail'  pk=1 %}">Eigenfaces for Recognition</a></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-9"></th>
+										</tr>
+									</thead>	
+									<tbody>			  
+										<tr>
+										  <td>Author</td>
+										  <td><a class="user" href="{% url 'user_detail'  pk=1 %}">Arial Martinez</a></td>
+										</tr>	
+										<tr>
+										  <td>Reviewers</td>
+										  <td><a class="user" href="{% url 'user_detail'  pk=1 %}">John Lee*</a>, <a class="user" href="{% url 'user_detail'  pk=1 %}">Emily White</a>, <a class="user" href="{% url 'user_detail'  pk=1 %}">Mary Green*</a>, <a class="user" href="{% url 'user_detail'  pk=1 %}">Mary Green*</a>, <a class="user " href="{% url 'user_detail'  pk=1 %}">Mary Green*</a></td>
+										</tr>											
+									</tbody>	
+								</table>
+							</div>
+
+							<div class = "manuscript" id="manuscript4">
+								<table class="table table-no-border table-condensed">
+									<caption>4. <a href="{% url 'manuscript_detail'  pk=1 %}">Robust 3D Face Recognition by Local Shape Difference Boosting</a></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-9"></th>
+										</tr>
+									</thead>	
+									<tbody>			  
+										<tr>
+										  <td>Author</td>
+										  <td><a class="user" href="{% url 'user_detail'  pk=1 %}">Mitchel Lamers</a></td>
+										</tr>	
+										<tr>
+										  <td>Reviewers</td>
+										  <td><a class="user" href="{% url 'user_detail'  pk=1 %}">John Lee*</a>, <a class="user" href="{% url 'user_detail'  pk=1 %}">Emily White</a>, <a class="user" href="{% url 'user_detail'  pk=1 %}">Mary Green*</a>, <a class="user" href="{% url 'user_detail'  pk=1 %}">Mary Green*</a>, <a class="user " href="{% url 'user_detail'  pk=1 %}">Mary Green*</a></td>
+										</tr>											
+									</tbody>	
+								</table>
+							</div>							
+							<div class = "manuscript" id="manuscript5">
+								<table class="table table-no-border table-condensed">
+									<caption>5. <a href="{% url 'manuscript_detail'  pk=1 %}">Cost-Sensitive Face Recognition</a></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-9"></th>
+										</tr>
+									</thead>	
+									<tbody>			  
+										<tr>
+										  <td>Author</td>
+										  <td><a class="user" href="{% url 'user_detail'  pk=1 %}">Larry Villagrana</a></td>
+										</tr>	
+										<tr>
+										  <td>Reviewers</td>
+										  <td><a class="user" href="{% url 'user_detail'  pk=1 %}">John Lee*</a>, <a class="user" href="{% url 'user_detail'  pk=1 %}">Emily White</a>, <a class="user" href="{% url 'user_detail'  pk=1 %}">Mary Green*</a>, <a class="user" href="{% url 'user_detail'  pk=1 %}">Mary Green*</a>, <a class="user " href="{% url 'user_detail'  pk=1 %}">Mary Green*</a></td>
+										</tr>											
+									</tbody>	
+								</table>
+							</div>					
+							<div class = "manuscript" id="manuscript6">
+								<table class="table table-no-border table-condensed">
+									<caption>6. <a href="{% url 'manuscript_detail'  pk=1 %}">Subspace Methods for Robot Vision</a></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-9"></th>
+										</tr>
+									</thead>	
+									<tbody>			  
+										<tr>
+										  <td>Author</td>
+										  <td><a class="user" href="{% url 'user_detail'  pk=1 %}">Arial Martinez</a></td>
+										</tr>	
+										<tr>
+										  <td>Reviewers</td>
+										  <td><a class="user" href="{% url 'user_detail'  pk=1 %}">John Lee*</a>, <a class="user" href="{% url 'user_detail'  pk=1 %}">Emily White</a>, <a class="user" href="{% url 'user_detail'  pk=1 %}">Mary Green*</a>, <a class="user" href="{% url 'user_detail'  pk=1 %}">Mary Green*</a>, <a class="user " href="{% url 'user_detail'  pk=1 %}">Mary Green*</a></td>
+										</tr>											
+									</tbody>	
+								</table>
+							</div>		 
+							<div class = "manuscript" id="manuscript7">
+								<table class="table table-no-border table-condensed">
+									<caption>7. <a href="{% url 'manuscript_detail'  pk=1 %}">Linear Regression for Face Recognition</a></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-9"></th>
+										</tr>
+									</thead>	
+									<tbody>			  
+										<tr>
+										  <td>Author</td>
+										  <td><a class="user" href="{% url 'user_detail'  pk=1 %}">Arial Martinez</a></td>
+										</tr>	
+										<tr>
+										  <td>Reviewers</td>
+										  <td><a class="user" href="{% url 'user_detail'  pk=1 %}">John Lee*</a>, <a class="user" href="{% url 'user_detail'  pk=1 %}">Emily White</a>, <a class="user" href="{% url 'user_detail'  pk=1 %}">Mary Green*</a>, <a class="user" href="{% url 'user_detail'  pk=1 %}">Mary Green*</a>, <a class="user " href="{% url 'user_detail'  pk=1 %}">Mary Green*</a></td>
+										</tr>											
+									</tbody>	
+								</table>
+							</div>								
+						</div>
+					</div>
+					<div class="col-sm-1 hide" id="add-icon">
+						<button type="button" class="btn btn-default"><i class="glyphicon glyphicon-chevron-left"></i></button>
+					</div>
+					<div class="col-sm-5">
+						<h5 class="subtitle">Reviewers</h5>
+						<div id="reviewer-list">
+							<div class = "reviewer">
+								<table class="table table-no-border table-condensed">
+									<thead>
+										<tr>
+										  <th class="col-sm-7"></th>
+										  <th class="col-sm-5"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td></td>
+										  <td style="text-align: right"># manuscripts reviewed</td>
+										</tr>											
+									</tbody>	
+								</table>	
+							</div>
+							<div class = "reviewer" id="reviewer1">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">John Lee*</a><span class="count">4</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics, Chemistry</td>
+										  <td></td>
+										</tr>											
+									</tbody>	
+								</table>							
+							</div>
+							<div class = "reviewer" id="reviewer2">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Mary Green*</a><span class="count">4</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Chemistry, Physics, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>	
+								</table>							
+							</div>							
+							<div class = "reviewer" id="reviewer3">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Arial Martinez*</a><span class="count">3</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>	
+								</table>							
+							</div>							
+							<div class = "reviewer" id="reviewer4">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Rick Buswell*</a><span class="count">3</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>		
+								</table>							
+							</div>		
+							<div class = "reviewer" id="reviewer5">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Benjamin Bolte*</a><span class="count">3</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>	
+								</table>							
+							</div>	  
+							<div class = "reviewer" id="reviewer6">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Emily White</a><span class="count">2</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>	
+								</table>							
+							</div>	  
+							<div class = "reviewer" id="reviewer7">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Peng Ji</a><span class="count">2</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>		
+								</table>							
+							</div>	 
+							<div class = "reviewer" id="reviewer8">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Jiulin Hu</a><span class="count">2</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>		
+								</table>							
+							</div>	 							
+							<div class = "reviewer" id="reviewer9">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Johnny Tan</a><span class="count">2</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>		
+								</table>							
+							</div>	 
+							<div class = "reviewer" id="reviewer10">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Raul Doria</a><span class="count">2</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>		
+								</table>							
+							</div>	 
+							<div class = "reviewer" id="reviewer11">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Larry Villagrana</a><span class="count">1</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>	
+								</table>							
+							</div>	 
+							<div class = "reviewer" id="reviewer12">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Cody Gagnon</a><span class="count">2</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>		
+								</table>							
+							</div>	 
+							<div class = "reviewer" id="reviewer13">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Zelma Clarkson</a><span class="count">1</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>		
+								</table>							
+							</div>	 
+							<div class = "reviewer" id="reviewer14">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Emily Green</a><span class="count">2</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>		
+								</table>							
+							</div>	 
+							<div class = "reviewer" id="reviewer15">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Emilie Bourn</a><span class="count">1</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>	
+								</table>							
+							</div>	 
+							<div class = "reviewer" id="reviewer16">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Floretta Klingler</a><span class="count">1</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>	
+								</table>							
+							</div>	 
+							<div class = "reviewer" id="reviewer17">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Candra Bulger</a><span class="count">1</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>	
+								</table>							
+							</div>	 
+							<div class = "reviewer" id="reviewer18">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Sudie Benham</a><span class="count">1</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>	
+								</table>							
+							</div>	 
+							<div class = "reviewer" id="reviewer19">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Jenna Geno</a><span class="count">2</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>	
+								</table>							
+							</div>	 
+							<div class = "reviewer" id="reviewer20">
+								<table class="table table-no-border table-condensed">
+									<caption><span class="glyphicon glyphicon-ok"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Heide Woodley</a><span class="count">1</span></caption>
+									<thead>
+										<tr>
+										  <th class="col-sm-3"></th>
+										  <th class="col-sm-8"></th>
+										  <th class="col-sm-1"></th>
+										</tr>
+									</thead>	
+									<tbody>			  	
+										<tr>
+										  <td>Research interests</td>
+										  <td>Computer Science, Biostatistics</td>
+										  <td></td>
+										</tr>											
+									</tbody>	
+								</table>							
+							</div>	 							
+						</div>
+					</div>		  				
+
+				</div>
+			<div class="row admin_prev_session" title="view list of manuscripts in previous sessions">
+				Previous sessions
+			</div>	
+			<ul>
+				<li><a href="" title="view list of manuscripts in session 4">Session 4 (2013 May - 2013 July)</a></li>
+				<li><a href="">Session 3 (2012 May - 2012 July)</a></li>
+				<li><a href="">Session 2 (2012 January - 2012 March)</a></li>
+				<li><a href="">Session 1 (2011 May - 2011 July)</a></li>
+			</ul>					
+				
+			
+		<div class="modal bs-submit-confirm1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">Confirm</h4>
+			  </div>
+			  <div class="modal-body">
+				<p class="warning" style="color:red">Warning: The matching constrains are not satisfied because [reason].</p>
+				<p>Are you sure you want to make the final matching decision for the following manuscript:</p>
+				<div class="manu">
+				<p>PCA versus LDA (ID:XXXXX)</p>
+				<p>Author: Martinez, A.</p>
+				<p>Reviewers: John Lee*, Emily White, Mary Green*, Jim Chen</p>
+				</div>
+			  </div>
+			  <div class="modal-footer">
+				<form class="form-horizontal" role="form">
+					<div class="btn-group pull-right">
+						<button type="button" class="btn btn-default confirm-no-btn"  data-dismiss="modal">No</button>
+						<button type="button" class="btn btn-primary confirm-yes-btn" title="Submit final decision.">Yes</button>
+					</div>
+				</form>	
+			  </div>
+			</div>
+		  </div>
+		</div>			
+		<div class="modal bs-submit-confirm2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">Confirm</h4>
+			  </div>
+			  <div class="modal-body">
+				<p>Are you sure you want to make the final matching decision for the following manuscript:</p>
+				<div class="manu">
+				<p>PCA versus LDA (ID:XXXXX)</p>
+				<p>Author: Martinez, A.</p>
+				<p>Reviewers: John Lee*, Emily White, Mary Green*, Jim Chen</p>
+				</div>
+			  </div>
+			  <div class="modal-footer">
+				<form class="form-horizontal" role="form">
+					<div class="btn-group pull-right">
+						<button type="button" class="btn btn-default confirm-no-btn"  data-dismiss="modal">No</button>
+						<button type="button" class="btn btn-primary confirm-yes-btn" title="Submit final decision.">Yes</button>
+					</div>
+				</form>	
+			  </div>
+			</div>
+		  </div>
+		</div>				
+			
+		
+{% endblock %}

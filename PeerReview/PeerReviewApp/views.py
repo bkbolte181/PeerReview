@@ -8,6 +8,8 @@ from datetime import datetime
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+from django.shortcuts import get_object_or_404
+
 from PeerReviewApp.models import *
 from PeerReviewApp.forms import *
 
@@ -172,3 +174,32 @@ def auth_admin(request):
 		return HttpResponseRedirect(reverse('index'))
 	context['all_users'] = SiteUser.objects.all()
 	return render(request, 'admin_home.html', context)
+	
+
+def admin_login(request):
+	context_dict = {}
+	return render_to_response('admin_login.html', context_dict)	
+	
+def admin_homepage(request):
+	context_dict = {}
+	return render_to_response('admin_homepage.html', context_dict)	
+	
+def admin_browselist(request):
+	context_dict = {}
+	return render_to_response('admin_browselist.html', context_dict)	
+	
+#def manuscript_detail(request):
+#	context_dict = {}
+#	return render(request, 'manuscript_detail.html', context_dict)
+	
+#def user_detail(request):
+#	context_dict = {}
+#	return render(request, 'user_detail.html', context_dict)	
+	
+def manuscript_detail(request, pk):
+	manuscript = get_object_or_404(Manuscript, pk=pk)
+	return render(request, 'manuscript_detail.html', {'manuscript': manuscript})
+	
+def user_detail(request, pk):
+	user = get_object_or_404(SiteUser, pk=pk)
+	return render(request, 'user_detail.html', {'user': user})

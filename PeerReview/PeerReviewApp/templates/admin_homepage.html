@@ -1,0 +1,29 @@
+{% extends 'admin_base.html' %}
+{% block body %}
+			<h3 title = "Introduction" class="home_intro"> Welcome to Emory Manuscript Review System </h3>
+			<br>    
+
+				<div class="row announce">
+
+					<div class="col-sm-5 col-sm-offset-1 ">
+						<h5>Meeting</h5>
+						<div class='ad meeting'>Time: Monday, Dec. 15, 2014, 2:00 p.m. to 4:00 p.m.<br/>Venue: Room E404, MSC, Emory University, GA 30030.
+						</div>
+					</div>
+					<div class="col-sm-5 ">
+						<h5>Deadline</h5>
+						<div class='ad deadline'>Deadline for manuscript submission is <span class="msg1">Nov. 10, 2014</span>.<br/>Deadline for manuscript review is <span class="msg1">Dec. 10, 2014</span>.
+						</div>
+					</div>					
+					
+				</div>
+			
+			<div class = "row hot-container1" style="">
+			  <div class="col-sm-5 col-sm-offset-1">
+				<a href="{% url 'admin_browselist' %}" class="btn btn-green1 btn-1" title="Browse lists of manuscripts/reviewers and make final decisions.">Manuscripts/Reviewers</a>
+			  </div>
+			  <div class="col-sm-5">
+				<a href="#" class="btn btn-green1 btn-1" title="Setup max pool, deadlines, meetings, email reminder dates.">System Settings</a>
+			  </div>
+			</div>
+{% endblock %}

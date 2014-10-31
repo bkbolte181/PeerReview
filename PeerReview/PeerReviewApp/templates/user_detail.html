@@ -1,0 +1,60 @@
+{% extends 'admin_base.html' %}
+{% block body %}
+		<div class="row admin-nav2">
+		<div class="col-sm-12">
+		<ol class="breadcrumb">
+		  <li><a href="{% url 'admin_homepage' %}">Home</a></li>
+		  <li><a href="{% url 'admin_browselist' %}">Manuscripts/Reviewers</a></li>
+		  <li class="active">User Detail</li>
+		</ol>		
+		</div>
+		</div>	 		  	  
+	  
+        <div class = "row user_detail">
+			<div class="col-sm-8 col-sm-offset-2">
+				<table class="table table-hover">
+				  <caption>Arial Martinez</caption>
+				  <thead>
+					<tr>
+					  <th class="col-sm-4"></th>
+					  <th class="col-sm-8"></th>
+					</tr>
+				  </thead>
+				  <tbody>			  
+					<tr>
+					  <td>Emory Email</td>
+					  <td>mar@emory.edu</td>
+					</tr>	
+					<tr>
+					  <td>School</td>
+					  <td>.............................................
+				  .........................................</td>
+					</tr>					
+					<tr>
+					  <td>Lab/PI</td>
+					  <td>.............................................
+				  .........................................</td>
+					</tr>
+					
+					<tr>
+					  <td>Research Field</td>
+					  <td>.............................................
+				  .........................................</td>
+					</tr>	
+					<tr>
+					  <td>Research Interest</td>
+					  <td>.............................................
+				  .........................................</td>
+					</tr>						
+					<tr>
+					  <td>Number of Manuscripts Reviewed</td>
+					  <td>.............................................
+				  .........................................</td>
+					</tr>											
+				  </tbody>
+				</table>
+				<button type="button" class="btn btn-default pull-right" data-tooltip="tooltip" title="Go back to manuscripts/reviewers list." onclick="location.href = '{% url 'admin_browselist' %}';">Back</button>	
+			</div>
+        </div>
+		
+{% endblock %} 
