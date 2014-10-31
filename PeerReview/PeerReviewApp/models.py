@@ -94,6 +94,8 @@ class ReviewPeriod(models.Model):
 	review_deadline = models.DateField() # Date when reviews are due back
 	group_meeting_time = models.DateField() # Large group meeting time
 
+
+
 class Manuscript(models.Model):
 	'''
 		This is the model that links everything together. BEWARE! Errors kept popping up with the ManyToMany fields.
@@ -109,5 +111,9 @@ class Manuscript(models.Model):
 	manuscript_file = models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
 	review_file = models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
 	is_final = models.BooleanField(default=False) # If the final decision of this manuscript has been made
+
+class UploadModel(models.Model):
+    file = models.FileField(upload_to='uploads/%Y/%m/%d/%H/%M/%S/')
+
 
 

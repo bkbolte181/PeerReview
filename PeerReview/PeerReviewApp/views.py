@@ -5,6 +5,8 @@ from django.contrib.auth import authenticate, login, logout, get_user
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.forms.models import model_to_dict
 from datetime import datetime
+from filetransfers.api import prepare_upload
+from forms import *
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -141,10 +143,22 @@ def assigned_manuscripts(request,current_page):
 	context['manuscript_assigned'] = manuscripts_assigned
 	return render(request, 'manuscript_assigned.html', context)
 
+
 @user_passes_test(has_agreed, login_url='/agreement/')
 def uploader_home(request):
-	context = {}
-	return render(request, 'uploader_home.html', context)
+	context ={}
+	view_url = reverse('upload')
+	if request.method == 'POST':
+		form = UploadForm(request.POST, request.FILES)
+        if form.is_valid():
+		form.save()
+		return HttpResponseRedirect(view_url)
+
+	upload_url, upload_data = prepare_upload(request,view_url)
+	form = UploadForm()
+	return render(request, 'uploader_home.html',  {'form': form, 'upload_url': upload_url, 'upload_data': upload_data})
+
+
 
 @login_required
 def account(request):

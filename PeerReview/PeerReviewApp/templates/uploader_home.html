@@ -31,7 +31,13 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-10 col-sm-offset-1">
-				<p><a href="#">Submit</a> a new manuscript</p>
+                {% load filetransfers %}
+                <form action="{{ upload_url}}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% render_upload_data upload_data %}
+                <table>{{ form }}</table>
+                <input type="submit" value="Upload" />
+            </form>
 			</div>
 		</div>
 		<div class="row">

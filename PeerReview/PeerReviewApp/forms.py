@@ -1,5 +1,6 @@
 from django import forms
 from PeerReviewApp.models import *
+from models import *
 
 SCHOOLS = (
 	'Goizueta Business School',
@@ -12,6 +13,7 @@ SCHOOLS = (
 	'College of Arts and Sciences',
 	'Other',
 )
+
 
 class LoginForm(forms.Form):
 	''' On log in, you only need an email and a password '''
@@ -106,3 +108,7 @@ class SubmitManuscript(forms.ModelForm):
 	class Meta:
 		model = Manuscript
 		exclude = ('review_period', 'authors', 'reviewers','review_file')
+
+class UploadForm(forms.ModelForm):
+    class Meta:
+        model = UploadModel
