@@ -29,17 +29,10 @@
 				{% endfor %}
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-sm-10 col-sm-offset-1">
-                {% load filetransfers %}
-                <form action="{{ upload_url}}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                {% render_upload_data upload_data %}
-                <table>{{ form }}</table>
-                <input type="submit" value="Upload" />
-            </form>
-			</div>
-		</div>
+	    <div class = "row">
+            <div class="hot-container" style="text-align:left;">
+					<a href="{% url 'agreement' %}" class="abtn btn-green">Submit a manuscript</a>
+	    </div>
 		<div class="row">
 			<div class="col-sm-10 col-sm-offset-1">
 				<div class="hot-container" style="text-align:right;">

@@ -12,7 +12,7 @@
 	left: 0;
 	right: 0;
 	margin: auto;
-	text-align: right;
+	text-align: center;
 }
 .logo {
 	font-size: 50px;
@@ -50,7 +50,11 @@
 		{% if next %}
 			<input type="hidden" name="next" value="{{ next }}">
 		{% endif %}
-		<input type="submit" value="Agree">
+        <div class="hot-container" style="text-align:center">
+					<a href="{% url 'authorhome' %}" class="abtn btn-green">Agree</a>
+            <a href="{% url 'authorhome' %}" class="abtn btn-green">Back</a>
+				</div>
+
 	</form>
 </div>
 {% endblock %}

@@ -108,12 +108,13 @@ class Manuscript(models.Model):
 	title = models.CharField(max_length=200, unique=True)
 	keywords = SeparatedValuesField(max_length=1000, help_text='Keywords, separated by a comma') # Custom field for storing python lists
 	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript")
-	manuscript_file = models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
+	manuscript_file = models.FileField(upload_to='uploads/%Y/%m/%d/%H/%M/%S/') #models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
 	review_file = models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
 	is_final = models.BooleanField(default=False) # If the final decision of this manuscript has been made
 
 class UploadModel(models.Model):
     file = models.FileField(upload_to='uploads/%Y/%m/%d/%H/%M/%S/')
+
 
 
 

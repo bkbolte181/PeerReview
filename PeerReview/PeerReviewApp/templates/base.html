@@ -24,7 +24,7 @@
 					<li><a href="#" rel="tooltip" data-placement="bottom" title="Help text for this page will go here.">Help</a></li>
 				{% if user.is_authenticated %}
 					<li><a href="{% url 'review' %}">Review</a></li>
-					<li><a href="{% url 'upload' %}">Submit</a></li>
+					<li><a href="{% url 'authorhome' %}">Submit</a></li>
 					<li><a href="{% url 'logout' %}">Log Out</a></li>
 					<li><a href="#" class="more_nav">More</a></li>
 				{% else %}

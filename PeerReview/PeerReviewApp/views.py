@@ -144,21 +144,11 @@ def assigned_manuscripts(request,current_page):
 	return render(request, 'manuscript_assigned.html', context)
 
 
+
 @user_passes_test(has_agreed, login_url='/agreement/')
-def uploader_home(request):
-	context ={}
-	view_url = reverse('upload')
-	if request.method == 'POST':
-		form = UploadForm(request.POST, request.FILES)
-        if form.is_valid():
-		form.save()
-		return HttpResponseRedirect(view_url)
-
-	upload_url, upload_data = prepare_upload(request,view_url)
-	form = UploadForm()
-	return render(request, 'uploader_home.html',  {'form': form, 'upload_url': upload_url, 'upload_data': upload_data})
-
-
+def author_home(request):
+    context={}
+    return render(request,'uploader_home.html', context)
 
 @login_required
 def account(request):
