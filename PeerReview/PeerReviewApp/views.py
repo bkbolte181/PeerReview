@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render, render_to_response, RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -183,9 +184,24 @@ def admin_login(request):
 def admin_homepage(request):
 	context_dict = {}
 	return render_to_response('admin_homepage.html', context_dict)	
-	
+	 
 def admin_browselist(request):
 	context_dict = {}
+		
+	if request.method == 'GET':
+		non_final_manuscripts = Manuscript.objects.filter(is_final=False)
+	
+		# simple match based on keywords
+		for i in range(0, len(non_final_manuscripts)):
+			# will be used in template
+			reviewrs = SiteUser.objects.filter(agreed_to_form=True, pi__in=non_final_manuscripts.keywords.split(','))
+	
+		# manuscripts with final decision being made
+		final_manuscripts = Manuscript.objects.filter(is_final=True)
+	else:
+		# use hidden value here to indicate which manuscript is being edited
+		manuscript = request.POST
+		
 	return render_to_response('admin_browselist.html', context_dict)	
 	
 #def manuscript_detail(request):
