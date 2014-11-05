@@ -86,29 +86,56 @@ class SignupForm(forms.ModelForm):
 			user.save()
 		return user
 
-class SubmitManuscript(forms.ModelForm):
-	''' Submitting a manuscript '''
-	def __init__(self, *args, **kwargs):
-		super(SubmitManuscript, self).__init__(*args, **kwargs)
-	
-	# This is the method for saving the newly created user
-	def save(self, review_period, authors, commit=True):
-		manuscript = super(SubmitManuscript, self).save(commit=False)
-		manuscript.review_period = review_period
-		if commit:
-			manuscript.save()
-		if type(authors) is list:
-			manuscript.authors = authors
-		else:
-			manuscript.authors = [authors]
-		if commit:
-			manuscript.save()
-		return manuscript
-	
-	class Meta:
-		model = Manuscript
-		exclude = ('review_period', 'authors', 'reviewers','review_file')
+# class SubmitManuscript(forms.ModelForm):
+# 	''' Submitting a manuscript '''
+# 	def __init__(self, *args, **kwargs):
+# 		super(SubmitManuscript, self).__init__(*args, **kwargs)
+#
+# 	# This is the method for saving the newly created user
+# 	def save(self, review_period, authors, commit=True):
+# 		manuscript = super(SubmitManuscript, self).save(commit=False)
+# 		manuscript.review_period = review_period
+# 		if commit:
+# 			manuscript.save()
+# 		if type(authors) is list:
+# 			manuscript.authors = authors
+# 		else:
+# 			manuscript.authors = [authors]
+# 		if commit:
+# 			manuscript.save()
+# 		return manuscript
+#
+# 	class Meta:
+# 		model = Manuscript
+# 		exclude = ('review_period', 'authors', 'reviewers','review_file')
 
 class UploadForm(forms.ModelForm):
     class Meta:
         model = UploadModel
+
+
+class UploadManuscript(forms.ModelForm):
+    fields = ('Title', 'BriefTitle', 'Abstract', 'Field', 'Keywords', 'TargetJournal', 'ImageAmount')
+    widgets = {
+			'Title': forms.TextInputInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter Manuscript Title'}),
+			'BriefTitle': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter a shorter title which contains less than 10 words'}),
+			'Abstract': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter Manuscript Abstract'}),
+			'Field': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Manuscript Field e.g CS,BIO, etc'}),
+			'Keywords': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Keywords (no more than 10, separate by commas)'}),
+			'TargetJournal': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Which journal do you want to publish in?'}),
+			'ImageAmount': forms.Select(attrs={'class': 'form-control text-center', 'placeholder': 'How many figures are in your manuscript?'}),
+		}
+	def __init__(self, *args, **kwargs):
+		super(UploadManuscript, self).__init__(*args, **kwargs)
+
+#saving the current form
+	def save(self, commit = True):
+        ManuscriptSubmission = super(ManuscriptSubmission,self).save(commit=False)
+        ManuscriptSubmission.Authors =
+
+
+
+
+	class Meta:
+        model = ManuscriptSubmission
+        exclude = ('reviewer', 'authors', 'status','is_final')

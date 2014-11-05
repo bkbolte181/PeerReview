@@ -1,36 +1,34 @@
-{% extends 'base.html' %}
-
-{% block head %}
-<style>
-.site-user {
-	padding-bottom: 5px;
-}
-</style>
-{% endblock %}
-
-{% block body %}
-<h1>Admin Home</h1>
-{% for site_user in all_users %}
-	<div class="site-user">
-		<span style="font-size: 19px;">{{ site_user.first_name }} {{ site_user.last_name }}</span><br/>
-		{{ site_user.email }}<br/>
-		{{ site_user.department }}, {{ site_user.lab }}, {{ site_user.pi }}<br/>
-		{% if site_user.authors.count %}
-			Uploads:
-			<ul style="padding: 0; padding-left: 15px; margin: 0; list-style-type: none;">
-			{% for manuscript in site_user.authors.all %}
-				<li>{{ manuscript.title }}</li>
-			{% endfor %}
-			</ul>
-		{% endif %}
-		{% for manuscript in site_user.reviewers.all %}
-			Reviews:
-			<ul style="padding: 0; padding-left: 15px; margin: 0; list-style-type: none;">
-			{% for manuscript in site_user.reviewers.all %}
-				<li>{{ manuscript.title }}</li>
-			{% endfor %}
-			</ul>
-		{% endfor %}
-	</div>{% if not forloop.last %}<hr/>{% endif %}
-{% endfor %}
-{% endblock %}
+    {% extends 'base.html' %}
+    {% block head %}
+    <style>
+    .site-user {
+    padding-bottom: 5px;
+    }
+    </style>
+    {% endblock %}
+    {% block body %}
+    <h1>Admin Home</h1>
+    {% for site_user in all_users %}
+    <div class="site-user">
+    <span style="font-size: 19px;">{{ site_user.first_name }} {{ site_user.last_name }}</span><br/>
+    {{ site_user.email }}<br/>
+    {{ site_user.department }}, {{ site_user.lab }}, {{ site_user.pi }}<br/>
+    {% if site_user.authors.count %}
+    Uploads:
+    <ul style="padding: 0; padding-left: 15px; margin: 0; list-style-type: none;">
+    {% for manuscript in site_user.authors.all %}
+    <li>{{ manuscript.title }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% for manuscript in site_user.reviewers.all %}
+    Reviews:
+    <ul style="padding: 0; padding-left: 15px; margin: 0; list-style-type: none;">
+    {% for manuscript in site_user.reviewers.all %}
+    <li>{{ manuscript.title }}</li>
+    {% endfor %}
+    </ul>
+    {% endfor %}
+    </div>{% if not forloop.last %}<hr/>{% endif %}
+    {% endfor %}
+    {% endblock %}
