@@ -96,25 +96,42 @@ class ReviewPeriod(models.Model):
 
 
 
-class Manuscript(models.Model):
-	'''
-		This is the model that links everything together. BEWARE! Errors kept popping up with the ManyToMany fields.
-		There may be a better way to do this.
-	'''
-	reviewers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="reviewers", related_query_name="reviewer")
-	authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="authors", related_query_name="author")
-	status = models.CharField(max_length=20, default='submitted')
-	abstract = models.CharField(max_length=200000, default='Empty')
-	title = models.CharField(max_length=200, unique=True)
-	keywords = SeparatedValuesField(max_length=1000, help_text='Keywords, separated by a comma') # Custom field for storing python lists
-	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript")
-	manuscript_file = models.FileField(upload_to='uploads/%Y/%m/%d/%H/%M/%S/') #models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
-	review_file = models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
-	is_final = models.BooleanField(default=False) # If the final decision of this manuscript has been made
+# class Manuscript(models.Model):
+# 	'''
+# 		This is the model that links everything together. BEWARE! Errors kept popping up with the ManyToMany fields.
+# 		There may be a better way to do this.
+# 	'''
+# 	reviewers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="reviewers", related_query_name="reviewer")
+# 	authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="authors", related_query_name="author")
+# 	status = models.CharField(max_length=20, default='submitted')
+# 	abstract = models.CharField(max_length=200000, default='Empty')
+# 	title = models.CharField(max_length=200, unique=True)
+# 	keywords = SeparatedValuesField(max_length=1000, help_text='Keywords, separated by a comma') # Custom field for storing python lists
+# 	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript")
+# 	manuscript_file = models.FileField(upload_to='uploads/%Y/%m/%d/%H/%M/%S/') #models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
+# 	review_file = models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
+# 	is_final = models.BooleanField(default=False) # If the final decision of this manuscript has been made
 
 class UploadModel(models.Model):
     file = models.FileField(upload_to='uploads/%Y/%m/%d/%H/%M/%S/')
 
 
 
+class ManuscriptSubmission(models.Model):
+	Reviewers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="reviewers", related_query_name="reviewer")
+	Authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="authors", related_query_name="author")
+	Status = models.CharField(max_length=20, default='submitted')
+	Title = models.CharField(max_length=200, unique=True)
+	BriefTitle = models.CharField(max_length=50, unique=True)
+	Abstract = models.CharField(max_length=200000, default = 'Empty')
+	Field = models.CharField(max_length=200)
+	Keywords = SeparatedValuesField(max_length=1000, help_text='Keywords, separated by a comma')
+	TargetJournal = models.CharField(max_length=200)
+	TextFile = models.FileField(upload_to='text/%Y/%m/%d/%H/%M/%S/')
+	TableFile = models.FileField(upload_to='table/%Y/%m/%d/%H/%M/%S/')
+	ImageAmount= models.CharField(max_length=10)
+	ImageFile= models.FileField(upload_to='image/%Y/%m/%d/%H/%M/%S/')
+    is_final = models.BooleanField(default=False)
+
+def get_title_(self): return self.title
 
