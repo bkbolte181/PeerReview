@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e4acced-aa07-4320-8cd6-ef3d6236e079" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/agreement.html" afterPath="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/agreement.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/base.html" afterPath="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/index.html" afterPath="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/admin_home.html" afterPath="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/admin_home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Design/Mockup/html demo/admin_homepage.html" afterPath="$PROJECT_DIR$/Design/Mockup/html demo/admin_homepage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PeerReview/PeerReviewApp/forms.py" afterPath="$PROJECT_DIR$/PeerReview/PeerReviewApp/forms.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PeerReview/PeerReviewApp/models.py" afterPath="$PROJECT_DIR$/PeerReview/PeerReviewApp/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/terms.html" afterPath="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/terms.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/uploader_home.html" afterPath="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/uploader_home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PeerReview/PeerReviewApp/urls.py" afterPath="$PROJECT_DIR$/PeerReview/PeerReviewApp/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PeerReview/PeerReviewApp/views.py" afterPath="$PROJECT_DIR$/PeerReview/PeerReviewApp/views.py" />
     </list>
     <ignored path="PeerReview.iws" />
@@ -35,8 +32,8 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1890">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1245" max-vertical-offset="2145">
+              <caret line="98" column="0" selection-start-line="98" selection-start-column="2" selection-end-line="112" selection-end-column="106" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -44,11 +41,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forms.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.04347826" vertical-offset="1065" max-vertical-offset="1755">
-              <caret line="71" column="38" selection-start-line="71" selection-start-column="38" selection-end-line="71" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1500" max-vertical-offset="2190">
+              <caret line="107" column="15" selection-start-line="107" selection-start-column="15" selection-end-line="107" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2132" max-vertical-offset="2835">
+              <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#71#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin_home.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/admin_home.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.72901326" vertical-offset="0" max-vertical-offset="679">
+              <caret line="33" column="7" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -73,16 +94,18 @@
         <option value="$PROJECT_DIR$/PeerReview/PeerReviewApp/tests.py" />
         <option value="$PROJECT_DIR$/Design/Mockup/html demo/user_register.html" />
         <option value="$PROJECT_DIR$/PeerReview/PeerReview/settings.py" />
-        <option value="$PROJECT_DIR$/PeerReview/PeerReviewApp/forms.py" />
-        <option value="$PROJECT_DIR$/PeerReview/PeerReviewApp/models.py" />
         <option value="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/base.html" />
         <option value="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/index.html" />
         <option value="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/manuscript_agreement.html" />
         <option value="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/uploader_home.html" />
-        <option value="$PROJECT_DIR$/PeerReview/PeerReviewApp/views.py" />
         <option value="$PROJECT_DIR$/PeerReview/PeerReviewApp/urls.py" />
         <option value="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/terms.html" />
         <option value="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/agreement.html" />
+        <option value="$PROJECT_DIR$/PeerReview/PeerReviewApp/views.py" />
+        <option value="$PROJECT_DIR$/Design/Mockup/html demo/admin_homepage.html" />
+        <option value="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/admin_home.html" />
+        <option value="$PROJECT_DIR$/PeerReview/PeerReviewApp/forms.py" />
+        <option value="$PROJECT_DIR$/PeerReview/PeerReviewApp/models.py" />
       </list>
     </option>
   </component>
@@ -534,48 +557,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1095" max-vertical-offset="1785">
-          <caret line="113" column="27" selection-start-line="113" selection-start-column="27" selection-end-line="113" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="2745">
-          <caret line="36" column="57" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/agreement.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="990">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/signup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1680">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1440" max-vertical-offset="2685">
@@ -588,6 +569,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1185" max-vertical-offset="1875">
           <caret line="97" column="9" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#32#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -595,6 +579,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="615">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -620,6 +605,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="330">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#32#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -627,7 +615,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="1680">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -653,7 +643,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="1680">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -679,7 +671,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="1680">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -725,27 +719,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/admin_home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08836524" vertical-offset="0" max-vertical-offset="679">
-          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1875">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="630">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PeerReview/PeerReview/backends.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="703">
@@ -771,6 +744,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="703">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#28#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -883,28 +859,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.2617354" vertical-offset="1232" max-vertical-offset="2550">
-          <caret line="36" column="57" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/agreement.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7657658" vertical-offset="0" max-vertical-offset="990">
           <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1875">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#32#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="630">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Design/Mockup/html demo/email_validation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1035">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Design/Mockup/html demo/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.32547864" vertical-offset="221" max-vertical-offset="900">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Design/Mockup/html demo/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="703">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Design/Mockup/html demo/admin_homepage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6531532" vertical-offset="0" max-vertical-offset="1215">
+          <caret line="29" column="93" selection-start-line="29" selection-start-column="93" selection-end-line="29" selection-end-column="93" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Design/Mockup/html demo/Author_home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3195">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2132" max-vertical-offset="2835">
+          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#71#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1890">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1245" max-vertical-offset="2145">
+          <caret line="98" column="0" selection-start-line="98" selection-start-column="2" selection-end-line="112" selection-end-column="106" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
@@ -913,8 +949,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.04347826" vertical-offset="1065" max-vertical-offset="1755">
-          <caret line="71" column="38" selection-start-line="71" selection-start-column="38" selection-end-line="71" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1500" max-vertical-offset="2190">
+          <caret line="107" column="15" selection-start-line="107" selection-start-column="15" selection-end-line="107" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/admin_home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.72901326" vertical-offset="0" max-vertical-offset="679">
+          <caret line="33" column="7" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
           <folding />
         </state>
       </provider>
