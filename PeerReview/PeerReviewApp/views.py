@@ -176,3 +176,8 @@ def auth_admin(request):
 		return HttpResponseRedirect(reverse('index'))
 	context['all_users'] = SiteUser.objects.all()
 	return render(request, 'admin_home.html', context)
+
+@user_passes_test(has_agreed, login_url='/agreement/')
+def UploadManuscript(request):
+    context= {}
+    view_url = reverse('uploadmanuscript')
