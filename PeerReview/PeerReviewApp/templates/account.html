@@ -1,28 +1,8 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<!-- Signup page. -->
+<!-- Login page. -->
 <style>
-.center {
-	width: 300px;
-	height: 500px;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: auto;
-	text-align: right;
-}
-.logo {
-	font-size: 50px;
-	padding: 0;
-	margin: 0;
-	padding-bottom: 10px;
-}
-.form-div {
-	padding-bottom: 5px;
-}
 .errorlist {
 	font-size: 10px;
 	color: red;
@@ -31,34 +11,39 @@
 .errorlist li {
 	display: inline
 }
-.form-div a {
-	font-size: 12px;
-}
-.field-help-text {
-	font-size: 13px;
-}
 </style>
 {% endblock %}
 
 {% block body %}
-<div class="center">
-	<p class="logo">Account</p>
-	{% if errors %}<p class="errorlist">{{ errors }}</p>{% endif %}
-	<form action="{% url 'account' %}" method="post">
-		{% csrf_token %}
-		{% for field in form %}
-			<div class="form-div">
-				{% if not field.is_hidden %}{% if field.errors %}{{ field.errors }}<br/>{% endif %}{{ field.label_tag }} {% endif %}{{ field }}
-				{% if field.help_text %}<div class="field-help-text">{{ field.help_text }}</div>{% endif %}
+<div class="row" id="form-fill">
+	<div class="col-sm-9 col-sm-offset-3">
+		{% if errors %}<p class="errorlist">{{ errors }}</p>{% endif %}
+		<form class="form-horizontal" name="accountForm" role="form" method="post">
+			{% csrf_token %}
+			{% for field in form %}
+			{% if not field.is_hidden %}
+			<div class="form-group">
+				<label for="{{ field.id_for_label }}" class="col-sm-3 text-right control-label">{{ field.label_tag }}</label>
+				<div class="col-sm-9">
+					{{ field }}
+				</div>
 			</div>
-		{% endfor %}
-		<div class="form-div"><a href="{% url 'terms' %}" target="_blank">View terms of service</a></div>
-		<input type="submit" value="Save Changes">
-	</form><br/>
-	<form action="{% url 'account' %}" method="get">
-		{% csrf_token %}
-		<input type="checkbox" name="delete" value="DELETE">I want to delete my account</input>
-		<input type="submit" value="Delete Account">
-	</form>
+			{% endif %}
+			{% endfor %}
+			<div class="hot-container text-center">
+				<button class="abtn btn-green" type="submit">Submit</button>
+			</div>
+		</form>
+		<form class="form-horizontal" name="accountForm" role="form" method="get">
+			{% csrf_token %}
+			<div class="form-group">
+				<label for="delete" class="col-sm-3 text-right control-label">I want to delete my account</label>
+				<input type="checkbox" name="delete" value="DELETE">
+			</div>
+			<div class="hot-container text-center">
+				<button class="abtn btn-green" type="submit">Delete Account</button>
+			</div>
+		</form>
+	</div>
 </div>
 {% endblock %}

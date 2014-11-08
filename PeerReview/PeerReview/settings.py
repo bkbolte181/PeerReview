@@ -101,6 +101,19 @@ STATICFILES_DIRS = (
 	os.path.join(BASE_DIR, 'static'),
 )
 
+# All possible schools
+SCHOOLS = (
+	'Goizueta Business School',
+	'Laney Graduate School',
+	'School of Law',
+	'School of Medicine',
+	'Nell Hodgson Woodruff School of Nursing',
+	'Rollins School of Public Health',
+	'Candler School of Theology',
+	'College of Arts and Sciences',
+	'Other',
+)
+
 # For handling file uploads
 MEDIA_ROOT = os.path.join(BASE_DIR, 'PeerReviewApp', 'media')
 MEDIA_URL = '/media/'

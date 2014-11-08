@@ -8,9 +8,35 @@ from django.core.urlresolvers import reverse
 from forms import *
 from views import *
 import datetime
-
+import os
 
 # Testing the Model
+
+class UploadFilesTest(TestCase):
+	""" Test file uploads """
+	def create_user(self, email = 'johnny@emory.edu', password = '123', firstname = 'johnny', lastname= 'tan'):
+		return SiteUser.objects.create(email = email, password = password, first_name = firstname, last_name = lastname)
+
+	def create_review_period(self, isfull = 'false', startdate = timezone.now(), submissionsdeadline = timezone.now()+ datetime.timedelta(days = 30), reviewdeadline = timezone.now()+datetime.timedelta(days = 50), groupmeeting = timezone.now()+datetime.timedelta(days = 80)):
+		return ReviewPeriod.objects.create(is_full = isfull, start_date = startdate, submission_deadline = submissionsdeadline, review_deadline = reviewdeadline, group_meeting_time = groupmeeting )
+
+	def upload_image_file(self, file='anonymous.jpg'):
+		usr = self.create_user()
+		man = Manuscript.objects.create(status='submitted',
+										title='A Silly Title: A Treatise on Modern Titles in America and the Silliness Therein',
+										brief_title='A Silly Title',
+										abstract='Abstract? What abstract?',
+										keywords='f**k,s**t,m****rf****r', # Censored for the children
+										field='Silliness',
+										target_journal='Silly Journal',
+										review_period=self.create_review_period(),
+										is_final=False)
+		return ImageFile.objects.create(file=os.path.join(settings.MEDIA_ROOT, file), manuscript=man)
+
+	def test_file_upload(self):
+		img = self.upload_image_file()
+		self.assertTrue(isinstance(img,ImageFile))
+		self.assertTrue(os.path.isfile(img.file.path))
 
 class CreateUserTest(TestCase):
 
@@ -78,11 +104,13 @@ class LogoutView(TestCase):
         resp = self.client.get('/logout/')
         self.assertEquals(resp.status_code,302)
 
+'''
 class UploadView(TestCase):
 
     def test_upload(self):
         resp = self.client.get('/upload')
         self.assertEquals(resp.status_code,301)
+'''
 
 class ReviewView(TestCase):
 
