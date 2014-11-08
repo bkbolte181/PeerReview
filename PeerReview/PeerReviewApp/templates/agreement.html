@@ -43,18 +43,18 @@
 	<form action="{% url 'agreement' %}" method="post">
 		{% csrf_token %}
 		{% for field in form %}
-			<div class="form-div">
-				{% if field.errors %}{{ field.errors }}<br/>{% endif %}{{ field.label_tag }} {{ field }}
-			</div>
+		<div class="form-div">
+			{% if field.errors %}{{ field.errors }}<br/>{% endif %}{{ field.label_tag }} {{ field }}
+		</div>
 		{% endfor %}
 		{% if next %}
+			<!-- The 'next' argument indicates the url of the next page to go to -->
 			<input type="hidden" name="next" value="{{ next }}">
 		{% endif %}
-        <div class="hot-container" style="text-align:center">
-					<a href="{% url 'authorhome' %}" class="abtn btn-green">Agree</a>
-            <a href="{% url 'authorhome' %}" class="abtn btn-green">Back</a>
-				</div>
-
+		<div class="hot-container" style="text-align:center">
+			<button class="abtn btn-green" type="submit">Agree</button>
+			<a href="javascript:window.history.back()" class="abtn btn-green">Back</a>
+		</div>
 	</form>
 </div>
 {% endblock %}
