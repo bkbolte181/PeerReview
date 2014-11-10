@@ -171,7 +171,7 @@ def upload_manuscript(request):
 			# Loop through files and add them to the database
 			if 'file' in request.FILES:
 				for file in request.FILES['file']:
-					''' NEED SOME FILE VALIDATION METHOD HERE '''
+					''' NEED SOME FILE VALIDATION METHOD HERE - ALSO, FILE IS A STRING, NOT A FILE, FIX THIS '''
 					m = ManuscriptFile.objects.create(file=file, manuscript=man)
 					m.save()
 					
