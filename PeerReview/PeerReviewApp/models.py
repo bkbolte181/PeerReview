@@ -92,10 +92,11 @@ class Manuscript(models.Model):
 	# Semantic elements
 	title = models.CharField(max_length=200, unique=True)
 	brief_title = models.CharField(max_length=50, unique=True)
-	abstract = models.CharField(max_length=200000, default='Empty')
+	abstract = models.CharField(max_length=200000)
 	keywords = SeparatedValuesField(max_length=1000, help_text='Keywords, separated by a comma') # Custom field for storing python lists
-	field = models.CharField(max_length=200);
+	field = models.CharField(max_length=200)
 	target_journal = models.CharField(max_length=200)
+	image_amount = models.CharField(max_length=10)
 	
 	# Link to review period
 	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript")

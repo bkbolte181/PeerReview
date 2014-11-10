@@ -153,13 +153,22 @@ def assigned_manuscripts(request, current_page):
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def author_home(request):
-    context = {}
-    return render(request,'uploader_home.html', context)
+	context = {}
+	return render(request,'uploader_home.html', context)
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def upload_manuscript(request):
 	context = {}
-	return render(request,'upload_manuscript.html', context)
+	view_url = reverse('uploadmanuscript')
+	if request.method == 'POST' :
+		form = UploadManuscript(request.POST,request.FILES)
+		form.save()
+		return HttpResponseRedirect(view_url)
+	else : form = UploadManuscript()
+
+	upload_url = prepare_upload(request,view_url,private = True)
+	return render(request,'upload_manuscript.html', context, {'form':form, 'upload_url':upload_url})
+
 
 @login_required
 def account(request):

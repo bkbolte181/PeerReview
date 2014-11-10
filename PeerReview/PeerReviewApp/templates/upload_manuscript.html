@@ -1,5 +1,39 @@
 {% extends 'base.html' %}
 
+{% block head %}
+<style>
+.errorlist {
+font-size: 10px;
+color: red;
+display: inline;
+}
+.errorlist li {
+display: inline
+}
+</style>
+{% endblock %}
 {% block body %}
-Upload manuscript
+<div class="row" id="form-fill">
+	<div class="col-sm-10 col-sm-offset-0">
+		<form class="form-horizontal" name="uploadmanuscriptForm" role="form" method="post">
+			{% csrf_token %}
+			{% for field in form %}
+			<div class="form-group">
+				{{ field.errors }}
+				<label for="{{ field.id_for_label }}" class="col-sm-3 text-right control-lable">{{ field.label_tag }}</label>
+				<div class="col-sm-9">
+					{{ field }}
+				</div>
+			</div>
+			{% endfor %}
+
+			<div class="hot-container text-center">
+                <div class="col-sm-11 col-sm-offset-2">
+				<button class="abtn btn-green" type="submit">Submit</button>
+				<a class="abtn btn-green" href="{% url 'authorhome' %}">Save</a>
+			</div>
+                </div>
+		</form>
+	</div>
+</div>
 {% endblock %}
