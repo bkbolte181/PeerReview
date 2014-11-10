@@ -27,10 +27,11 @@ display: inline
 			</div>
 			{% endfor %}
 
+
 			<div class="hot-container text-center">
                 <div class="col-sm-11 col-sm-offset-2">
-				<button class="abtn btn-green" type="submit">Submit</button>
-				<a class="abtn btn-green" href="{% url 'authorhome' %}">Save</a>
+				<button class="abtn btn-green" name = "submitbutton" type="submit">Submit</button>
+				<button class="abtn btn-green" name = "savebutton" href="{% url 'authorhome' %}">Save</button>
 			</div>
                 </div>
 		</form>

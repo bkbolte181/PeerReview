@@ -97,6 +97,7 @@ class Manuscript(models.Model):
 	field = models.CharField(max_length=200)
 	target_journal = models.CharField(max_length=200)
 	image_amount = models.CharField(max_length=10)
+	Manuscript = models.FileField(upload_to = 'text/%Y/%m/%d')
 	
 	# Link to review period
 	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript")

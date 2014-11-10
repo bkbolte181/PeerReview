@@ -104,7 +104,7 @@ class SubmitManuscript(forms.ModelForm):
 class UploadManuscript(forms.ModelForm):
     class Meta:
         model = Manuscript
-        exclude = ('review_period', 'authors', 'reviewers', 'is_final')
+        exclude = ('review_period', 'authors', 'reviewers', 'is_final','manuscript')
 
 	fields = ('title', 'brief_title', 'abstract', 'field', 'keywords', 'target_journal', 'image_amount')
 	widgets = {
