@@ -154,14 +154,31 @@ def assigned_manuscripts(request, current_page):
 @user_passes_test(has_agreed, login_url='/agreement/')
 def author_home(request):
 	context = {}
-
 	return render(request,'uploader_home.html', context)
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def upload_manuscript(request):
 	context = {}
-	form = UploadManuscript()
-
+	if request.POST:
+		form = UploadManuscript(request.POST)
+		if form.is_valid():
+			man = form.save()
+			
+			# Set current user as author
+			current_user = SiteUser.objects.get(email=request.user.email)
+			man.authors = [current_user]
+			
+			# Loop through files and add them to the database
+			if 'file' in request.FILES:
+				for file in request.FILES['file']:
+					''' NEED SOME FILE VALIDATION METHOD HERE '''
+					m = ManuscriptFile.objects.create(file=file, manuscript=man)
+					m.save()
+					
+			# If successful, redirect to main page
+			return HttpResponseRedirect(reverse('authorhome'))
+	else:
+		form = UploadManuscript()
 	context['form'] = form
 	return render(request,'upload_manuscript.html', context)
 

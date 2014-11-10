@@ -4,7 +4,7 @@ from models import *
 from django.conf import settings
 
 SCHOOLS = settings.SCHOOLS
-
+	
 class LoginForm(forms.Form):
 	''' On log in, you only need an email and a password '''
 	email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Emory Email Address'}))
@@ -106,7 +106,7 @@ class UploadManuscript(forms.ModelForm):
         model = Manuscript
         exclude = ('review_period', 'authors', 'reviewers', 'is_final','manuscript')
 
-	fields = ('title', 'brief_title', 'abstract', 'field', 'keywords', 'target_journal', 'image_amount')
+	fields = ('title', 'brief_title', 'abstract', 'field', 'keywords', 'target_journal',)
 	widgets = {
 		'title': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter Manuscript Title'}),
 		'brief_title': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter a shorter title which contains less than 10 words'}),
@@ -114,9 +114,8 @@ class UploadManuscript(forms.ModelForm):
 		'field': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Manuscript Field e.g CS,BIO, etc'}),
 		'keywords': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Keywords (no more than 10, separate by commas)'}),
 		'target_journal': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Which journal do you want to publish in?'}),
-		'image_amount': forms.Select(attrs={'class': 'form-control text-center', 'placeholder': 'How many figures are in your manuscript?'}),
 	}
 
 	def __init__(self, *args, **kwargs):
 		super(UploadManuscript, self).__init__(*args, **kwargs)
-
+		

@@ -96,11 +96,9 @@ class Manuscript(models.Model):
 	keywords = SeparatedValuesField(max_length=1000, help_text='Keywords, separated by a comma') # Custom field for storing python lists
 	field = models.CharField(max_length=200)
 	target_journal = models.CharField(max_length=200)
-	image_amount = models.CharField(max_length=10)
-	Manuscript = models.FileField(upload_to = 'text/%Y/%m/%d')
 	
 	# Link to review period
-	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript")
+	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript", default=0)
 	is_final = models.BooleanField(default=False) # If the final decision of this manuscript has been made
 
 def get_file_path(instance, filename):
@@ -109,25 +107,6 @@ def get_file_path(instance, filename):
 	filename = "%s.%s" % (uuid.uuid4(), ext)
 	return os.path.join(settings.MEDIA_ROOT, filename)
 
-'''
-	Here's the logic for storing files the bottom way:
-	1) Image, text, and table files are delineated by the model type
-	2) Each file is associated with exactly one manuscript
-	3) There are no limitations on the number of files associated with a manuscript
-	4) You can get all the image files associated with a manuscript using the related_name field:
-	>>> m = Manuscript.objects.first()
-	>>> image_files = m.image_files.all()
-'''
-
-# Models for each file type, with a field for the file and a field for the associated manuscript
-class TextFile(models.Model):
+class ManuscriptFile(models.Model):
 	file = models.FileField(upload_to=get_file_path, null=True, blank=True)
-	manuscript = models.ForeignKey('Manuscript', related_name='text_files', related_query_name='text_file')
-
-class TableFile(models.Model):
-	file = models.FileField(upload_to=get_file_path, null=True, blank=True)
-	manuscript = models.ForeignKey('Manuscript', related_name='table_files', related_query_name='table_files')
-
-class ImageFile(models.Model):
-	file = models.FileField(upload_to=get_file_path, null=True, blank=True)
-	manuscript = models.ForeignKey('Manuscript', related_name='image_files', related_query_name='image_file')
+	manuscript = models.ForeignKey('Manuscript', related_name='files', related_query_name='file')
