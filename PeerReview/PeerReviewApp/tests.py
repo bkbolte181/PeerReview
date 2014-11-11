@@ -41,15 +41,18 @@ class CreateReviewPeriodTest(TestCase):
 # Testing the Views
 # For status_code 302 is redirect urls, 200 is normal resp status code , 301 is permanently moved links
 
+class SignupTest(unittest.TestCase):
+	def setUp(self):
+		self.client = Client()
 
-class SignupView(TestCase):
+	def test_details(self):
+		resp = self.client.get('/signup/')
+		self.assertEquals(resp.status_code,200)
 
-    def test_signup(self):
-        resp = self.client.get('/signup/')
-        self.assertEquals(resp.status_code,200)
 
-class AdminView(TestCase):
-
+class AdminViewTest(unittest.TestCase):
+	def setUp(self):
+		self.client = Client()
     def test_admin(self):
         resp = self.client.get('/admin/')
         self.assertEquals(resp.status_code,302)

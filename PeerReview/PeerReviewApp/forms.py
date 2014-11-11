@@ -106,3 +106,17 @@ class SubmitManuscript(forms.ModelForm):
 	class Meta:
 		model = Manuscript
 		exclude = ('review_period', 'authors', 'reviewers','review_file')
+
+class AdminManuscriptForm(forms.ModelForm):
+	#non_final_manuscripts = Manuscript.objects.filter(is_final=False)
+
+	class Meta:
+		model = Manuscript
+		exclude = ('review_period', 'abstract', 'manuscript_file','review_file')
+
+
+
+
+
+
+	

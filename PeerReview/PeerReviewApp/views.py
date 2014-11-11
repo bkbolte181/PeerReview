@@ -185,24 +185,33 @@ def admin_homepage(request):
 	context_dict = {}
 	return render_to_response('admin_homepage.html', context_dict)	
 	 
+
 def admin_browselist(request):
 	context_dict = {}
 		
-	if request.method == 'GET':
-		non_final_manuscripts = Manuscript.objects.filter(is_final=False)
-	
+	manuscripts = Manuscript.objects.all()
+
+	if request.method == 'POST':
+		#print len(non_final_manuscripts[0].reviewers.all())
+		#print non_final_manuscripts[0].reviewers.all()[0].email
+		
 		# simple match based on keywords
-		for i in range(0, len(non_final_manuscripts)):
+		#for i in range(0, len(non_final_manuscripts)):
 			# will be used in template
-			reviewrs = SiteUser.objects.filter(agreed_to_form=True, pi__in=non_final_manuscripts.keywords.split(','))
+			#reviewrs = SiteUser.objects.filter(agreed_to_form=True, pi__in=non_final_manuscripts.keywords.split(','))
 	
 		# manuscripts with final decision being made
-		final_manuscripts = Manuscript.objects.filter(is_final=True)
-	else:
+		#final_manuscripts = Manuscript.objects.filter(is_final=True)
+
 		# use hidden value here to indicate which manuscript is being edited
-		manuscript = request.POST
+		# AdminBrowseListForm(request.POST)
+
+		print request.POST.getlist("reviewers")
+
+	print manuscripts[0].keywords
 		
-	return render_to_response('admin_browselist.html', context_dict)	
+	context_dict['manuscripts'] = manuscripts
+	return render_to_response('admin_browselist.html', context_dict, RequestContext(request))	
 	
 #def manuscript_detail(request):
 #	context_dict = {}
