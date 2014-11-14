@@ -85,30 +85,30 @@ class SignupForm(forms.ModelForm):
 		if commit:
 			user.save()
 		return user
-'''
-class SubmitManuscript(forms.ModelForm):
- 	" Submitting a manuscript "
- 	def __init__(self, *args, **kwargs):
- 		super(SubmitManuscript, self).__init__(*args, **kwargs)
 
- 	# This is the method for saving the newly created user
- 	def save(self, review_period, authors, commit=True):
- 		manuscript = super(SubmitManuscript, self).save(commit=False)
- 		manuscript.review_period = review_period
- 		if commit:
- 			manuscript.save()
- 		if type(authors) is list:
- 			manuscript.authors = authors
- 		else:
- 			manuscript.authors = [authors]
- 		if commit:
- 			manuscript.save()
- 		return manuscript
+# class SubmitManuscript(forms.ModelForm):
+# 	''' Submitting a manuscript '''
+# 	def __init__(self, *args, **kwargs):
+# 		super(SubmitManuscript, self).__init__(*args, **kwargs)
+#
+# 	# This is the method for saving the newly created user
+# 	def save(self, review_period, authors, commit=True):
+# 		manuscript = super(SubmitManuscript, self).save(commit=False)
+# 		manuscript.review_period = review_period
+# 		if commit:
+# 			manuscript.save()
+# 		if type(authors) is list:
+# 			manuscript.authors = authors
+# 		else:
+# 			manuscript.authors = [authors]
+# 		if commit:
+# 			manuscript.save()
+# 		return manuscript
+#
+# 	class Meta:
+# 		model = Manuscript
+# 		exclude = ('review_period', 'authors', 'reviewers','review_file')
 
- 	class Meta:
- 		model = Manuscript
- 		exclude = ('review_period', 'authors', 'reviewers','review_file')
-'''
 class UploadForm(forms.ModelForm):
     class Meta:
         model = UploadModel

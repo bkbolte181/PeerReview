@@ -132,7 +132,7 @@ class ManuscriptSubmission(models.Model):
 	TableFile = models.FileField(upload_to='table/%Y/%m/%d/%H/%M/%S/')
 	ImageAmount= models.CharField(max_length=10)
 	ImageFile= models.FileField(upload_to='image/%Y/%m/%d/%H/%M/%S/')
-	is_final = models.BooleanField(default=False)
+    is_final = models.BooleanField(default=False)
 
 def get_title_(self): return self.title
 
