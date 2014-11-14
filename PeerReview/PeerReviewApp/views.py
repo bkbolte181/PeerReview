@@ -84,20 +84,18 @@ def agreement(request):
 	context = {}
 	user = SiteUser.objects.get(email=request.user.email)
 	if request.GET.get('next', False):
-		context['next'] = request.GET.get('next', False)
+		next = request.GET.get('next', False)
+		context['next'] = next
+	elif request.POST.get('next', False):
+		next = request.POST.get('next', False)
+		context['next'] = next
+	else:
+		next = reverse('index')
 	if request.POST:
-		if 'delete' in request.POST and request.POST['delete'] == 'DELETE':
-			logout(request)
-			user.delete()
-			return HttpResponseRedirect(reverse('index'))
 		form = AgreementForm(request.POST, instance=user)
 		if form.is_valid():
 			form.save()
-			if request.POST.get('next',False):
-				return HttpResponseRedirect(request.POST.get('next', False))
-			else:
-				return HttpResponseRedirect(reverse('index'))
-			context['errors'] = 'Information saved.'
+			return HttpResponseRedirect(next)
 	else:
 		form = AgreementForm(instance=user)
 	context['form'] = form
@@ -137,24 +135,60 @@ def browse_manuscripts(request, current_page):
 	return render(request, 'browse_manuscripts.html', context)
 
 @user_passes_test(has_agreed, login_url='/agreement/')
-def assigned_manuscripts(request,current_page):
+def assigned_manuscripts(request, current_page):
 	context = {}
-	manuscripts_assigned = Manuscript.object.get(reviewers=request.user.email)
-	context['manuscript_assigned'] = manuscripts_assigned
-	return render(request, 'manuscript_assigned.html', context)
+	user = SiteUser.objects.get(email=request.user.email)
+	manuscripts_assigned = Manuscript.objects.filter(reviewers__in=[user]).all()
+	paginator = Paginator(manuscripts_assigned, 10)
 
+	try:
+		page = paginator.page(current_page)
+	except PageNotAnInteger:
+		page = paginator.page(1)
+	except EmptyPage:
+		page = paginator.page(paginator.num_pages)
 
+	context['page'] = page
+	return render(request, 'browse_manuscripts.html', context)
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def author_home(request):
-    context={}
-    return render(request,'uploader_home.html', context)
+	context = {}
+	return render(request,'uploader_home.html', context)
+
+@user_passes_test(has_agreed, login_url='/agreement/')
+def upload_manuscript(request):
+	context = {}
+	if request.POST:
+		form = UploadManuscript(request.POST)
+		if form.is_valid():
+			man = form.save()
+			
+			# Set current user as author
+			current_user = SiteUser.objects.get(email=request.user.email)
+			man.authors = [current_user]
+			
+			# Loop through files and add them to the database
+			if 'file' in request.FILES:
+				for file in request.FILES['file']:
+					''' NEED SOME FILE VALIDATION METHOD HERE - ALSO, FILE IS A STRING, NOT A FILE, FIX THIS '''
+					m = ManuscriptFile.objects.create(file=file, manuscript=man)
+					m.save()
+					
+			# If successful, redirect to main page
+			return HttpResponseRedirect(reverse('authorhome'))
+	else:
+		form = UploadManuscript()
+	context['form'] = form
+	return render(request,'upload_manuscript.html', context)
+
 
 @login_required
 def account(request):
 	context = {}
 	user = SiteUser.objects.get(email=request.user.email)
 	if 'delete' in request.GET:
+		print 'Deleting account ' + str(user)
 		logout(request)
 		user.delete()
 		return HttpResponseRedirect(reverse('index'))
@@ -176,8 +210,3 @@ def auth_admin(request):
 		return HttpResponseRedirect(reverse('index'))
 	context['all_users'] = SiteUser.objects.all()
 	return render(request, 'admin_home.html', context)
-
-@user_passes_test(has_agreed, login_url='/agreement/')
-def UploadManuscript(request):
-    context= {}
-    view_url = reverse('uploadmanuscript')
