@@ -100,10 +100,6 @@ class SubmitManuscript(forms.ModelForm):
  		model = Manuscript
  		exclude = ('review_period', 'authors', 'reviewers','review_file')
 '''
-class UploadForm(forms.ModelForm):
-    class Meta:
-        model = UploadModel
-
 
 class UploadManuscript(forms.ModelForm):
 	fields = ('Title', 'BriefTitle', 'Abstract', 'Field', 'Keywords', 'TargetJournal', 'ImageAmount')
@@ -116,7 +112,6 @@ class UploadManuscript(forms.ModelForm):
 		'TargetJournal': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Which journal do you want to publish in?'}),
 		'ImageAmount': forms.Select(attrs={'class': 'form-control text-center', 'placeholder': 'How many figures are in your manuscript?'}),
 	}
-=======
 '''
 class SubmitManuscript(forms.ModelForm):
 	""" Submitting a manuscript """
@@ -169,5 +164,3 @@ class UploadManuscript(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		super(UploadManuscript, self).__init__(*args, **kwargs)
-		
->>>>>>> 028dc0d0a6a595a5f18a0bc669f111e4046a6eab

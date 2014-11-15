@@ -1,20 +1,10 @@
 from django import forms
 from PeerReviewApp.models import *
 from models import *
+from django.conf import settings
 
-SCHOOLS = (
-	'Goizueta Business School',
-	'Laney Graduate School',
-	'School of Law',
-	'Schoolf of Medicine',
-	'Nell Hodgson Woodruff School of Nursing',
-	'Rollins School of Public Health',
-	'Candler School of Theology',
-	'College of Arts and Sciences',
-	'Other',
-)
-
-
+SCHOOLS = settings.SCHOOLS
+	
 class LoginForm(forms.Form):
 	''' On log in, you only need an email and a password '''
 	email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Emory Email Address'}))
@@ -54,7 +44,7 @@ class SignupForm(forms.ModelForm):
 	class Meta:
 		model = SiteUser
 		# These are the fields that the user needs to input when they create their account
-		fields = ('email', 'first_name', 'last_name', 'department', 'lab', 'pi', 'school','Review_Count')
+		fields = ('email', 'first_name', 'last_name', 'department', 'lab', 'pi', 'school','review_count')
 		widgets = {
 			'email': forms.EmailInput(attrs={'class': 'form-control text-center', 'placeholder': 'Emory Email Address'}),
 			'first_name': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'First Name'}),
@@ -63,7 +53,7 @@ class SignupForm(forms.ModelForm):
 			'lab': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Name of Lab'}),
 			'pi': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Name of Primary Investigator'}),
 			'school': forms.Select(attrs={'class': 'form-control text-center', 'placeholder': 'Choose your School'}),
-            'Review_Count': forms.TextInput(attrs={'class': 'form-control text-center','placeholder': 'Number of manuscripts previous reviewed'}),
+            'review_count': forms.TextInput(attrs={'class': 'form-control text-center','placeholder': 'Number of manuscripts previous reviewed'}),
 		}
 	
 	# This method validates that the two passwords are the same
@@ -85,30 +75,31 @@ class SignupForm(forms.ModelForm):
 		if commit:
 			user.save()
 		return user
+'''
+class SubmitManuscript(forms.ModelForm):
+ 	" Submitting a manuscript "
+ 	def __init__(self, *args, **kwargs):
+ 		super(SubmitManuscript, self).__init__(*args, **kwargs)
 
-# class SubmitManuscript(forms.ModelForm):
-# 	''' Submitting a manuscript '''
-# 	def __init__(self, *args, **kwargs):
-# 		super(SubmitManuscript, self).__init__(*args, **kwargs)
-#
-# 	# This is the method for saving the newly created user
-# 	def save(self, review_period, authors, commit=True):
-# 		manuscript = super(SubmitManuscript, self).save(commit=False)
-# 		manuscript.review_period = review_period
-# 		if commit:
-# 			manuscript.save()
-# 		if type(authors) is list:
-# 			manuscript.authors = authors
-# 		else:
-# 			manuscript.authors = [authors]
-# 		if commit:
-# 			manuscript.save()
-# 		return manuscript
-#
-# 	class Meta:
-# 		model = Manuscript
-# 		exclude = ('review_period', 'authors', 'reviewers','review_file')
+<<<<<<< HEAD
+ 	# This is the method for saving the newly created user
+ 	def save(self, review_period, authors, commit=True):
+ 		manuscript = super(SubmitManuscript, self).save(commit=False)
+ 		manuscript.review_period = review_period
+ 		if commit:
+ 			manuscript.save()
+ 		if type(authors) is list:
+ 			manuscript.authors = authors
+ 		else:
+ 			manuscript.authors = [authors]
+ 		if commit:
+ 			manuscript.save()
+ 		return manuscript
 
+ 	class Meta:
+ 		model = Manuscript
+ 		exclude = ('review_period', 'authors', 'reviewers','review_file')
+'''
 class UploadForm(forms.ModelForm):
     class Meta:
         model = UploadModel
@@ -125,9 +116,14 @@ class UploadManuscript(forms.ModelForm):
 		'TargetJournal': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Which journal do you want to publish in?'}),
 		'ImageAmount': forms.Select(attrs={'class': 'form-control text-center', 'placeholder': 'How many figures are in your manuscript?'}),
 	}
+'''
+class SubmitManuscript(forms.ModelForm):
+	""" Submitting a manuscript """
+>>>>>>> 028dc0d0a6a595a5f18a0bc669f111e4046a6eab
 	def __init__(self, *args, **kwargs):
-		super(UploadManuscript, self).__init__(*args, **kwargs)
+		super(SubmitManuscript, self).__init__(*args, **kwargs)
 
+<<<<<<< HEAD
 	#saving the current form
 	def save(self, commit = True):
 		ManuscriptSubmission = super(ManuscriptSubmission,self).save(commit=False)
@@ -135,3 +131,40 @@ class UploadManuscript(forms.ModelForm):
 	class Meta:
 		model = ManuscriptSubmission
 		exclude = ('reviewer', 'authors', 'status','is_final')
+=======
+	# This is the method for saving the newly created user
+	def save(self, review_period, authors, commit=True):
+		manuscript = super(SubmitManuscript, self).save(commit=False)
+		manuscript.review_period = review_period
+		if commit:
+			manuscript.save()
+		if type(authors) is list:
+			manuscript.authors = authors
+		else:
+			manuscript.authors = [authors]
+		if commit:
+			manuscript.save()
+		return manuscript
+
+	class Meta:
+		model = Manuscript
+		exclude = ('review_period', 'authors', 'reviewers','review_file')
+'''
+
+class UploadManuscript(forms.ModelForm):
+    class Meta:
+        model = Manuscript
+        exclude = ('review_period', 'authors', 'reviewers', 'is_final','manuscript')
+
+	fields = ('title', 'brief_title', 'abstract', 'field', 'keywords', 'target_journal',)
+	widgets = {
+		'title': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter Manuscript Title'}),
+		'brief_title': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter a shorter title which contains less than 10 words'}),
+		'abstract': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter Manuscript Abstract'}),
+		'field': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Manuscript Field e.g CS,BIO, etc'}),
+		'keywords': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Keywords (no more than 10, separate by commas)'}),
+		'target_journal': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Which journal do you want to publish in?'}),
+	}
+
+	def __init__(self, *args, **kwargs):
+		super(UploadManuscript, self).__init__(*args, **kwargs)
