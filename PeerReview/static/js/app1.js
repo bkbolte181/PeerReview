@@ -101,7 +101,7 @@ $(document).ready(function() {
 			cur_form.find(".add-reviewer").removeClass("hide");
 			var str = "";
 			for (var i=0;i < checkedValues.length; i++) {
-				str = str + '<span class="checkbox hide"><input type="checkbox" checked="checked "></span><a class="user" href="user_detail.html">' + checkedValues[i] + "</a>";
+				str = str + '<span class="checkbox hide"><input type="checkbox" value = "john@emory.edu" name = "reviewers" checked="checked "></span><a class="user" href="user_detail.html">' + checkedValues[i] + "</a>";
 				str = str + " ";
 				cur_listedReviewers.push(checkedValues[i]);
 			}
