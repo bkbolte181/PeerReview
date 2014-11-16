@@ -92,9 +92,13 @@ class SiteUser(AbstractBaseUser):
 	lab = models.CharField(max_length=200, help_text="Name of Lab")
 	pi = models.CharField(max_length=200, help_text="Name of Primary Investigator")
 	school = models.CharField(max_length=100, choices=[(x, x) for x in SCHOOLS], default=SCHOOLS[0])
-	papers_reviewed = models.CharField(max_length=2, choices=PAPERS_REVIEWED, default=NONE)
-	Review_Count = models.CharField(max_length=2, help_text = "Number of Manuscripts previously reviewed", null=True)
+	review_count = models.CharField(max_length=2, help_text = "Number of Manuscripts you have reviewed", default=0)
 	agreed_to_form = models.BooleanField(default=False) # Whether or not the user has agreed to to use form
+	#added by admin
+	#research_interest = SeparatedValuesField(max_length=1000, help_text='Research interests, separated by a comma',default=NONE) # Custom field for storing python lists
+	research_interest = models.CharField(max_length=200, help_text="Research interests, separated by a comma", default='')
+
+
 	objects = SiteUserManager()
 
 	# Required for custom user model
@@ -111,6 +115,7 @@ class ReviewPeriod(models.Model):
 	submission_deadline = models.DateField() # Date when submissions are due
 	review_deadline = models.DateField() # Date when reviews are due back
 	group_meeting_time = models.DateField() # Large group meeting time
+	# added by admin
 	group_meeting_venue = models.CharField(max_length=200)
 
 class Manuscript(models.Model):
@@ -121,14 +126,18 @@ class Manuscript(models.Model):
 	reviewers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="reviewers", related_query_name="reviewer")
 	authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="authors", related_query_name="author")
 	status = models.CharField(max_length=20, default='submitted')
-	abstract = models.CharField(max_length=200000, default='Empty')
-	title = models.CharField(max_length=200, unique=True)
-	keywords = SeparatedValuesField(max_length=1000, help_text='Keywords, separated by a comma') # Custom field for storing python lists
-	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript", null=True)
-	manuscript_file = models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
-	review_file = models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
-	is_final = models.BooleanField(default=False) # If the final decision of this manuscript has been made
 
+	# Semantic elements
+	title = models.CharField(max_length=200, unique=True)
+	brief_title = models.CharField(max_length=50, unique=True,default='')
+	abstract = models.CharField(max_length=200000)
+	keywords = SeparatedValuesField(max_length=1000, help_text='Keywords, separated by a comma') # Custom field for storing python lists
+	field = models.CharField(max_length=200,default='')
+	target_journal = models.CharField(max_length=200,default='')
+
+	# Link to review period
+	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript", default=0)
+	is_final = models.BooleanField(default=False) # If the final decision of this manuscript has been made
 
 
 
