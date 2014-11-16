@@ -111,6 +111,7 @@ class ReviewPeriod(models.Model):
 	submission_deadline = models.DateField() # Date when submissions are due
 	review_deadline = models.DateField() # Date when reviews are due back
 	group_meeting_time = models.DateField() # Large group meeting time
+	group_meeting_venue = models.CharField(max_length=200)
 
 class Manuscript(models.Model):
 	'''
@@ -127,5 +128,28 @@ class Manuscript(models.Model):
 	manuscript_file = models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
 	review_file = models.FileField(storage=FileSystemStorage(location=settings.MEDIA_ROOT), default='anonymous.jpg', help_text='Upload .zip file containing all relevant material')
 	is_final = models.BooleanField(default=False) # If the final decision of this manuscript has been made
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
