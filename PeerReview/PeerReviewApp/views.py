@@ -208,7 +208,7 @@ def admin_browselist(request):
 
 		print request.POST.getlist("reviewers")
 
-	print manuscripts[0].keywords
+	reviewers = SiteUser.objects.filter(agreed_to_form=True)
 		
 	context_dict['manuscripts'] = manuscripts
 	return render_to_response('admin_browselist.html', context_dict, RequestContext(request))	
