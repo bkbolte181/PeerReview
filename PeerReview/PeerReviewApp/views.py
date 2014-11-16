@@ -1,4 +1,3 @@
-import re
 from django.shortcuts import render, render_to_response, RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -13,6 +12,8 @@ from django.shortcuts import get_object_or_404
 
 from PeerReviewApp.models import *
 from PeerReviewApp.forms import *
+
+RECOMMENDED_NUM = 6
 
 def index(request):
 	''' Main landing page '''
@@ -208,8 +209,14 @@ def admin_browselist(request):
 
 		print request.POST.getlist("reviewers")
 
+	#simple match, recommend reviewers
+	recommended = [];
 	reviewers = SiteUser.objects.filter(agreed_to_form=True)
 		
+	#for reviewer in reviewers:
+		
+	#	for interest in reviewer.pi.split(','):
+
 	context_dict['manuscripts'] = manuscripts
 	return render_to_response('admin_browselist.html', context_dict, RequestContext(request))	
 	

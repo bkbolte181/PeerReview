@@ -52,7 +52,7 @@ class SignupForm(forms.ModelForm):
 	class Meta:
 		model = SiteUser
 		# These are the fields that the user needs to input when they create their account
-		fields = ('email', 'first_name', 'last_name', 'department', 'lab', 'pi', 'school','Review_Count')
+		fields = ('email', 'first_name', 'last_name', 'department', 'lab', 'pi', 'school','review_count')
 		widgets = {
 			'email': forms.EmailInput(attrs={'class': 'form-control text-center', 'placeholder': 'Emory Email Address'}),
 			'first_name': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'First Name'}),
@@ -61,7 +61,7 @@ class SignupForm(forms.ModelForm):
 			'lab': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Name of Lab'}),
 			'pi': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Name of Primary Investigator'}),
 			'school': forms.Select(attrs={'class': 'form-control text-center', 'placeholder': 'Choose your School'}),
-            'Review_Count': forms.TextInput(attrs={'class': 'form-control text-center','placeholder': 'Number of manuscripts previous reviewed'}),
+            'review_count': forms.TextInput(attrs={'class': 'form-control text-center','placeholder': 'Number of manuscripts previous reviewed'}),
 		}
 	
 	# This method validates that the two passwords are the same
@@ -109,7 +109,7 @@ class SubmitManuscript(forms.ModelForm):
 
 class AdminManuscriptForm(forms.ModelForm):
 	#non_final_manuscripts = Manuscript.objects.filter(is_final=False)
-
+	
 	class Meta:
 		model = Manuscript
 		exclude = ('review_period', 'abstract', 'manuscript_file','review_file')

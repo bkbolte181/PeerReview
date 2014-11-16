@@ -43,10 +43,10 @@ class SiteUserManager(BaseUserManager):
 		user.save(using=self._db)
 		return user
 		
-	def create_user(self, email, password, first_name=None, last_name=None, department=None, lab=None, pi=None, **extra_fields):
+	def create_user(self, email, password, first_name=None, last_name=None, department=None, lab=None, pi=None, research_interest=None, **extra_fields):
 		return self._create_user(email, password)
 		
-	def create_superuser(self, email, password, first_name=None, last_name=None, department=None, lab=None, pi=None, **extra_fields):
+	def create_superuser(self, email, password, first_name=None, last_name=None, department=None, lab=None, pi=None, research_interest=None, **extra_fields):
 		return self._create_user(email, password)
 
 class SiteUser(AbstractBaseUser):
@@ -96,7 +96,7 @@ class SiteUser(AbstractBaseUser):
 	agreed_to_form = models.BooleanField(default=False) # Whether or not the user has agreed to to use form
 	#added by admin
 	#research_interest = SeparatedValuesField(max_length=1000, help_text='Research interests, separated by a comma',default=NONE) # Custom field for storing python lists
-	research_interest = models.CharField(max_length=200, help_text="Research interests, separated by a comma", default='')
+	research_interest = models.CharField(max_length=200, help_text="Research interests, separated by a comma")
 
 
 	objects = SiteUserManager()
