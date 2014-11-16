@@ -13,15 +13,16 @@ def populate():
     #print user1
     #user1.delete()
     #SiteUser.objects.all().delete()
-    SiteUser.objects.get(email='mary1@emory.edu').delete()
+
+    #SiteUser.objects.get(email='mary1@emory.edu').delete()
     site_user1 = SiteUser.objects.get_or_create(email='mary1@emory.edu', password='123', first_name='Mary1', last_name='Lee1', department='Math & CS1', lab='Gee\'s Lab1', pi='CS,SE')
-    SiteUser.objects.get(email='mary2@emory.edu').delete()
+    #SiteUser.objects.get(email='mary2@emory.edu').delete()
     site_user2 = SiteUser.objects.get_or_create(email='mary2@emory.edu', password='123', first_name='Mary2', last_name='Lee2', department='Math & CS2', lab='Gee\'s Lab2', pi='BIO,CS')
-    SiteUser.objects.get(email='mary3@emory.edu').delete()
+    #SiteUser.objects.get(email='mary3@emory.edu').delete()
     site_user3 = SiteUser.objects.get_or_create(email='mary3@emory.edu', password='123', first_name='Mary3', last_name='Lee3', department='Math & CS3', lab='Gee\'s Lab3', pi='STAT,FINANCE')
-    SiteUser.objects.get(email='mary4@emory.edu').delete()
+    #SiteUser.objects.get(email='mary4@emory.edu').delete()
     site_user4 = SiteUser.objects.get_or_create(email='mary4@emory.edu', password='123', first_name='Mary4', last_name='Lee4', department='Math & CS4', lab='Gee\'s Lab4', pi='ECO,MATH')
-    SiteUser.objects.get(email='mary5@emory.edu').delete()
+    #SiteUser.objects.get(email='mary5@emory.edu').delete()
     site_user5 = SiteUser.objects.get_or_create(email='mary5@emory.edu', password='123', first_name='Mary5', last_name='Lee5', department='Math & CS5', lab='Gee\'s Lab5', pi='ECO,MATH')
 
     ReviewPeriod.objects.all().delete()
