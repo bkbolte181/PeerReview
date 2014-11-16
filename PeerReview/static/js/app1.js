@@ -104,8 +104,9 @@ $(document).ready(function() {
 				str = str + '<span class="checkbox hide"><input type="checkbox" value = "john@emory.edu" name = "reviewers" checked="checked "></span><a class="user" href="user_detail.html">' + checkedValues[i] + "</a>";
 				str = str + " ";
 				cur_listedReviewers.push(checkedValues[i]);
-			}
 
+			}
+			console.log(str);
 			cur_form.find(".add-reviewer td:last").append(str);
 		}
 		console.log(cur_listedReviewers);
