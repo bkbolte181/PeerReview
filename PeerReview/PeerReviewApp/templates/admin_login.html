@@ -3,38 +3,25 @@
 	<div id="login">
 		<div class="row" >
 			<div class="col-sm-5 col-sm-offset-3">
-				<form id="login_form" method="post" action="/admin_login/">
-					{% csrf_token %}
-					Username: <input type="text" name="username" value="" size="50" />
-					<br />
-					Password: <input type="password" name="password" value="" size="50" />
-					<br />
-
-					<input type="submit" value="submit" />
-				</form>
-				<!--
-				<form class="form-horizontal" role="form" method="post" id="admin_login_form" action="/admin_login/">
-					{% csrf_token %}
+				<form class="form-horizontal" role="form">
 				  <div class="form-group">
 					<label for="inputUserName" class="col-sm-3 control-label">Admin ID</label>
 					<div class="col-sm-9">
-					  <input type="text" name="username" value="" class="form-control" id="inputUserName" placeholder="Admin ID">
+					  <input type="email" class="form-control" id="inputUserName" placeholder="Admin ID">
 					</div>
 				  </div>
 				  <div class="form-group">
 					  <label for="inputPassword" class="col-sm-3 control-label">Password</label>
 					  <div class="col-sm-9">
-						<input type="password" name="password" value="" class="form-control" id="inputPassword" placeholder="Password">
+						<input type="password" class="form-control" id="inputPassword" placeholder="Password">
 					  </div>
 					</div> 
 					  <div class="form-group">
 						<div class="col-sm-offset-9 col-sm-3">
-							<!--<button type="button" class="btn btn-default pull-right" onclick="location.href = '{% url 'admin_homepage' %}';">Log in</button>
-							<button type="submit" value="submit" class="btn btn-default pull-right">Log in</button>
+							<button type="button" class="btn btn-default pull-right" onclick="location.href = '{% url 'admin_homepage' %}';">Log in</button>
 						</div>
 					</div>  
 				</form>
-		-->
 			</div>
 		</div>     			
 	</div>
