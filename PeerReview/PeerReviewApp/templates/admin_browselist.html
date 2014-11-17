@@ -57,7 +57,7 @@
 									  <td>Reviewers</td>
 										<td>
 											{% for reviewer in manuscript.reviewers.all %}
-											<a class="user" href="{% url 'user_detail'  pk=reviewer.id %}">{{reviewer.first_name}} {{reviewer.last_name}}{% if not forloop.last%},{% endif %}</a>
+											<a class="user" href="{% url 'user_detail'  pk=reviewer.id %}">{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
 											{% endfor %}
 										</td>
 									</tr>											
@@ -87,7 +87,7 @@
 										  <td>Assigned reviewers</td>
 										  <td>
 											{% for reviewer in manuscript.reviewers.all %}
-											<span class="checkbox"><input type="checkbox" checked="checked" value = {{reviewer.email}} name = "reviewers"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}">{{reviewer.first_name}} {{reviewer.last_name}}{% if not forloop.last%},{% endif %}</a>
+											<span class="checkbox"><input type="checkbox" checked="checked" value = {{reviewer.email}} name = "reviewers"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}">{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
 											{% endfor %}
 										  </td>										
 										</tr>	
@@ -152,7 +152,7 @@
 
 							<div class = "reviewer" id="reviewer1">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok" value="john@emory.edu"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}">{{reviewer.first_name}} {{reviewer.last_name}}{% if reviewer.star %}*{% endif %}</a></caption>
+									<caption><span class="glyphicon glyphicon-ok" value="john@emory.edu"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}">{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}</a></caption>
 									<thead>
 										<tr>
 										  <th class="col-sm-10"></th>
