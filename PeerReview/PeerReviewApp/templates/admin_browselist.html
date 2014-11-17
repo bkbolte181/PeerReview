@@ -15,15 +15,15 @@
 					<div class="col-sm-7">
 						<h5>Meeting</h5>
 						<div class='ad meeting'>
-						Time: Monday, Dec. 15, 2014, 2:00 p.m. to 4:00 p.m.<br/>
-						Venue: Room E404, MSC, Emory University, GA 30030.
+						Time: {{group_meeting_time}}<br/>
+						Venue: {{group_meeting_venue}}
 						</div>
 					</div>
 					<div class="col-sm-5">
 						<h5>Deadline</h5>
 						<div class='ad deadline'>
-						Deadline for manuscript submission is <span class="msg1">Nov. 10, 2014</span>.<br/>
-						Deadline for manuscript review is <span class="msg1">Dec. 10, 2014</span>.
+						Deadline for manuscript submission is <span class="msg1">{{submission_deadline}}</span>.<br/>
+						Deadline for manuscript review is <span class="msg1">{{review_deadline}}</span>.
 						</div>
 					</div>					
 					
@@ -152,7 +152,7 @@
 
 							<div class = "reviewer" id="reviewer1">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok" value="john@emory.edu"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}">{{reviewer.first_name}} {{reviewer.last_name}}{% if reviewer.review_count >= '3' %}*{% endif %}</a></caption>
+									<caption><span class="glyphicon glyphicon-ok" value="john@emory.edu"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}">{{reviewer.first_name}} {{reviewer.last_name}}{% if reviewer.star %}*{% endif %}</a></caption>
 									<thead>
 										<tr>
 										  <th class="col-sm-10"></th>

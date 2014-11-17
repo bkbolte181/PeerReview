@@ -97,7 +97,7 @@ class SiteUser(AbstractBaseUser):
 	#added by admin
 	#research_interest = SeparatedValuesField(max_length=1000, help_text='Research interests, separated by a comma',default=NONE) # Custom field for storing python lists
 	research_interest = models.CharField(max_length=200, help_text="Research interests, separated by a comma")
-
+	star = models.BooleanField(default=False)
 
 	objects = SiteUserManager()
 
@@ -107,6 +107,7 @@ class SiteUser(AbstractBaseUser):
 	
 	def get_full_name(self): return self.first_name, self.last_name
 	def get_short_name(self): return self.first_name
+	def get_star(self): return int(self.review_count) >= 3
 
 class ReviewPeriod(models.Model):
 	''' Model for a single review period '''
