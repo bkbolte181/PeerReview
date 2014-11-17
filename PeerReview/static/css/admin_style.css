@@ -22,7 +22,14 @@ body {
 .announce h5{
   text-align: center;
 }
-
+#meeting-ad p{
+  margin-bottom: 0px;
+  text-indent:10rem;
+}
+#deadline-ad p{
+  margin-bottom: 0px;
+  text-indent:5rem;
+}
 .wraper{
   min-height: 100%;
   position: relative;
@@ -38,7 +45,7 @@ body {
   padding: 10px 0 0px 0;
 }
 .header .logo-icon img{
-  width: 42px;
+  width: 30px;
   height: 42px;
   margin-right:5px;
   float: left;
@@ -275,7 +282,7 @@ form {
 }
 .manuscript .table tr td:first-child, .reviewer .table tr td:first-child {
   /*font-weight: bold;*/
-  padding-left: 1.2rem;
+  padding-left: 1.5rem;
 }
 .reviewer .table tr td:nth-child(2) {
   /*padding-left: 1rem;*/
@@ -394,7 +401,11 @@ a.btn.btn-green1 {
 .msg1 {
 	color: red;
 }
-
+.ad {
+	max-width: 350px;
+	min-width: 100px;
+	margin: auto;
+}
 .manu-count-title {
 	text-align: right;
 	max-width: 10rem;
