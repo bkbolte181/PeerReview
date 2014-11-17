@@ -217,6 +217,7 @@ def admin_browselist(request):
 	#	for interest in reviewer.pi.split(','):
 
 	context_dict['manuscripts'] = manuscripts
+	context_dict['reviewers'] = reviewers
 	return render_to_response('admin_browselist.html', context_dict, RequestContext(request))	
 	
 #def manuscript_detail(request):

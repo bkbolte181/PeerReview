@@ -285,6 +285,7 @@ form {
   padding-left: 1.5rem;
 }
 .reviewer .table tr td:nth-child(2) {
+  text-align:right;
   /*padding-left: 1rem;*/
 }
 .manuscript {
