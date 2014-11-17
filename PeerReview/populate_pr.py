@@ -15,15 +15,15 @@ def populate():
     #SiteUser.objects.all().delete()
 
     #SiteUser.objects.get(email='mary1@emory.edu').delete()
-    site_user1 = SiteUser.objects.get_or_create(email='mary1@emory.edu', password='123', first_name='Mary1', last_name='Lee1', department='Math & CS1', lab='Gee\'s Lab1', pi='Gee\'s PI1', research_interest=['computer science','Software Engineering'], review_count='5')
+    site_user1 = SiteUser.objects.get_or_create(email='mary1@emory.edu', password='123', first_name='Mary1', last_name='Lee1', department='Math & CS1', lab='Gee\'s Lab1', pi='Gee\'s PI1', research_interest=['computer science','Software Engineering'], review_count='5', agreed_to_form=True)
     #SiteUser.objects.get(email='mary2@emory.edu').delete()
-    site_user2 = SiteUser.objects.get_or_create(email='mary2@emory.edu', password='123', first_name='Mary2', last_name='Lee2', department='Math & CS2', lab='Gee\'s Lab2', pi='Gee\'s PI2', research_interest=['computer science','Bios'], review_count='3')
+    site_user2 = SiteUser.objects.get_or_create(email='mary2@emory.edu', password='123', first_name='Mary2', last_name='Lee2', department='Math & CS2', lab='Gee\'s Lab2', pi='Gee\'s PI2', research_interest=['computer science','Bios'], review_count='3', agreed_to_form=True)
     #SiteUser.objects.get(email='mary3@emory.edu').delete()
-    site_user3 = SiteUser.objects.get_or_create(email='mary3@emory.edu', password='123', first_name='Mary3', last_name='Lee3', department='Math & CS3', lab='Gee\'s Lab3', pi='Gee\'s PI3', research_interest=['STAT','FINANCE'], review_count='4')
+    site_user3 = SiteUser.objects.get_or_create(email='mary3@emory.edu', password='123', first_name='Mary3', last_name='Lee3', department='Math & CS3', lab='Gee\'s Lab3', pi='Gee\'s PI3', research_interest=['STAT','FINANCE'], review_count='4', agreed_to_form=True)
     #SiteUser.objects.get(email='mary4@emory.edu').delete()
-    site_user4 = SiteUser.objects.get_or_create(email='mary4@emory.edu', password='123', first_name='Mary4', last_name='Lee4', department='Math & CS4', lab='Gee\'s Lab4', pi='Gee\'s PI4', research_interest=['ECO','MATH'], review_count='2')
+    site_user4 = SiteUser.objects.get_or_create(email='mary4@emory.edu', password='123', first_name='Mary4', last_name='Lee4', department='Math & CS4', lab='Gee\'s Lab4', pi='Gee\'s PI4', research_interest=['ECO','MATH'], review_count='2', agreed_to_form=True)
     #SiteUser.objects.get(email='mary5@emory.edu').delete()
-    site_user5 = SiteUser.objects.get_or_create(email='mary5@emory.edu', password='123', first_name='Mary5', last_name='Lee5', department='Math & CS5', lab='Gee\'s Lab5', pi='Gee\'s PI5', research_interest=['ECO','MATH'], review_count='1')
+    site_user5 = SiteUser.objects.get_or_create(email='mary5@emory.edu', password='123', first_name='Mary5', last_name='Lee5', department='Math & CS5', lab='Gee\'s Lab5', pi='Gee\'s PI5', research_interest=['ECO','MATH'], review_count='1', agreed_to_form=True)
 
     ReviewPeriod.objects.all().delete()
 

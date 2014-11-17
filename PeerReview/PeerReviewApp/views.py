@@ -210,9 +210,8 @@ def admin_browselist(request):
 		print request.POST.getlist("reviewers")
 
 	#simple match, recommend reviewers
-	recommended = [];
 	reviewers = SiteUser.objects.filter(agreed_to_form=True)
-		
+	print reviewers	
 	#for reviewer in reviewers:
 		
 	#	for interest in reviewer.pi.split(','):
