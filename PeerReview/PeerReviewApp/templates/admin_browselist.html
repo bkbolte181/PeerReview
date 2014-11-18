@@ -33,7 +33,7 @@
 					<div class="col-sm-7">
 						<h5 class="subtitle">Manuscripts</h5>
 						<div id="manuscript-list">				
-							{% for manuscript in unfinished_manuscripts %}
+							{% for manuscript in manuscripts %}
 							<div class = "manuscript" id="manuscript">
 							{% if manuscript.is_final %}
 							<table class="table table-no-border table-condensed">
@@ -93,7 +93,11 @@
 										</tr>	
 										<tr>
 										  <td>Recommend reviewers</td>
-										  <td><span class="checkbox"><input type="checkbox" name = "reviewers"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Benjamin Bolte*</a>, <span class="checkbox"><input type="checkbox" name = "reviewers"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Peng Ji</a>, <span class="checkbox"><input type="checkbox"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Jiulin Hu</a>, <span class="checkbox"><input type="checkbox"></span><a class="user" href="{% url 'user_detail'  pk=1 %}">Johnny Tan</a></td>
+										  <td>
+											{% for reviewer in manuscript.recommended_reviewers %}
+											<span class="checkbox"><input type="checkbox" value = {{reviewer.email}} name = "reviewers" ></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}">{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
+											{% endfor %}
+											</td>
 										</tr>	
 										<tr class='add-reviewer'>
 										  <td>Added reviewers</td>

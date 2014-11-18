@@ -113,7 +113,13 @@ class SiteUser(AbstractBaseUser):
 			return "*"
 		else:
 			return ""
+
 	star_string = property(_get_star_string)
+
+	def _get_assigned_num(self):
+		return len(self.reviewers.all())
+	
+	assigned_num = property(_get_assigned_num)
 
 class ReviewPeriod(models.Model):
 	''' Model for a single review period '''
@@ -124,6 +130,9 @@ class ReviewPeriod(models.Model):
 	group_meeting_time = models.DateField() # Large group meeting time
 	# added by admin
 	group_meeting_venue = models.CharField(max_length=200)
+
+RECOMMENDED_NUM = 6	# The maximum number of recommended reviewers for each manuscript
+MAXIMUM_PER_REVIEWER = 3 # The maximum number of manuscripts assigned to a reviewer
 
 class Manuscript(models.Model):
 	'''
@@ -146,11 +155,35 @@ class Manuscript(models.Model):
 	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript", default=0)
 	is_final = models.BooleanField(default=False) # If the final decision of this manuscript has been made
 
+	def _get_recommended_reviewers(self):
+		recommended_reviewers = []
+		reviewers = SiteUser.objects.filter(agreed_to_form=True)
 
+		#first match: research_interest&field
+		for reviewer in reviewers:
+			#print reviewer.assigned_num
+			if reviewer.research_interest.upper().find(self.field.upper()) and reviewer.assigned_num < MAXIMUM_PER_REVIEWER:
+				recommended_reviewers.append(reviewer)
+		if len(recommended_reviewers) <= RECOMMENDED_NUM: return recommended_reviewers
 
+		#second match: research_interest&keywords
+		for reviewer in recommended_reviewers:
+			matched = False
+			for keyword in self.keywords:
+				if reviewer.research_interest.upper().find(keyword.upper()):
+					matched = True
+					break
+			if (not matched) and len(recommended_reviewers) > RECOMMENDED_NUM:
+				recommended_reviewers.remove(reviewer)
+		if len(recommended_reviewers) <= RECOMMENDED_NUM: return recommended_reviewers
+		
+		for reviewer in recommended_reviewers:
+			if len(recommended_reviewers) > RECOMMENDED_NUM:
+				recommended_reviewers.remove(reviewer)		
+		
+		return recommended_reviewers
 
-
-
+	recommended_reviewers = property(_get_recommended_reviewers)
 
 
 

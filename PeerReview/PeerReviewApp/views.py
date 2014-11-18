@@ -13,8 +13,6 @@ from django.shortcuts import get_object_or_404
 from PeerReviewApp.models import *
 from PeerReviewApp.forms import *
 
-RECOMMENDED_NUM = 6	# The maximum number of recommended reviewers for each manuscript
-
 def index(request):
 	''' Main landing page '''
 	context = {}
@@ -234,25 +232,6 @@ def admin_browselist(request):
 	
 	#simple match, recommend reviewers
 	reviewers = SiteUser.objects.filter(agreed_to_form=True)
-	matched_manuscripts = []
-
-	for manuscript in unfinished_manuscripts:
-		matched = MatchedManuscript()
-		matched.manuscript = manuscript
-		matched.id = manuscript.id
-		matched.title = manuscript.title
-		matched.authors = manuscript.authors
-		matched.reviewers = manuscript.reviewers
-		for reviewer in reviewers:
-			print reviewer
-			for keyword in manuscript.keywords:
-				print keyword
-				#if reviewer.research_interest.upper().find(keyword.upper()):
-				#	matched.add(reviewer)
-				#	break;
-		matched_manuscripts.append(matched)	
-
-	print matched_manuscripts[0].recommended_reviewers
 
 	#context_dict['unfinished_manuscripts'] = matched_manuscripts
 	#context_dict['final_manuscripts'] = final_manuscripts
