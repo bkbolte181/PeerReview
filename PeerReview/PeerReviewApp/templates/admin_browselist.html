@@ -33,7 +33,7 @@
 					<div class="col-sm-7">
 						<h5 class="subtitle">Manuscripts</h5>
 						<div id="manuscript-list">				
-							{% for manuscript in manuscripts %}
+							{% for manuscript in unfinished_manuscripts %}
 							<div class = "manuscript" id="manuscript">
 							{% if manuscript.is_final %}
 							<table class="table table-no-border table-condensed">

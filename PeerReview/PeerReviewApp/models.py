@@ -34,7 +34,7 @@ class SiteUserManager(BaseUserManager):
 		is custom. The UserManager needs two methods, create_user and create_superuser. Most other methods
 		are subclassed from BaseUserManager.
 	'''
-	def _create_user(self, email, password, first_name=None, last_name=None, department=None, lab=None, pi=None, **extra_fields):
+	def _create_user(self, email, password, first_name=None, last_name=None, department=None, lab=None, pi=None, research_interest=None, **extra_fields):
 		if not email:
 			raise ValueError('An email must be provided to create the user.')
 		email = self.normalize_email(email)

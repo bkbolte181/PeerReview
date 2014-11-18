@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404
 from PeerReviewApp.models import *
 from PeerReviewApp.forms import *
 
-RECOMMENDED_NUM = 6
+RECOMMENDED_NUM = 6	# The maximum number of recommended reviewers for each manuscript
 
 def index(request):
 	''' Main landing page '''
@@ -185,12 +185,22 @@ def admin_login(request):
 def admin_homepage(request):
 	context_dict = {}
 	return render_to_response('admin_homepage.html', context_dict)	
-	 
+	
+
+class MatchedManuscript():
+	manuscript = Manuscript
+	
+	def __init__(self):
+		self.recommended_reviewers = []
+
+	def add(self, reviewer):
+		self.recommended_reviewers.append(reviewer)
 
 def admin_browselist(request):
 	context_dict = {}
 		
-	manuscripts = Manuscript.objects.all()
+	unfinished_manuscripts = Manuscript.objects.filter(is_final=False)
+	final_manuscripts = Manuscript.objects.filter(is_final=True)
 
 	if request.method == 'POST':
 		#print len(non_final_manuscripts[0].reviewers.all())
@@ -208,15 +218,31 @@ def admin_browselist(request):
 		# AdminBrowseListForm(request.POST)
 
 		print request.POST.getlist("reviewers")
-
+	
 	#simple match, recommend reviewers
 	reviewers = SiteUser.objects.filter(agreed_to_form=True)
-	print reviewers	
-	#for reviewer in reviewers:
-		
-	#	for interest in reviewer.pi.split(','):
+	matched_manuscripts = []
 
-	context_dict['manuscripts'] = manuscripts
+	for manuscript in unfinished_manuscripts:
+		matched = MatchedManuscript()
+		matched.manuscript = manuscript
+		matched.id = manuscript.id
+		matched.title = manuscript.title
+		matched.authors = manuscript.authors
+		matched.reviewers = manuscript.reviewers
+		for reviewer in reviewers:
+			print reviewer
+			for keyword in manuscript.keywords:
+				print keyword
+				#if reviewer.research_interest.upper().find(keyword.upper()):
+				#	matched.add(reviewer)
+				#	break;
+		matched_manuscripts.append(matched)	
+
+	print matched_manuscripts[0].recommended_reviewers
+
+	context_dict['unfinished_manuscripts'] = matched_manuscripts
+	context_dict['final_manuscripts'] = final_manuscripts
 	return render_to_response('admin_browselist.html', context_dict, RequestContext(request))	
 	
 #def manuscript_detail(request):
