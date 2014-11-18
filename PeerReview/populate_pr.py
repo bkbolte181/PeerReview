@@ -36,6 +36,15 @@ def populate():
     period = ReviewPeriod.objects.get_or_create(submission_deadline=datetime.date(year=2015, month=1, day=10), review_deadline=datetime.date(year=2015, month=2, day=10), group_meeting_time=datetime.date(year=2015, month=2, day=25), group_meeting_venue='Room E404, MSC, Emory University, GA 30030.')
     #period1 = ReviewPeriod.objects.get_or_create(submission_deadline=datetime.date(year=2015, month=3, day=1), review_deadline=datetime.date(year=2015, month=4, day=1), group_meeting_time=datetime.date(year=2015, month=5, day=1), group_meeting_venue='Room E404, MSC, Emory University, GA 30030.')
     Manuscript.objects.all().delete()
+
+
+    manuscript4 = Manuscript.objects.get_or_create(keywords=['math','Physics'], title = 'LAD VS PDA5******', brief_title='LAD VS PDA4', abstract='ooooooo', review_period=period[0], field='Software Engineering', target_journal='target_journal', is_final=True)
+    manuscript4[0].reviewers.add(site_user2[0])
+    manuscript4[0].reviewers.add(site_user10[0])
+    manuscript4[0].reviewers.add(site_user16[0])
+    manuscript4[0].authors.add(site_user6[0])
+
+
     #manuscript1 = Manuscript.objects.get_or_create(id=1,keywords=['computer science','stat'], title = 'LAD VS PDA1*****', brief_title='LAD VS PDA1', abstract='ooooooo', review_period=period1[0], field='computer science', target_journal='target_journal')
     manuscript1 = Manuscript.objects.get_or_create(keywords=['face recognition', 'pattern recognition', 'principal components analysis', 'linear discriminant analysis', 'learning from undersampled distributions', 'small training data sets'], title = 'PCA versus LDA PCA versus LDA PCA versus LDA', brief_title='PCA versus LDA', abstract='In the context of the appearance-based paradigm for object recognition, it is generally believed that algorithms based on LDA (Linear Discriminant Analysis) are superior to those based on PCA (Principal Components Analysis). In this communication, we show that this is not always the case. We present our case first by using intuitively plausible arguments and, then, by showing actual results on a face database. Our overall conclusion is that when the training data set is small, PCA can outperform LDA and, also, that PCA is less sensitive to different training data sets.', review_period=period[0], field='computer science', target_journal='IEEE Transaction on Machine Learning', is_final=False)
     #print manuscript[0].keywords
@@ -47,27 +56,22 @@ def populate():
 
 
 
-    manuscript2 = Manuscript.objects.get_or_create(keywords=['math','eco'], title = 'LAD VS PDA2******', brief_title='LAD VS PDA2', abstract='ooooooo', review_period=period[0], field='computer science', target_journal='target_journal')
+    manuscript2 = Manuscript.objects.get_or_create(keywords=['math','eco'], title = 'LAD VS PDA2******', brief_title='LAD VS PDA2', abstract='ooooooo', review_period=period[0], field='Mathematics', target_journal='target_journal')
     manuscript2[0].reviewers.add(site_user2[0])
     manuscript2[0].reviewers.add(site_user4[0])
     manuscript2[0].reviewers.add(site_user16[0])
     manuscript2[0].authors.add(site_user4[0])
 
 
-    manuscript3 = Manuscript.objects.get_or_create(keywords=['math','eco','finance'], title = 'LAD VS PDA3*****',brief_title='LAD VS PDA3', abstract='ooooooo', review_period=period[0], field='computer science', target_journal='target_journal')
+    manuscript3 = Manuscript.objects.get_or_create(keywords=['math','Physics','finance'], title = 'LAD VS PDA3*****',brief_title='LAD VS PDA3', abstract='ooooooo', review_period=period[0], field='Physics', target_journal='target_journal')
     manuscript3[0].reviewers.add(site_user14[0])
     manuscript3[0].reviewers.add(site_user3[0])
 
     manuscript3[0].authors.add(site_user2[0])
 
-    manuscript4 = Manuscript.objects.get_or_create(keywords=['math','eco'], title = 'LAD VS PDA5******', brief_title='LAD VS PDA4', abstract='ooooooo', review_period=period[0], field='computer science', target_journal='target_journal', is_final=True)
-    manuscript4[0].reviewers.add(site_user2[0])
-    manuscript4[0].reviewers.add(site_user10[0])
-    manuscript4[0].reviewers.add(site_user16[0])
-    manuscript4[0].authors.add(site_user6[0])
 
 
-    manuscript5 = Manuscript.objects.get_or_create(keywords=['math','eco','finance'], title = 'LAD VS PDA5*****',brief_title='LAD VS PDA5', abstract='ooooooo', review_period=period[0], field='computer science', target_journal='target_journal', is_final=True)
+    manuscript5 = Manuscript.objects.get_or_create(keywords=['math','eco','finance'], title = 'LAD VS PDA5*****',brief_title='LAD VS PDA5', abstract='ooooooo', review_period=period[0], field='Finance', target_journal='target_journal', is_final=True)
     manuscript5[0].reviewers.add(site_user5[0])
     manuscript5[0].reviewers.add(site_user6[0])
     manuscript5[0].reviewers.add(site_user7[0])

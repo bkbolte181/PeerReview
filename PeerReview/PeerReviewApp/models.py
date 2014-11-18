@@ -167,6 +167,7 @@ class Manuscript(models.Model):
 		if len(recommended_reviewers) <= RECOMMENDED_NUM: return recommended_reviewers
 
 		#second match: research_interest&keywords
+		#escept authors and assigned reviewers
 		for reviewer in recommended_reviewers:
 			matched = False
 			for keyword in self.keywords:
