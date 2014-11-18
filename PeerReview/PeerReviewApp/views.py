@@ -32,8 +32,10 @@ def terms(request):
 def auth_login(request):
 	context = {}
 	context['next'] = request.GET.get('next', False)
-	if request.method == 'POST': form = LoginForm(request.POST)
-	else: form = LoginForm()
+	if request.method == 'POST':
+		form = LoginForm(request.POST)
+	else:
+		form = LoginForm()
 	if form.is_valid() and 'email' in form.cleaned_data and 'password' in form.cleaned_data:
 		print 'hit 2'
 		user = authenticate(username=form.cleaned_data['email'], password=form.cleaned_data['password'])
@@ -50,8 +52,10 @@ def auth_login(request):
 
 def signup(request):
 	context = {}
-	if request.method == 'POST': form = SignupForm(request.POST)
-	else: form = SignupForm()
+	if request.method == 'POST':
+		form = SignupForm(request.POST)
+	else:
+		form = SignupForm()
 	if form.is_valid():
 		context['form'] = form
 		# Passwords don't match

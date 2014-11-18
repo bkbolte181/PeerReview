@@ -160,7 +160,7 @@ class UploadManuscript(forms.ModelForm):
 		'field': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Manuscript Field e.g CS,BIO, etc'}),
 		'keywords': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Keywords (no more than 10, separate by commas)'}),
 		'target_journal': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Which journal do you want to publish in?'}),
-	}
+	    }
 
 	def __init__(self, *args, **kwargs):
 		super(UploadManuscript, self).__init__(*args, **kwargs)
