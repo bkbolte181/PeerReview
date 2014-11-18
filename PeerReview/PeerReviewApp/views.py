@@ -199,8 +199,21 @@ class MatchedManuscript():
 def admin_browselist(request):
 	context_dict = {}
 		
-	unfinished_manuscripts = Manuscript.objects.filter(is_final=False)
-	final_manuscripts = Manuscript.objects.filter(is_final=True)
+	#unfinished_manuscripts = Manuscript.objects.filter(is_final=False)
+	#final_manuscripts = Manuscript.objects.filter(is_final=True)
+
+	period = ReviewPeriod.objects.all()[:1].get()
+	print period
+	submission_deadline = period.submission_deadline
+	print submission_deadline
+	review_deadline = period.review_deadline
+	print review_deadline
+	group_meeting_time = period.group_meeting_time
+	print group_meeting_time
+	group_meeting_venue = period.group_meeting_venue
+	print group_meeting_venue
+
+	manuscripts = Manuscript.objects.all()
 
 	if request.method == 'POST':
 		#print len(non_final_manuscripts[0].reviewers.all())
@@ -241,8 +254,14 @@ def admin_browselist(request):
 
 	print matched_manuscripts[0].recommended_reviewers
 
-	context_dict['unfinished_manuscripts'] = matched_manuscripts
-	context_dict['final_manuscripts'] = final_manuscripts
+	#context_dict['unfinished_manuscripts'] = matched_manuscripts
+	#context_dict['final_manuscripts'] = final_manuscripts
+	context_dict['manuscripts'] = manuscripts
+	context_dict['reviewers'] = reviewers
+	context_dict['submission_deadline'] = submission_deadline
+	context_dict['review_deadline'] = review_deadline
+	context_dict['group_meeting_time'] = group_meeting_time
+	context_dict['group_meeting_venue'] = group_meeting_venue
 	return render_to_response('admin_browselist.html', context_dict, RequestContext(request))	
 	
 #def manuscript_detail(request):

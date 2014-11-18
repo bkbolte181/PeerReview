@@ -14,7 +14,7 @@
 		
 			<div class="col-sm-8 col-sm-offset-2">
 				<table class="table table-hover">
-				  <caption>PCA versus LDA</caption>
+				  <caption>{{manuscript.title}}</caption>
 				  <thead>
 					<tr>
 					  <th class="col-sm-3"></th>
@@ -24,7 +24,15 @@
 				  <tbody>			  
 					<tr>
 					  <td>ID</td>
-					  <td>1</td>
+					  <td>{{manuscript.id}}</td>
+					</tr>
+					<tr>
+						<td>Title</td>
+						<td>{{manuscript.title}}</td>
+					</tr>
+					<tr>
+						<td>Brief Title</td>
+						<td>{{manuscript.brief_title}}</td>
 					</tr>
 					<tr>
 					  <td>Author</td>
@@ -40,19 +48,19 @@
 					</tr>	
 					<tr>
 					  <td>Abstract</td>
-					  <td>In the context of the appearance-based paradigm for object recognition, it is generally believed that algorithms based on LDA (Linear Discriminant Analysis) are superior to those based on PCA (Principal Components Analysis). In this communication, we show that this is not always the case. We present our case first by using intuitively plausible arguments and, then, by showing actual results on a face database. Our overall conclusion is that when the training data set is small, PCA can outperform LDA and, also, that PCA is less sensitive to different training data sets.</td>
+					  <td>{{manuscript.abstract}}</td>
 					</tr>	
 					<tr>
 					  <td>Keywords</td>
-					  <td>face recognition, pattern recognition, principal components analysis, linear discriminant analysis, learning from undersampled distributions, small training data sets</td>
+					  <td>{{manuscript.keywords}}</td>
 					</tr>
 					<tr>
 					  <td>Target journal</td>
-					  <td></td>
+					  <td>{{manuscript.target_journal}}</td>
 					</tr>	
 					<tr>
-					  <td>Manuscript field</td>
-					  <td>BIOS</td>
+					  <td>Field</td>
+					  <td>{{manuscript.field}}</td>
 					</tr>						
 					<tr>
 					  <td>Feedback</td>
