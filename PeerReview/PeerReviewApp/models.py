@@ -113,5 +113,6 @@ def get_file_path(instance, filename):
 	return os.path.join(settings.MEDIA_ROOT, filename)
 
 class ManuscriptFile(models.Model):
+
 	file = models.FileField(upload_to=get_file_path, null=True, blank=True)
 	manuscript = models.ForeignKey('Manuscript', related_name='files', related_query_name='file')
