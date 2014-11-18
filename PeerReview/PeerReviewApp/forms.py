@@ -36,7 +36,7 @@ class SignupForm(forms.ModelForm):
 	''' This is the main sign-up form '''
 	error_messages = { # Add errors here
 		'password_mismatch': 'The two password fields didn\'t match.',
-	}
+        }
 	# Form needs two passwords to make sure the user doesn't mistype
 	password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter your Password'}), label='Password', help_text='Choose a password')
 	retype_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control text-center', 'placeholder': 'Re-enter your password, for verification'}), label='Retype Password', help_text='Enter the same password as above, for verification.')
@@ -54,7 +54,7 @@ class SignupForm(forms.ModelForm):
 			'pi': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Name of Primary Investigator'}),
 			'school': forms.Select(attrs={'class': 'form-control text-center', 'placeholder': 'Choose your School'}),
             'review_count': forms.TextInput(attrs={'class': 'form-control text-center','placeholder': 'Number of manuscripts previous reviewed'}),
-		}
+		    }
 	
 	# This method validates that the two passwords are the same
 	# If they don't match it throws an error
@@ -65,7 +65,7 @@ class SignupForm(forms.ModelForm):
 			raise forms.ValidationError(
 				self.error_messages['password_mismatch'],
 				code='password_mismatch',
-			)
+			    )
 		return retype_password
 	
 	# This is the method for saving the newly created user

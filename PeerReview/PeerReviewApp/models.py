@@ -5,11 +5,10 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from custom_fields import SeparatedValuesField
 from datetime import datetime
-
 import os
-
 # Unique Universal ID: For generating unique file identifier
 import uuid
+
 
 # All valid schools
 SCHOOLS = settings.SCHOOLS
@@ -69,8 +68,11 @@ class SiteUser(AbstractBaseUser):
 	REQUIRED_FIELDS = []
 	
 	def get_full_name(self):
+
 		return self.first_name, self.last_name
+
 	def get_short_name(self):
+
 		return self.first_name
 
 class ReviewPeriod(models.Model):

@@ -7,11 +7,10 @@ from django.forms.models import model_to_dict
 from datetime import datetime
 from filetransfers.api import prepare_upload
 from forms import *
-
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
 from PeerReviewApp.models import *
 from PeerReviewApp.forms import *
+
 
 def get_current_review_period():
 	if ReviewPeriod.objects.count() > 0:
