@@ -1,0 +1,69 @@
+<!--http://trentrichardson.com/examples/timepicker/-->
+
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+  <meta charset='utf-8'>
+
+  <title>System Setting</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <script type="text/javascript" src="{% static 'js/jquery-ui-timepicker-addon.js' %}"></script>
+
+</head>
+
+<body>
+
+  <h1>Settings</h1>
+  <form id="deadline_form" method="post" action="/admin_setting/">
+      {% csrf_token %}
+      {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+      {% endfor %}
+      {% for field in form.visible_fields %}
+        <div class="setting_field_wrapper">
+            <p>{{ field.errors }}</p>
+            <p>{{ field.help_text }} {{ field }}</p>
+        </div>
+      {% endfor %}
+
+      <input type="submit" name="submit" value="Submit settings">
+  </form>
+
+  <script>
+  $(function() {
+    $('#id_start_date').datetimepicker({
+      dateFormat: 'yy-mm-dd',
+      timeFormat: 'hh:mm:ss',
+      controlType: 'select',
+      onSelect: function(dateText, inst) {
+        console.log(dateText);
+      }
+    });
+    $('#id_submission_deadline').datepicker({
+      dateFormat: 'yy-mm-dd',
+      onSelect: function(dateText, inst) {
+        console.log(dateText);
+      }
+    });
+    $('#id_review_deadline').datepicker({
+      dateFormat: 'yy-mm-dd',
+      onSelect: function(dateText, inst) {
+        console.log(dateText);
+      }
+    });
+
+    $('#id_group_meeting_time').datetimepicker({
+      dateFormat: 'yy-mm-dd',
+      timeFormat: 'hh:mm:ss',
+      controlType: 'select',
+      onSelect: function(dateText, inst) {
+        console.log(dateText);
+      }
+    });
+  });
+  </script>
+</body>
+</html>

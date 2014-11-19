@@ -258,3 +258,22 @@ def manuscript_detail(request, pk):
 def user_detail(request, pk):
 	user = get_object_or_404(SiteUser, pk=pk)
 	return render(request, 'user_detail.html', {'user': user})
+
+def setting(request):
+	if request.method == 'POST':
+		form = ReviewPeriodForm(request.POST)
+		if form.is_valid():
+			for period in ReviewPeriod.objects.all():
+				period.is_current = False
+				period.save()
+			period = form.save(commit=True)
+			period.is_current = True
+			period.save()
+			for period in ReviewPeriod.objects.all():
+				print period.is_current
+			return render(request, 'setting_ok.html', {"period":period})
+		else:
+			print form.errors
+	else:
+		form = ReviewPeriodForm()
+	return render(request, 'setting.html', {'form': form})
