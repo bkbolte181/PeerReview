@@ -38,6 +38,11 @@ INSTALLED_APPS = (
 	'PeerReviewApp',
 )
 
+#Authentication backends
+AUTHENTICATION_BACKENDS = (
+	'django.contrib.auth.backends.ModelBackend',
+)
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

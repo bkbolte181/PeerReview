@@ -189,7 +189,11 @@ def admin_login(request):
 	else: form = AdminLoginForm()
 	if form.is_valid() and 'email' in form.cleaned_data and 'password' in form.cleaned_data:
 		print 'hit 2'
+
 		user = authenticate(username=form.cleaned_data['email'], password=form.cleaned_data['password'])
+		print form.cleaned_data['email']
+		print form.cleaned_data['password']
+		print user
 		if user is not None:
 			print "hit 3"
 			login(request, user)
@@ -205,8 +209,8 @@ def admin_login(request):
 	#return render_to_response('admin_login.html', context_dict)
 	return render_to_response('admin_login.html', context, context_instance=RequestContext(request))
 
-@login_required(login_url='/admin_login')
-#@user_passes_test(is_site_admin_check, login_url='/admin_login')
+#@login_required(login_url='/admin_login')
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
 def admin_homepage(request):
 	context_dict = {}
 	period = ReviewPeriod.objects.filter(is_current=True)[0]
@@ -235,8 +239,8 @@ class MatchedManuscript():
 	def add(self, reviewer):
 		self.recommended_reviewers.append(reviewer)
 
-@login_required(login_url='/admin_login')
-#@user_passes_test(is_site_admin_check, login_url='/admin_login')
+#@login_required(login_url='/admin_login')
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
 def admin_browselist(request):
 	context_dict = {}
 		
@@ -288,22 +292,22 @@ def admin_browselist(request):
 	return render_to_response('admin_browselist.html', context_dict, RequestContext(request))	
 
 
-@login_required(login_url='/admin_login')
-#@user_passes_test(is_site_admin_check, login_url='/admin_login')
+#@login_required(login_url='/admin_login')
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
 def manuscript_detail(request, pk):
 	manuscript = get_object_or_404(Manuscript, pk=pk)
 	#return render(request, 'manuscript_detail.html', {'manuscript': manuscript})
 	return render_to_response('manuscript_detail.html', {'manuscript': manuscript}, RequestContext(request))
 
-@login_required(login_url='/admin_login')
-#@user_passes_test(is_site_admin_check, login_url='/admin_login')
+#@login_required(login_url='/admin_login')
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
 def user_detail(request, pk):
 	user = get_object_or_404(SiteUser, pk=pk)
 	#return render(request, 'user_detail.html', {'user': user})
 	return render_to_response('user_detail.html', {'user': user}, RequestContext(request))
 
-@login_required(login_url='/admin_login')
-#@user_passes_test(is_site_admin_check, login_url='/admin_login')
+#@login_required(login_url='/admin_login')
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
 def setting(request):
 	if request.method == 'POST':
 		form = ReviewPeriodForm(request.POST)
@@ -324,8 +328,8 @@ def setting(request):
 		form = ReviewPeriodForm()
 	return render_to_response('setting.html', {'form': form}, RequestContext(request))
 
-@login_required(login_url='/admin_login')
-#@user_passes_test(is_site_admin_check, login_url='/admin_login')
+#@login_required(login_url='/admin_login')
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
 def admin_logout(request):
 	context = {}
 	logout(request)
