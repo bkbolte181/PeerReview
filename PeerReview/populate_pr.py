@@ -9,6 +9,7 @@ import datetime
 
 def populate():
     #SiteUser.objects.filter(agreed_to_form=True).delete()
+    site_user0 = SiteUser.objects.get_or_create(email='admin@gmail.com', password='123', is_site_admin=True)
 
     site_user1 = SiteUser.objects.get_or_create(email='johnlee@emory.edu', password='123', first_name='John', last_name='Lee', department='Math & CS', lab='Gee\'s Lab1', pi='Gee\'s PI1', research_interest='Computer science, Software Engineering', review_count='5', agreed_to_form=True)
     site_user2 = SiteUser.objects.get_or_create(email='marygreen@emory.edu', password='123', first_name='Mary', last_name='Green', department='Biostatistics', lab='Gee\'s Lab2', pi='Gee\'s PI2', research_interest='Computer science, Chemistry, Physics, Biostatistics', review_count='4', agreed_to_form=True)
@@ -33,7 +34,7 @@ def populate():
 
     ReviewPeriod.objects.all().delete()
 
-    period = ReviewPeriod.objects.get_or_create(submission_deadline=datetime.date(year=2015, month=1, day=10), review_deadline=datetime.date(year=2015, month=2, day=10), group_meeting_time=datetime.date(year=2015, month=2, day=25), group_meeting_venue='Room E404, MSC, Emory University, GA 30030.')
+    period = ReviewPeriod.objects.get_or_create(submission_deadline=datetime.date(year=2015, month=1, day=10), review_deadline=datetime.date(year=2015, month=2, day=10), group_meeting_time=datetime.date(year=2015, month=2, day=25), group_meeting_venue='Room E404, MSC, Emory University, GA 30030.', is_current=True)
     #period1 = ReviewPeriod.objects.get_or_create(submission_deadline=datetime.date(year=2015, month=3, day=1), review_deadline=datetime.date(year=2015, month=4, day=1), group_meeting_time=datetime.date(year=2015, month=5, day=1), group_meeting_venue='Room E404, MSC, Emory University, GA 30030.')
     Manuscript.objects.all().delete()
 

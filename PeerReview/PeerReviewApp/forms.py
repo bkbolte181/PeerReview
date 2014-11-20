@@ -111,13 +111,31 @@ class SubmitManuscript(forms.ModelForm):
 
 
 class ReviewPeriodForm(forms.ModelForm):
-	start_date = forms.DateTimeField(initial=datetime.datetime.now, help_text="Start time of current session: ")
+	start_date = forms.DateField(initial=datetime.date.today, help_text="Start date of current session: ")
 	submission_deadline = forms.DateField(initial=datetime.date.today, help_text="Submission deadline: ")
 	review_deadline = forms.DateField(initial=datetime.date.today, help_text="Review deadline: ")
 	group_meeting_time = forms.DateTimeField(initial=datetime.datetime.now, help_text="Group meeting time: ")
 	group_meeting_venue = forms.CharField(max_length=1000, help_text="Group meeting venue: ", initial="Room E404, MSC, Emory University, GA 30030.")
 	is_current = forms.BooleanField(widget=forms.HiddenInput(), initial=True)
 	max_manuscript = forms.IntegerField(min_value=1, max_value=50, initial=10, help_text="Max. number of manuscripts that the system can handle: ")
+
+	def clean(self):
+		cleaned_data = super(ReviewPeriodForm, self).clean()
+		start_date = cleaned_data.get('start_date')
+		submission_deadline = cleaned_data.get('submission_deadline')
+		review_deadline = cleaned_data.get('review_deadline')
+		group_meeting_time = cleaned_data.get('group_meeting_time')
+		if start_date and submission_deadline and review_deadline and group_meeting_time:
+			print group_meeting_time.date()
+			print review_deadline
+			if start_date >= submission_deadline:
+				raise forms.ValidationError("Start date should be before submission deadline.")
+			if submission_deadline >= review_deadline:
+				raise forms.ValidationError("Submission deadline should be before review deadline.")
+			if review_deadline >= group_meeting_time.date():
+				raise forms.ValidationError("Review deadline should be before group meeting time.")
+		return cleaned_data
+
 	class Meta:
 		model = ReviewPeriod
 		fields = ['start_date', 'submission_deadline', 'review_deadline', 'group_meeting_time', 'group_meeting_venue', 'max_manuscript']
@@ -126,7 +144,10 @@ class ReviewPeriodForm(forms.ModelForm):
 
 
 
-
+class AdminLoginForm(forms.Form):
+	''' On log in, you only need an email and a password '''
+	email = forms.EmailField()
+	password = forms.CharField()
 
 
 

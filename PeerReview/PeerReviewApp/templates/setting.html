@@ -1,9 +1,9 @@
 <!--http://trentrichardson.com/examples/timepicker/-->
 
-<!DOCTYPE html>
+{% extends 'setting_base.html' %}
 {% load staticfiles %}
-<html>
-<head>
+
+  {% block head %}
   <meta charset='utf-8'>
 
   <title>System Setting</title>
@@ -11,33 +11,66 @@
   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
   <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <script type="text/javascript" src="{% static 'js/jquery-ui-timepicker-addon.js' %}"></script>
+<style>
+  tbody tr td {
+  border:none;
+  }
+  .error {
+  color: red;
+  }
+</style>
+  {% endblock %}
 
-</head>
 
-<body>
+{% block body %}
+<div class="row admin-nav2">
+  <ol class="breadcrumb">
+    <li><a href="{% url 'admin_homepage' %}">Home</a></li>
+    <li class="active">System Settings</li>
+  </ol>
+</div>
+<div class = "row ">
+  <div class="col-sm-8 col-sm-offset-2">
+<h5>Set up the information for current session:</h5>
+    <div class="error">{{ form.non_field_errors }}</div>
+<form id="deadline_form" method="post" action="/admin_setting/">
+  {% csrf_token %}
+  {% for hidden in form.hidden_fields %}
+  {{ hidden }}
+  {% endfor %}
 
-  <h1>Settings</h1>
-  <form id="deadline_form" method="post" action="/admin_setting/">
-      {% csrf_token %}
-      {% for hidden in form.hidden_fields %}
-        {{ hidden }}
-      {% endfor %}
-      {% for field in form.visible_fields %}
-        <div class="setting_field_wrapper">
-            <p>{{ field.errors }}</p>
-            <p>{{ field.help_text }} {{ field }}</p>
-        </div>
-      {% endfor %}
+  <table  class="table table-condensed borderless">
+    <caption>Current session</caption>
+    <thead >
+    <tr>
+      <th class="col-sm-4"></th>
+      <th class="col-sm-8"></th>
+    </tr>
+    </thead>
+    <tbody>
 
-      <input type="submit" name="submit" value="Submit settings">
-  </form>
+  {% for field in form.visible_fields %}
+  <div class="setting_field_wrapper">
+    <tr><td colspan=2>{{ field.errors }}</td></tr>
+    <tr>
+      <td>{{ field.help_text }} </td>
+      <td>{{ field }}</td>
+    </tr>
+  </div>
+  {% endfor %}
+    </tbody>
+    </table>
 
-  <script>
+  <input type="submit" class="btn btn-default pull-right" name="submit" value="Submit settings">
+</form>
+    </div>
+  </div>
+{% endblock %}
+{% block script %}
+<script>
   $(function() {
-    $('#id_start_date').datetimepicker({
+    $('#id_start_date').datepicker({
       dateFormat: 'yy-mm-dd',
-      timeFormat: 'hh:mm:ss',
-      controlType: 'select',
       onSelect: function(dateText, inst) {
         console.log(dateText);
       }
@@ -58,6 +91,8 @@
     $('#id_group_meeting_time').datetimepicker({
       dateFormat: 'yy-mm-dd',
       timeFormat: 'hh:mm:ss',
+      stepMinute: 5,
+      stepSecond: 60,
       controlType: 'select',
       onSelect: function(dateText, inst) {
         console.log(dateText);
@@ -65,5 +100,6 @@
     });
   });
   </script>
+{% endblock %}
 </body>
 </html>
