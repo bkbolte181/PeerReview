@@ -167,10 +167,10 @@ class Manuscript(models.Model):
 		#first match: research_interest&field
 		for reviewer in reviewers:
 			if reviewer.research_interest.upper().find(self.field.upper()) and reviewer.assigned_num < MAXIMUM_PER_REVIEWER and reviewer not in self.authors.all() and reviewer not in self.reviewers.all():
-				#make sure 
+				#make sure advanced reviewers are before novices
 				if reviewer.star_string == '*':
 					recommended_reviewers.insert(0, reviewer)
-		#			advanced += 1
+					advanced += 1
 				else:
 					recommended_reviewers.append(reviewer)
 
@@ -196,25 +196,39 @@ class Manuscript(models.Model):
 				if reviewer.research_interest.upper().find(keyword.upper()):
 					matched = True
 					break
-			if not matched and len(recommended_reviewers) > RECOMMENDED_NUM: 
-				recommended_reviewers.remove(reviewer)
+			if not matched and len(recommended_reviewers) > RECOMMENDED_NUM:
+				#cannot remove too many advanced reviewers since we need at least 3 
+				if reviewer.star_string == '*':
+					if advanced > RECOMMENDED_AD:
+						recommended_reviewers.remove(reviewer)
+						advanced -= 1
+				else:
+					recommended_reviewers.remove(reviewer)
 		if len(recommended_reviewers) <= RECOMMENDED_NUM: 
 			return recommended_reviewers
 		
+		#still too many recommended reviewers
+		#too many advanced reviewers
+		if advanced > RECOMMENDED_AD:
+			for reviewer in recommended_reviewers:
+				recommended_reviewers.pop(0)
+				advanced -= 1
+				if advanced == RECOMMENDED_AD:
+					break
+		else: 
+			if advanced < RECOMMENDED_AD:
+				for reviewer in reviewers:
+					if reviewer.star_string == '*' and reviewer not in recommended_reviewers and reviewer not in self.authors.all() and reviewer not in self.reviewers.all():
+						recommended_reivewers.insert(0, reviewer)
+						advanced += 1
+						if advanced == RECOMMENDED_AD:
+							break
+
 		for i in range(0, len(recommended_reviewers)):
-			if advanced < RECOMMENDED_AD and recommended_reviewers[i].star_string == '*':
-				advanced += 1
 			if len(recommended_reviewers) > RECOMMENDED_NUM: 
-				recommended_reviewers.pop(advanced)		
+				recommended_reviewers.pop()		
 			else: 
 				break
-
-		for i in range(advanced, RECOMMENDED_AD):
-			recommended_reviewers.pop(i)
-			for reviewer in reviewers:
-				if reviewer.star_string == '*' and reviewer not in recommended_reviewers and reviewer not in self.authors.all() and reviewer not in self.reviewers.all():
-					recommended_reivewers.insert(i, reviewer)
-					break
 			
 		return recommended_reviewers
 

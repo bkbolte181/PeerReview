@@ -32,38 +32,10 @@
 					<!-- Manuscripts  -->
 					<div class="col-sm-7">
 						<h5 class="subtitle">Manuscripts</h5>
-						<div id="manuscript-list">				
+						<div id="manuscript-list">			
 							{% for manuscript in manuscripts %}
 							<div class = "manuscript" id="manuscript">
-							{% if manuscript.is_final %}
-							<table class="table table-no-border table-condensed">
-								<caption>{{ manuscript.id }}. <a href="{% url 'manuscript_detail'  pk=manuscript.id %}">{{ manuscript.brief_title }}</a></caption>
-								<thead>
-									<tr>
-									  <th class="col-sm-3"></th>
-									  <th class="col-sm-9"></th>
-									</tr>
-								</thead>	
-								<tbody>			  
-									<tr>
-									  <td>Author</td>
-										<td>
-										{% for author in manuscript.authors.all %}
-										<a class="user" href="{% url 'user_detail' pk=author.id%}">{{author.first_name}} {{author.last_name}}{% if not forloop.last %},{% endif %}</a>
-										{% endfor %}
-										</td>
-									</tr>	
-									<tr>
-									  <td>Reviewers</td>
-										<td>
-											{% for reviewer in manuscript.reviewers.all %}
-											<a class="user" href="{% url 'user_detail'  pk=reviewer.id %}">{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
-											{% endfor %}
-										</td>
-									</tr>											
-								</tbody>	
-							</table>
-							{% else %}
+							{% if not manuscript.is_final %}
 							<form class="form-inline" id="form1" role="form" method="post">
 								{% csrf_token %}		
 								<table class="table table-no-border table-condensed">
@@ -125,7 +97,39 @@
 							{% endif %}					
 							</div>
 							{% endfor %}
-
+							{% for manuscript in manuscripts %}
+							<div class = "manuscript" id="manuscript">
+							{% if manuscript.is_final %}
+							<table class="table table-no-border table-condensed">
+								<caption>{{ manuscript.id }}. <a href="{% url 'manuscript_detail'  pk=manuscript.id %}">{{ manuscript.brief_title }}</a></caption>
+								<thead>
+									<tr>
+									  <th class="col-sm-3"></th>
+									  <th class="col-sm-9"></th>
+									</tr>
+								</thead>	
+								<tbody>			  
+									<tr>
+									  <td>Author</td>
+										<td>
+										{% for author in manuscript.authors.all %}
+										<a class="user" href="{% url 'user_detail' pk=author.id%}">{{author.first_name}} {{author.last_name}}{% if not forloop.last %},{% endif %}</a>
+										{% endfor %}
+										</td>
+									</tr>	
+									<tr>
+									  <td>Reviewers</td>
+										<td>
+											{% for reviewer in manuscript.reviewers.all %}
+											<a class="user" href="{% url 'user_detail'  pk=reviewer.id %}">{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
+											{% endfor %}
+										</td>
+									</tr>											
+								</tbody>	
+							</table>
+							{% endif %}
+							</div>
+							{% endfor %}
 						</div>
 					</div>
 					<div class="col-sm-1 hide" id="add-icon">
