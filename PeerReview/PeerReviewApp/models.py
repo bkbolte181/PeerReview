@@ -83,7 +83,7 @@ class SiteUser(AbstractBaseUser):
 		return self.is_admin
 
 	def has_module_perms(self, app_label):
-		return self.is_admin
+		return self.is_admin		
 
 
 		
@@ -135,6 +135,7 @@ class ReviewPeriod(models.Model):
 	max_manuscript = models.IntegerField(default=10)
 
 RECOMMENDED_NUM = 6	# The maximum number of recommended reviewers for each manuscript
+RECOMMENDED_AD = 3 # The minimum number of advanced reviewers for recommendation
 MAXIMUM_PER_REVIEWER = 3 # The maximum number of manuscripts assigned to a reviewer
 
 class Manuscript(models.Model):
@@ -159,32 +160,62 @@ class Manuscript(models.Model):
 	is_final = models.BooleanField(default=False) # If the final decision of this manuscript has been made
 
 	def _get_recommended_reviewers(self):
+		advanced = 0
 		recommended_reviewers = []
 		reviewers = SiteUser.objects.filter(agreed_to_form=True)
 
 		#first match: research_interest&field
 		for reviewer in reviewers:
-			#print reviewer.assigned_num
-			if reviewer.research_interest.upper().find(self.field.upper()) and reviewer.assigned_num < MAXIMUM_PER_REVIEWER:
-				recommended_reviewers.append(reviewer)
-		if len(recommended_reviewers) <= RECOMMENDED_NUM: return recommended_reviewers
+			if reviewer.research_interest.upper().find(self.field.upper()) and reviewer.assigned_num < MAXIMUM_PER_REVIEWER and reviewer not in self.authors.all() and reviewer not in self.reviewers.all():
+				#make sure 
+				if reviewer.star_string == '*':
+					recommended_reviewers.insert(0, reviewer)
+		#			advanced += 1
+				else:
+					recommended_reviewers.append(reviewer)
+
+		#if the recommended list hasn't full
+		if len(recommended_reviewers) <= RECOMMENDED_NUM: 
+		#	for i in range(advanced, RECOMMENDED_AD):
+		#		for reviwer in reviewers:
+		#			if reviewer.star_string == '*' and reviewer not in recommended_reviewers and reviewer not in self.authors.all() and reviewer not in self.reviewers.all():
+		#				recommended_reivewers.insert(i, reviwer)
+		#				break			
+		#	for i in range(0, len(recommended_reviewers)):
+		#		if len(recommended_reviewers) > RECOMMENDED_NUM:
+		#			recommended_reviewers.pop(len(recommended_reviewers)-1)
+		#		else:
+		#			break
+			return recommended_reviewers
 
 		#second match: research_interest&keywords
-		#escept authors and assigned reviewers
 		for reviewer in recommended_reviewers:
 			matched = False
+			#separated field
 			for keyword in self.keywords:
 				if reviewer.research_interest.upper().find(keyword.upper()):
 					matched = True
 					break
-			if (not matched) and len(recommended_reviewers) > RECOMMENDED_NUM:
+			if not matched and len(recommended_reviewers) > RECOMMENDED_NUM: 
 				recommended_reviewers.remove(reviewer)
-		if len(recommended_reviewers) <= RECOMMENDED_NUM: return recommended_reviewers
+		if len(recommended_reviewers) <= RECOMMENDED_NUM: 
+			return recommended_reviewers
 		
-		for reviewer in recommended_reviewers:
-			if len(recommended_reviewers) > RECOMMENDED_NUM:
-				recommended_reviewers.remove(reviewer)		
-		
+		for i in range(0, len(recommended_reviewers)):
+			if advanced < RECOMMENDED_AD and recommended_reviewers[i].star_string == '*':
+				advanced += 1
+			if len(recommended_reviewers) > RECOMMENDED_NUM: 
+				recommended_reviewers.pop(advanced)		
+			else: 
+				break
+
+		for i in range(advanced, RECOMMENDED_AD):
+			recommended_reviewers.pop(i)
+			for reviewer in reviewers:
+				if reviewer.star_string == '*' and reviewer not in recommended_reviewers and reviewer not in self.authors.all() and reviewer not in self.reviewers.all():
+					recommended_reivewers.insert(i, reviewer)
+					break
+			
 		return recommended_reviewers
 
 	recommended_reviewers = property(_get_recommended_reviewers)
