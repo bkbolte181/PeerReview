@@ -29,4 +29,5 @@ urlpatterns = patterns('',
 	#url(r'^user_detail/$', views.user_detail, name='user_detail'),	
 	url(r'^manuscript_detail/(?P<pk>[0-9]+)/$', views.manuscript_detail, name='manuscript_detail'),
 	url(r'^user_detail/(?P<pk>[0-9]+)/$', views.user_detail, name='user_detail'),
+	url(r'^admin_setting/$', views.setting, name='admin_setting'),
 )

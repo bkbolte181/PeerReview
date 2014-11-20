@@ -122,12 +122,14 @@ class SiteUser(AbstractBaseUser):
 class ReviewPeriod(models.Model):
 	''' Model for a single review period '''
 	is_full = models.BooleanField(default=False) # If this review period is full or not
-	start_date = models.DateField(default=datetime.now()) # Date when this period becomes open
+	start_date = models.DateTimeField(default=datetime.now()) # Date when this period becomes open
 	submission_deadline = models.DateField() # Date when submissions are due
 	review_deadline = models.DateField() # Date when reviews are due back
-	group_meeting_time = models.DateField() # Large group meeting time
+	group_meeting_time = models.DateTimeField() # Large group meeting time
 	# added by admin
-	group_meeting_venue = models.CharField(max_length=200)
+	group_meeting_venue = models.CharField(max_length=1000)
+	is_current = models.BooleanField(default=False)
+	max_manuscript = models.IntegerField(default=10)
 
 RECOMMENDED_NUM = 6	# The maximum number of recommended reviewers for each manuscript
 RECOMMENDED_AD = 3 # The minimum number of advanced reviewers for recommendation
