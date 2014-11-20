@@ -164,6 +164,7 @@ class Manuscript(models.Model):
 		#first match: research_interest&field
 		for reviewer in reviewers:
 			if reviewer.research_interest.upper().find(self.field.upper()) and reviewer.assigned_num < MAXIMUM_PER_REVIEWER and reviewer not in self.authors.all() and reviewer not in self.reviewers.all():
+				#make sure 
 				if reviewer.star_string == '*':
 					recommended_reviewers.insert(0, reviewer)
 		#			advanced += 1
