@@ -431,3 +431,6 @@ a.btn.btn-green1 {
 	min-width: 100px;
 	margin: auto;
 }
+.borderless tbody tr td, .borderless thead tr th {
+    border: none;
+}

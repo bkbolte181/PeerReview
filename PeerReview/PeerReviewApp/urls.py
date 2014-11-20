@@ -30,4 +30,5 @@ urlpatterns = patterns('',
 	url(r'^manuscript_detail/(?P<pk>[0-9]+)/$', views.manuscript_detail, name='manuscript_detail'),
 	url(r'^user_detail/(?P<pk>[0-9]+)/$', views.user_detail, name='user_detail'),
 	url(r'^admin_setting/$', views.setting, name='admin_setting'),
+	url(r'^admin_logout/$', views.admin_logout, name='admin_logout'),
 )

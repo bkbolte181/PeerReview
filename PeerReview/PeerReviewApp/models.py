@@ -84,6 +84,8 @@ class SiteUser(AbstractBaseUser):
 
 	def has_module_perms(self, app_label):
 		return self.is_admin		
+
+
 		
 	# Information about the user's scientific background
 	department = models.CharField(max_length=200, help_text="Department")
@@ -93,6 +95,7 @@ class SiteUser(AbstractBaseUser):
 	review_count = models.CharField(max_length=2, help_text = "Number of Manuscripts you have reviewed", default=0)
 	agreed_to_form = models.BooleanField(default=False) # Whether or not the user has agreed to to use form
 	#added by admin
+	is_site_admin = models.BooleanField(default=False)
 	#research_interest = SeparatedValuesField(max_length=1000, help_text='Research interests, separated by a comma',default=NONE) # Custom field for storing python lists
 	research_interest = models.CharField(max_length=200, help_text="Research interests, separated by a comma")
 	#star = models.BooleanField(default=False)
@@ -122,7 +125,7 @@ class SiteUser(AbstractBaseUser):
 class ReviewPeriod(models.Model):
 	''' Model for a single review period '''
 	is_full = models.BooleanField(default=False) # If this review period is full or not
-	start_date = models.DateTimeField(default=datetime.now()) # Date when this period becomes open
+	start_date = models.DateField(default=datetime.now()) # Date when this period becomes open
 	submission_deadline = models.DateField() # Date when submissions are due
 	review_deadline = models.DateField() # Date when reviews are due back
 	group_meeting_time = models.DateTimeField() # Large group meeting time

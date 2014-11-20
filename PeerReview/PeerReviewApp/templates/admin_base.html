@@ -2,10 +2,10 @@
 {% load staticfiles %}
 <html>
   <head>
-	<title>Manuscript Review - Login</title>
     <link type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link type="text/css" href="{% static 'css/jquery-ui.css' %}" rel="stylesheet">
     <link type="text/css" href="{% static 'css/admin_style.css' %}" rel="stylesheet">
+    {% block head %}{% endblock %}
   </head>
   <body>
     <div class="wraper">
@@ -18,7 +18,9 @@
 
         <ul class="menu">
           <li><a href="#">Help</a></li>
-          <li><a href="{% url 'admin_login' %}">Logout</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'admin_logout' %}">Logout</a></li>
+          {% endif %}
         </ul>
       </div>
     </div>
@@ -38,5 +40,6 @@
     <script src="{% static 'js/jquery-ui.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/app1.js' %}"></script>
+
   </body>
 </html>

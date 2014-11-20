@@ -174,16 +174,57 @@ def auth_admin(request):
 		return HttpResponseRedirect(reverse('index'))
 	context['all_users'] = SiteUser.objects.all()
 	return render(request, 'admin_home.html', context)
-	
+
+def is_site_admin_check(user):
+	if user.is_authenticated():
+		return user.is_site_admin
+	else:
+		return False
 
 def admin_login(request):
-	context_dict = {}
-	return render_to_response('admin_login.html', context_dict)	
-	
+	#context_dict = {}
+	context = {}
+	#context['next'] = request.GET.get('next', False)
+	if request.method == 'POST': form = AdminLoginForm(request.POST)
+	else: form = AdminLoginForm()
+	if form.is_valid() and 'email' in form.cleaned_data and 'password' in form.cleaned_data:
+		print 'hit 2'
+		user = authenticate(username=form.cleaned_data['email'], password=form.cleaned_data['password'])
+		if user is not None:
+			print "hit 3"
+			login(request, user)
+			#if request.POST.get('next',False):
+			#	return HttpResponseRedirect(request.POST.get('next', False))
+			#else:
+			print "hit 3"
+			return HttpResponseRedirect(reverse('admin_homepage')) # Redirect to homepage when the user logs in
+		else:
+			context['errors'] = 'Authentication failed.'
+	context['form'] = form
+	#return render_to_response('login.html', context, context_instance=RequestContext(request))
+	#return render_to_response('admin_login.html', context_dict)
+	return render_to_response('admin_login.html', context, context_instance=RequestContext(request))
+
+@login_required(login_url='/admin_login')
+#@user_passes_test(is_site_admin_check, login_url='/admin_login')
 def admin_homepage(request):
 	context_dict = {}
-	return render_to_response('admin_homepage.html', context_dict)	
-	
+	period = ReviewPeriod.objects.filter(is_current=True)[0]
+	print period
+	submission_deadline = period.submission_deadline
+	print submission_deadline
+	review_deadline = period.review_deadline
+	print review_deadline
+	group_meeting_time = period.group_meeting_time
+	print group_meeting_time
+	group_meeting_venue = period.group_meeting_venue
+	print group_meeting_venue
+	context_dict['submission_deadline'] = submission_deadline
+	context_dict['review_deadline'] = review_deadline
+	context_dict['group_meeting_time'] = group_meeting_time
+	context_dict['group_meeting_venue'] = group_meeting_venue
+	#return render_to_response('admin_homepage.html', context_dict)
+	return render_to_response('admin_homepage.html', context_dict, RequestContext(request))
 
 class MatchedManuscript():
 	manuscript = Manuscript
@@ -194,13 +235,16 @@ class MatchedManuscript():
 	def add(self, reviewer):
 		self.recommended_reviewers.append(reviewer)
 
+@login_required(login_url='/admin_login')
+#@user_passes_test(is_site_admin_check, login_url='/admin_login')
 def admin_browselist(request):
 	context_dict = {}
 		
 	#unfinished_manuscripts = Manuscript.objects.filter(is_final=False)
 	#final_manuscripts = Manuscript.objects.filter(is_final=True)
 
-	period = ReviewPeriod.objects.all()[:1].get()
+	#period = ReviewPeriod.objects.all()[:1].get()
+	period = ReviewPeriod.objects.filter(is_current=True)[0]
 	print period
 	submission_deadline = period.submission_deadline
 	print submission_deadline
@@ -242,23 +286,24 @@ def admin_browselist(request):
 	context_dict['group_meeting_time'] = group_meeting_time
 	context_dict['group_meeting_venue'] = group_meeting_venue
 	return render_to_response('admin_browselist.html', context_dict, RequestContext(request))	
-	
-#def manuscript_detail(request):
-#	context_dict = {}
-#	return render(request, 'manuscript_detail.html', context_dict)
-	
-#def user_detail(request):
-#	context_dict = {}
-#	return render(request, 'user_detail.html', context_dict)	
-	
+
+
+@login_required(login_url='/admin_login')
+#@user_passes_test(is_site_admin_check, login_url='/admin_login')
 def manuscript_detail(request, pk):
 	manuscript = get_object_or_404(Manuscript, pk=pk)
-	return render(request, 'manuscript_detail.html', {'manuscript': manuscript})
-	
+	#return render(request, 'manuscript_detail.html', {'manuscript': manuscript})
+	return render_to_response('manuscript_detail.html', {'manuscript': manuscript}, RequestContext(request))
+
+@login_required(login_url='/admin_login')
+#@user_passes_test(is_site_admin_check, login_url='/admin_login')
 def user_detail(request, pk):
 	user = get_object_or_404(SiteUser, pk=pk)
-	return render(request, 'user_detail.html', {'user': user})
+	#return render(request, 'user_detail.html', {'user': user})
+	return render_to_response('user_detail.html', {'user': user}, RequestContext(request))
 
+@login_required(login_url='/admin_login')
+#@user_passes_test(is_site_admin_check, login_url='/admin_login')
 def setting(request):
 	if request.method == 'POST':
 		form = ReviewPeriodForm(request.POST)
@@ -266,14 +311,22 @@ def setting(request):
 			for period in ReviewPeriod.objects.all():
 				period.is_current = False
 				period.save()
+			#ReviewPeriod.objects.all().delete();
 			period = form.save(commit=True)
 			period.is_current = True
 			period.save()
 			for period in ReviewPeriod.objects.all():
 				print period.is_current
-			return render(request, 'setting_ok.html', {"period":period})
+			return render_to_response('setting_ok.html', {"period":period}, RequestContext(request))
 		else:
 			print form.errors
 	else:
 		form = ReviewPeriodForm()
-	return render(request, 'setting.html', {'form': form})
+	return render_to_response('setting.html', {'form': form}, RequestContext(request))
+
+@login_required(login_url='/admin_login')
+#@user_passes_test(is_site_admin_check, login_url='/admin_login')
+def admin_logout(request):
+	context = {}
+	logout(request)
+	return HttpResponseRedirect('/admin_login')

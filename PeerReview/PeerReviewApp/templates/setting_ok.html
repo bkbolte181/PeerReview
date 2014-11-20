@@ -1,73 +1,81 @@
 <!--http://trentrichardson.com/examples/timepicker/-->
 
-<!DOCTYPE html>
-{% load staticfiles %}
-<html>
-<head>
-  <meta charset='utf-8'>
+{% extends 'setting_base.html' %}
 
+  {% block head %}
   <title>Setting Success</title>
-  <style>
-    table, td {
-      border:solid grey 1px;
-    }
-  </style>
-</head>
-
-<body>
-
-  <h1>The information for current session is set successful.</h1>
-  <p>Current session:</p>
-  <table>
+  {% endblock %}
+  {% block body %}
+<div class="row admin-nav2">
+  <ol class="breadcrumb">
+    <li><a href="{% url 'admin_homepage' %}">Home</a></li>
+    <li class="active">System Settings</li>
+  </ol>
+</div>
+<div class = "row ">
+  <div class="col-sm-8 col-sm-offset-2">
+  <h5>The information for current session is set successful.</h5>
+  <table  class="table borderless table-condensed table-striped">
+    <caption>Current session</caption>
+    <thead >
     <tr>
-      <td>
-        Start date
-      </td>
-      <td>
-        {{period.start_date}}
-      </td>
+      <th class="col-sm-4"></th>
+      <th class="col-sm-8"></th>
     </tr>
-    <tr>
-      <td>
-        Submission deadline
-      </td>
-      <td>
-        {{period.submission_deadline}}
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Review deadline
-      </td>
-      <td>
-        {{period.review_deadline}}
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Group meeting time
-      </td>
-      <td>
-        {{period.group_meeting_time}}
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Group meeting venue
-      </td>
-      <td>
-        {{period.group_meeting_venue}}
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Max. number of manuscripts that the system can handle
-      </td>
-      <td>
-        {{period.max_manuscript}}
-      </td>
-    </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Start date
+        </td>
+        <td>
+          {{period.start_date}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Submission deadline
+        </td>
+        <td>
+          {{period.submission_deadline}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Review deadline
+        </td>
+        <td>
+          {{period.review_deadline}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Group meeting time
+        </td>
+        <td>
+          {{period.group_meeting_time}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Group meeting venue
+        </td>
+        <td>
+          {{period.group_meeting_venue}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Max. number of manuscripts that the system can handle
+        </td>
+        <td>
+          {{period.max_manuscript}}
+        </td>
+      </tr>
+    </tbody>
   </table>
+    <button type="button" class="btn btn-default pull-right" title="Go back to setting webpage." onclick="location.href = '{% url 'admin_setting' %}';">Back</button>
 
-</body>
-</html>
+  </div>
+  </div>
+  {% endblock %}
