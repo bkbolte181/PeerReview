@@ -124,3 +124,7 @@ AUTH_USER_MODEL = 'PeerReviewApp.SiteUser'
 # The default url for handling logging in. This is necessary so that views that
 # require a logged in user can redirect to the correct place.
 LOGIN_URL = '/login/'
+
+#File Transfer Backend / Serve file Download Backend
+PREPARE_UPLOAD_BACKEND = 'filetransfers.backends.default.prepare_upload'
+SERVE_FILE_BACKEND = 'filetransfers.backends.default.serve_file'

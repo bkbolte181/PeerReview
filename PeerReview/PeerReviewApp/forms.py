@@ -75,31 +75,6 @@ class SignupForm(forms.ModelForm):
 		if commit:
 			user.save()
 		return user
-'''
-class SubmitManuscript(forms.ModelForm):
- 	" Submitting a manuscript "
- 	def __init__(self, *args, **kwargs):
- 		super(SubmitManuscript, self).__init__(*args, **kwargs)
-
-<<<<<<< HEAD
- 	# This is the method for saving the newly created user
- 	def save(self, review_period, authors, commit=True):
- 		manuscript = super(SubmitManuscript, self).save(commit=False)
- 		manuscript.review_period = review_period
- 		if commit:
- 			manuscript.save()
- 		if type(authors) is list:
- 			manuscript.authors = authors
- 		else:
- 			manuscript.authors = [authors]
- 		if commit:
- 			manuscript.save()
- 		return manuscript
-
- 	class Meta:
- 		model = Manuscript
- 		exclude = ('review_period', 'authors', 'reviewers','review_file')
-'''
 
 class UploadManuscript(forms.ModelForm):
 
@@ -113,40 +88,7 @@ class UploadManuscript(forms.ModelForm):
 		'target_journal': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Which journal do you want to publish in?'}),
 		'image_amount': forms.Select(attrs={'class': 'form-control text-center', 'placeholder': 'How many figures are in your manuscript?'}),
 	    }
-'''
-class SubmitManuscript(forms.ModelForm):
-	""" Submitting a manuscript """
->>>>>>> 028dc0d0a6a595a5f18a0bc669f111e4046a6eab
-	def __init__(self, *args, **kwargs):
-		super(SubmitManuscript, self).__init__(*args, **kwargs)
 
-<<<<<<< HEAD
-	#saving the current form
-	def save(self, commit = True):
-		ManuscriptSubmission = super(ManuscriptSubmission,self).save(commit=False)
-
-	class Meta:
-		model = ManuscriptSubmission
-		exclude = ('reviewer', 'authors', 'status','is_final')
-=======
-	# This is the method for saving the newly created user
-	def save(self, review_period, authors, commit=True):
-		manuscript = super(SubmitManuscript, self).save(commit=False)
-		manuscript.review_period = review_period
-		if commit:
-			manuscript.save()
-		if type(authors) is list:
-			manuscript.authors = authors
-		else:
-			manuscript.authors = [authors]
-		if commit:
-			manuscript.save()
-		return manuscript
-
-	class Meta:
-		model = Manuscript
-		exclude = ('review_period', 'authors', 'reviewers','review_file')
-'''
 
 class UploadManuscript(forms.ModelForm):
 
