@@ -159,6 +159,11 @@ class Manuscript(models.Model):
 	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript", default=0)
 	is_final = models.BooleanField(default=False) # If the final decision of this manuscript has been made
 
+	def _get_period(self):
+		return self.review_period.is_current
+
+	is_current = property(_get_period)
+
 	def _get_recommended_reviewers(self):
 		advanced = 0
 		recommended = []

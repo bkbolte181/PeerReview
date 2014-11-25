@@ -257,21 +257,6 @@ def admin_browselist(request):
 	print group_meeting_venue
 
 	if request.method == 'POST':
-		#print len(non_final_manuscripts[0].reviewers.all())
-		#print non_final_manuscripts[0].reviewers.all()[0].email
-		
-		# simple match based on keywords
-		#for i in range(0, len(non_final_manuscripts)):
-			# will be used in template
-			#reviewrs = SiteUser.objects.filter(agreed_to_form=True, pi__in=non_final_manuscripts.keywords.split(','))
-	
-		# manuscripts with final decision being made
-		#final_manuscripts = Manuscript.objects.filter(is_final=True)
-
-		# use hidden value here to indicate which manuscript is being edited
-		# AdminBrowseListForm(request.POST)
-
-
 		#finish editing
 		if request.POST.get("save") != None:
 			editing = Manuscript.objects.get(id=request.POST.get("save"));
@@ -283,15 +268,20 @@ def admin_browselist(request):
 		elif request.POST.get("final") != None:
 			final = Manuscript.objects.get(id=request.POST.get("final"))
 			#check constraint
-			final.is_final = True			
+			while True:
+				a = 1	
+			final.is_final = True		
 			final.save()
 		
-	manuscripts = Manuscript.objects.all()
+	manuscripts_all = Manuscript.objects.all()
+	#print manuscripts[0].is_current
+	#manuscripts = Manuscript.objects.filter(is_current=True)
 
 	#review period constrain
-	for manuscript in manuscripts:
-		if not manuscript.review_period.is_current:
-			manuscripts.remove(manuscript)	
+	manuscripts = []
+	for manuscript in manuscripts_all:
+		if manuscript.review_period.is_current:
+			manuscripts.append(manuscript)	
 
 	#simple match, recommend reviewers
 	reviewers = SiteUser.objects.filter(agreed_to_form=True)
