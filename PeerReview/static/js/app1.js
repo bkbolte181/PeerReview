@@ -8,44 +8,32 @@ $(document).ready(function() {
 	$(".submit-btn").removeClass("hide").prop('disabled', false);
 	$("#add-icon").addClass("hide").prop('disabled', false);
 	$(".add-reviewer").addClass("hide").prop('disabled', false);
-	/*
-    $("body").tooltip({ selector: '[data-tooltip=tooltip]' });
-    $(".manuscript-detail span").popover({
-        placement : 'top'
-    });*/
+
 	var cur_form;
 	var cur_row;
 	var cur_listedReviewers;
 	var reviewers;
 	$(".add-btn").click(function(){
 		$(".msg").addClass("hide");
-		console.log("click add-btn");
+		//console.log("click add-btn");
 		$(this).prop('disabled', true);
 		cur_form = $(this).closest("form");
 		cur_row= cur_form.closest(".row");
 		cur_row.find(".col-sm-5").removeClass("col-sm-5").addClass("col-sm-4");
 		cur_row.find("#add-icon").removeClass("hide");
-		reviewers = $("#reviewer-list caption").map(function() {
+		reviewers = $("#reviewer-list caption a span").map(function() {
 			return $(this);
-			//return this.value;
 		}).get();
+		console.log("reviewers in reviewer list:");
 		console.log(reviewers);
 		for (var i=0;i < reviewers.length; i++) {
 			for (var j=0;j < cur_listedReviewers.length; j++) {
-				//console.log(reviewers[i].find('a').text());
-				//console.log(cur_listedReviewers[j]);
-				if (reviewers[i].find('a').text() === cur_listedReviewers[j]) {
+				if (reviewers[i].attr('value') === cur_listedReviewers[j]) {//if (reviewers[i].find('a').text() === cur_listedReviewers[j]) {
 					console.log("--------");
-					/*reviewers[i].parent().parent().addClass('hide');*/
+					console.log(reviewers[i].attr('value'));
 					
-					reviewers[i].find('span.glyphicon-ok').removeClass('hide');
-					reviewers[i].addClass('highlight-disable');
-					
-					/*
-					console.log(reviewers[i].find("input[type='checkbox']"));
-					reviewers[i].find("input[type='checkbox']").prop('disabled',true);
-					*/
-					//.prop('checked',true);
+					reviewers[i].parent().parent().find('span.glyphicon-ok').removeClass('hide');
+					reviewers[i].parent().parent().addClass('highlight-disable');
 				}
 			}
 		}
@@ -84,24 +72,37 @@ $(document).ready(function() {
 		form.find(".add-btn").removeClass("hide").prop('disabled', false);
 		form.find(".finish-edit-btn").removeClass("hide").prop('disabled', false);
 		cur_listedReviewers = form.find("input:checkbox").map(function() {
-			return $(this).parent().next().text();
+			return $(this).parent().next().find(">:first-child").attr("value");
 			//return this.value;
 		}).get();
+		cur_listedAuthors = form.find("a.admin_author").map(function() {
+			return $(this).find(">:first-child").attr("value");
+		}).get();
+		cur_listedReviewers = cur_listedReviewers.concat(cur_listedAuthors);
+		//cur_listedReviewers.push("134@emory.edu");
+		console.log("cur_listedReviewers:");
 		console.log(cur_listedReviewers);
+		console.log("cur_listedAuthors:");
+		console.log(cur_listedAuthors);
 	});
 
 	$("#add-icon").click(function(){
 		cur_form.find(".add-btn").prop('disabled', false);
 		var checkedValues = $('#reviewer-list caption.highlight').map(function() {
-			return $(this).find('a').text();
-			//return this.value;
+			return $(this);
 		}).get();
+		console.log("checkValues:");
 		console.log(checkedValues);
 		if (checkedValues.length>0) {
 			cur_form.find(".add-reviewer").removeClass("hide");
 			var str = "";
 			for (var i=0;i < checkedValues.length; i++) {
-				str = str + '<span class="checkbox hide"><input type="checkbox" value = "john@emory.edu" name = "reviewers" checked="checked "></span><a class="user" href="user_detail.html">' + checkedValues[i] + "</a>";
+				emailId = checkedValues[i].find("span.glyphicon-ok").attr('value').split(";");
+				email = emailId[0];
+				id = emailId[1];
+				href = checkedValues[i].find("a");
+				console.log("email: " + email+"; id: "+ id);
+				str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers" checked="checked "></span><a class="user" href="'+ href.attr('href')+'">' + href.text() + "</a>";
 				str = str + " ";
 				cur_listedReviewers.push(checkedValues[i]);
 
