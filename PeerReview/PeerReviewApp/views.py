@@ -244,9 +244,6 @@ class MatchedManuscript():
 def admin_browselist(request):
 	context_dict = {}
 		
-	#unfinished_manuscripts = Manuscript.objects.filter(is_final=False)
-	#final_manuscripts = Manuscript.objects.filter(is_final=True)
-
 	#period = ReviewPeriod.objects.all()[:1].get()
 	period = ReviewPeriod.objects.filter(is_current=True)[0]
 	print period
@@ -258,8 +255,6 @@ def admin_browselist(request):
 	print group_meeting_time
 	group_meeting_venue = period.group_meeting_venue
 	print group_meeting_venue
-
-	manuscripts = Manuscript.objects.all()
 
 	if request.method == 'POST':
 		#print len(non_final_manuscripts[0].reviewers.all())
@@ -276,8 +271,28 @@ def admin_browselist(request):
 		# use hidden value here to indicate which manuscript is being edited
 		# AdminBrowseListForm(request.POST)
 
-		print request.POST.getlist("reviewers")
-	
+
+		#finish editing
+		if request.POST.get("save") != None:
+			editing = Manuscript.objects.get(id=request.POST.get("save"));
+			editing.reviewers.clear()
+			for reviewer in request.POST.getlist("reviewers"):
+				editing.reviewers.add(SiteUser.objects.get(email=reviewer))
+				#print SiteUser.objects.get(email=reviewer)
+		#submit final decision
+		elif request.POST.get("final") != None:
+			final = Manuscript.objects.get(id=request.POST.get("final"))
+			#check constraint
+			final.is_final = True			
+			final.save()
+		
+	manuscripts = Manuscript.objects.all()
+
+	#review period constrain
+	for manuscript in manuscripts:
+		if not manuscript.review_period.is_current:
+			manuscripts.remove(manuscript)	
+
 	#simple match, recommend reviewers
 	reviewers = SiteUser.objects.filter(agreed_to_form=True)
 

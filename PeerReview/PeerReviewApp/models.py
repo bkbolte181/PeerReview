@@ -161,7 +161,7 @@ class Manuscript(models.Model):
 
 	def _get_recommended_reviewers(self):
 		advanced = 0
-		recommended_reviewers = []
+		recommended = []
 		reviewers = SiteUser.objects.filter(agreed_to_form=True)
 
 		#first match: research_interest&field
@@ -169,13 +169,13 @@ class Manuscript(models.Model):
 			if reviewer.research_interest.upper().find(self.field.upper()) and reviewer.assigned_num < MAXIMUM_PER_REVIEWER and reviewer not in self.authors.all() and reviewer not in self.reviewers.all():
 				#make sure advanced reviewers are before novices
 				if reviewer.star_string == '*':
-					recommended_reviewers.insert(0, reviewer)
+					recommended.insert(0, reviewer)
 					advanced += 1
 				else:
-					recommended_reviewers.append(reviewer)
+					recommended.append(reviewer)
 
 		#if the recommended list hasn't full
-		if len(recommended_reviewers) <= RECOMMENDED_NUM: 
+		if len(recommended) <= RECOMMENDED_NUM: 
 		#	for i in range(advanced, RECOMMENDED_AD):
 		#		for reviwer in reviewers:
 		#			if reviewer.star_string == '*' and reviewer not in recommended_reviewers and reviewer not in self.authors.all() and reviewer not in self.reviewers.all():
@@ -186,51 +186,51 @@ class Manuscript(models.Model):
 		#			recommended_reviewers.pop(len(recommended_reviewers)-1)
 		#		else:
 		#			break
-			return recommended_reviewers
+			return recommended
 
 		#second match: research_interest&keywords
-		for reviewer in recommended_reviewers:
+		for reviewer in recommended:
 			matched = False
 			#separated field
 			for keyword in self.keywords:
 				if reviewer.research_interest.upper().find(keyword.upper()):
 					matched = True
 					break
-			if not matched and len(recommended_reviewers) > RECOMMENDED_NUM:
+			if not matched and len(recommended) > RECOMMENDED_NUM:
 				#cannot remove too many advanced reviewers since we need at least 3 
 				if reviewer.star_string == '*':
 					if advanced > RECOMMENDED_AD:
-						recommended_reviewers.remove(reviewer)
+						recommended.remove(reviewer)
 						advanced -= 1
 				else:
-					recommended_reviewers.remove(reviewer)
-		if len(recommended_reviewers) <= RECOMMENDED_NUM: 
-			return recommended_reviewers
+					recommended.remove(reviewer)
+		if len(recommended) <= RECOMMENDED_NUM: 
+			return recommended
 		
 		#still too many recommended reviewers
 		#too many advanced reviewers
 		if advanced > RECOMMENDED_AD:
-			for reviewer in recommended_reviewers:
-				recommended_reviewers.pop(0)
+			for reviewer in recommended:
+				recommended.pop(0)
 				advanced -= 1
 				if advanced == RECOMMENDED_AD:
 					break
 		else: 
 			if advanced < RECOMMENDED_AD:
 				for reviewer in reviewers:
-					if reviewer.star_string == '*' and reviewer not in recommended_reviewers and reviewer not in self.authors.all() and reviewer not in self.reviewers.all():
-						recommended_reivewers.insert(0, reviewer)
+					if reviewer.star_string == '*' and reviewer not in recommended and reviewer not in self.authors.all() and reviewer not in self.reviewers.all():
+						recommended.insert(0, reviewer)
 						advanced += 1
 						if advanced == RECOMMENDED_AD:
 							break
 
-		for i in range(0, len(recommended_reviewers)):
-			if len(recommended_reviewers) > RECOMMENDED_NUM: 
-				recommended_reviewers.pop()		
+		for i in range(0, len(recommended)):
+			if len(recommended) > RECOMMENDED_NUM: 
+				recommended.pop()		
 			else: 
 				break
 			
-		return recommended_reviewers
+		return recommended
 
 	recommended_reviewers = property(_get_recommended_reviewers)
 
