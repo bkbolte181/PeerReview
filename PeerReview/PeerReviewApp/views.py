@@ -278,10 +278,9 @@ def admin_browselist(request):
 	#manuscripts = Manuscript.objects.filter(is_current=True)
 
 	#review period constrain
-	manuscripts = []
-	for manuscript in manuscripts_all:
-		if manuscript.review_period.is_current:
-			manuscripts.append(manuscript)	
+	#for manuscript in manuscripts:
+	#	if not manuscript.review_period.is_current:
+	#		manuscripts.remove(manuscript)
 
 	#simple match, recommend reviewers
 	reviewers = SiteUser.objects.filter(agreed_to_form=True)
