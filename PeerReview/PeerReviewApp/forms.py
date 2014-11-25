@@ -36,7 +36,7 @@ class SignupForm(forms.ModelForm):
 	''' This is the main sign-up form '''
 	error_messages = { # Add errors here
 		'password_mismatch': 'The two password fields didn\'t match.',
-	}
+        }
 	# Form needs two passwords to make sure the user doesn't mistype
 	password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter your Password'}), label='Password', help_text='Choose a password')
 	retype_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control text-center', 'placeholder': 'Re-enter your password, for verification'}), label='Retype Password', help_text='Enter the same password as above, for verification.')
@@ -54,7 +54,7 @@ class SignupForm(forms.ModelForm):
 			'pi': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Name of Primary Investigator'}),
 			'school': forms.Select(attrs={'class': 'form-control text-center', 'placeholder': 'Choose your School'}),
             'review_count': forms.TextInput(attrs={'class': 'form-control text-center','placeholder': 'Number of manuscripts previous reviewed'}),
-		}
+		    }
 	
 	# This method validates that the two passwords are the same
 	# If they don't match it throws an error
@@ -65,7 +65,7 @@ class SignupForm(forms.ModelForm):
 			raise forms.ValidationError(
 				self.error_messages['password_mismatch'],
 				code='password_mismatch',
-			)
+			    )
 		return retype_password
 	
 	# This is the method for saving the newly created user
@@ -75,79 +75,23 @@ class SignupForm(forms.ModelForm):
 		if commit:
 			user.save()
 		return user
-'''
-class SubmitManuscript(forms.ModelForm):
- 	" Submitting a manuscript "
- 	def __init__(self, *args, **kwargs):
- 		super(SubmitManuscript, self).__init__(*args, **kwargs)
-
-<<<<<<< HEAD
- 	# This is the method for saving the newly created user
- 	def save(self, review_period, authors, commit=True):
- 		manuscript = super(SubmitManuscript, self).save(commit=False)
- 		manuscript.review_period = review_period
- 		if commit:
- 			manuscript.save()
- 		if type(authors) is list:
- 			manuscript.authors = authors
- 		else:
- 			manuscript.authors = [authors]
- 		if commit:
- 			manuscript.save()
- 		return manuscript
-
- 	class Meta:
- 		model = Manuscript
- 		exclude = ('review_period', 'authors', 'reviewers','review_file')
-'''
 
 class UploadManuscript(forms.ModelForm):
-	fields = ('Title', 'BriefTitle', 'Abstract', 'Field', 'Keywords', 'TargetJournal', 'ImageAmount')
+
+	fields = ('title', 'brief_title', 'abstract', 'field', 'keywords', 'target_journal', 'image_amount')
 	widgets = {
-		'Title': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter Manuscript Title'}),
-		'BriefTitle': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter a shorter title which contains less than 10 words'}),
-		'Abstract': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter Manuscript Abstract'}),
-		'Field': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Manuscript Field e.g CS,BIO, etc'}),
-		'Keywords': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Keywords (no more than 10, separate by commas)'}),
-		'TargetJournal': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Which journal do you want to publish in?'}),
-		'ImageAmount': forms.Select(attrs={'class': 'form-control text-center', 'placeholder': 'How many figures are in your manuscript?'}),
-	}
-'''
-class SubmitManuscript(forms.ModelForm):
-	""" Submitting a manuscript """
->>>>>>> 028dc0d0a6a595a5f18a0bc669f111e4046a6eab
-	def __init__(self, *args, **kwargs):
-		super(SubmitManuscript, self).__init__(*args, **kwargs)
+		'title': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter Manuscript Title'}),
+		'brief_title': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter a shorter title which contains less than 10 words'}),
+		'abstract': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter Manuscript Abstract'}),
+		'field': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Manuscript Field e.g CS,BIO, etc'}),
+		'keywords': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Keywords (no more than 10, separate by commas)'}),
+		'target_journal': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Which journal do you want to publish in?'}),
+		'image_amount': forms.Select(attrs={'class': 'form-control text-center', 'placeholder': 'How many figures are in your manuscript?'}),
+	    }
 
-<<<<<<< HEAD
-	#saving the current form
-	def save(self, commit = True):
-		ManuscriptSubmission = super(ManuscriptSubmission,self).save(commit=False)
-
-	class Meta:
-		model = ManuscriptSubmission
-		exclude = ('reviewer', 'authors', 'status','is_final')
-=======
-	# This is the method for saving the newly created user
-	def save(self, review_period, authors, commit=True):
-		manuscript = super(SubmitManuscript, self).save(commit=False)
-		manuscript.review_period = review_period
-		if commit:
-			manuscript.save()
-		if type(authors) is list:
-			manuscript.authors = authors
-		else:
-			manuscript.authors = [authors]
-		if commit:
-			manuscript.save()
-		return manuscript
-
-	class Meta:
-		model = Manuscript
-		exclude = ('review_period', 'authors', 'reviewers','review_file')
-'''
 
 class UploadManuscript(forms.ModelForm):
+
     class Meta:
         model = Manuscript
         exclude = ('review_period', 'authors', 'reviewers', 'is_final','manuscript')
@@ -160,7 +104,7 @@ class UploadManuscript(forms.ModelForm):
 		'field': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Manuscript Field e.g CS,BIO, etc'}),
 		'keywords': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Keywords (no more than 10, separate by commas)'}),
 		'target_journal': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Which journal do you want to publish in?'}),
-	}
+	    }
 
 	def __init__(self, *args, **kwargs):
 		super(UploadManuscript, self).__init__(*args, **kwargs)

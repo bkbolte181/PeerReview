@@ -5,11 +5,10 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from custom_fields import SeparatedValuesField
 from datetime import datetime
-
 import os
-
 # Unique Universal ID: For generating unique file identifier
 import uuid
+
 
 # All valid schools
 SCHOOLS = settings.SCHOOLS
@@ -49,9 +48,9 @@ class SiteUser(AbstractBaseUser):
 		for forms to replace the built-ins that Django provides.
 	"""
 	email = models.EmailField('email address', max_length=200, unique=True,
-		error_messages={
-			'unique': 'A user with that email already exists.',
-		}, help_text="Emory Email Address")
+							error_messages={
+							'unique': 'A user with that email already exists.',
+							}, help_text="Emory Email Address")
 	first_name = models.CharField(max_length=100, help_text="First Name")
 	last_name = models.CharField(max_length=100, help_text="Last Name")
 	
@@ -68,8 +67,13 @@ class SiteUser(AbstractBaseUser):
 	USERNAME_FIELD = 'email'
 	REQUIRED_FIELDS = []
 	
-	def get_full_name(self): return self.first_name, self.last_name
-	def get_short_name(self): return self.first_name
+	def get_full_name(self):
+
+		return self.first_name, self.last_name
+
+	def get_short_name(self):
+
+		return self.first_name
 
 class ReviewPeriod(models.Model):
 	""" Model for a single review period """
@@ -101,6 +105,7 @@ class Manuscript(models.Model):
 	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript", default=0)
 	is_final = models.BooleanField(default=False) # If the final decision of this manuscript has been made
 
+''' Function to get the path of file. This is separate from all models '''
 def get_file_path(instance, filename):
 	""" Generate a unique file identifier """
 	ext = filename.split('.')[-1]
@@ -108,5 +113,6 @@ def get_file_path(instance, filename):
 	return os.path.join(settings.MEDIA_ROOT, filename)
 
 class ManuscriptFile(models.Model):
+
 	file = models.FileField(upload_to=get_file_path, null=True, blank=True)
 	manuscript = models.ForeignKey('Manuscript', related_name='files', related_query_name='file')

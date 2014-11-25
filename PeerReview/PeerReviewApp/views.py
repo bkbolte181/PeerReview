@@ -7,11 +7,10 @@ from django.forms.models import model_to_dict
 from datetime import datetime
 from filetransfers.api import prepare_upload
 from forms import *
-
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
 from PeerReviewApp.models import *
 from PeerReviewApp.forms import *
+
 
 def get_current_review_period():
 	if ReviewPeriod.objects.count() > 0:
@@ -32,8 +31,10 @@ def terms(request):
 def auth_login(request):
 	context = {}
 	context['next'] = request.GET.get('next', False)
-	if request.method == 'POST': form = LoginForm(request.POST)
-	else: form = LoginForm()
+	if request.method == 'POST':
+		form = LoginForm(request.POST)
+	else:
+		form = LoginForm()
 	if form.is_valid() and 'email' in form.cleaned_data and 'password' in form.cleaned_data:
 		print 'hit 2'
 		user = authenticate(username=form.cleaned_data['email'], password=form.cleaned_data['password'])
@@ -50,8 +51,10 @@ def auth_login(request):
 
 def signup(request):
 	context = {}
-	if request.method == 'POST': form = SignupForm(request.POST)
-	else: form = SignupForm()
+	if request.method == 'POST':
+		form = SignupForm(request.POST)
+	else:
+		form = SignupForm()
 	if form.is_valid():
 		context['form'] = form
 		# Passwords don't match
