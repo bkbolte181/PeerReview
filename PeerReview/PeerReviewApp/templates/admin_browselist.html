@@ -32,7 +32,8 @@
 					<!-- Manuscripts  -->
 					<div class="col-sm-7">
 						<h5 class="subtitle">Manuscripts</h5>
-						<div id="manuscript-list">			
+						<div id="manuscript-list">
+							{% if manuscripts %}
 							{% for manuscript in manuscripts %}
 							{% if not manuscript.is_final %}
 							<div class = "manuscript" id="manuscript{{manuscript.id}}">
@@ -58,17 +59,25 @@
 										<tr class='assigned-reviewer'>
 										  <td>Assigned reviewers</td>
 										  <td>
+											  {% if manuscript.reviewers.all %}
 											{% for reviewer in manuscript.reviewers.all %}
 											<span class="checkbox hide"><input type="checkbox" checked="checked" value={{reviewer.email}} name="reviewers{{manuscript.id}}"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
 											{% endfor %}
+											  {% else %}
+											  No assigned reviewers for this manuscript.
+											  {% endif %}
 										  </td>										
 										</tr>	
 										<tr class='recommend-reviewer'>
 										  <td>Recommend reviewers</td>
 										  <td>
+											  {% if manuscript.recommended_reviewers %}
 											{% for reviewer in manuscript.recommended_reviewers %}
 											<span class="checkbox hide"><input type="checkbox" value={{reviewer.email}} name="reviewers{{manuscript.id}}" ></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
 											{% endfor %}
+											  {% else %}
+											  No recommended reviewers for this manuscript.
+											{% endif %}
 											</td>
 										</tr>	
 										<tr class='add-reviewer hide'>
@@ -98,6 +107,9 @@
 							</div>
 							{% endif %}
 							{% endfor %}
+							{% else %}
+							<p>No manuscripts available in current session.</p>
+							{% endif %}
 							{% for manuscript in manuscripts %}
 							{% if manuscript.is_final %}
 							<div class = "manuscript" id="manuscript{{manuscript.id}}">
@@ -122,9 +134,13 @@
 									<tr>
 									  <td>Reviewers</td>
 										<td>
+											{% if manuscript.reviewers.all %}
 											{% for reviewer in manuscript.reviewers.all %}
 											<a class="user" href="{% url 'user_detail'  pk=reviewer.id %}">{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
 											{% endfor %}
+											{% else %}
+											No reviewers for this manuscript.
+											{% endif %}
 										</td>
 									</tr>											
 								</tbody>	
@@ -156,10 +172,8 @@
 									</tbody>	
 								</table>	
 							</div>
-
+							{% if reviewers %}
 							{% for reviewer in reviewers %}
-
-
 							<div class = "reviewer" id="reviewer1">
 								<table class="table table-no-border table-condensed">
 									<caption><span class="glyphicon glyphicon-ok hide" value="{{reviewer.email}};{{reviewer.id}}"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}</a></caption>
@@ -183,8 +197,10 @@
 									</tbody>	
 								</table>							
 							</div>
-
 							{% endfor %}
+							{% else %}
+							<p>No reviewers available in current session.</p>
+							{% endif %}
 
 						</div>
 					</div>		  				
@@ -212,19 +228,26 @@
 				<h4 class="modal-title" id="myModalLabel">Confirm</h4>
 			  </div>
 			  <div class="modal-body"  id="modal-body{{manuscript.id}}">
-				<p class="warning" style="color:red">Warning: The matching constrains are not satisfied because [reason].</p>
+				<p class="warning" style="color:red">Warning! The matching constrains are not satisfied because:</p>
 				<p>Are you sure you want to make the final matching decision for the following manuscript:</p>
 				<div class="manu">
 				<p>{{manuscript.id}}. {{manuscript.brief_title}}</p>
-				<p>Author: 
+				<p>Author:
 					{% for author in manuscript.authors.all %}
 						{{author.first_name}} {{author.last_name}}{{author.star_string}}{% if not forloop.last %},{% endif %}
 					{% endfor %}
 				</p>
-				<p>Reviewers: 
-					<span>{% for reviewer in manuscript.reviewers.all %}
+				<p>Reviewers:
+
+					<span>
+						{% if manuscript.reviewers.all %}
+						{% for reviewer in manuscript.reviewers.all %}
 						{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last %},{% endif %}
-					{% endfor %}<span>
+						{% endfor %}
+						{% else %}
+						No reviewers for this manuscript.
+						{% endif %}
+						<span>
 				</p>
 				</div>
 			  </div>

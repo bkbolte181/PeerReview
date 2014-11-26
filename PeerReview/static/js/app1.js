@@ -147,9 +147,16 @@ $(document).ready(function() {
 					var str = '<p>Your decision for the following manuscript has been made.</p><div class="'+'manu"';
 					str += '><p>' +data.manuscript.id + '. '+ data.manuscript.title + ' (ID:' + data.manuscript.id +
 						')</p><p>Author: ' + data.manuscript.author + '</p><p>Reviewers: ';
+					strstr = "";
 					for (var reviewer in data.reviewers)
-						str += data.reviewers[reviewer].name + ', ';
-					str = str.substring(0, str.length-2);						
+						strstr += data.reviewers[reviewer].name + ', ';
+					if (strstr.length == 0) {
+						strstr = "No reviewers for this manuscript.";
+					} else {
+						strstr = strstr.substring(0, str.length-2);
+						str = str.substring(0, str.length-2);
+					}
+					str = str + strstr;
 					str += '</p></div><p>We have successfully send emails to the author and reviewers about the decision.</p>';
 					dom.html(str);
 					dom.prev().find('h4').html("Success");
@@ -195,6 +202,7 @@ $(document).ready(function() {
 				href_prefix_str = "/user_detail/";
 				assigned_reviewer_td.empty();
 				console.log("from server: assigned_reviewers: ")
+
 				for (var assigned_reviewer in data.assigned) {
 					as_reviewer = data.assigned[assigned_reviewer];
 					console.log(as_reviewer.name);
@@ -205,12 +213,18 @@ $(document).ready(function() {
 					str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers'+manuscript_id+'" checked="checked "></span><a class="user" href="'+ href+'"><span value="'+id+'"></span>' + name + "</a>";
 					str = str + ", ";
 				}
-
-				str = str.substring(0, str.length-2);
+				if (str.length == 0) {
+					str = "No assigned reviewers for this manuscript."
+				} else {
+					str = str.substring(0, str.length-2);
+				}
 				assigned_reviewer_td.append(str);
+
+
 				str = "";
 				recommended_reviewer_td = my_form.find("tr.recommend-reviewer").children('td').eq(1);
 				recommended_reviewer_td.empty();
+
 				for (var recommended_reviewer in data.recommend) {
 					re_reviewer = data.recommend[recommended_reviewer];
 					email = re_reviewer.email;
@@ -220,7 +234,11 @@ $(document).ready(function() {
 					str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers'+manuscript_id+'"></span><a class="user" href="'+ href+'"><span value="'+id+'"></span>' + name + "</a>";
 					str = str + ", ";
 				}
-				str = str.substring(0, str.length-2);
+				if (str.length == 0) {
+					str = "No recommended reviewers for this manuscript."
+				} else {
+					str = str.substring(0, str.length-2);
+				}
 				recommended_reviewer_td.append(str);
 
 				added_reviewer_td = my_form.find("tr.add-reviewer").children('td').eq(1);
@@ -228,14 +246,26 @@ $(document).ready(function() {
 				msg_span = my_form.find("tr.msg td").first().find("span");
 				msg_span.empty();
 				if (data.constraint.length > 0)
-					msg_span.append("<br/> Warning: The matching constrains are not satisfied because: " + data.constraint);
+					msg_span.append("<br/> Warning! The matching constrains are not satisfied because: " + data.constraint);
 				str = '#modal-body'+manuscript_id + " .manu p span";
+				str_warning = '#modal-body'+manuscript_id + " p.warning";
+				modal_warning = $(str_warning);
 				modal_reviewer = $(str);
 				modal_reviewer.empty();
 				str = "";
+				console.log(modal_warning);
+				modal_warning.empty();
+				if (data.constraint.length > 0)
+					modal_warning.append("Warning! The matching constrains are not satisfied because: " + data.constraint);
 				for (var reviewer in data.assigned)
 					str += data.assigned[reviewer].name + ', ';
 				str = str.substring(0, str.length-2);
+				if (str.length == 0) {
+					str = "No recommended reviewers for this manuscript."
+				} else {
+					str = str.substring(0, str.length-2);
+				}
+				recommended_reviewer_td.append(str);
 				modal_reviewer.append(str);
 			}
 		});
