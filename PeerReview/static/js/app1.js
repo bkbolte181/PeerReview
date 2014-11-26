@@ -145,16 +145,15 @@ $(document).ready(function() {
 			success : function(data) {
 				if (data.success == 'true') {
 					var str = '<p>Your decision for the following manuscript has been made.</p><div class="'+'manu"';
-					str += '><p>' +data.manuscript.id + '. '+ data.manuscript.title + ' (ID:' + data.manuscript.id +
-						')</p><p>Author: ' + data.manuscript.author + '</p><p>Reviewers: ';
+					str += '><p>' +data.manuscript.id + '. '+ data.manuscript.title + '</p><p>Author: ' + data.manuscript.author + '</p><p>Reviewers: ';
 					strstr = "";
 					for (var reviewer in data.reviewers)
 						strstr += data.reviewers[reviewer].name + ', ';
 					if (strstr.length == 0) {
 						strstr = "<span style='color:red'>No reviewers for this manuscript.</span>";
 					} else {
-						strstr = strstr.substring(0, str.length-2);
-						str = str.substring(0, str.length-2);
+						strstr = strstr.substring(0, strstr.length-2);
+						//str = str.substring(0, str.length-2);
 					}
 					str = str + strstr;
 					str += '</p></div><p>We have successfully send emails to the author and reviewers about the decision.</p>';
