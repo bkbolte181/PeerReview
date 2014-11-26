@@ -137,11 +137,8 @@ $(document).ready(function() {
 				csrfmiddlewaretoken: '{{ csrf_token }}',
 			},
 			success : function(data) {
-				//console.log(cur_form.find(".recommend-reviewer"));
 				for (var reviewer in data.reviewers) {
 					as_reviewer = data.reviewers[reviewer];
-					//console.log(as_reviewer.star);
-					//console.log(as_reviewer.name);
 				}
 				console.log(data.constraint);
 			}
@@ -149,6 +146,7 @@ $(document).ready(function() {
 
 		$("#reviewer-list .checkbox").addClass("hide");
 	});
+
 	/*
 	$(".submit-no-btn").click(function(){
 		location.href="admin_browselist1.html";
@@ -176,26 +174,26 @@ $(document).ready(function() {
 					//console.log(as_reviewer.name);
 				//}
 				//console.log(data.constraint);
+
 				console.log(data.success);
 
 				console.log(dom);
-				var str = '<p>Your decision for the following manuscript has been made.</p><div class="'+'manu"'+
-				'><p>PCA versus LDA (ID:XXXXX)</p><p>Author: Martinez, A.</p><p>Reviewers: John Lee*, Emily White, Mary Green*, Jim Chen</p></div><p>We have successfully send emails to the author and reviewers about the decision.</p>';
-				dom.html(str);
-				dom.prev().find('h4').html("Success");
-				//console.log('Hello');
-				//console.log(dom.next());
-				str = '<div class='+'"btn-group pull-right"'+'><button onclick="location.href='+'\'/admin_browselist/\'"'
-				+' type="'+'button"'+ ' class="'+'btn btn-default confirm-no-btn"'+'>OK</button></div>';
-				console.log(str);
+				if (data.success == 'true') {
+					var str = '<p>Your decision for the following manuscript has been made.</p><div class="'+'manu"'+
+					'><p>PCA versus LDA (ID:XXXXX)</p><p>Author: Martinez, A.</p><p>Reviewers: John Lee*, Emily White, Mary Green*, Jim Chen</p></div><p>We have successfully send emails to the author and reviewers about the decision.</p>';
+					dom.html(str);
+					dom.prev().find('h4').html("Success");
+					//console.log('Hello');
+					//console.log(dom.next());
+					str = '<div class='+'"btn-group pull-right"'+'><button onclick="location.href='+'\'/admin_browselist/\'"'
+					+' type="'+'button"'+ ' class="'+'btn btn-default confirm-no-btn"'+'>OK</button></div>';
+					console.log(str);
 
-				dom.next().html(str);
+					dom.next().html(str);
+				}
 
 			}
 		});
-
-
-
 	});
 
 

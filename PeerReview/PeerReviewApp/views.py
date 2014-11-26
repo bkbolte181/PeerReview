@@ -277,7 +277,7 @@ def admin_submit_ajax(request):
 			if len(manuscript.reviewers.all()) < 4:
 				constraint = 'too few reviewers'
 		
-			if  advance < 2:
+			if advance < 2:
 				if constraint == '':
 					constraint = 'too few advance reviewers'
 				else:
