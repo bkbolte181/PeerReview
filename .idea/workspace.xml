@@ -72,8 +72,8 @@
       <file leaf-file-name="app1.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PeerReview/static/js/app1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.30857876" vertical-offset="1154" max-vertical-offset="3900">
-              <caret line="93" column="38" selection-start-line="93" selection-start-column="38" selection-end-line="93" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.53642386" vertical-offset="3345" max-vertical-offset="4590">
+              <caret line="250" column="33" selection-start-line="250" selection-start-column="33" selection-end-line="250" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -82,8 +82,8 @@
       <file leaf-file-name="admin_browselist.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/admin_browselist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-53.416668" vertical-offset="1703" max-vertical-offset="3675">
-              <caret line="199" column="100" selection-start-line="199" selection-start-column="100" selection-end-line="199" selection-end-column="100" />
+            <state vertical-scroll-proportion="-3.28" vertical-offset="751" max-vertical-offset="3675">
+              <caret line="61" column="148" selection-start-line="61" selection-start-column="139" selection-end-line="61" selection-end-column="148" />
               <folding />
             </state>
           </provider>
@@ -161,7 +161,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="117" />
+    <option name="x" value="146" />
     <option name="y" value="22" />
     <option name="width" value="1436" />
     <option name="height" value="878" />
@@ -702,7 +702,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="117" y="22" width="1436" height="878" extended-state="0" />
+    <frame x="146" y="22" width="1436" height="878" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1141,16 +1141,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/admin_browselist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-53.416668" vertical-offset="1703" max-vertical-offset="3675">
-          <caret line="199" column="100" selection-start-line="199" selection-start-column="100" selection-end-line="199" selection-end-column="100" />
+        <state vertical-scroll-proportion="-3.28" vertical-offset="751" max-vertical-offset="3675">
+          <caret line="61" column="148" selection-start-line="61" selection-start-column="139" selection-end-line="61" selection-end-column="148" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PeerReview/static/js/app1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30857876" vertical-offset="1154" max-vertical-offset="3900">
-          <caret line="93" column="38" selection-start-line="93" selection-start-column="38" selection-end-line="93" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.53642386" vertical-offset="3345" max-vertical-offset="4590">
+          <caret line="250" column="33" selection-start-line="250" selection-start-column="33" selection-end-line="250" selection-end-column="33" />
           <folding />
         </state>
       </provider>

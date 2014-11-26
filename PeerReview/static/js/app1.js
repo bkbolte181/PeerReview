@@ -103,8 +103,8 @@ $(document).ready(function() {
 				href = checkedValues[i].find("a");
 				//console.log("email: " + email+"; id: "+ id);
 				str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers_add" checked="checked "></span><a class="user" href="'+ href.attr('href')+'">' + href.text() + "</a>";
-
-				str = str + " ";
+				//if (i != checkedValues.length-1)
+					str = str + " ";
 				cur_listedReviewers.push(checkedValues[i]);
 
 			}
@@ -149,7 +149,9 @@ $(document).ready(function() {
 
 
 	$(".finish-edit-btn").click(function(){
-
+		my_form = $(this).closest("form");
+				console.log("my_form1:");
+				console.log(my_form);
 		var manuscript_id = $(this).val();
 		var check_list = document.getElementsByName('reviewers' + manuscript_id);
 		//var check_list = document.getElementsByName('reviewers_add');
@@ -179,11 +181,32 @@ $(document).ready(function() {
 				csrfmiddlewaretoken: '{{ csrf_token }}'
 			},
 			success : function(data) {
+				//var my_form = $(this).closest("form");
 				var as_advance = 0;
 				var as_novice = 0;
 				var reviewer_num = 0;
 				var str = "";
-				cur_form = $(this).closest("form");
+				//my_form = $(this).closest("form");
+				//console.log(manuscript_id);
+				//console.log("my_form:");
+				//console.log(my_form);
+				//console.log("cur_form:");
+				//console.log(cur_form);
+				//assigned_reviewer_td = my_form.find("tr.assigned-reviewer").children('td').eq(1);
+				assigned_reviewer_td = my_form.find("tr.assigned-reviewer").children('td').eq(1);
+				var href_prefix = assigned_reviewer_td.find("a").attr('href').split('/');
+				href_prefix_str = "/";
+				for (var i = 1; i < href_prefix.length-2; i++) {
+					//console.log(i);
+					//console.log(" " + href_prefix[i]);
+					href_prefix_str += href_prefix[i] + "/";
+				}
+
+				//console.log("href prefix str:");
+				//console.log(href_prefix_str);
+				//console.log("assigned_reviewer_td: ");
+				//console.log(assigned_reviewer_td);
+				assigned_reviewer_td.empty();
 				//console.log(cur_form.find(".recommend-reviewer"));
 				for (var assigned_reviewer in data.assigned) {
 					as_reviewer = data.assigned[assigned_reviewer];
@@ -192,14 +215,33 @@ $(document).ready(function() {
 					else
 						as_novice = as_novice + 1;
 					reviewer_num = reviewer_num + 1;
-					//console.log(as_reviewer.star);
-					console.log(as_reviewer.name);
+					//console.log(as_reviewer.name);
+					email = as_reviewer.email;
+					id = as_reviewer.id;
+					href = href_prefix_str + id + "/";
+					name = as_reviewer.name;
+					str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers'+id+'" checked="checked "></span><a class="user" href="'+ href+'"><span value="'+id+'"></span>' + name + "</a>";
+					str = str + ", ";
+
 				}
+				str = str.substring(0, str.length-2);
+				//console.log(str);
+				assigned_reviewer_td.append(str);
+				str = "";
+				recommended_reviewer_td = my_form.find("tr.recommend-reviewer").children('td').eq(1);
+				recommended_reviewer_td.empty();
 				for (var recommended_reviewer in data.recommend) {
 					re_reviewer = data.recommend[recommended_reviewer];
-					//console.log(re_reviewer.star);
-					console.log(re_reviewer.name);
+					//console.log(re_reviewer.name);
+					email = re_reviewer.email;
+					id = re_reviewer.id;
+					href = href_prefix_str + id + "/";
+					name = re_reviewer.name;
+					str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers'+id+'"></span><a class="user" href="'+ href+'"><span value="'+id+'"></span>' + name + "</a>";
+					str = str + ", ";
 				}
+				str = str.substring(0, str.length-2);
+				recommended_reviewer_td.append(str);
 				if(reviewer_num < 4)
 					str = "too few reviewers";
 				else if(reviewer_num > 4)
@@ -217,6 +259,8 @@ $(document).ready(function() {
 					else
 						str = "too many advanced reviewers";
 				}
+				added_reviewer_td = my_form.find("tr.ad-reviewer").children('td').eq(1);
+				added_reviewer_td.empty();
 			}
 		});
 		
@@ -235,6 +279,8 @@ $(document).ready(function() {
 		$("#manuscript-list .edit-btn").removeClass("hide").prop('disabled', false);
 		form.find(".add-reviewer").addClass("hide").prop('disabled', false);
 		//location.href="admin_browselist.html";
+		cur_row= form.closest(".row");
+		console.log(cur_row);
 		cur_row.find("#add-icon").addClass("hide");
 		$('#reviewer-list .reviewer').removeClass('hide');
 		$("#reviewer-list .checkbox").addClass("hide");
