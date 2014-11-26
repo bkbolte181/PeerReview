@@ -59,7 +59,7 @@
 										  <td>Assigned reviewers</td>
 										  <td>
 											{% for reviewer in manuscript.reviewers.all %}
-											<span class="checkbox"><input type="checkbox" checked="checked" value={{reviewer.email}} name="reviewers{{manuscript.id}}"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
+											<span class="checkbox hide"><input type="checkbox" checked="checked" value={{reviewer.email}} name="reviewers{{manuscript.id}}"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
 											{% endfor %}
 										  </td>										
 										</tr>	
@@ -67,15 +67,15 @@
 										  <td>Recommend reviewers</td>
 										  <td>
 											{% for reviewer in manuscript.recommended_reviewers %}
-											<span class="checkbox"><input type="checkbox" value={{reviewer.email}} name="reviewers{{manuscript.id}}" ></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
+											<span class="checkbox hide"><input type="checkbox" value={{reviewer.email}} name="reviewers{{manuscript.id}}" ></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
 											{% endfor %}
 											</td>
 										</tr>	
-										<tr class='add-reviewer'>
+										<tr class='add-reviewer hide'>
 										  <td>Added reviewers</td>
 										  <td></td>
 										</tr>	
-										<tr class="msg">
+										<tr class="msg hide">
 										<td colspan=2>Assignment has been saved to database.<span></span></td>
 										<td></td>
 										</tr>										
@@ -83,10 +83,10 @@
 											<td></td>
 											<td>
 											<div class="btn-group pull-right">
-												<button type="button" class="btn btn-default btn-sm finish-edit-btn"  title="Save and finish edit." value={{ manuscript.id }} name="save">Finish Edit</button>						
-												<button type="button" class="btn btn-default btn-sm add-btn" title="Add additional reviewers from reviewer list on the right to this manuscript!">Add more reviewers</button>		     
+												<button type="button" class="btn btn-default btn-sm finish-edit-btn hide"  title="Save and finish edit." value={{ manuscript.id }} name="save">Finish Edit</button>
+												<button type="button" class="btn btn-default btn-sm add-btn hide" title="Add additional reviewers from reviewer list on the right to this manuscript!">Add more reviewers</button>
 			
-												<button type="button" class="btn btn-default btn-sm submit-btn" title="Submit final matching decision." data-toggle="modal" data-target=".bs-submit-confirm{{ manuscript.id }}" value={{ manuscript.id }} name="final">Submit final decision</button>	
+												<button type="button" class="btn btn-default btn-sm submit-btn" title="Submit final matching decision." data-toggle="modal" data-target=".bs-submit-confirm{{ manuscript.id }}" value={{ manuscript.id }} name="final">Submit final decision</button>
 												<button type="button" class="btn btn-default btn-sm edit-btn" title="Edit reviewers for the manuscript.">Edit</button>												
 											</div>
 											</td>							
@@ -162,7 +162,7 @@
 
 							<div class = "reviewer" id="reviewer1">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok" value="{{reviewer.email}};{{reviewer.id}}"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}</a></caption>
+									<caption><span class="glyphicon glyphicon-ok hide" value="{{reviewer.email}};{{reviewer.id}}"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}</a></caption>
 									<thead>
 										<tr>
 										  <th class="col-sm-10"></th>

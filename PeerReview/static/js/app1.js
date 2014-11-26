@@ -11,9 +11,10 @@ $(document).ready(function() {
 
 	var cur_form;
 	var cur_row;
-	var cur_listedReviewers;
+
 	var reviewers;
 	$(".add-btn").click(function(){
+
 		$(".msg").addClass("hide");
 		//console.log("click add-btn");
 		$(this).prop('disabled', true);
@@ -24,6 +25,17 @@ $(document).ready(function() {
 		reviewers = $("#reviewer-list caption a span").map(function() {
 			return $(this);
 		}).get();
+
+		cur_listedReviewers = cur_form.find("input:checkbox").map(function() {
+			return $(this).parent().next().find(">:first-child").attr("value");
+			//return this.value;
+		}).get();
+		cur_listedAuthors = cur_form.find("a.admin_author").map(function() {
+			return $(this).find(">:first-child").attr("value");
+		}).get();
+		cur_listedReviewers = cur_listedReviewers.concat(cur_listedAuthors);
+		console.log("cur_listedReviewers:");
+		console.log(cur_listedReviewers);
 		//console.log("reviewers in reviewer list:");
 		//console.log(reviewers);
 		for (var i=0;i < reviewers.length; i++) {
@@ -71,14 +83,14 @@ $(document).ready(function() {
 		$('#manuscript-list .btn').prop('disabled', true);
 		form.find(".add-btn").removeClass("hide").prop('disabled', false);
 		form.find(".finish-edit-btn").removeClass("hide").prop('disabled', false);
-		cur_listedReviewers = form.find("input:checkbox").map(function() {
-			return $(this).parent().next().find(">:first-child").attr("value");
+		//cur_listedReviewers = form.find("input:checkbox").map(function() {
+		//	return $(this).parent().next().find(">:first-child").attr("value");
 			//return this.value;
-		}).get();
-		cur_listedAuthors = form.find("a.admin_author").map(function() {
-			return $(this).find(">:first-child").attr("value");
-		}).get();
-		cur_listedReviewers = cur_listedReviewers.concat(cur_listedAuthors);
+		//}).get();
+		//cur_listedAuthors = form.find("a.admin_author").map(function() {
+		//	return $(this).find(">:first-child").attr("value");
+		//}).get();
+		//cur_listedReviewers = cur_listedReviewers.concat(cur_listedAuthors);
 		//cur_listedReviewers.push("134@emory.edu");
 		//console.log("cur_listedReviewers:");
 		//console.log(cur_listedReviewers);
@@ -257,10 +269,10 @@ $(document).ready(function() {
 					as_reviewer = data.assigned[assigned_reviewer];
 					console.log(as_reviewer.name);
 					email = as_reviewer.email;
-					id = manuscript_id;
+					id = as_reviewer.id;
 					href = href_prefix_str + id + "/";
 					name = as_reviewer.name;
-					str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers'+id+'" checked="checked "></span><a class="user" href="'+ href+'"><span value="'+id+'"></span>' + name + "</a>";
+					str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers'+manuscript_id+'" checked="checked "></span><a class="user" href="'+ href+'"><span value="'+id+'"></span>' + name + "</a>";
 					str = str + ", ";
 				}
 
@@ -274,10 +286,10 @@ $(document).ready(function() {
 					re_reviewer = data.recommend[recommended_reviewer];
 					//console.log(re_reviewer.name);
 					email = re_reviewer.email;
-					id = manuscript_id;
+					id = re_reviewer.id;
 					href = href_prefix_str + id + "/";
 					name = re_reviewer.name;
-					str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers'+id+'"></span><a class="user" href="'+ href+'"><span value="'+id+'"></span>' + name + "</a>";
+					str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers'+manuscript_id+'"></span><a class="user" href="'+ href+'"><span value="'+id+'"></span>' + name + "</a>";
 					str = str + ", ";
 				}
 				str = str.substring(0, str.length-2);
