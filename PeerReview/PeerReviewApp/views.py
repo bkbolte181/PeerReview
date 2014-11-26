@@ -257,25 +257,11 @@ def admin_submit_ajax(request):
 		
 			response_dict = {}			
 			reviewer_dict = {}
-			advance = 0
 			for reviewer in manuscript.reviewers.all():
 				reviewer_dict[reviewer.email] = {'name':reviewer.first_name + ' ' + reviewer.last_name + reviewer.star_string, 'email':reviewer.email, 'id':reviewer.id}
-				if reviewer.star_string == '*':
-					advance += 1
 
-			#reviewers constrain 
-			constraint = ''
-			if len(manuscript.reviewers.all()) < 4:
-				constraint = 'too few reviewers'
-		
-			if advance < 2:
-				if constraint == '':
-					constraint = 'too few advance reviewers'
-				else:
-					constraint += ', too few advance reviewers'
-			
 			response_dict['reviewers'] = reviewer_dict
-			response_dict['constraint'] = constraint
+			response_dict['constraint'] = manuscript.warning
 			response_dict['success'] = 'true'
 
 	except KeyError:
@@ -304,29 +290,15 @@ def admin_ajax(request):
 				assigned_dict = {} 
 				recommend_dict = {}
 
-				advance = 0
 				for reviewer in manuscript.reviewers.all():
 					assigned_dict[reviewer.email] = {'name':reviewer.first_name + ' ' + reviewer.last_name + reviewer.star_string, 'email':reviewer.email, 'id':reviewer.id}
-					if reviewer.star_string == '*':
-						advance += 1
 
 				for reviewer in manuscript.recommended_reviewers:
 					recommend_dict[reviewer.email] = {'name':reviewer.first_name + ' ' + reviewer.last_name + reviewer.star_string, 'email':reviewer.email, 'id':reviewer.id}
 
-				#reviewers constrain 
-				constraint = ''
-				if len(manuscript.reviewers.all()) < 4:
-					constraint = 'too few reviewers'
-
-				if  advance < 2:
-					if constraint == '':
-						constraint = 'too few advance reviewers'
-					else:
-						constraint += ', too few advance reviewers'
-
 				response_dict['assigned'] = assigned_dict
 				response_dict['recommend'] = recommend_dict
-				response_dict['constraint'] = constraint
+				response_dict['constraint'] = manuscript.warning
 				response_dict['success'] = 'true'
 
 	except KeyError:
