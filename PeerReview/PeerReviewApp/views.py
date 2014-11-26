@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response, RequestContext
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout, get_user
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -12,6 +12,8 @@ from django.shortcuts import get_object_or_404
 
 from PeerReviewApp.models import *
 from PeerReviewApp.forms import *
+
+import json
 
 def index(request):
 	''' Main landing page '''
@@ -239,6 +241,43 @@ class MatchedManuscript():
 	def add(self, reviewer):
 		self.recommended_reviewers.append(reviewer)
 
+#view to handle admin ajax call 
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
+def admin_ajax(request):
+	try:
+		if request.POST.has_key('manuscript_id'):
+			manuscript_id = request.POST.get('manuscript_id')
+			manuscript = Manuscript.objects.get(id=manuscript_id)
+
+			#get new set of reviewers
+			if request.POST.has_key('reviewers'):
+				reviewers = request.POST.get('reviewers').split(',')
+				reviewers.pop()
+
+				#store the new set of reviewers
+				manuscript.reviewers.clear()
+				for reviewer in reviewers:
+					manuscript.reviewers.add(SiteUser.objects.get(email=reviewer))
+				response_dict = {}
+				assigned_dict = {} 
+				recommend_dict = {}
+				
+				#manuscript = Manuscript.objects.get(id=manuscript_id)
+				#print manuscript.reviewers.all()[0].first_name
+
+				for reviewer in manuscript.reviewers.all():
+					assigned_dict[reviewer.email] = {'name':reviewer.first_name + ' ' + reviewer.last_name + reviewer.star_string, 'email':reviewer.email, 'id':reviewer.id, 'star':reviewer.star_string}
+				for reviewer in manuscript.recommended_reviewers:
+					recommend_dict[reviewer.email] = {'name':reviewer.first_name + ' ' + reviewer.last_name + reviewer.star_string, 'email':reviewer.email, 'id':reviewer.id, 'star':reviewer.star_string}
+						
+				response_dict['assigned'] = assigned_dict
+				response_dict['recommend'] = recommend_dict
+
+	except KeyError:
+		return HttpResponse(json.dumps({'error': 'true', 'code': 'KeyError'}), content_type='application/json')
+
+	return HttpResponse(json.dumps(response_dict), content_type='application/json')
+
 #@login_required(login_url='/admin_login')
 @user_passes_test(is_site_admin_check, login_url='/admin_login')
 def admin_browselist(request):
@@ -256,29 +295,32 @@ def admin_browselist(request):
 	group_meeting_venue = period.group_meeting_venue
 	print group_meeting_venue
 
-	if request.method == 'POST':
+	#if request.method == 'POST':
 		#finish editing
-		if request.POST.get("save") != None:
-			editing = Manuscript.objects.get(id=request.POST.get("save"));
-			editing.reviewers.clear()
-			for reviewer in request.POST.getlist("reviewers"):
-				editing.reviewers.add(SiteUser.objects.get(email=reviewer))
+		#if request.POST.get("save") != None:
+			#get the targeted manuscript
+			#print "haha"
+			#editing = Manuscript.objects.get(id=request.POST.get("save"));
+			#editing.reviewers.clear()
+			#for reviewer in request.POST.getlist("reviewers"):
+				#editing.reviewers.add(SiteUser.objects.get(email=reviewer))
+			
 				#print SiteUser.objects.get(email=reviewer)
 		#submit final decision
-		elif request.POST.get("final") != None:
-			final = Manuscript.objects.get(id=request.POST.get("final"))
+		#elif request.POST.get("final") != None:
+		#	final = Manuscript.objects.get(id=request.POST.get("final"))
+			#requset.POST.get(")
 			#check constraint
-			while True:
-				a = 1	
-			final.is_final = True		
-			final.save()
+			#while True:
+			#	a = 1	
+		#	final.is_final = True		
+		#	final.save()
 		
 	manuscripts_all = Manuscript.objects.all()
 	#print manuscripts[0].is_current
 	#manuscripts = Manuscript.objects.filter(is_current=True)
 
 	#review period constrain
-
 	manuscripts = []
 	for manuscript in manuscripts_all:
 		if manuscript.review_period.is_current:
