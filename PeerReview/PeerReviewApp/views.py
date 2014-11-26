@@ -250,11 +250,22 @@ def admin_confirm_ajax(request):
 			manuscript = Manuscript.objects.get(id=manuscript_id)
 			manuscript.is_final = True
 			manuscript.save()
+		
+			response_dict = {}
+			reviewers_dict = {}
+			for reviewer in manuscript.reviewers.all():
+				reviewers_dict[reviewer.email] = {'name':reviewer.first_name + ' ' + reviewer.last_name + reviewer.star_string}
+
+			author = manuscript.authors.all()[0]
+			response_dict['manuscript'] = {'title':manuscript.brief_title, 'id':manuscript.id, 'author':author.first_name + ' ' + author.last_name + author.star_string}
+			response_dict['reviewers'] = reviewers_dict
+			response_dict['success'] = 'true'
+			
 
 	except KeyError:
 		return HttpResponse(json.dumps({'error': 'true', 'code': 'KeyError'}), content_type='application/json')
 		
-	return HttpResponse(json.dumps({'success': 'true'}), content_type='application/json')
+	return HttpResponse(json.dumps(response_dict), content_type='application/json')
 
 #view to handle admin submit final decision ajax call
 @user_passes_test(is_site_admin_check, login_url='/admin_login')

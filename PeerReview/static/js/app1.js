@@ -191,8 +191,14 @@ $(document).ready(function() {
 
 				console.log(dom);
 				if (data.success == 'true') {
-					var str = '<p>Your decision for the following manuscript has been made.</p><div class="'+'manu"'+
-					'><p>PCA versus LDA (ID:XXXXX)</p><p>Author: Martinez, A.</p><p>Reviewers: John Lee*, Emily White, Mary Green*, Jim Chen</p></div><p>We have successfully send emails to the author and reviewers about the decision.</p>';
+					var str = '<p>Your decision for the following manuscript has been made.</p><div class="'+'manu"';
+					
+					str += '><p>' + data.manuscript.title + ' (ID:' + data.manuscript.id + ')</p><p>Author: ' + data.manuscript.author + '</p><p>Reviewers: ';
+
+					for (var reviewer in data.reviewers)
+						str += data.reviewers[reviewer].name + ', ';
+					str = str.substring(0, str.length-2);						
+					str += '</p></div><p>We have successfully send emails to the author and reviewers about the decision.</p>';
 					dom.html(str);
 					dom.prev().find('h4').html("Success");
 					//console.log('Hello');
