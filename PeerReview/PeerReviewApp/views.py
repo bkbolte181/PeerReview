@@ -310,21 +310,27 @@ def admin_ajax(request):
 @user_passes_test(is_site_admin_check, login_url='/admin_login')
 def admin_browselist(request):
 	context_dict = {}
-		
-	#get current period
-	period = ReviewPeriod.objects.filter(is_current=True)[0]
-	submission_deadline = period.submission_deadline
-	review_deadline = period.review_deadline
-	group_meeting_time = period.group_meeting_time
-	group_meeting_venue = period.group_meeting_venue
+	manuscripts = []
 		
 	manuscripts_all = Manuscript.objects.all()
 
-	#review period constrain
-	manuscripts = []
-	for manuscript in manuscripts_all:
-		if manuscript.review_period.is_current:
-			manuscripts.append(manuscript)	
+	#get current period
+	period = ReviewPeriod.objects.filter(is_current=True)
+	if len(period) != 0:
+		submission_deadline = period.submission_deadline
+		review_deadline = period.review_deadline
+		group_meeting_time = period.group_meeting_time
+		group_meeting_venue = period.group_meeting_venue
+
+		#review period constrain
+		for manuscript in manuscripts_all:
+			if manuscript.review_period.is_current:
+				manuscripts.append(manuscript)	
+	else:
+		submission_deadline = ''
+		review_deadline = ''
+		group_meeting_time = ''
+		group_meeting_venue = ''
 
 	reviewers = SiteUser.objects.filter(agreed_to_form=True)
 
