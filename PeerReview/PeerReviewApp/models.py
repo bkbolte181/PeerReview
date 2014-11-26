@@ -237,6 +237,25 @@ class Manuscript(models.Model):
 
 	recommended_reviewers = property(_get_recommended_reviewers)
 
+	def _get_warning(self):
+		constraint = ''
+		advance = 0
+		for reviewer in self.reviewers.all():
+			if reviewer.star_string == '*':
+				advance += 1
+
+		if len(self.reviewers.all()) < 4:
+			constraint = 'too few reviewers'
+
+		if  advance < 2:
+			if constraint == '':
+				constraint = 'too few advance reviewers'
+			else:
+				constraint += ', too few advance reviewers'
+
+		return constraint
+
+	warning = property(_get_warning)
 
 
 
