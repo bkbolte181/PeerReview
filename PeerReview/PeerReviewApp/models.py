@@ -122,6 +122,14 @@ class SiteUser(AbstractBaseUser):
 	
 	assigned_num = property(_get_assigned_num)
 
+	def _get_assigned_manuscripts(self):
+		ids = []
+		for manuscript in self.reviewers.all():
+			ids.append(manuscript.id)
+		return ids
+	
+	assigned_manuscripts = property(_get_assigned_manuscripts)
+
 class ReviewPeriod(models.Model):
 	''' Model for a single review period '''
 	is_full = models.BooleanField(default=False) # If this review period is full or not
