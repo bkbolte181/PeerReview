@@ -138,11 +138,8 @@ $(document).ready(function() {
 				csrfmiddlewaretoken: '{{ csrf_token }}',
 			},
 			success : function(data) {
-				//console.log(cur_form.find(".recommend-reviewer"));
 				for (var reviewer in data.reviewers) {
 					as_reviewer = data.reviewers[reviewer];
-					//console.log(as_reviewer.star);
-					//console.log(as_reviewer.name);
 				}
 				console.log(data.constraint);
 			}
@@ -150,6 +147,7 @@ $(document).ready(function() {
 
 		$("#reviewer-list .checkbox").addClass("hide");
 	});
+
 	/*
 	$(".submit-no-btn").click(function(){
 		location.href="admin_browselist1.html";
@@ -170,17 +168,10 @@ $(document).ready(function() {
 				csrfmiddlewaretoken: '{{ csrf_token }}',
 			},
 			success : function(data) {
-				//console.log(cur_form.find(".recommend-reviewer"));
-				//for (var reviewer in data.reviewers) {
-					//as_reviewer = data.reviewers[reviewer];
-					//console.log(as_reviewer.star);
-					//console.log(as_reviewer.name);
-				//}
-				//console.log(data.constraint);
-				console.log(data.success);
+				if (data.success == 'true')
+					console.log(data.success);
 			}
 		});
-
 
 		//location.href="admin_submit_success.html";
 		var dom = $(this).parent().parent().parent().parent().find('.modal-body');
