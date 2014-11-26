@@ -126,6 +126,28 @@ $(document).ready(function() {
 
 	});
 	$(".submit-btn").click(function(){
+		var manuscript_id = $(this).val();
+
+		//ajax part
+		$.ajax({
+			url : "admin_submit_ajax/", 
+			type : "POST",
+			dataType: "json", 
+			data : {
+				manuscript_id: manuscript_id,
+				csrfmiddlewaretoken: '{{ csrf_token }}',
+			},
+			success : function(data) {
+				//console.log(cur_form.find(".recommend-reviewer"));
+				for (var reviewer in data.reviewers) {
+					as_reviewer = data.reviewers[reviewer];
+					//console.log(as_reviewer.star);
+					//console.log(as_reviewer.name);
+				}
+				console.log(data.constraint);
+			}
+		});
+
 		$("#reviewer-list .checkbox").addClass("hide");
 	});
 	/*
@@ -136,6 +158,30 @@ $(document).ready(function() {
 		
 	})*/
 	$(".confirm-yes-btn").click(function(){
+		var manuscript_id = $(this).val();
+
+		//ajax part
+		$.ajax({
+			url : "admin_confirm_ajax/", 
+			type : "POST",
+			dataType: "json", 
+			data : {
+				manuscript_id: manuscript_id,
+				csrfmiddlewaretoken: '{{ csrf_token }}',
+			},
+			success : function(data) {
+				//console.log(cur_form.find(".recommend-reviewer"));
+				//for (var reviewer in data.reviewers) {
+					//as_reviewer = data.reviewers[reviewer];
+					//console.log(as_reviewer.star);
+					//console.log(as_reviewer.name);
+				//}
+				//console.log(data.constraint);
+				console.log(data.success);
+			}
+		});
+
+
 		//location.href="admin_submit_success.html";
 		var dom = $(this).parent().parent().parent().parent().find('.modal-body');
 		//console.log(dom);
@@ -169,7 +215,6 @@ $(document).ready(function() {
 				reviewers += add_list[i].value + ',';
 		}  
 
-
 		//ajax part
 		$.ajax({
 			url : "admin_ajax/", 
@@ -178,13 +223,9 @@ $(document).ready(function() {
 			data : {
 				reviewers: reviewers,
 				manuscript_id: manuscript_id,
-				csrfmiddlewaretoken: '{{ csrf_token }}'
+				csrfmiddlewaretoken: '{{ csrf_token }}',
 			},
 			success : function(data) {
-				//var my_form = $(this).closest("form");
-				var as_advance = 0;
-				var as_novice = 0;
-				var reviewer_num = 0;
 				var str = "";
 				//my_form = $(this).closest("form");
 				//console.log(manuscript_id);
@@ -210,11 +251,6 @@ $(document).ready(function() {
 				//console.log(cur_form.find(".recommend-reviewer"));
 				for (var assigned_reviewer in data.assigned) {
 					as_reviewer = data.assigned[assigned_reviewer];
-					if(as_reviewer.star == "*")
-						as_advance = as_advance + 1;
-					else
-						as_novice = as_novice + 1;
-					reviewer_num = reviewer_num + 1;
 					//console.log(as_reviewer.name);
 					email = as_reviewer.email;
 					id = as_reviewer.id;
@@ -222,8 +258,8 @@ $(document).ready(function() {
 					name = as_reviewer.name;
 					str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers'+id+'" checked="checked "></span><a class="user" href="'+ href+'"><span value="'+id+'"></span>' + name + "</a>";
 					str = str + ", ";
-
 				}
+
 				str = str.substring(0, str.length-2);
 				//console.log(str);
 				assigned_reviewer_td.append(str);
@@ -242,33 +278,17 @@ $(document).ready(function() {
 				}
 				str = str.substring(0, str.length-2);
 				recommended_reviewer_td.append(str);
-				if(reviewer_num < 4)
-					str = "too few reviewers";
-				else if(reviewer_num > 4)
-					str = "too many reviewers";
 
-				if(as_advance < 2) {
-					if(str != "")
-						str += ", too few advanced reviewers";
-					else
-						str = "too few advanced reviewers";
-				}
-				else if(as_advance > 2) {
-					if(str != "")
-						str += ' "<br/>"too many advanced reviewers';
-					else
-						str = "too many advanced reviewers";
-				}
 				added_reviewer_td = my_form.find("tr.ad-reviewer").children('td').eq(1);
 				added_reviewer_td.empty();
+
+				console.log(data.constraint);
 			}
 		});
 		
 		$(this).parent().parent().parent().parent().find('.msg').removeClass('hide');
 
 		var form = $(this).closest("form");
-		//form.find(".msg td:last").append(str);
-
 		form.find('table').removeClass("highlight");
 		form.find('caption').removeClass("highlight");
 		

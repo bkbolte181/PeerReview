@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="65729eaa-0df1-462a-9ea5-beed32140cd0" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/admin_browselist.html" afterPath="$PROJECT_DIR$/PeerReview/PeerReviewApp/templates/admin_browselist.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PeerReview/static/js/app1.js" afterPath="$PROJECT_DIR$/PeerReview/static/js/app1.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PeerReview/PeerReviewApp/urls.py" afterPath="$PROJECT_DIR$/PeerReview/PeerReviewApp/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PeerReview/PeerReviewApp/views.py" afterPath="$PROJECT_DIR$/PeerReview/PeerReviewApp/views.py" />
     </list>
     <ignored path="PeerReview.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,8 +65,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3274" max-vertical-offset="5625">
-              <caret line="238" column="39" selection-start-line="238" selection-start-column="39" selection-end-line="238" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="4264" max-vertical-offset="6615">
+              <caret line="304" column="31" selection-start-line="304" selection-start-column="31" selection-end-line="304" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -72,8 +75,8 @@
       <file leaf-file-name="app1.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PeerReview/static/js/app1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53642386" vertical-offset="3345" max-vertical-offset="4590">
-              <caret line="250" column="33" selection-start-line="250" selection-start-column="33" selection-end-line="250" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.7549669" vertical-offset="3705" max-vertical-offset="4890">
+              <caret line="285" column="12" selection-start-line="285" selection-start-column="12" selection-end-line="285" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -1133,8 +1136,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PeerReview/PeerReviewApp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3274" max-vertical-offset="5625">
-          <caret line="238" column="39" selection-start-line="238" selection-start-column="39" selection-end-line="238" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="4264" max-vertical-offset="6615">
+          <caret line="304" column="31" selection-start-line="304" selection-start-column="31" selection-end-line="304" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -1149,8 +1152,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PeerReview/static/js/app1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53642386" vertical-offset="3345" max-vertical-offset="4590">
-          <caret line="250" column="33" selection-start-line="250" selection-start-column="33" selection-end-line="250" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.7549669" vertical-offset="3705" max-vertical-offset="4890">
+          <caret line="285" column="12" selection-start-line="285" selection-start-column="12" selection-end-line="285" selection-end-column="12" />
           <folding />
         </state>
       </provider>

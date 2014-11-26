@@ -241,7 +241,57 @@ class MatchedManuscript():
 	def add(self, reviewer):
 		self.recommended_reviewers.append(reviewer)
 
-#view to handle admin ajax call 
+#view to handle admin confirm final decision ajax call
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
+def admin_confirm_ajax(request):
+	try:
+		if request.POST.has_key('manuscript_id'):
+			manuscript_id = request.POST.get('manuscript_id')
+			manuscript = Manuscript.objects.get(id=manuscript_id)
+			manuscript.is_final = True
+			manuscript.save()
+
+	except KeyError:
+		return HttpResponse(json.dumps({'error': 'true', 'code': 'KeyError'}), content_type='application/json')
+		
+	return HttpResponse(json.dumps({'success': 'true'}), content_type='application/json')
+
+#view to handle admin submit final decision ajax call
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
+def admin_submit_ajax(request):
+	try:
+		if request.POST.has_key('manuscript_id'):
+			manuscript_id = request.POST.get('manuscript_id')
+			manuscript = Manuscript.objects.get(id=manuscript_id)
+		
+			response_dict = {}			
+			reviewer_dict = {}
+			advance = 0
+			for reviewer in manuscript.reviewers.all():
+				reviewer_dict[reviewer.email] = {'name':reviewer.first_name + ' ' + reviewer.last_name + reviewer.star_string, 'email':reviewer.email, 'id':reviewer.id}
+				if reviewer.star_string == '*':
+					advance += 1
+
+			#reviewers constrain 
+			constraint = ''
+			if len(manuscript.reviewers.all()) < 4:
+				constraint = 'too few reviewers'
+		
+			if  advance < 2:
+				if constraint == '':
+					constraint = 'too few advance reviewers'
+				else:
+					constraint += ', too few advance reviewers'
+			
+			response_dict['reviewers'] = reviewer_dict
+			response_dict['constraint'] = constraint
+
+	except KeyError:
+		return HttpResponse(json.dumps({'error': 'true', 'code': 'KeyError'}), content_type='application/json')
+	
+	return 	HttpResponse(json.dumps(response_dict), content_type='application/json')
+
+#view to handle admin edit ajax call 
 @user_passes_test(is_site_admin_check, login_url='/admin_login')
 def admin_ajax(request):
 	try:
@@ -265,13 +315,29 @@ def admin_ajax(request):
 				#manuscript = Manuscript.objects.get(id=manuscript_id)
 				#print manuscript.reviewers.all()[0].first_name
 
+				advance = 0
 				for reviewer in manuscript.reviewers.all():
-					assigned_dict[reviewer.email] = {'name':reviewer.first_name + ' ' + reviewer.last_name + reviewer.star_string, 'email':reviewer.email, 'id':reviewer.id, 'star':reviewer.star_string}
+					assigned_dict[reviewer.email] = {'name':reviewer.first_name + ' ' + reviewer.last_name + reviewer.star_string, 'email':reviewer.email, 'id':reviewer.id}
+					if reviewer.star_string == '*':
+						advance += 1
+
 				for reviewer in manuscript.recommended_reviewers:
-					recommend_dict[reviewer.email] = {'name':reviewer.first_name + ' ' + reviewer.last_name + reviewer.star_string, 'email':reviewer.email, 'id':reviewer.id, 'star':reviewer.star_string}
-						
+					recommend_dict[reviewer.email] = {'name':reviewer.first_name + ' ' + reviewer.last_name + reviewer.star_string, 'email':reviewer.email, 'id':reviewer.id}
+
+				#reviewers constrain 
+				constraint = ''
+				if len(manuscript.reviewers.all()) < 4:
+					constraint = 'too few reviewers'
+
+				if  advance < 2:
+					if constraint == '':
+						constraint = 'too few advance reviewers'
+					else:
+						constraint += ', too few advance reviewers'
+
 				response_dict['assigned'] = assigned_dict
 				response_dict['recommend'] = recommend_dict
+				response_dict['constraint'] = constraint
 
 	except KeyError:
 		return HttpResponse(json.dumps({'error': 'true', 'code': 'KeyError'}), content_type='application/json')
