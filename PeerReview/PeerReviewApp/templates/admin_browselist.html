@@ -55,19 +55,19 @@
 											{% endfor %}
 											</td>
 										</tr>	
-										<tr>
+										<tr class='assigned-reviewer'>
 										  <td>Assigned reviewers</td>
 										  <td>
 											{% for reviewer in manuscript.reviewers.all %}
-											<span class="checkbox"><input type="checkbox" checked="checked" value={{reviewer.email}} name="reviewers"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
+											<span class="checkbox"><input type="checkbox" checked="checked" value={{reviewer.email}} name="reviewers{{manuscript.id}}"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
 											{% endfor %}
 										  </td>										
 										</tr>	
-										<tr>
+										<tr class='recommend-reviewer'>
 										  <td>Recommend reviewers</td>
 										  <td>
 											{% for reviewer in manuscript.recommended_reviewers %}
-											<span class="checkbox"><input type="checkbox" value={{reviewer.email}} name="reviewers" ></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
+											<span class="checkbox"><input type="checkbox" value={{reviewer.email}} name="reviewers{{manuscript.id}}" ></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
 											{% endfor %}
 											</td>
 										</tr>	
@@ -83,10 +83,10 @@
 											<td></td>
 											<td>
 											<div class="btn-group pull-right">
-												<button type="submit" class="btn btn-default btn-sm finish-edit-btn"  title="Save and finish edit." value={{manuscript.id}} name="save">Finish Edit</button>						
+												<button type="button" class="btn btn-default btn-sm finish-edit-btn"  title="Save and finish edit." value={{ manuscript.id }} name="save">Finish Edit</button>						
 												<button type="button" class="btn btn-default btn-sm add-btn" title="Add additional reviewers from reviewer list on the right to this manuscript!">Add more reviewers</button>		     
 			
-												<button type="submit" class="btn btn-default btn-sm submit-btn" title="Submit final matching decision." data-toggle="modal" data-target=".bs-submit-confirm1" value={{manuscript.id}} name="final">Submit final decision</button>	
+												<button type="button" class="btn btn-default btn-sm submit-btn" title="Submit final matching decision." data-toggle="modal" data-target=".bs-submit-confirm{{ manuscript.id }}" value={{ manuscript.id }} name="final">Submit final decision</button>	
 												<button type="button" class="btn btn-default btn-sm edit-btn" title="Edit reviewers for the manuscript.">Edit</button>												
 											</div>
 											</td>							
@@ -195,7 +195,9 @@
 			</ul>					
 				
 			
-		<div class="modal bs-submit-confirm1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		{% for manuscript in manuscripts %}
+		{% if not manuscript.is_final %}
+		<div class="modal bs-submit-confirm{{manuscript.id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 			<div class="modal-content">
 			
@@ -207,49 +209,31 @@
 				<p class="warning" style="color:red">Warning: The matching constrains are not satisfied because [reason].</p>
 				<p>Are you sure you want to make the final matching decision for the following manuscript:</p>
 				<div class="manu">
-				<p>PCA versus LDA (ID:XXXXX)</p>
-				<p>Author: Martinez, A.</p>
-				<p>Reviewers: John Lee*, Emily White, Mary Green*, Jim Chen</p>
+				<p>{{manuscript.brief_title}} (ID:{{manuscript.id}})</p>
+				<p>Author: 
+					{% for author in manuscript.authors.all %}
+						{{author.first_name}} {{author.last_name}}{{author.star_string}}{% if not forloop.last %},{% endif %}
+					{% endfor %}
+				</p>
+				<p>Reviewers: 
+					{% for reviewer in manuscript.reviewers.all %}
+						{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last %},{% endif %}
+					{% endfor %}
+				</p>
 				</div>
 			  </div>
 			  <div class="modal-footer">
 				<form class="form-horizontal" role="form" method="post">
 					<div class="btn-group pull-right">
-						<button type="button" class="btn btn-default confirm-no-btn"  data-dismiss="modal">No</button>
-						<button type="button" class="btn btn-primary confirm-yes-btn" title="Submit final decision.">Yes</button>
+						<button type="submit" class="btn btn-default confirm-no-btn"  data-dismiss="modal">No</button>
+						<button type="submit" class="btn btn-primary confirm-yes-btn" title="Submit final decision.">Yes</button>
 					</div>
 				</form>	
 			  </div>
 			</div>
 		  </div>
-		</div>			
-		<div class="modal bs-submit-confirm2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-			<div class="modal-content">
-			
-			  <div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h4 class="modal-title" id="myModalLabel">Confirm</h4>
-			  </div>
-			  <div class="modal-body">
-				<p>Are you sure you want to make the final matching decision for the following manuscript:</p>
-				<div class="manu">
-				<p>PCA versus LDA (ID:XXXXX)</p>
-				<p>Author: Martinez, A.</p>
-				<p>Reviewers: John Lee*, Emily White, Mary Green*, Jim Chen</p>
-				</div>
-			  </div>
-			  <div class="modal-footer">
-				<form class="form-horizontal" role="form">
-					<div class="btn-group pull-right">
-						<button type="button" class="btn btn-default confirm-no-btn"  data-dismiss="modal">No</button>
-						<button type="button" class="btn btn-primary confirm-yes-btn" title="Submit final decision.">Yes</button>
-					</div>
-				</form>	
-			  </div>
-			</div>
-		  </div>
-		</div>				
-			
+		</div>	
+		{% endif %}
+		{% endfor %}					
 		
 {% endblock %}
