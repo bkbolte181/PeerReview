@@ -215,7 +215,7 @@
 				<p class="warning" style="color:red">Warning: The matching constrains are not satisfied because [reason].</p>
 				<p>Are you sure you want to make the final matching decision for the following manuscript:</p>
 				<div class="manu">
-				<p>{{manuscript.brief_title}} (ID:{{manuscript.id}})</p>
+				<p>{{manuscript.id}}. {{manuscript.brief_title}}</p>
 				<p>Author: 
 					{% for author in manuscript.authors.all %}
 						{{author.first_name}} {{author.last_name}}{{author.star_string}}{% if not forloop.last %},{% endif %}
