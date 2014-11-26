@@ -318,8 +318,8 @@ def admin_ajax(request):
 				advance = 0
 				for reviewer in manuscript.reviewers.all():
 					assigned_dict[reviewer.email] = {'name':reviewer.first_name + ' ' + reviewer.last_name + reviewer.star_string, 'email':reviewer.email, 'id':reviewer.id}
-					#if reviewer.star_string == '*':
-					#	advance += 1
+					if reviewer.star_string == '*':
+						advance += 1
 
 				for reviewer in manuscript.recommended_reviewers:
 					recommend_dict[reviewer.email] = {'name':reviewer.first_name + ' ' + reviewer.last_name + reviewer.star_string, 'email':reviewer.email, 'id':reviewer.id}
