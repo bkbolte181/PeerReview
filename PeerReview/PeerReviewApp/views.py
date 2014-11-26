@@ -5,14 +5,10 @@ from django.contrib.auth import authenticate, login, logout, get_user
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.forms.models import model_to_dict
 from datetime import datetime
-
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
 from django.shortcuts import get_object_or_404
-
 from PeerReviewApp.models import *
 from PeerReviewApp.forms import *
-
 import json
 
 def index(request):
@@ -190,19 +186,9 @@ def admin_login(request):
 	if request.method == 'POST': form = AdminLoginForm(request.POST)
 	else: form = AdminLoginForm()
 	if form.is_valid() and 'email' in form.cleaned_data and 'password' in form.cleaned_data:
-		print 'hit 2'
-
 		user = authenticate(username=form.cleaned_data['email'], password=form.cleaned_data['password'])
-		print form.cleaned_data['email']
-		print form.cleaned_data['password']
-		print user
 		if user is not None:
-			print "hit 3"
 			login(request, user)
-			#if request.POST.get('next',False):
-			#	return HttpResponseRedirect(request.POST.get('next', False))
-			#else:
-			print "hit 3"
 			return HttpResponseRedirect(reverse('admin_homepage')) # Redirect to homepage when the user logs in
 		else:
 			context['errors'] = 'Authentication failed.'
@@ -216,20 +202,14 @@ def admin_login(request):
 def admin_homepage(request):
 	context_dict = {}
 	period = ReviewPeriod.objects.filter(is_current=True)[0]
-	print period
 	submission_deadline = period.submission_deadline
-	print submission_deadline
 	review_deadline = period.review_deadline
-	print review_deadline
 	group_meeting_time = period.group_meeting_time
-	print group_meeting_time
 	group_meeting_venue = period.group_meeting_venue
-	print group_meeting_venue
 	context_dict['submission_deadline'] = submission_deadline
 	context_dict['review_deadline'] = review_deadline
 	context_dict['group_meeting_time'] = group_meeting_time
 	context_dict['group_meeting_venue'] = group_meeting_venue
-	#return render_to_response('admin_homepage.html', context_dict)
 	return render_to_response('admin_homepage.html', context_dict, RequestContext(request))
 
 class MatchedManuscript():
@@ -296,6 +276,7 @@ def admin_submit_ajax(request):
 			
 			response_dict['reviewers'] = reviewer_dict
 			response_dict['constraint'] = constraint
+			response_dict['success'] = 'true'
 
 	except KeyError:
 		return HttpResponse(json.dumps({'error': 'true', 'code': 'KeyError'}), content_type='application/json')
@@ -322,9 +303,6 @@ def admin_ajax(request):
 				response_dict = {}
 				assigned_dict = {} 
 				recommend_dict = {}
-				
-				#manuscript = Manuscript.objects.get(id=manuscript_id)
-				#print manuscript.reviewers.all()[0].first_name
 
 				advance = 0
 				for reviewer in manuscript.reviewers.all():
@@ -349,6 +327,7 @@ def admin_ajax(request):
 				response_dict['assigned'] = assigned_dict
 				response_dict['recommend'] = recommend_dict
 				response_dict['constraint'] = constraint
+				response_dict['success'] = 'true'
 
 	except KeyError:
 		return HttpResponse(json.dumps({'error': 'true', 'code': 'KeyError'}), content_type='application/json')
@@ -360,42 +339,14 @@ def admin_ajax(request):
 def admin_browselist(request):
 	context_dict = {}
 		
-	#period = ReviewPeriod.objects.all()[:1].get()
+	#get current period
 	period = ReviewPeriod.objects.filter(is_current=True)[0]
-	print period
 	submission_deadline = period.submission_deadline
-	print submission_deadline
 	review_deadline = period.review_deadline
-	print review_deadline
 	group_meeting_time = period.group_meeting_time
-	print group_meeting_time
 	group_meeting_venue = period.group_meeting_venue
-	print group_meeting_venue
-
-	#if request.method == 'POST':
-		#finish editing
-		#if request.POST.get("save") != None:
-			#get the targeted manuscript
-			#print "haha"
-			#editing = Manuscript.objects.get(id=request.POST.get("save"));
-			#editing.reviewers.clear()
-			#for reviewer in request.POST.getlist("reviewers"):
-				#editing.reviewers.add(SiteUser.objects.get(email=reviewer))
-			
-				#print SiteUser.objects.get(email=reviewer)
-		#submit final decision
-		#elif request.POST.get("final") != None:
-		#	final = Manuscript.objects.get(id=request.POST.get("final"))
-			#requset.POST.get(")
-			#check constraint
-			#while True:
-			#	a = 1	
-		#	final.is_final = True		
-		#	final.save()
 		
 	manuscripts_all = Manuscript.objects.all()
-	#print manuscripts[0].is_current
-	#manuscripts = Manuscript.objects.filter(is_current=True)
 
 	#review period constrain
 	manuscripts = []
@@ -403,13 +354,8 @@ def admin_browselist(request):
 		if manuscript.review_period.is_current:
 			manuscripts.append(manuscript)	
 
-	#simple match, recommend reviewers
 	reviewers = SiteUser.objects.filter(agreed_to_form=True)
 
-	print reviewers[0].assigned_manuscripts
-
-	#context_dict['unfinished_manuscripts'] = matched_manuscripts
-	#context_dict['final_manuscripts'] = final_manuscripts
 	context_dict['manuscripts'] = manuscripts
 	context_dict['reviewers'] = reviewers
 	context_dict['submission_deadline'] = submission_deadline
