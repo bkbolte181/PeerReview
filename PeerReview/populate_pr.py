@@ -67,6 +67,9 @@ def populate():
     manuscript5[0].reviewers.add(site_user9)
     manuscript5[0].authors.add(site_user10)
 
+    manuscript6 = Manuscript.objects.get_or_create(keywords=['math','finance'], title = 'LAD VS PDA6*****',brief_title='LAD VS PDA6', abstract='ooooooo', review_period=period[0], field='Finance', target_journal='target_journal')
+    manuscript6[0].authors.add(site_user15)
+
     return
 
 def add_user(email, password, first_name="", last_name="", department="", lab="", pi="", research_interest="", review_count="",

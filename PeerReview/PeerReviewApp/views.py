@@ -201,11 +201,19 @@ def admin_login(request):
 @user_passes_test(is_site_admin_check, login_url='/admin_login')
 def admin_homepage(request):
 	context_dict = {}
-	period = ReviewPeriod.objects.filter(is_current=True)[0]
-	submission_deadline = period.submission_deadline
-	review_deadline = period.review_deadline
-	group_meeting_time = period.group_meeting_time
-	group_meeting_venue = period.group_meeting_venue
+
+	period = ReviewPeriod.objects.filter(is_current=True)
+	if len(period) != 0:
+		submission_deadline = period[0].submission_deadline
+		review_deadline = period[0].review_deadline
+		group_meeting_time = period[0].group_meeting_time
+		group_meeting_venue = period[0].group_meeting_venue
+	else:
+		submission_deadline = ''
+		review_deadline = ''
+		group_meeting_time = ''
+		group_meeting_venue = ''
+
 	context_dict['submission_deadline'] = submission_deadline
 	context_dict['review_deadline'] = review_deadline
 	context_dict['group_meeting_time'] = group_meeting_time
@@ -317,10 +325,10 @@ def admin_browselist(request):
 	#get current period
 	period = ReviewPeriod.objects.filter(is_current=True)
 	if len(period) != 0:
-		submission_deadline = period.submission_deadline
-		review_deadline = period.review_deadline
-		group_meeting_time = period.group_meeting_time
-		group_meeting_venue = period.group_meeting_venue
+		submission_deadline = period[0].submission_deadline
+		review_deadline = period[0].review_deadline
+		group_meeting_time = period[0].group_meeting_time
+		group_meeting_venue = period[0].group_meeting_venue
 
 		#review period constrain
 		for manuscript in manuscripts_all:

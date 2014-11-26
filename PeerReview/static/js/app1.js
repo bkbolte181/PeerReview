@@ -151,7 +151,7 @@ $(document).ready(function() {
 					for (var reviewer in data.reviewers)
 						strstr += data.reviewers[reviewer].name + ', ';
 					if (strstr.length == 0) {
-						strstr = "No reviewers for this manuscript.";
+						strstr = "<span style='color:red'>No reviewers for this manuscript.</span>";
 					} else {
 						strstr = strstr.substring(0, str.length-2);
 						str = str.substring(0, str.length-2);
@@ -214,7 +214,7 @@ $(document).ready(function() {
 					str = str + ", ";
 				}
 				if (str.length == 0) {
-					str = "No assigned reviewers for this manuscript."
+					str = "<span style='color:red'>No assigned reviewers for this manuscript.</span>"
 				} else {
 					str = str.substring(0, str.length-2);
 				}
@@ -235,7 +235,7 @@ $(document).ready(function() {
 					str = str + ", ";
 				}
 				if (str.length == 0) {
-					str = "No recommended reviewers for this manuscript."
+					str = "<span style='color:red'>No recommended reviewers for this manuscript.</span>";
 				} else {
 					str = str.substring(0, str.length-2);
 				}
@@ -259,13 +259,13 @@ $(document).ready(function() {
 					modal_warning.append("Warning! The matching constrains are not satisfied because: " + data.constraint);
 				for (var reviewer in data.assigned)
 					str += data.assigned[reviewer].name + ', ';
-				str = str.substring(0, str.length-2);
+				//str = str.substring(0, str.length-2);
 				if (str.length == 0) {
-					str = "No recommended reviewers for this manuscript."
+					str = "<span style='color:red'>No assigned reviewers for this manuscript.</span>";
 				} else {
 					str = str.substring(0, str.length-2);
 				}
-				recommended_reviewer_td.append(str);
+				//recommended_reviewer_td.append(str);
 				modal_reviewer.append(str);
 			}
 		});

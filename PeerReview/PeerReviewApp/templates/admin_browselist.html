@@ -15,15 +15,15 @@
 					<div class="col-sm-7">
 						<h5>Meeting</h5>
 						<div class='ad meeting'>
-						Time: {{group_meeting_time}}<br/>
-						Venue: {{group_meeting_venue}}
+						Time: {% if group_meeting_time %}{{group_meeting_time}}{% else %}<span class="msg1">None is available</span>{% endif %}<br/>
+						Venue: {% if group_meeting_venue%}{{group_meeting_venue}}{% else %}<span class="msg1">None is available</span>{% endif %}
 						</div>
 					</div>
 					<div class="col-sm-5">
 						<h5>Deadline</h5>
 						<div class='ad deadline'>
-						Deadline for manuscript submission is <span class="msg1">{{submission_deadline}}</span>.<br/>
-						Deadline for manuscript review is <span class="msg1">{{review_deadline}}</span>.
+						Deadline for manuscript submission: <span class="msg1">{% if submission_deadline %}{{submission_deadline}}{% else %}None is available{% endif %}</span>.<br/>
+						Deadline for manuscript review: <span class="msg1">{% if review_deadline %}{{review_deadline}}{% else %}None is available{% endif %}</span>.
 						</div>
 					</div>					
 					
@@ -64,7 +64,7 @@
 											<span class="checkbox hide"><input type="checkbox" checked="checked" value={{reviewer.email}} name="reviewers{{manuscript.id}}"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
 											{% endfor %}
 											  {% else %}
-											  No assigned reviewers for this manuscript.
+											  <span style="color:red">No assigned reviewers for this manuscript.</span>
 											  {% endif %}
 										  </td>										
 										</tr>	
@@ -76,8 +76,8 @@
 											<span class="checkbox hide"><input type="checkbox" value={{reviewer.email}} name="reviewers{{manuscript.id}}" ></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
 											{% endfor %}
 											  {% else %}
-											  No recommended reviewers for this manuscript.
-											{% endif %}
+											  <span style="color:red">No recommended reviewers for this manuscript.</span>
+											  {% endif %}
 											</td>
 										</tr>	
 										<tr class='add-reviewer hide'>
@@ -108,7 +108,7 @@
 							{% endif %}
 							{% endfor %}
 							{% else %}
-							<p>No manuscripts available in current session.</p>
+							<span style="color:red">No manuscripts available in current session.</span>
 							{% endif %}
 							{% for manuscript in manuscripts %}
 							{% if manuscript.is_final %}
@@ -139,7 +139,7 @@
 											<a class="user" href="{% url 'user_detail'  pk=reviewer.id %}">{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
 											{% endfor %}
 											{% else %}
-											No reviewers for this manuscript.
+											<span style="color:red">No reviewers for this manuscript.</span>
 											{% endif %}
 										</td>
 									</tr>											
@@ -154,7 +154,7 @@
 						<button type="button" class="btn btn-default"><i class="glyphicon glyphicon-chevron-left"></i></button>
 					</div>
 					<div class="col-sm-5">
-						<h5 class="subtitle">Reviewers</h5>
+						<h5 class="subtitle">Assigned Reviewers</h5>
 						<div id="reviewer-list">
 							<div class = "reviewer">
 								<table class="table table-no-border table-condensed">
@@ -199,7 +199,7 @@
 							</div>
 							{% endfor %}
 							{% else %}
-							<p>No reviewers available in current session.</p>
+							<span style="color:red">No reviewers available in current session.</span>
 							{% endif %}
 
 						</div>
@@ -228,7 +228,7 @@
 				<h4 class="modal-title" id="myModalLabel">Confirm</h4>
 			  </div>
 			  <div class="modal-body"  id="modal-body{{manuscript.id}}">
-				<p class="warning" style="color:red">Warning! The matching constrains are not satisfied because:</p>
+				<p class="warning" style="color:red">Warning! The matching constrains are not satisfied because: {{manuscript.warning}}</p>
 				<p>Are you sure you want to make the final matching decision for the following manuscript:</p>
 				<div class="manu">
 				<p>{{manuscript.id}}. {{manuscript.brief_title}}</p>
@@ -245,7 +245,7 @@
 						{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last %},{% endif %}
 						{% endfor %}
 						{% else %}
-						No reviewers for this manuscript.
+						<span style="color:red">No reviewers for this manuscript.</span>
 						{% endif %}
 						<span>
 				</p>

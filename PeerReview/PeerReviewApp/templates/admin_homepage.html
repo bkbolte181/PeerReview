@@ -7,12 +7,14 @@
 
 			<div class="col-sm-5 col-sm-offset-1 ">
 				<h5>Meeting</h5>
-				<div class='ad meeting'>Time: {{group_meeting_time}}<br/>Venue: {{group_meeting_venue}}
+				<div class='ad meeting'>Time: {% if group_meeting_time %}{{group_meeting_time}}{% else %}<span class="msg1">None is available</span>{% endif %}<br/>
+					Venue: {% if group_meeting_venue%}{{group_meeting_venue}}{% else %}<span class="msg1">None is available</span>{% endif %}
 				</div>
 			</div>
 			<div class="col-sm-5 ">
 				<h5>Deadline</h5>
-				<div class='ad deadline'>Deadline for manuscript submission is <span class="msg1">{{submission_deadline}}</span>.<br/>Deadline for manuscript review is <span class="msg1">{{review_deadline}}</span>.
+				<div class='ad deadline'>Deadline for manuscript submission: <span class="msg1">{% if submission_deadline %}{{submission_deadline}}{% else %}None is available{% endif %}</span>.
+					<br/>Deadline for manuscript review: <span class="msg1">{% if review_deadline %}{{review_deadline}}{% else %}None is available{% endif %}</span>.
 				</div>
 			</div>
 
