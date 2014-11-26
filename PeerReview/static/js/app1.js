@@ -219,7 +219,10 @@ $(document).ready(function() {
 		my_form = $(this).closest("form");
 		//console.log("my_form1:");
 		//console.log(my_form);
+
+
 		var manuscript_id = $(this).val();
+
 		var check_list = document.getElementsByName('reviewers' + manuscript_id);
 		//var check_list = document.getElementsByName('reviewers_add');
 		//console.log(check_list.length);
@@ -312,6 +315,17 @@ $(document).ready(function() {
 				msg_span.empty();
 				if (data.constraint.length > 0)
 					msg_span.append("<br/> Warning: The matching constrains are not satisfied because: " + data.constraint);
+				str = '#modal-body'+manuscript_id + " .manu p span";
+				modal_reviewer = $(str);
+				console.log("modal body reviewers:");
+				console.log(modal_reviewer);
+				modal_reviewer.empty();
+				str = "";
+				for (var reviewer in data.assigned)
+					str += data.assigned[reviewer].name + ', ';
+				str = str.substring(0, str.length-2);
+
+				modal_reviewer.append(str);
 
 			}
 		});

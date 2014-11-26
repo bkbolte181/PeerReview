@@ -199,7 +199,7 @@
 			
 		{% for manuscript in manuscripts %}
 		{% if not manuscript.is_final %}
-		<div class="modal bs-submit-confirm{{manuscript.id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div data-keyboard="false" data-backdrop="static" class="modal bs-submit-confirm{{manuscript.id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 			<div class="modal-content">
 			
@@ -207,7 +207,7 @@
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 				<h4 class="modal-title" id="myModalLabel">Confirm</h4>
 			  </div>
-			  <div class="modal-body">
+			  <div class="modal-body"  id="modal-body{{manuscript.id}}">
 				<p class="warning" style="color:red">Warning: The matching constrains are not satisfied because [reason].</p>
 				<p>Are you sure you want to make the final matching decision for the following manuscript:</p>
 				<div class="manu">
@@ -218,9 +218,9 @@
 					{% endfor %}
 				</p>
 				<p>Reviewers: 
-					{% for reviewer in manuscript.reviewers.all %}
+					<span>{% for reviewer in manuscript.reviewers.all %}
 						{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last %},{% endif %}
-					{% endfor %}
+					{% endfor %}<span>
 				</p>
 				</div>
 			  </div>
