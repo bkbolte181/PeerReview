@@ -174,7 +174,11 @@
 										  <td>
 											  {{reviewer.research_interest}}
 										  </td>
-										  <td>1,2,3,4</td>
+										  <td>
+											  {% for manuscript in reviewer.assigned_manuscripts %}
+												{{manuscript}}{% if not forloop.last %},{% endif %}
+											  {% endfor %}
+										  </td>
 										</tr>											
 									</tbody>	
 								</table>							

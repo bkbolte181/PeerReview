@@ -406,6 +406,8 @@ def admin_browselist(request):
 	#simple match, recommend reviewers
 	reviewers = SiteUser.objects.filter(agreed_to_form=True)
 
+	print reviewers[0].assigned_manuscripts
+
 	#context_dict['unfinished_manuscripts'] = matched_manuscripts
 	#context_dict['final_manuscripts'] = final_manuscripts
 	context_dict['manuscripts'] = manuscripts
