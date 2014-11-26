@@ -189,16 +189,6 @@ class Manuscript(models.Model):
 
 		#if the recommended list hasn't full
 		if len(recommended) <= RECOMMENDED_NUM: 
-		#	for i in range(advanced, RECOMMENDED_AD):
-		#		for reviwer in reviewers:
-		#			if reviewer.star_string == '*' and reviewer not in recommended_reviewers and reviewer not in self.authors.all() and reviewer not in self.reviewers.all():
-		#				recommended_reivewers.insert(i, reviwer)
-		#				break			
-		#	for i in range(0, len(recommended_reviewers)):
-		#		if len(recommended_reviewers) > RECOMMENDED_NUM:
-		#			recommended_reviewers.pop(len(recommended_reviewers)-1)
-		#		else:
-		#			break
 			return recommended
 
 		#second match: research_interest&keywords
