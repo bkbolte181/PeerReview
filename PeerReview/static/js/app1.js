@@ -105,8 +105,7 @@ $(document).ready(function() {
 				str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers_add" checked="checked "></span><a class="user" href="'+ href.attr('href')+'">' + href.text() + "</a>";
 				//if (i != checkedValues.length-1)
 					str = str + " ";
-				cur_listedReviewers.push(checkedValues[i]);
-
+				cur_listedReviewers.push(email);
 			}
 			//console.log(str);
 			cur_form.find(".add-reviewer td:last").append(str);
@@ -159,7 +158,7 @@ $(document).ready(function() {
 	})*/
 	$(".confirm-yes-btn").click(function(){
 		var manuscript_id = $(this).val();
-
+		var dom = $(this).parent().parent().parent().parent().find('.modal-body');
 		//ajax part
 		$.ajax({
 			url : "admin_confirm_ajax/", 
@@ -178,26 +177,32 @@ $(document).ready(function() {
 				//}
 				//console.log(data.constraint);
 				console.log(data.success);
+
+				console.log(dom);
+				var str = '<p>Your decision for the following manuscript has been made.</p><div class="'+'manu"'+
+				'><p>PCA versus LDA (ID:XXXXX)</p><p>Author: Martinez, A.</p><p>Reviewers: John Lee*, Emily White, Mary Green*, Jim Chen</p></div><p>We have successfully send emails to the author and reviewers about the decision.</p>';
+				dom.html(str);
+				dom.prev().find('h4').html("Success");
+				//console.log('Hello');
+				//console.log(dom.next());
+				str = '<div class='+'"btn-group pull-right"'+'><button onclick="location.href='+'\'/admin_browselist/\'"'
+				+' type="'+'button"'+ ' class="'+'btn btn-default confirm-no-btn"'+'>OK</button></div>';
+				console.log(str);
+
+				dom.next().html(str);
+
 			}
 		});
 
 
-		//location.href="admin_submit_success.html";
-		var dom = $(this).parent().parent().parent().parent().find('.modal-body');
-		//console.log(dom);
-		var str = '<p>Your decision for the following manuscript has been made.</p><div class="'+'manu"'+'><p>PCA versus LDA (ID:XXXXX)</p><p>Author: Martinez, A.</p><p>Reviewers: John Lee*, Emily White, Mary Green*, Jim Chen</p></div><p>We have successfully send emails to the author and reviewers about the decision.</p>';
-		dom.html(str);;
-		dom.prev().find('h4').html("Success");
-		//console.log('Hello');
-		//console.log(dom.next());
-		dom.next().html('<div class="'+'btn-group pull-right"'+'><button type="'+'button"'+ 'class="'+'btn btn-default confirm-no-btn"'+  'data-dismiss="'+'modal"'+'>OK</button></div>');		
+
 	});
 
 
 	$(".finish-edit-btn").click(function(){
 		my_form = $(this).closest("form");
-				console.log("my_form1:");
-				console.log(my_form);
+		//console.log("my_form1:");
+		//console.log(my_form);
 		var manuscript_id = $(this).val();
 		var check_list = document.getElementsByName('reviewers' + manuscript_id);
 		//var check_list = document.getElementsByName('reviewers_add');
@@ -235,13 +240,13 @@ $(document).ready(function() {
 				//console.log(cur_form);
 				//assigned_reviewer_td = my_form.find("tr.assigned-reviewer").children('td').eq(1);
 				assigned_reviewer_td = my_form.find("tr.assigned-reviewer").children('td').eq(1);
-				var href_prefix = assigned_reviewer_td.find("a").attr('href').split('/');
-				href_prefix_str = "/";
-				for (var i = 1; i < href_prefix.length-2; i++) {
+				//var href_prefix = assigned_reviewer_td.find("a").attr('href').split('/');
+				href_prefix_str = "/user_detail/";
+				//for (var i = 1; i < href_prefix.length-2; i++) {
 					//console.log(i);
 					//console.log(" " + href_prefix[i]);
-					href_prefix_str += href_prefix[i] + "/";
-				}
+				//	href_prefix_str += href_prefix[i] + "/";
+				//}
 
 				//console.log("href prefix str:");
 				//console.log(href_prefix_str);
@@ -249,11 +254,12 @@ $(document).ready(function() {
 				//console.log(assigned_reviewer_td);
 				assigned_reviewer_td.empty();
 				//console.log(cur_form.find(".recommend-reviewer"));
+				console.log("from server: assigned_reviewers: ")
 				for (var assigned_reviewer in data.assigned) {
 					as_reviewer = data.assigned[assigned_reviewer];
-					//console.log(as_reviewer.name);
+					console.log(as_reviewer.name);
 					email = as_reviewer.email;
-					id = as_reviewer.id;
+					id = manuscript_id;
 					href = href_prefix_str + id + "/";
 					name = as_reviewer.name;
 					str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers'+id+'" checked="checked "></span><a class="user" href="'+ href+'"><span value="'+id+'"></span>' + name + "</a>";
@@ -270,7 +276,7 @@ $(document).ready(function() {
 					re_reviewer = data.recommend[recommended_reviewer];
 					//console.log(re_reviewer.name);
 					email = re_reviewer.email;
-					id = re_reviewer.id;
+					id = manuscript_id;
 					href = href_prefix_str + id + "/";
 					name = re_reviewer.name;
 					str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers'+id+'"></span><a class="user" href="'+ href+'"><span value="'+id+'"></span>' + name + "</a>";
@@ -279,10 +285,18 @@ $(document).ready(function() {
 				str = str.substring(0, str.length-2);
 				recommended_reviewer_td.append(str);
 
-				added_reviewer_td = my_form.find("tr.ad-reviewer").children('td').eq(1);
+				added_reviewer_td = my_form.find("tr.add-reviewer").children('td').eq(1);
 				added_reviewer_td.empty();
+				//console.log("constraint");
+				//console.log(data.constraint);
+				//console.log(data.constraint.length);
+				//<br/> Warning: The matching constrains are not satisfied because:
+				msg_span = my_form.find("tr.msg td").first().find("span");
+				//console.log(msg_span);
+				msg_span.empty();
+				if (data.constraint.length > 0)
+					msg_span.append("<br/> Warning: The matching constrains are not satisfied because: " + data.constraint);
 
-				console.log(data.constraint);
 			}
 		});
 		
@@ -300,7 +314,7 @@ $(document).ready(function() {
 		form.find(".add-reviewer").addClass("hide").prop('disabled', false);
 		//location.href="admin_browselist.html";
 		cur_row= form.closest(".row");
-		console.log(cur_row);
+		//console.log(cur_row);
 		cur_row.find("#add-icon").addClass("hide");
 		$('#reviewer-list .reviewer').removeClass('hide');
 		$("#reviewer-list .checkbox").addClass("hide");

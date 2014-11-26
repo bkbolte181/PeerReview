@@ -34,9 +34,9 @@
 						<h5 class="subtitle">Manuscripts</h5>
 						<div id="manuscript-list">			
 							{% for manuscript in manuscripts %}
-							<div class = "manuscript" id="manuscript">
 							{% if not manuscript.is_final %}
-							<form class="form-inline" id="form1" role="form" method="post">
+							<div class = "manuscript" id="manuscript{{manuscript.id}}">
+							<form class="form-inline" id="form{{manuscript.id}}" role="form" method="post">
 								{% csrf_token %}		
 								<table class="table table-no-border table-condensed">
 									<caption>{{manuscript.id}}. <a href="{% url 'manuscript_detail'  pk=manuscript.id %}">{{ manuscript.brief_title }}</a></caption>
@@ -76,7 +76,7 @@
 										  <td></td>
 										</tr>	
 										<tr class="msg">
-										<td colspan=2>Assignment has been saved to database.<br/> Warning: The matching constrains are not satisfied because [reason]. </td>
+										<td colspan=2>Assignment has been saved to database.<span></span></td>
 										<td></td>
 										</tr>										
 										<tr>
@@ -94,12 +94,14 @@
 									</tbody>	
 								</table>
 							</form>		
-							{% endif %}					
+
 							</div>
+							{% endif %}
 							{% endfor %}
 							{% for manuscript in manuscripts %}
-							<div class = "manuscript" id="manuscript">
 							{% if manuscript.is_final %}
+							<div class = "manuscript" id="manuscript{{manuscript.id}}">
+
 							<table class="table table-no-border table-condensed">
 								<caption>{{ manuscript.id }}. <a href="{% url 'manuscript_detail'  pk=manuscript.id %}">{{ manuscript.brief_title }}</a></caption>
 								<thead>
@@ -127,8 +129,8 @@
 									</tr>											
 								</tbody>	
 							</table>
-							{% endif %}
 							</div>
+							{% endif %}
 							{% endfor %}
 						</div>
 					</div>
