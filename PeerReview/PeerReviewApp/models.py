@@ -244,14 +244,17 @@ class Manuscript(models.Model):
 			if reviewer.star_string == '*':
 				advance += 1
 
-		if len(self.reviewers.all()) < 4:
-			constraint = 'too few reviewers'
+		if len(self.reviewers.all()) == 0:
+			constraint = 'no reviewers'
+		else:
+			if len(self.reviewers.all()) < 4:
+				constraint = 'too few reviewers'
 
-		if  advance < 2:
-			if constraint == '':
-				constraint = 'too few advance reviewers'
-			else:
-				constraint += ', too few advance reviewers'
+			if  advance < 2:
+				if constraint == '':
+					constraint = 'too few advance reviewers'
+				else:
+					constraint += ', too few advance reviewers'
 
 		return constraint
 
