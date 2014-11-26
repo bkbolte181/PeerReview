@@ -30,8 +30,8 @@ $(document).ready(function() {
 			return $(this).find(">:first-child").attr("value");
 		}).get();
 		cur_listedReviewers = cur_listedReviewers.concat(cur_listedAuthors);
-		console.log("cur_listedReviewers:");
-		console.log(cur_listedReviewers);
+		//console.log("cur_listedReviewers:");
+		//console.log(cur_listedReviewers);
 		for (var i=0;i < reviewers.length; i++) {
 			for (var j=0;j < cur_listedReviewers.length; j++) {
 				if (reviewers[i].attr('value') === cur_listedReviewers[j]) {
@@ -123,7 +123,7 @@ $(document).ready(function() {
 				for (var reviewer in data.reviewers) {
 					as_reviewer = data.reviewers[reviewer];
 				}
-				console.log(data.constraint);
+				//console.log(data.constraint);
 			}
 		});
 
@@ -200,11 +200,11 @@ $(document).ready(function() {
 				assigned_reviewer_td = my_form.find("tr.assigned-reviewer").children('td').eq(1);
 				href_prefix_str = "/user_detail/";
 				assigned_reviewer_td.empty();
-				console.log("from server: assigned_reviewers: ")
+				//console.log("from server: assigned_reviewers: ")
 
 				for (var assigned_reviewer in data.assigned) {
 					as_reviewer = data.assigned[assigned_reviewer];
-					console.log(as_reviewer.name);
+					//console.log(as_reviewer.name);
 					email = as_reviewer.email;
 					id = as_reviewer.id;
 					href = href_prefix_str + id + "/";
@@ -252,7 +252,7 @@ $(document).ready(function() {
 				modal_reviewer = $(str);
 				modal_reviewer.empty();
 				str = "";
-				console.log(modal_warning);
+				//console.log(modal_warning);
 				modal_warning.empty();
 				if (data.constraint.length > 0)
 					modal_warning.append("Warning! The matching constrains are not satisfied because: " + data.constraint);
