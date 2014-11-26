@@ -113,7 +113,7 @@
 									  <td>Author</td>
 										<td class="admin_author">
 										{% for author in manuscript.authors.all %}
-										<a class="user" href="{% url 'user_detail' pk=author.id%}">{{author.first_name}} {{author.last_name}}{% if not forloop.last %},{% endif %}</a>
+										<a class="user" href="{% url 'user_detail' pk=author.id%}">{{author.first_name}} {{author.last_name}}{{author.star_string}}{% if not forloop.last %},{% endif %}</a>
 										{% endfor %}
 										</td>
 									</tr>	

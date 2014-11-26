@@ -24,13 +24,13 @@ $(document).ready(function() {
 		reviewers = $("#reviewer-list caption a span").map(function() {
 			return $(this);
 		}).get();
-		console.log("reviewers in reviewer list:");
-		console.log(reviewers);
+		//console.log("reviewers in reviewer list:");
+		//console.log(reviewers);
 		for (var i=0;i < reviewers.length; i++) {
 			for (var j=0;j < cur_listedReviewers.length; j++) {
 				if (reviewers[i].attr('value') === cur_listedReviewers[j]) {//if (reviewers[i].find('a').text() === cur_listedReviewers[j]) {
-					console.log("--------");
-					console.log(reviewers[i].attr('value'));
+					//console.log("--------");
+					//console.log(reviewers[i].attr('value'));
 					
 					reviewers[i].parent().parent().find('span.glyphicon-ok').removeClass('hide');
 					reviewers[i].parent().parent().addClass('highlight-disable');
@@ -42,9 +42,9 @@ $(document).ready(function() {
 	$('#reviewer-list caption').click(function(){
 		if (typeof(cur_form) !=='undefined' && cur_form.find(".add-btn").prop('disabled')) {
 			var n = 0;
-			console.log("click caption "+(++n));
+			//console.log("click caption "+(++n));
 			if (!$(this).hasClass('highlight-disable')) {
-				console.log("toggle hight"+ $(this));
+				//console.log("toggle hight"+ $(this));
 				$(this).toggleClass('highlight');
 				$(this).find('span.glyphicon-ok').toggleClass('hide');
 			}
@@ -80,10 +80,10 @@ $(document).ready(function() {
 		}).get();
 		cur_listedReviewers = cur_listedReviewers.concat(cur_listedAuthors);
 		//cur_listedReviewers.push("134@emory.edu");
-		console.log("cur_listedReviewers:");
-		console.log(cur_listedReviewers);
-		console.log("cur_listedAuthors:");
-		console.log(cur_listedAuthors);
+		//console.log("cur_listedReviewers:");
+		//console.log(cur_listedReviewers);
+		//console.log("cur_listedAuthors:");
+		//console.log(cur_listedAuthors);
 	});
 
 	$("#add-icon").click(function(){
@@ -91,8 +91,8 @@ $(document).ready(function() {
 		var checkedValues = $('#reviewer-list caption.highlight').map(function() {
 			return $(this);
 		}).get();
-		console.log("checkValues:");
-		console.log(checkedValues);
+		//console.log("checkValues:");
+		//console.log(checkedValues);
 		if (checkedValues.length>0) {
 			cur_form.find(".add-reviewer").removeClass("hide");
 			var str = "";
@@ -101,16 +101,16 @@ $(document).ready(function() {
 				email = emailId[0];
 				id = emailId[1];
 				href = checkedValues[i].find("a");
-				console.log("email: " + email+"; id: "+ id);
+				//console.log("email: " + email+"; id: "+ id);
 				str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers" checked="checked "></span><a class="user" href="'+ href.attr('href')+'">' + href.text() + "</a>";
 				str = str + " ";
 				cur_listedReviewers.push(checkedValues[i]);
 
 			}
-			console.log(str);
+			//console.log(str);
 			cur_form.find(".add-reviewer td:last").append(str);
 		}
-		console.log(cur_listedReviewers);
+		//console.log(cur_listedReviewers);
 
 		cur_form.find(".checkbox").removeClass("hide");
 		cur_row= cur_form.closest(".row");
@@ -137,23 +137,16 @@ $(document).ready(function() {
 	$(".confirm-yes-btn").click(function(){
 		//location.href="admin_submit_success.html";
 		var dom = $(this).parent().parent().parent().parent().find('.modal-body');
-		console.log(dom);
+		//console.log(dom);
 		var str = '<p>Your decision for the following manuscript has been made.</p><div class="'+'manu"'+'><p>PCA versus LDA (ID:XXXXX)</p><p>Author: Martinez, A.</p><p>Reviewers: John Lee*, Emily White, Mary Green*, Jim Chen</p></div><p>We have successfully send emails to the author and reviewers about the decision.</p>';
 		dom.html(str);;
 		dom.prev().find('h4').html("Success");
-		console.log('Hello');
-		console.log(dom.next());
+		//console.log('Hello');
+		//console.log(dom.next());
 		dom.next().html('<div class="'+'btn-group pull-right"'+'><button type="'+'button"'+ 'class="'+'btn btn-default confirm-no-btn"'+  'data-dismiss="'+'modal"'+'>OK</button></div>');		
 	});
 
-	/*
-	$(".click").click(function(){
-		location.href="admin_browselist.html";
-	});
-	$(".submit-success-btn").click(function(){
-		location.href="admin_browselist.html";
-	});
-	*/
+
 	$(".finish-edit-btn").click(function(){
 		$(this).parent().parent().parent().parent().find('.msg').removeClass('hide');
 		var form = $(this).closest("form");
