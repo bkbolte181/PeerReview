@@ -126,6 +126,28 @@ $(document).ready(function() {
 
 	});
 	$(".submit-btn").click(function(){
+		var manuscript_id = $(this).val();
+
+		//ajax part
+		$.ajax({
+			url : "admin_submit_ajax/", 
+			type : "POST",
+			dataType: "json", 
+			data : {
+				manuscript_id: manuscript_id,
+				csrfmiddlewaretoken: '{{ csrf_token }}',
+			},
+			success : function(data) {
+				//console.log(cur_form.find(".recommend-reviewer"));
+				for (var reviewer in data.reviewers) {
+					as_reviewer = data.reviewers[reviewer];
+					//console.log(as_reviewer.star);
+					//console.log(as_reviewer.name);
+				}
+				console.log(data.constraint);
+			}
+		});
+
 		$("#reviewer-list .checkbox").addClass("hide");
 	});
 	/*
@@ -136,6 +158,30 @@ $(document).ready(function() {
 		
 	})*/
 	$(".confirm-yes-btn").click(function(){
+		var manuscript_id = $(this).val();
+
+		//ajax part
+		$.ajax({
+			url : "admin_confirm_ajax/", 
+			type : "POST",
+			dataType: "json", 
+			data : {
+				manuscript_id: manuscript_id,
+				csrfmiddlewaretoken: '{{ csrf_token }}',
+			},
+			success : function(data) {
+				//console.log(cur_form.find(".recommend-reviewer"));
+				//for (var reviewer in data.reviewers) {
+					//as_reviewer = data.reviewers[reviewer];
+					//console.log(as_reviewer.star);
+					//console.log(as_reviewer.name);
+				//}
+				//console.log(data.constraint);
+				console.log(data.success);
+			}
+		});
+
+
 		//location.href="admin_submit_success.html";
 		var dom = $(this).parent().parent().parent().parent().find('.modal-body');
 		//console.log(dom);
@@ -149,7 +195,6 @@ $(document).ready(function() {
 
 
 	$(".finish-edit-btn").click(function(){
-
 		var manuscript_id = $(this).val();
 		var check_list = document.getElementsByName('reviewers' + manuscript_id);
 		//var check_list = document.getElementsByName('reviewers_add');
@@ -167,7 +212,6 @@ $(document).ready(function() {
 				reviewers += add_list[i].value + ',';
 		}  
 
-
 		//ajax part
 		$.ajax({
 			url : "admin_ajax/", 
@@ -176,55 +220,28 @@ $(document).ready(function() {
 			data : {
 				reviewers: reviewers,
 				manuscript_id: manuscript_id,
-				csrfmiddlewaretoken: '{{ csrf_token }}'
+				csrfmiddlewaretoken: '{{ csrf_token }}',
 			},
 			success : function(data) {
-				var as_advance = 0;
-				var as_novice = 0;
-				var reviewer_num = 0;
-				var str = "";
-				cur_form = $(this).closest("form");
+				//cur_form = $(this).closest("form");
 				//console.log(cur_form.find(".recommend-reviewer"));
 				for (var assigned_reviewer in data.assigned) {
 					as_reviewer = data.assigned[assigned_reviewer];
-					if(as_reviewer.star == "*")
-						as_advance = as_advance + 1;
-					else
-						as_novice = as_novice + 1;
-					reviewer_num = reviewer_num + 1;
 					//console.log(as_reviewer.star);
-					console.log(as_reviewer.name);
+					//console.log(as_reviewer.name);
 				}
 				for (var recommended_reviewer in data.recommend) {
 					re_reviewer = data.recommend[recommended_reviewer];
 					//console.log(re_reviewer.star);
-					console.log(re_reviewer.name);
+					//console.log(re_reviewer.name);
 				}
-				if(reviewer_num < 4)
-					str = "too few reviewers";
-				else if(reviewer_num > 4)
-					str = "too many reviewers";
-
-				if(as_advance < 2) {
-					if(str != "")
-						str += ", too few advanced reviewers";
-					else
-						str = "too few advanced reviewers";
-				}
-				else if(as_advance > 2) {
-					if(str != "")
-						str += ' "<br/>"too many advanced reviewers';
-					else
-						str = "too many advanced reviewers";
-				}
+				console.log(data.constraint);
 			}
 		});
 		
 		$(this).parent().parent().parent().parent().find('.msg').removeClass('hide');
 
 		var form = $(this).closest("form");
-		//form.find(".msg td:last").append(str);
-
 		form.find('table').removeClass("highlight");
 		form.find('caption').removeClass("highlight");
 		
