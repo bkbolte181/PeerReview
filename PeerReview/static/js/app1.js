@@ -102,7 +102,7 @@ $(document).ready(function() {
 				id = emailId[1];
 				href = checkedValues[i].find("a");
 				//console.log("email: " + email+"; id: "+ id);
-				str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers" checked="checked "></span><a class="user" href="'+ href.attr('href')+'">' + href.text() + "</a>";
+				str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers_add" checked="checked "></span><a class="user" href="'+ href.attr('href')+'">' + href.text() + "</a>";
 
 				str = str + " ";
 				cur_listedReviewers.push(checkedValues[i]);
@@ -167,10 +167,7 @@ $(document).ready(function() {
 				reviewers += add_list[i].value + ',';
 		}  
 
-		var as_advance = 0;
-		var as_novice = 0;
-		var reviewer_num = 0;
-		var str = "";
+
 		//ajax part
 		$.ajax({
 			url : "admin_ajax/", 
@@ -181,46 +178,48 @@ $(document).ready(function() {
 				manuscript_id: manuscript_id,
 				csrfmiddlewaretoken: '{{ csrf_token }}'
 			},
-				success : function(data) {
-					cur_form = $(this).closest("form");
-					//console.log(cur_form.find(".recommend-reviewer"));
-					for (var assigned_reviewer in data.assigned) {
-						as_reviewer = data.assigned[assigned_reviewer];
-						if(as_reviewer.star == "*")
-							as_advance = as_advance + 1;
-						else
-							as_novice = as_novice + 1;
-						reviewer_num = reviewer_num + 1;
-						//console.log(as_reviewer.star);
-						//console.log(as_reviewer.name);
-					}
-					for (var recommended_reviewer in data.recommend) {
-						re_reviewer = data.recommend[recommended_reviewer];
-						//console.log(re_reviewer.star);
-						//console.log(re_reviewer.name);
-					}
-		if(reviewer_num < 4)
-			str = "too few reviewers";
-		else if(reviewer_num > 4)
-			str = "too many reviewers";
-
-		if(as_advance < 2) {
-			if(str != "")
-				str += ", too few advanced reviewers";
-			else 		
-				str = "too few advanced reviewers";
-		}
-		else if(as_advance > 2) {
-			if(str != "")
-				str += ' "<br/>"too many advanced reviewers';
-			else 		
-				str = "too many advanced reviewers";
-		}
-
+			success : function(data) {
+				var as_advance = 0;
+				var as_novice = 0;
+				var reviewer_num = 0;
+				var str = "";
+				cur_form = $(this).closest("form");
+				//console.log(cur_form.find(".recommend-reviewer"));
+				for (var assigned_reviewer in data.assigned) {
+					as_reviewer = data.assigned[assigned_reviewer];
+					if(as_reviewer.star == "*")
+						as_advance = as_advance + 1;
+					else
+						as_novice = as_novice + 1;
+					reviewer_num = reviewer_num + 1;
+					//console.log(as_reviewer.star);
+					console.log(as_reviewer.name);
 				}
+				for (var recommended_reviewer in data.recommend) {
+					re_reviewer = data.recommend[recommended_reviewer];
+					//console.log(re_reviewer.star);
+					console.log(re_reviewer.name);
+				}
+				if(reviewer_num < 4)
+					str = "too few reviewers";
+				else if(reviewer_num > 4)
+					str = "too many reviewers";
+
+				if(as_advance < 2) {
+					if(str != "")
+						str += ", too few advanced reviewers";
+					else
+						str = "too few advanced reviewers";
+				}
+				else if(as_advance > 2) {
+					if(str != "")
+						str += ' "<br/>"too many advanced reviewers';
+					else
+						str = "too many advanced reviewers";
+				}
+			}
 		});
 		
-		console.log(str);
 		$(this).parent().parent().parent().parent().find('.msg').removeClass('hide');
 
 		var form = $(this).closest("form");
