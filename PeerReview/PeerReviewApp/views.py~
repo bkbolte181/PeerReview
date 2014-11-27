@@ -193,17 +193,17 @@ def upload_manuscript(request):
 	if request.POST:
 		form = UploadManuscript(request.POST)
 		
-		saved_files = handle_uploads(request)
-		for f in saved_files:
-			m = ManuscriptFile.objects.create(name=f[0], upload=f[1])
-			m.save()
-		
 		if form.is_valid():
 			man = form.save()
 			
 			# Set current user as author
 			current_user = SiteUser.objects.get(email=request.user.email)
 			man.authors = [current_user]
+		
+			saved_files = handle_uploads(request)
+			for f in saved_files:
+				m = ManuscriptFile.objects.create(name=f[0], upload=f[1], manuscript = man)
+				m.save()
 			
 			# If successful, redirect to main page
 			return HttpResponseRedirect(reverse('authorhome'))

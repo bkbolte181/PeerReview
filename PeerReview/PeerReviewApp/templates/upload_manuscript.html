@@ -17,7 +17,7 @@ display: inline
 	<div class="col-sm-10 col-sm-offset-0">
 		<form class="form-horizontal" name="uploadmanuscriptForm" role="form" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
-			<!--{% for field in form %}
+			{% for field in form %}
 			<div class="form-group">
 				{{ field.errors }}
 				<label for="{{ field.id_for_label }}" class="col-sm-3 text-right control-lable">{{ field.label_tag }}</label>
@@ -25,7 +25,7 @@ display: inline
 					{{ field }}
 				</div>
 			</div>
-			{% endfor %}-->
+			{% endfor %}
 			<div class="form-group">
 				<label for="file" class="col-sm-3 text-right">Associated Files (You can upload more later)</label>
 				<div class="col-sm-9">
