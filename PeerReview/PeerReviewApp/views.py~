@@ -11,6 +11,7 @@ from forms import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from PeerReviewApp.models import *
 from PeerReviewApp.forms import *
+from uuid import uuid4
 
 UPLOAD_PATH = 'uploads/%Y/%m'
 
@@ -27,7 +28,8 @@ def handle_uploads(request):
 		# Ensure file uploads are unique
 		while os.path.exists(os.path.join(upload_full_path, upload.name)):
 			upload.name = '_' + upload.name
-		dest = open(os.path.join(upload_full_path, upload.name), 'wb')
+		fname = str(uuid4())
+		dest = open(os.path.join(upload_full_path, fname), 'wb')
 		for chunk in upload.chunks():
 			dest.write(chunk)
 			dest.close()

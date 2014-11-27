@@ -3,17 +3,17 @@
 {% block body %}
 <div class="row">
 	<h4 class="text-center">Deadline for Manuscript Submission:</h4>
-	<h3 class="text-center" style="color:red;">{% if period %}{{ period.submission_deadline }}{% else %}The review period is currently closed.{% endif %}</h3>
+	<h3 class="text-center" style="color:red;">Deadline</h3>
 </div>
 
 <div class="row">
 	<div class="col-sm-10 col-sm-offset-1">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<p>My Manuscripts</p>
+				<p>Manuscripts</p>
 			</div>
 			<div class="panel-body">
-				{% for manuscript in user.authors.all %}
+				{% for manuscript in page %}
 					<div class="row">
 						<div class="col-sm-10 col-sm-offset-1">
 							{{ manuscript.title }}
@@ -28,16 +28,10 @@
 									<h4 class="modal-title">{{ manuscript.title }}</h4>
 								</div>
 								<div class="modal-body">
-									<p>Abstract: {{ manuscript.abstract }}</p>
-									<p>Resources:<ul>
-									{% for file in manuscript.files.all %}
-									<li><a href="/media/{{ file.upload }}" download>{{ file }}</a></li>
-									{% endfor %}
-									</ul></p>
+									<p>{{ manuscript.abstract }}</p>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-primary">Ask to Review</button>
 								</div>
 							</div>
 						</div>
@@ -46,14 +40,18 @@
 				{% endfor %}
 			</div>
 		</div>
-	    <div class = "row">
-            <div class="hot-container" style="text-align:left;">
-					<a href="{% url 'upload_manuscript' %}" class="abtn btn-green">Submit a manuscript</a>
-	    </div>
+		<div class="row">
+			<div class="col-sm-10 col-sm-offset-1">
+				{% if page.number != 1%}<a href="{% url 'browse' 1 %}">First</a>{% endif %}
+				{% if page.has_previous %}<a href="{% url 'browse' page.previous_page_number %}">Previous</a>{% endif %}
+				{% if page.has_next %}<a href="{% url 'browse' page.next_page_number %}">Next</a>{% endif %}
+				{% if page.number != page.paginator.num_pages %}<a href="{% url 'browse' page.paginator.num_pages %}">Last</a>{% endif %}
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-sm-10 col-sm-offset-1">
 				<div class="hot-container" style="text-align:right;">
-					<a href="{% url 'index' %}" class="abtn btn-green">Back</a>
+					<a href="{% url 'review' %}" class="abtn btn-green">Reviewer Home</a>
 				</div>
 			</div>
 		</div>
