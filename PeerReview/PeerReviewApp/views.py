@@ -185,6 +185,9 @@ def assigned_manuscripts(request, current_page):
 @user_passes_test(has_agreed, login_url='/agreement/')
 def author_home(request):
 	context = {}
+	p = get_current_review_period()
+	if p:
+		context['period'] = p
 	return render(request,'uploader_home.html', context)
 
 @user_passes_test(has_agreed, login_url='/agreement/')

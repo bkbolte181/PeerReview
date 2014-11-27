@@ -185,6 +185,9 @@ def assigned_manuscripts(request, current_page):
 @user_passes_test(has_agreed, login_url='/agreement/')
 def author_home(request):
 	context = {}
+	p = get_current_review_period()
+	if p:
+		context['period'] = p
 	return render(request,'uploader_home.html', context)
 
 @user_passes_test(has_agreed, login_url='/agreement/')
@@ -202,7 +205,7 @@ def upload_manuscript(request):
 		
 			saved_files = handle_uploads(request)
 			for f in saved_files:
-				m = ManuscriptFile.objects.create(name=f[0], upload=f[1], manuscript = man)
+				m = ManuscriptFile.objects.create(name=f[0], upload=f[1], manuscript=man)
 				m.save()
 			
 			# If successful, redirect to main page

@@ -29,11 +29,11 @@
 								</div>
 								<div class="modal-body">
 									<p>Abstract: {{ manuscript.abstract }}</p>
-									<p>Resources:<ul>
+									<ul>Resources
 									{% for file in manuscript.files.all %}
 									<li><a href="/media/{{ file.upload }}" download>{{ file }}</a></li>
 									{% endfor %}
-									</ul></p>
+									</ul>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
