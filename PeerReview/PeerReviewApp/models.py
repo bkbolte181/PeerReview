@@ -6,9 +6,6 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from custom_fields import SeparatedValuesField
 from datetime import datetime
 import os
-# Unique Universal ID: For generating unique file identifier
-import uuid
-
 
 # All valid schools
 SCHOOLS = settings.SCHOOLS
@@ -84,11 +81,7 @@ class ReviewPeriod(models.Model):
 	group_meeting_time = models.DateField() # Large group meeting time
 
 class Manuscript(models.Model):
-	"""
-		This is the model that links everything together.
-		BEWARE! Errors kept popping up with the ManyToMany fields.
-		There may be a better way to do this.
-	"""
+	""" This is the model that links everything together. """
 	reviewers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="reviewers", related_query_name="reviewer")
 	authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="authors", related_query_name="author")
 	status = models.CharField(max_length=20, default='submitted')
@@ -105,14 +98,10 @@ class Manuscript(models.Model):
 	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript", default=0)
 	is_final = models.BooleanField(default=False) # If the final decision of this manuscript has been made
 
-''' Function to get the path of file. This is separate from all models '''
-def get_file_path(instance, filename):
-	""" Generate a unique file identifier """
-	ext = filename.split('.')[-1]
-	filename = "%s.%s" % (uuid.uuid4(), ext)
-	return os.path.join(settings.MEDIA_ROOT, filename)
-
 class ManuscriptFile(models.Model):
-
-	file = models.FileField(upload_to=get_file_path, null=True, blank=True)
+	name = models.CharField(max_length=255)
+	upload = models.FileField(upload_to='uploads/%Y/%m/%d', null=True, blank=True)
 	manuscript = models.ForeignKey('Manuscript', related_name='files', related_query_name='file')
+	
+	def __unicode__(self):
+		return u'%s' % (self.name)

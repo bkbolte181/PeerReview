@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout, get_user
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.forms.models import model_to_dict
+from datetime import date
 from datetime import datetime
 from filetransfers.api import prepare_upload
 from forms import *
@@ -11,6 +12,27 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from PeerReviewApp.models import *
 from PeerReviewApp.forms import *
 
+UPLOAD_PATH = 'uploads/%Y/%m'
+
+def handle_uploads(request):
+	''' Method for dealing with uploaded files '''
+	saved = []
+	upload_dir = date.today().strftime(settings.UPLOAD_PATH)
+	upload_full_path = os.path.join(settings.MEDIA_ROOT, upload_dir)
+	
+	if not os.path.exists(upload_full_path):
+		os.makedirs(upload_full_path)
+		
+	for upload in request.FILES.getlist('file'):
+		# Ensure file uploads are unique
+		while os.path.exists(os.path.join(upload_full_path, upload.name)):
+			upload.name = '_' + upload.name
+		dest = open(os.path.join(upload_full_path, upload.name), 'wb')
+		for chunk in upload.chunks():
+			dest.write(chunk)
+			dest.close()
+			saved.append((upload.name, os.path.join(upload_dir, upload.name)))
+	return saved
 
 def get_current_review_period():
 	if ReviewPeriod.objects.count() > 0:
@@ -170,6 +192,12 @@ def upload_manuscript(request):
 	context = {}
 	if request.POST:
 		form = UploadManuscript(request.POST)
+		
+		saved_files = handle_uploads(request)
+		for f in saved_files:
+			m = ManuscriptFile.objects.create(upload=f[1])
+			m.save()
+		
 		if form.is_valid():
 			man = form.save()
 			
@@ -177,13 +205,6 @@ def upload_manuscript(request):
 			current_user = SiteUser.objects.get(email=request.user.email)
 			man.authors = [current_user]
 			
-			# Loop through files and add them to the database
-			if 'file' in request.FILES:
-				for file in request.FILES['file']:
-					''' NEED SOME FILE VALIDATION METHOD HERE - ALSO, FILE IS A STRING, NOT A FILE, FIX THIS '''
-					m = ManuscriptFile.objects.create(file=file, manuscript=man)
-					m.save()
-					
 			# If successful, redirect to main page
 			return HttpResponseRedirect(reverse('authorhome'))
 	else:

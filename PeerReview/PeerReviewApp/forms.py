@@ -76,22 +76,22 @@ class SignupForm(forms.ModelForm):
 			user.save()
 		return user
 
+class UploadFileForm(forms.Form):
+	''' Form for uploading a file '''
+	upload = forms.FileField()
+	
+	def clean_upload(self):
+		upload = self.cleaned_data['upload']
+		content_type = upload.content_type
+		if content_type in settings.CONTENT_TYPE:
+			if upload._size > settings.MAX_UPLOAD_SIZE:
+				raise forms.ValidationEngineer('Exceeded maximum file size')
+		else:
+			raise forms.ValidationError('File type is not allowed.')
+		
+		return upload
+
 class UploadManuscript(forms.ModelForm):
-
-	fields = ('title', 'brief_title', 'abstract', 'field', 'keywords', 'target_journal', 'image_amount')
-	widgets = {
-		'title': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter Manuscript Title'}),
-		'brief_title': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter a shorter title which contains less than 10 words'}),
-		'abstract': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter Manuscript Abstract'}),
-		'field': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Manuscript Field e.g CS,BIO, etc'}),
-		'keywords': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Keywords (no more than 10, separate by commas)'}),
-		'target_journal': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Which journal do you want to publish in?'}),
-		'image_amount': forms.Select(attrs={'class': 'form-control text-center', 'placeholder': 'How many figures are in your manuscript?'}),
-	    }
-
-
-class UploadManuscript(forms.ModelForm):
-
     class Meta:
         model = Manuscript
         exclude = ('review_period', 'authors', 'reviewers', 'is_final','manuscript')
@@ -101,7 +101,7 @@ class UploadManuscript(forms.ModelForm):
 		'title': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter Manuscript Title'}),
 		'brief_title': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter a shorter title which contains less than 10 words'}),
 		'abstract': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter Manuscript Abstract'}),
-		'field': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Manuscript Field e.g CS,BIO, etc'}),
+		'field': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Manuscript Field (for example: CS, BIO)'}),
 		'keywords': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Keywords (no more than 10, separate by commas)'}),
 		'target_journal': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Which journal do you want to publish in?'}),
 	    }
