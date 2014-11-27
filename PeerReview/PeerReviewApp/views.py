@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response, RequestContext
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout, get_user
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -46,6 +46,9 @@ def index(request):
 	''' Main landing page '''
 	context = {}
 	return render(request, 'index.html', context)
+
+def about(request):
+	return render(request, 'about.html', {})
 
 def terms(request):
 	''' Terms of service agreement '''
@@ -149,12 +152,68 @@ def has_agreed(user):
 @user_passes_test(has_agreed, login_url='/agreement/')
 def reviewer_home(request):
 	context = {}
+	context['period'] = get_current_review_period()
 	return render(request, 'reviewer_home.html', context)
+
+@user_passes_test(has_agreed, login_url='/agreement/')
+def remove_associated_file(request, fid):
+	if request.is_ajax():
+		context = {}
+		f = ManuscriptFile.objects.get(id=fid)
+		f.delete()
+		context['msg'] = 'Deleted manuscript file'
+		return HttpResponse(json.dumps(context), content_type="application/json")
+	else:
+		return Http404
+
+@user_passes_test(has_agreed, login_url='/agreement/')
+def edit_manuscript(request, mid):
+	context = {}
+	
+	# If the user has made changes
+	if request.POST:
+		# Need to write method to update form and associated files
+		man = Manuscript.objects.get(id=request.POST['id'])
+		form = UploadManuscript(request.POST, instance=man)
+		if form.is_valid():
+			form.save()
+		
+		saved_files = handle_uploads(request)
+		for f in saved_files:
+			m = ManuscriptFile.objects.create(name=f[0], upload=f[1], manuscript=man)
+			m.save()
+	
+	# Get the current user and the manuscript being edited
+	user = SiteUser.objects.get(email=request.user.email)
+	manuscript = Manuscript.objects.get(id=mid)
+	
+	# Make sure the manuscript they're trying to edit is theirs and that it can be edited
+	if user not in manuscript.authors.all():
+		context['error'] = 'You are not authorized to make changes to this manuscript.'
+		return render(request, 'edit_manuscript.html', context)
+	elif manuscript.is_final:
+		context['error'] = 'This manuscript can no longer be edited.'
+		return render(request, 'edit_manuscript.html', context)
+	
+	form = UploadManuscript(instance=manuscript)
+	context['form'] = form
+	
+	files = ManuscriptFile.objects.filter(manuscript=manuscript)
+	context['files'] = files
+	
+	context['manuscript'] = manuscript
+	
+	return render(request, 'edit_manuscript.html', context)
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def browse_manuscripts(request, current_page):
 	context = {}
+	context['period'] = get_current_review_period()
+	
+	# Load all available manuscripts
 	all_manuscripts = Manuscript.objects.all()
+	
+	# Create a paginator with the manuscripts
 	paginator = Paginator(all_manuscripts, 10)
 
 	try:
@@ -170,8 +229,13 @@ def browse_manuscripts(request, current_page):
 @user_passes_test(has_agreed, login_url='/agreement/')
 def assigned_manuscripts(request, current_page):
 	context = {}
+	context['period'] = get_current_review_period()
+	
+	#Load the current user and get the manuscripts for which they are a reviewer
 	user = SiteUser.objects.get(email=request.user.email)
 	manuscripts_assigned = Manuscript.objects.filter(reviewers__in=[user]).all()
+	
+	# Create a paginator
 	paginator = Paginator(manuscripts_assigned, 10)
 
 	try:
@@ -187,14 +251,13 @@ def assigned_manuscripts(request, current_page):
 @user_passes_test(has_agreed, login_url='/agreement/')
 def author_home(request):
 	context = {}
-	p = get_current_review_period()
-	if p:
-		context['period'] = p
+	context['period'] = get_current_review_period()
 	return render(request,'uploader_home.html', context)
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def upload_manuscript(request):
 	context = {}
+	context['period'] = get_current_review_period()
 	if request.POST:
 		form = UploadManuscript(request.POST)
 		
@@ -204,7 +267,7 @@ def upload_manuscript(request):
 			# Set current user as author
 			current_user = SiteUser.objects.get(email=request.user.email)
 			man.authors = [current_user]
-		
+			
 			saved_files = handle_uploads(request)
 			for f in saved_files:
 				m = ManuscriptFile.objects.create(name=f[0], upload=f[1], manuscript=man)

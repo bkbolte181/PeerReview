@@ -81,11 +81,9 @@ class ReviewPeriod(models.Model):
 	group_meeting_time = models.DateField() # Large group meeting time
 
 class Manuscript(models.Model):
-	"""
-		This is the model that links everything together.
-	"""
+	""" This is the model that links everything together. """
 	reviewers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="reviewers", related_query_name="reviewer")
-	authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="authors", related_query_name="author")
+	author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="authors", related_query_name="author")
 	status = models.CharField(max_length=20, default='submitted')
 	
 	# Semantic elements

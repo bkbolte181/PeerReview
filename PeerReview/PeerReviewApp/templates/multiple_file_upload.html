@@ -1,0 +1,41 @@
+<!-- Abstraction for uploading multiple files -->
+<div class="all_file_inputs">
+	<input class="filefield0" name="file" type="file" style="border: none;" style="display: inline;"/>
+	<a class="filefield0" style="display: inline;" href="javascript:delete_element('filefield0')">Remove</a>
+</div>
+<a class="btn btn-default pull-right" href="javascript:add_next_element()">Add</a>
+
+<div class="already_uploaded">
+	<div style="padding-top: 10px;">Previously Uploaded</div>
+	{% if files %}
+	{% for file in files.all %}
+	<a target="_blank" href="/media/{{ file.upload }}">{{ file }}</a>
+	<a href="javascript:remove_file('{% url 'remove_associated_file' file.id %}');">Remove</a>
+	{% endfor %}
+	{% endif %}
+</div>
+
+<script type="text/javascript">
+// Handles adding and deleting form fields
+var i = 1;
+function add_next_element() {
+	html = '<input class="filefield' + ++i + '" name="file" type="file" style="border: none;"/><a class="filefield' + i + '" href="javascript:delete_element(\'filefield' + i + '\')">Remove</a>';
+	$('.all_file_inputs').append(html);
+}
+function delete_element(id) {
+	$('.'+id).remove()
+}
+
+function remove_file(url) {
+	$.ajax({
+		type: "POST",
+		url: url,
+		data: {
+			csrfmiddlewaretoken:document.getElementsByName('csrfmiddlewaretoken')[0].value
+		}
+		success: function(data) {
+			alert('Deleted file');
+		}
+	});
+}
+</script>
