@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response, RequestContext
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout, get_user
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -12,6 +12,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from PeerReviewApp.models import *
 from PeerReviewApp.forms import *
 from uuid import uuid4
+import json
 
 UPLOAD_PATH = 'uploads/%Y/%m'
 
@@ -157,6 +158,7 @@ def reviewer_home(request):
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def remove_associated_file(request, fid):
+	print 'hit this'
 	if request.is_ajax():
 		context = {}
 		f = ManuscriptFile.objects.get(id=fid)
@@ -180,7 +182,7 @@ def edit_manuscript(request, mid):
 		
 		saved_files = handle_uploads(request)
 		for f in saved_files:
-			m = ManuscriptFile.objects.create(name=f[0], upload=f[1], manuscript=man)
+			m = ManuscriptFile.objects.create(filename=f[0], upload=f[1], manuscript=man)
 			m.save()
 	
 	# Get the current user and the manuscript being edited
@@ -270,7 +272,7 @@ def upload_manuscript(request):
 			
 			saved_files = handle_uploads(request)
 			for f in saved_files:
-				m = ManuscriptFile.objects.create(name=f[0], upload=f[1], manuscript=man)
+				m = ManuscriptFile.objects.create(filename=f[0], upload=f[1], manuscript=man)
 				m.save()
 			
 			# If successful, redirect to main page

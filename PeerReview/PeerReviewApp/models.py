@@ -99,9 +99,9 @@ class Manuscript(models.Model):
 	is_final = models.BooleanField(default=False) # If the final decision of this manuscript has been made
 
 class ManuscriptFile(models.Model):
-	name = models.CharField(max_length=255)
+	filename = models.CharField(max_length=255)
 	upload = models.FileField(upload_to='uploads/%Y/%m/%d', null=True, blank=True)
 	manuscript = models.ForeignKey('Manuscript', related_name='files', related_query_name='file')
 	
 	def __unicode__(self):
-		return u'%s' % (self.name)
+		return u'%s' % (self.filename)

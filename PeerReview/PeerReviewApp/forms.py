@@ -23,7 +23,17 @@ class AccountForm(forms.ModelForm):
 		
 	class Meta:
 		model = SiteUser
-		exclude = ('id', 'password','last_login','email',)
+		fields = ('email', 'first_name', 'last_name', 'department', 'lab', 'pi', 'school','review_count','agreed_to_form')
+		widgets = {
+			'email': forms.EmailInput(attrs={'class': 'form-control text-center', 'placeholder': 'Emory Email Address'}),
+			'first_name': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'First Name'}),
+			'last_name': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Last Name'}),
+			'department': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Department'}),
+			'lab': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Name of Lab'}),
+			'pi': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Name of Primary Investigator'}),
+			'school': forms.Select(attrs={'class': 'form-control text-center', 'placeholder': 'Choose your School'}),
+            'review_count': forms.TextInput(attrs={'class': 'form-control text-center','placeholder': 'Number of manuscripts previous reviewed'}),
+		    }
 
 class AgreementForm(forms.ModelForm):
 	''' This is for just the agreement form. It allows the logged in

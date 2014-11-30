@@ -193,3 +193,33 @@ $('.more_nav').click(function() {
 		$(this).html('More');
 	}
 });
+
+/* Handles adding and deleting form fields */
+
+// Initialize a counter
+var i = 1;
+
+// Add an element by appending html
+function add_next_element() {
+	html = '<input class="filefield' + ++i + '" name="file" type="file" style="border: none;"/><a class="filefield' + i + '" href="javascript:delete_element(\'filefield' + i + '\')">Remove</a>';
+	$('.all_file_inputs').append(html);
+}
+
+// Remove a specific element by id
+function delete_element(id) {
+	$('.'+id).remove()
+}
+
+// Removing a file in an ajax-y way
+function remove_file(url, divid) {
+	$.ajax({
+		type: "POST",
+		url: url,
+		data: {
+			csrfmiddlewaretoken:document.getElementsByName('csrfmiddlewaretoken')[0].value
+		},
+		success: function(data) {
+			$('#'+divid).html('Removed')
+		}
+	});
+}
