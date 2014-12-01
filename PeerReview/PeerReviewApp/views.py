@@ -280,7 +280,6 @@ def assigned_manuscripts(request, current_page):
 @user_passes_test(has_agreed, login_url='/agreement/')
 def author_home(request):
 	context = {}
-
 	context['period'] = get_current_review_period()
 	return render(request,'uploader_home.html', context)
 

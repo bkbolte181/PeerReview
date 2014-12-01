@@ -42,11 +42,15 @@
                                 </p>
                             </div>
                             <div class="modal-footer">
-
                                     <form method="post" action="">
                                         {% csrf_token %}
-                                        <input type="SUBMIT" name = "mybtn" value="Submit Manuscript">
-                                        </input>
+                                        <input type="hidden" name="manuscript-id" value="{{ manuscript.id }}"/>
+                                         <input type="hidden" name="action=" value="SubmitManuscript"/>
+                                        <button type="button">
+                                            {% if manuscript.is_final %}
+                                            Submitted Already
+                                            {% endif %}
+                                            Submit Manuscript</button>
                                     </form>
                             </div>
                         </div>
