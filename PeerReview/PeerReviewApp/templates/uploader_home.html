@@ -18,9 +18,52 @@
 						<div class="col-sm-10 col-sm-offset-1">
 							{{ manuscript.title }}
 							<button type="button" class="btn btn-default btn-sm pull-right" data-toggle="modal" style="width: 100px;" data-target="#modal{{ manuscript.id }}">View</button>
-							<a class="btn btn-default btn-sm pull-right" style="margin-right: 10px; width: 100px;" href="#" onmouseover="changeText(this, 'Submit')" onmouseout="changeText(this, '{{ manuscript.status|capfirst }}')">{{ manuscript.status|capfirst }}</a>
-						</div>
+<button                     type="button"  data-toggle="modal" data-target="#finalize{{ manuscript.id }}"
+                            class="btn btn-default btn-sm pull-right" style="margin-right: 10px; width: 100px;"
+                            href="#"
+                            onmouseover="changeText(this, 'Submit')"
+                            onmouseout="changeText(this, '{{ manuscript.status|capfirst }}')">{{
+                            manuscript.status|capfirst }}
+                        </button>						</div>
 					</div>
+                 <div class="modal fade" id="finalize{{ manuscript.id }}" role="dialog" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span
+                                        aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title">{{ manuscript.title }}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>
+                                    <bold>
+                                        Are you sure you want to submit?
+                                    </bold>
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+
+                                    <form method="post" action="">
+                                        {% csrf_token %}
+                                        <input type="SUBMIT" name = "mybtn" value="Submit Manuscript">
+                                        </input>
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
 					<div class="modal fade" id="modal{{ manuscript.id }}" role="dialog" tabindex="-1">
 						<div class="modal-dialog">
 							<div class="modal-content">

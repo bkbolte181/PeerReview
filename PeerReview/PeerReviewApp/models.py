@@ -84,7 +84,7 @@ class Manuscript(models.Model):
 	""" This is the model that links everything together. """
 	reviewers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="reviewers", related_query_name="reviewer")
 	authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="authors", related_query_name="author")
-	status = models.CharField(max_length=20, default='submitted')
+	status = models.CharField(max_length=20, default='Saved')
 	
 	# Semantic elements
 	title = models.CharField(max_length=200, unique=True)
