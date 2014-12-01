@@ -197,16 +197,17 @@ def remove_associated_file(request, fid):
         context['msg'] = 'Deleted manuscript file'
         return HttpResponse(json.dumps(context), content_type="application/json")
     else:
-        return Http404
+		return Http404
 
-
-def submit_manuscript(request):
-	if (request.GET.get('mybtn')):
-	    man = Manuscript.objects.get(id=[request.GET.get('mid')])
-	    man.is_final = True
-	    man.status = 'Submitted'
-	    man.save()
-	return render_to_response('uploader_home.html')
+@user_passes_test(has_agreed, login_url='/agreement/')
+def submit_manuscript(request,mid):
+	context = {}
+	manuscript = Manuscript.objects.get(id=mid)
+	manuscript.is_final = True
+	manuscript.status = 'Submitted'
+	manuscript.save()
+	context['manuscript'] = manuscript
+	return render(request,'submit_manuscript.html',context)
 
 
 @user_passes_test(has_agreed, login_url='/agreement/')

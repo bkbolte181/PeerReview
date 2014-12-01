@@ -11,6 +11,7 @@ urlpatterns = patterns('',
 	url(r'^admin/$', include(adminpatterns)),
 	url(r'^terms/$', views.terms, name='terms'), # Eventually change this to point at 'terms of service' view
 	url(r'^edit/(?P<mid>\d+)/$', views.edit_manuscript, name='edit_manuscript'),
+    url(r'^submitmanuscript/(?P<mid>\d+)/$', views.submit_manuscript, name='submit_manuscript'),
 	url(r'^about/$', views.about, name='about'),
 	url(r'^signup/$', views.signup, name='signup'),
 	url(r'^login/$', views.auth_login, name='login'),
