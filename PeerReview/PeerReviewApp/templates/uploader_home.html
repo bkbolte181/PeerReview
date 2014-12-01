@@ -35,23 +35,29 @@
                                 <h4 class="modal-title">{{ manuscript.title }}</h4>
                             </div>
                             <div class="modal-body">
+                                {% if manuscript.is_final %}
+                                <p>
+                                    <bold>
+                                        Manuscript Already Submitted
+                                    </bold>
+                                </p>
+                                {% endif %}
+                                {% if not manuscript.is_final %}
+
                                 <p>
                                     <bold>
                                         Are you sure you want to submit?
                                     </bold>
                                 </p>
+                                {% endif %}
                             </div>
                             <div class="modal-footer">
-                                    <form method="post" action="">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="manuscript-id" value="{{ manuscript.id }}"/>
-                                         <input type="hidden" name="action=" value="SubmitManuscript"/>
-                                        <button type="button">
-                                            {% if manuscript.is_final %}
-                                            Submitted Already
-                                            {% endif %}
-                                            Submit Manuscript</button>
-                                    </form>
+                              {% if manuscript.is_final %}
+                            	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                {% endif %}
+                                {% if not manuscript.is_final %}
+
+                                {% endif %}
                             </div>
                         </div>
                     </div>
