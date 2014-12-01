@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response, RequestContext
-from django.http import HttpResponse,HttpResponseRedirect, Http404
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout, get_user
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -14,7 +14,26 @@ from PeerReviewApp.forms import *
 from uuid import uuid4
 import json
 
-UPLOAD_PATH = 'uploads/%Y/%m'
+def handle_reviewer_uploads(request):
+	''' Method for dealing with the reviewer's uploaded review document '''
+	upload_dir = date.today().strftime(settings.REVIEW_DOC_PATH)
+	upload_full_path = os.path.join(settings.MEDIA_ROOT, upload_dir)
+	
+	if not os.path.exists(upload_full_path):
+		os.makedirs(upload_full_path)
+	
+	# Get  first uploaded file
+	upload = request.FILES.getlist('file')[0]
+	
+	ext = upload.name.split('.')[-1]
+	
+	fname = str(uuid4()) + ext
+	dest = open(os.path.join(upload_full_path, fname), 'wb')
+	
+	for chunk in upload.chunks():
+		dest.write(chunk)
+	dest.close()
+	return (upload.name, os.path.join(upload_dir, fname))
 
 def handle_uploads(request):
 	''' Method for dealing with uploaded files '''
@@ -27,14 +46,13 @@ def handle_uploads(request):
 		
 	for upload in request.FILES.getlist('file'):
 		# Ensure file uploads are unique
-		while os.path.exists(os.path.join(upload_full_path, upload.name)):
-			upload.name = '_' + upload.name
-		fname = str(uuid4())
+		ext = upload.name.split('.')[-1]
+		fname = str(uuid4()) + ext
 		dest = open(os.path.join(upload_full_path, fname), 'wb')
 		for chunk in upload.chunks():
 			dest.write(chunk)
-			dest.close()
-			saved.append((upload.name, os.path.join(upload_dir, fname)))
+		dest.close()
+		saved.append((upload.name, os.path.join(upload_dir, fname)))
 	return saved
 
 def get_current_review_period():
@@ -237,6 +255,15 @@ def assigned_manuscripts(request, current_page):
 	user = SiteUser.objects.get(email=request.user.email)
 	manuscripts_assigned = Manuscript.objects.filter(reviewers__in=[user]).all()
 	
+	if request.FILES:
+		mid = request.POST.get('manid')
+		man = Manuscript.objects.get(id=mid)
+		saved_file = handle_reviewer_uploads(request)
+		r = ReviewFile.objects.create(filename=saved_file[0], upload=saved_file[1])
+		r.save()
+		man.reviewdocs = [r]
+		man.save()
+	
 	# Create a paginator
 	paginator = Paginator(manuscripts_assigned, 10)
 
@@ -248,7 +275,7 @@ def assigned_manuscripts(request, current_page):
 		page = paginator.page(paginator.num_pages)
 
 	context['page'] = page
-	return render(request, 'browse_manuscripts.html', context)
+	return render(request, 'assigned_manuscripts.html', context)
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def author_home(request):
@@ -281,7 +308,6 @@ def upload_manuscript(request):
 		form = UploadManuscript()
 	context['form'] = form
 	return render(request,'upload_manuscript.html', context)
-
 
 @login_required
 def account(request):

@@ -55,6 +55,10 @@ docs/_build/
 # PyBuilder
 target/
 
+# Any uploaded files
+reviewdocs/
+uploads/
+
 # Virtual Environment
 prenv/
 

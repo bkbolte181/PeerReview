@@ -22,6 +22,7 @@ CONTENT_TYPES = [
 MAX_UPLOAD_SIZE = 1000000
 
 UPLOAD_PATH = 'uploads/%Y/%m'
+REVIEW_DOC_PATH = 'reviewdocs/%Y/%m'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
