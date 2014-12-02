@@ -31,19 +31,12 @@
 			{% endif %}
 			{% endfor %}
 			<div class="hot-container text-center">
-				<button class="abtn btn-green" type="submit">Submit</button>
+            <div class="col-sm-11 col-sm-offset-2">
+				<button class="abtn btn-green" name="savebutton"  type="submit">Save Changes</button>
+                <button class ="abtn btn-green" name="delete" type="submit">Delete</button>
+                </div>
 			</div>
-		</form>
-		<form class="form-horizontal" name="accountForm" role="form" method="get">
-			{% csrf_token %}
-			<div class="form-group">
-				<label for="delete" class="col-sm-3 text-right control-label">I want to delete my account</label>
-				<input type="checkbox" name="delete" value="DELETE">
-			</div>
-			<div class="hot-container text-center">
-				<button class="abtn btn-green" type="submit">Delete Account</button>
-			</div>
-		</form>
+
 	</div>
 </div>
 {% endblock %}

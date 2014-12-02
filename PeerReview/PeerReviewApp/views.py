@@ -227,7 +227,7 @@ def edit_manuscript(request, mid):
 		for f in saved_files:
 			m = ManuscriptFile.objects.create(filename=f[0], upload=f[1], manuscript=man)
 			m.save()
-		return render(request,'uploader_home.')
+		return render(request,'uploader_home.html')
 	else:
 
 		#Get the current user and the manuscript being edited
@@ -345,16 +345,17 @@ def upload_manuscript(request):
 def account(request):
     context = {}
     user = SiteUser.objects.get(email=request.user.email)
-    if 'delete' in request.GET:
+    if 'delete' in request.POST:
         print 'Deleting account ' + str(user)
         logout(request)
         user.delete()
         return HttpResponseRedirect(reverse('index'))
-    if request.POST:
+    if 'savebutton' in request.POST:
         form = AccountForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
             context['errors'] = 'Information saved.'
+        return HttpResponseRedirect(reverse('index'))
     else:
         form = AccountForm(instance=user)
     context['form'] = form
