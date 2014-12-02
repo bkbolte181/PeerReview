@@ -226,6 +226,7 @@ def edit_manuscript(request, mid):
         for f in saved_files:
             m = ManuscriptFile.objects.create(filename=f[0], upload=f[1], manuscript=man)
             m.save()
+    
 
     # Get the current user and the manuscript being edited
     user = SiteUser.objects.get(email=request.user.email)
