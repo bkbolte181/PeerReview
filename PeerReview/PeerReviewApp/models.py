@@ -146,7 +146,7 @@ class Manuscript(models.Model):
 	title = models.CharField(max_length=200, unique=True)
 	brief_title = models.CharField(max_length=50, unique=True)
 	abstract = models.CharField(max_length=200000)
-	keywords = SeparatedValuesField(max_length=1000, help_text='Keywords, separated by a comma')  # Custom field for storing python lists
+	keywords = models.CharField(max_length=1000, help_text='Keywords, separated by a comma')  # Custom field for storing python lists
 	field = models.CharField(max_length=200)
 	target_journal = models.CharField(max_length=200)
 
@@ -175,7 +175,7 @@ class Manuscript(models.Model):
 					recommended.append(reviewer)
 
 		#if the recommended list hasn't full
-		if len(recommended) <= RECOMMENDED_NUM: 
+		if len(recommended) <= RECOMMENDED_NUM:
 			return recommended
 
 		#second match: research_interest&keywords

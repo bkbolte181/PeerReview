@@ -88,7 +88,7 @@ class SignupForm(forms.ModelForm):
 		return user
 
 class UploadFileForm(forms.Form):
-	''' Form for uploading a file '''
+	''' Form for uploading a file - I don't think this is being used yet '''
 	upload = forms.FileField()
 	
 	def clean_upload(self):
