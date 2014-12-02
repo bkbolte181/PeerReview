@@ -1,0 +1,41 @@
+<!doctype html>
+{% load staticfiles %}
+<html>
+<head>
+    <link type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/admin_style.css' %}" rel="stylesheet">
+
+    {% block head %}{% endblock %}
+</head>
+<body>
+<div class="wraper">
+    <div class="header">
+        <div class="container">
+            <a href="{% url 'admin_homepage' %}" class="logo-icon">
+                <img src="{% static 'fig/swc_logo.png' %}">
+                <p class="logo-text">Manuscript Review</p>
+            </a>
+
+            <ul class="menu">
+                <li><a href="#">Help</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'admin_logout' %}">Logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            &copy;2014 Copyright
+        </div>
+    </div>
+</div>
+{% block script %} {% endblock %}
+</body>
+</html>

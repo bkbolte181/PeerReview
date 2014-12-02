@@ -1,0 +1,46 @@
+{% extends 'admin_base.html' %}
+
+{% block head %}
+<title>Manuscript Review - Admin Login</title>
+<!-- Login page. -->
+<style>
+.errorlist {
+	font-size: 10px;
+	color: red;
+	display: inline;
+}	
+.errorlist li {
+	display: inline
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<div id="login">
+	<div class="row" id="form-fill">
+		<div class="col-sm-5 col-sm-offset-3">
+			{% if errors %}<p class="errorlist">{{ errors }}</p>{% endif %}
+			<form class="form-horizontal" name="AdminLoginForm" role="form" method="post">
+				{% csrf_token %}
+				<div class="form-group">
+					<label for="id_email" class="col-sm-3 control-label">User name</label>
+					<div class="col-sm-9">
+						<input type="email" class="form-control" name="email" id="id_email" placeholder="Admin user name">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="id_password" class="col-sm-3 control-label">Password</label>
+					<div class="col-sm-9">
+						<input type="password" class="form-control" name="password" id="id_password" placeholder="Password">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-9 col-sm-3">
+						<button type="submit" class="btn btn-default pull-right">Log in</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

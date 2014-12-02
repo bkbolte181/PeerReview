@@ -1,11 +1,16 @@
 from django.shortcuts import render, render_to_response, RequestContext
+<<<<<<< HEAD
 from django.http import HttpResponse, HttpResponseRedirect, Http404
+=======
+from django.http import HttpResponseRedirect, HttpResponse
+>>>>>>> dev
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout, get_user
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.forms.models import model_to_dict
 from datetime import date
 from datetime import datetime
+<<<<<<< HEAD
 from filetransfers.api import prepare_upload
 from forms import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -64,6 +69,13 @@ def get_current_review_period():
     else:
         return False
 
+=======
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import get_object_or_404
+from PeerReviewApp.models import *
+from PeerReviewApp.forms import *
+import json
+>>>>>>> dev
 
 def index(request):
     ''' Main landing page '''
@@ -208,7 +220,7 @@ def submit_manuscript(request, mid):
     manuscript.status = 'Submitted'
     manuscript.save()
     context['manuscript'] = manuscript
-    return render(request, 'submit_manuscript.html', context)
+    return render(request, 'uploader_home.html', context)
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def delete_manuscript(request,mid):
@@ -373,9 +385,239 @@ def account(request):
 
 @login_required
 def auth_admin(request):
+<<<<<<< HEAD
     context = {}
     user = SiteUser.objects.get(email=request.user.email)
     if user.email != 'b.k.bolte@emory.edu':  # Update admin authentication at some point
         return HttpResponseRedirect(reverse('index'))
     context['all_users'] = SiteUser.objects.all()
     return render(request, 'admin_home.html', context)
+=======
+	context = {}
+	user = SiteUser.objects.get(email=request.user.email)
+	if user.email != 'b.k.bolte@emory.edu': # Update admin authentication at some point
+		return HttpResponseRedirect(reverse('index'))
+	context['all_users'] = SiteUser.objects.all()
+	return render(request, 'admin_home.html', context)
+
+def is_site_admin_check(user):
+	if user.is_authenticated():
+		return user.is_site_admin
+	else:
+		return False
+
+def admin_login(request):
+	#context_dict = {}
+	context = {}
+	#context['next'] = request.GET.get('next', False)
+	if request.method == 'POST': form = AdminLoginForm(request.POST)
+	else: form = AdminLoginForm()
+	if form.is_valid() and 'email' in form.cleaned_data and 'password' in form.cleaned_data:
+		user = authenticate(username=form.cleaned_data['email'], password=form.cleaned_data['password'])
+		if user is not None:
+			login(request, user)
+			return HttpResponseRedirect(reverse('admin_homepage')) # Redirect to homepage when the user logs in
+		else:
+			context['errors'] = 'Authentication failed.'
+	context['form'] = form
+	#return render_to_response('login.html', context, context_instance=RequestContext(request))
+	#return render_to_response('admin_login.html', context_dict)
+	return render_to_response('admin_login.html', context, context_instance=RequestContext(request))
+
+#@login_required(login_url='/admin_login')
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
+def admin_homepage(request):
+	context_dict = {}
+
+	period = ReviewPeriod.objects.filter(is_current=True)
+	if len(period) != 0:
+		submission_deadline = period[0].submission_deadline
+		review_deadline = period[0].review_deadline
+		group_meeting_time = period[0].group_meeting_time
+		group_meeting_venue = period[0].group_meeting_venue
+	else:
+		submission_deadline = ''
+		review_deadline = ''
+		group_meeting_time = ''
+		group_meeting_venue = ''
+
+	context_dict['submission_deadline'] = submission_deadline
+	context_dict['review_deadline'] = review_deadline
+	context_dict['group_meeting_time'] = group_meeting_time
+	context_dict['group_meeting_venue'] = group_meeting_venue
+	return render_to_response('admin_homepage.html', context_dict, RequestContext(request))
+
+class MatchedManuscript():
+	manuscript = Manuscript
+	
+	def __init__(self):
+		self.recommended_reviewers = []
+
+	def add(self, reviewer):
+		self.recommended_reviewers.append(reviewer)
+
+#view to handle admin confirm final decision ajax call
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
+def admin_confirm_ajax(request):
+	try:
+		if request.POST.has_key('manuscript_id'):
+			manuscript_id = request.POST.get('manuscript_id')
+			manuscript = Manuscript.objects.get(id=manuscript_id)
+			manuscript.is_final = True
+			manuscript.save()
+		
+			response_dict = {}
+			reviewers_dict = {}
+			for reviewer in manuscript.reviewers.all():
+				reviewers_dict[reviewer.email] = {'name':reviewer.first_name + ' ' + reviewer.last_name + reviewer.star_string}
+
+			author = manuscript.authors.all()[0]
+			response_dict['manuscript'] = {'title':manuscript.brief_title, 'id':manuscript.id, 'author':author.first_name + ' ' + author.last_name + author.star_string}
+			response_dict['reviewers'] = reviewers_dict
+			response_dict['success'] = 'true'
+			
+
+	except KeyError:
+		return HttpResponse(json.dumps({'error': 'true', 'code': 'KeyError'}), content_type='application/json')
+		
+	return HttpResponse(json.dumps(response_dict), content_type='application/json')
+
+#view to handle admin submit final decision ajax call
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
+def admin_submit_ajax(request):
+	try:
+		if request.POST.has_key('manuscript_id'):
+			manuscript_id = request.POST.get('manuscript_id')
+			manuscript = Manuscript.objects.get(id=manuscript_id)
+		
+			response_dict = {}			
+			reviewer_dict = {}
+			for reviewer in manuscript.reviewers.all():
+				reviewer_dict[reviewer.email] = {'name':reviewer.first_name + ' ' + reviewer.last_name + reviewer.star_string, 'email':reviewer.email, 'id':reviewer.id}
+
+			response_dict['reviewers'] = reviewer_dict
+			response_dict['constraint'] = manuscript.warning
+			response_dict['success'] = 'true'
+
+	except KeyError:
+		return HttpResponse(json.dumps({'error': 'true', 'code': 'KeyError'}), content_type='application/json')
+	
+	return 	HttpResponse(json.dumps(response_dict), content_type='application/json')
+
+#view to handle admin edit ajax call 
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
+def admin_ajax(request):
+	try:
+		if request.POST.has_key('manuscript_id'):
+			manuscript_id = request.POST.get('manuscript_id')
+			manuscript = Manuscript.objects.get(id=manuscript_id)
+
+			#get new set of reviewers
+			if request.POST.has_key('reviewers'):
+				reviewers = request.POST.get('reviewers').split(',')
+				reviewers.pop()
+
+				#store the new set of reviewers
+				manuscript.reviewers.clear()
+				for reviewer in reviewers:
+					manuscript.reviewers.add(SiteUser.objects.get(email=reviewer))
+				response_dict = {}
+				assigned_dict = {} 
+				recommend_dict = {}
+
+				for reviewer in manuscript.reviewers.all():
+					assigned_dict[reviewer.email] = {'name':reviewer.first_name + ' ' + reviewer.last_name + reviewer.star_string, 'email':reviewer.email, 'id':reviewer.id}
+
+				for reviewer in manuscript.recommended_reviewers:
+					recommend_dict[reviewer.email] = {'name':reviewer.first_name + ' ' + reviewer.last_name + reviewer.star_string, 'email':reviewer.email, 'id':reviewer.id}
+
+				response_dict['assigned'] = assigned_dict
+				response_dict['recommend'] = recommend_dict
+				response_dict['constraint'] = manuscript.warning
+				response_dict['success'] = 'true'
+
+	except KeyError:
+		return HttpResponse(json.dumps({'error': 'true', 'code': 'KeyError'}), content_type='application/json')
+
+	return HttpResponse(json.dumps(response_dict), content_type='application/json')
+
+#@login_required(login_url='/admin_login')
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
+def admin_browselist(request):
+	context_dict = {}
+	manuscripts = []
+		
+	manuscripts_all = Manuscript.objects.all()
+
+	#get current period
+	period = ReviewPeriod.objects.filter(is_current=True)
+	if len(period) != 0:
+		submission_deadline = period[0].submission_deadline
+		review_deadline = period[0].review_deadline
+		group_meeting_time = period[0].group_meeting_time
+		group_meeting_venue = period[0].group_meeting_venue
+
+		#review period constrain
+		for manuscript in manuscripts_all:
+			if manuscript.review_period.is_current:
+				manuscripts.append(manuscript)	
+	else:
+		submission_deadline = ''
+		review_deadline = ''
+		group_meeting_time = ''
+		group_meeting_venue = ''
+
+	reviewers = SiteUser.objects.filter(agreed_to_form=True)
+
+	context_dict['manuscripts'] = manuscripts
+	context_dict['reviewers'] = reviewers
+	context_dict['submission_deadline'] = submission_deadline
+	context_dict['review_deadline'] = review_deadline
+	context_dict['group_meeting_time'] = group_meeting_time
+	context_dict['group_meeting_venue'] = group_meeting_venue
+	return render_to_response('admin_browselist.html', context_dict, RequestContext(request))	
+
+
+#@login_required(login_url='/admin_login')
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
+def manuscript_detail(request, pk):
+	manuscript = get_object_or_404(Manuscript, pk=pk)
+	#return render(request, 'manuscript_detail.html', {'manuscript': manuscript})
+	return render_to_response('manuscript_detail.html', {'manuscript': manuscript}, RequestContext(request))
+
+#@login_required(login_url='/admin_login')
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
+def user_detail(request, pk):
+	user = get_object_or_404(SiteUser, pk=pk)
+	#return render(request, 'user_detail.html', {'user': user})
+	return render_to_response('user_detail.html', {'user': user}, RequestContext(request))
+
+#@login_required(login_url='/admin_login')
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
+def setting(request):
+	if request.method == 'POST':
+		form = ReviewPeriodForm(request.POST)
+		if form.is_valid():
+			for period in ReviewPeriod.objects.all():
+				period.is_current = False
+				period.save()
+			#ReviewPeriod.objects.all().delete();
+			period = form.save(commit=True)
+			period.is_current = True
+			period.save()
+			for period in ReviewPeriod.objects.all():
+				print period.is_current
+			return render_to_response('setting_ok.html', {"period":period}, RequestContext(request))
+		else:
+			print form.errors
+	else:
+		form = ReviewPeriodForm()
+	return render_to_response('setting.html', {'form': form}, RequestContext(request))
+
+#@login_required(login_url='/admin_login')
+@user_passes_test(is_site_admin_check, login_url='/admin_login')
+def admin_logout(request):
+	context = {}
+	logout(request)
+	return HttpResponseRedirect('/admin_login')
+>>>>>>> dev

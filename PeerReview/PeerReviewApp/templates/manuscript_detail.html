@@ -1,0 +1,75 @@
+{% extends 'admin_base.html' %}
+{% block body %}
+		<div class="row admin-nav2">
+		<div class="col-sm-12">
+		<ol class="breadcrumb">
+		  <li><a href="{% url 'admin_homepage' %}">Home</a></li>
+		  <li><a href="{% url 'admin_browselist' %}">Manuscripts/Reviewers</a></li>
+		  <li class="active">Manuscript Detail</li>
+		</ol>		
+		</div>
+		</div>		  
+        <div class = "row manuscript_detail">
+		
+		
+			<div class="col-sm-8 col-sm-offset-2">
+				<table class="table table-hover">
+				  <caption>{{manuscript.title}}</caption>
+				  <thead>
+					<tr>
+					  <th class="col-sm-3"></th>
+					  <th class="col-sm-9"></th>
+					</tr>
+				  </thead>
+				  <tbody>			  
+					<tr>
+					  <td>ID</td>
+					  <td>{{manuscript.id}}</td>
+					</tr>
+					<tr>
+						<td>Title</td>
+						<td>{{manuscript.title}}</td>
+					</tr>
+					<tr>
+						<td>Brief Title</td>
+						<td>{{manuscript.brief_title}}</td>
+					</tr>
+					<tr>
+					  <td>Author</td>
+					  <td>Arial Martinez</td>
+					</tr>					
+					<tr>
+					  <td>Assigned reviewers</td>
+					  <td>John Lee*, Emily White</td>
+					</tr>
+					<tr>
+					  <td>Recommended reviewers</td>
+					  <td>Benjamin Bolte*, Peng Ji, Jiulin Hu, Johnny Tan</td>
+					</tr>	
+					<tr>
+					  <td>Abstract</td>
+					  <td>{{manuscript.abstract}}</td>
+					</tr>	
+					<tr>
+					  <td>Keywords</td>
+					  <td>{{manuscript.keywords}}</td>
+					</tr>
+					<tr>
+					  <td>Target journal</td>
+					  <td>{{manuscript.target_journal}}</td>
+					</tr>	
+					<tr>
+					  <td>Field</td>
+					  <td>{{manuscript.field}}</td>
+					</tr>						
+					<tr>
+					  <td>Feedback</td>
+					  <td>No feedback available. <br/>
+							Click <a class="adecor" href="">here</a> to request feedback from the author.</td>
+					</tr>						
+				  </tbody>
+				</table>
+				<button type="button" class="btn btn-default pull-right" title="Go back to manuscripts/reviewers list." onclick="location.href = '{% url 'admin_browselist' %}';">Back</button>
+			</div>
+        </div>
+{% endblock %} 

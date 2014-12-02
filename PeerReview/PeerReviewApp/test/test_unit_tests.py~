@@ -1,0 +1,49 @@
+from django.test import TestCase
+from django.utils import timezone
+from django.test import Client
+from django.utils import unittest
+from django.core.urlresolvers import reverse
+import datetime
+
+import sys
+sys.path.append('../')
+
+from PeerReviewApp.models import *
+from PeerReviewApp.forms import *
+from PeerReviewApp.views import *
+
+class CreateUserTest(unittest.TestCase):
+
+	def test_create_user(self):
+		instance = SiteUser(email = 'johnny@emory.edu', password = '123'
+		, first_name = 'johnny', last_name= 'tan')
+		self.assertTrue(isinstance(instance, SiteUser))
+
+	def test_get_short_name(self):
+		instance = SiteUser(email = 'johnny@emory.edu', password = '123'
+		, first_name = 'johnny', last_name= 'tan')
+		self.assertEqual(instance.get_short_name(), 'johnny')
+
+	def test_get_full_name(self):
+		instance = SiteUser(email = 'johnny@emory.edu', password = '123'
+		, first_name = 'johnny', last_name= 'tan')
+		self.assertEqual(instance.get_full_name(), ('johnny','tan'))
+
+class CreateReviewPeriodTest(unittest.TestCase):
+
+	def test_create_reviewperiod(self):
+		instance = ReviewPeriod(is_full = 'False', start_date = timezone.now()
+		, submission_deadline = timezone.now()
+		, review_deadline = timezone.now()+datetime.timedelta(days = 30)
+		, group_meeting_time = timezone.now()+datetime.timedelta(days = 50))
+		self.assertTrue(isinstance(instance, ReviewPeriod))
+
+class CreateManuscriptTest(unittest.TestCase):
+
+	def test_create_manuscript(self):
+		instance = Manuscript(status = 'submitted', abstract = 'abstract', title = 'title'
+		, keywords = 'k1,k2,k3', is_final = 'False')
+		self.assertTrue(isinstance(instance, Manuscript))
+
+
+
