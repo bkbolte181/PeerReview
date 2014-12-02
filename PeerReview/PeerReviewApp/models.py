@@ -102,8 +102,7 @@ class Manuscript(models.Model):
     target_journal = models.CharField(max_length=200)
 
     # Link to review period
-    review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript",
-                                      default=0)
+    review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript", default=0)
     is_final = models.BooleanField(default=False)  # If the final decision of this manuscript has been made
 
 
