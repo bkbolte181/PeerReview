@@ -67,75 +67,75 @@ class CreateReviewPeriodTest(TestCase):
 # Testing the Views
 # For status_code 302 is redirect urls, 200 is normal resp status code , 301 is permanently moved links
 
+class SignupTest(unittest.TestCase):
+	def setUp(self):
+		self.client = Client()
 
-class SignupView(TestCase):
+	def test_details(self):
+		resp = self.client.get('/signup/')
+		self.assertEquals(resp.status_code,200)
 
-    def test_signup(self):
-        resp = self.client.get('/signup/')
-        self.assertEquals(resp.status_code,200)
 
-class AdminView(TestCase):
-
-    def test_admin(self):
-        resp = self.client.get('/admin/')
-        self.assertEquals(resp.status_code,302)
+class AdminViewTest(unittest.TestCase):
+	def setUp(self):
+		self.client = Client()
+	def test_admin(self):
+		resp = self.client.get('/admin/')
+		self.assertEquals(resp.status_code,302)
 
 class TermsView(TestCase):
 
-    def test_term(self):
-        resp = self.client.get('/terms/')
-        self.assertEqual(resp.status_code,200)
+	def test_term(self):
+		resp = self.client.get('/terms/')
+		self.assertEqual(resp.status_code,200)
 
 class LoginView(TestCase):
 
-    def test_login(self):
-        resp = self.client.get('/login/')
-        self.assertEquals(resp.status_code,200)
+	def test_login(self):
+		resp = self.client.get('/login/')
+		self.assertEquals(resp.status_code,200)
 
 class AccountView(TestCase):
 
-    def test_account(self):
-        resp = self.client.get('/account/')
-        self.assertEquals(resp.status_code,302)
+	def test_account(self):
+		resp = self.client.get('/account/')
+		self.assertEquals(resp.status_code,302)
 
 class LogoutView(TestCase):
 
-    def test_logout(self):
-        resp = self.client.get('/logout/')
-        self.assertEquals(resp.status_code,302)
+	def test_logout(self):
+		resp = self.client.get('/logout/')
+		self.assertEquals(resp.status_code,302)
 
-'''
 class UploadView(TestCase):
-
-    def test_upload(self):
-        resp = self.client.get('/upload')
-        self.assertEquals(resp.status_code,301)
-'''
+	def test_upload(self):
+		resp = self.client.get('/upload')
+		self.assertEquals(resp.status_code,301)
 
 class ReviewView(TestCase):
 
-    def test_review(self):
-        resp = self.client.get('/review/')
-        self.assertEquals(resp.status_code,302)
+	def test_review(self):
+		resp = self.client.get('/review/')
+		self.assertEquals(resp.status_code,302)
 
 class BrowseView(TestCase):
 
-    def test_browse(self):
-        resp = self.client.get('/browse/1')
-        self.assertEquals(resp.status_code,301)
+	def test_browse(self):
+		resp = self.client.get('/browse/1')
+		self.assertEquals(resp.status_code,301)
         #self.assertTrue('all_manuscript' in resp.content)
 
 class AssignedManuscriptView(TestCase):
 
-    def test_assigned(self):
-        resp = self.client.get('/assignedmanuscripts/')
-        self.assertEquals(resp.status_code,302)
+	def test_assigned(self):
+		resp = self.client.get('/assignedmanuscripts/')
+		self.assertEquals(resp.status_code,302)
 
 class AgreementView(TestCase):
 
-    def test_agreement(self):
-        resp = self.client.get('/agreement/')
-        self.assertEquals(resp.status_code,302)
+	def test_agreement(self):
+		resp = self.client.get('/agreement/')
+		self.assertEquals(resp.status_code,302)
 
 
 # Form testing

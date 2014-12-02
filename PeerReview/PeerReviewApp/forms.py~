@@ -2,6 +2,7 @@ from django import forms
 from PeerReviewApp.models import *
 from models import *
 from django.conf import settings
+import datetime
 
 SCHOOLS = settings.SCHOOLS
 	
@@ -23,7 +24,7 @@ class AccountForm(forms.ModelForm):
 		
 	class Meta:
 		model = SiteUser
-		fields = ('email', 'first_name', 'last_name', 'department', 'lab', 'pi', 'school','review_count')
+		fields = ('email', 'first_name', 'last_name', 'department', 'lab', 'pi', 'school','review_count','agreed_to_form')
 		widgets = {
 			'email': forms.EmailInput(attrs={'class': 'form-control text-center', 'placeholder': 'Emory Email Address'}),
 			'first_name': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'First Name'}),
@@ -87,7 +88,7 @@ class SignupForm(forms.ModelForm):
 		return user
 
 class UploadFileForm(forms.Form):
-	''' Form for uploading a file '''
+	''' Form for uploading a file - I don't think this is being used yet '''
 	upload = forms.FileField()
 	
 	def clean_upload(self):
@@ -104,7 +105,7 @@ class UploadFileForm(forms.Form):
 class UploadManuscript(forms.ModelForm):
     class Meta:
         model = Manuscript
-        exclude = ('review_period', 'authors', 'reviewers', 'is_final','manuscript')
+        exclude = ('review_period', 'authors', 'reviewers', 'is_final', 'manuscript')
 
 	fields = ('title', 'brief_title', 'abstract', 'field', 'keywords', 'target_journal',)
 	widgets = {
@@ -115,6 +116,42 @@ class UploadManuscript(forms.ModelForm):
 		'keywords': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Keywords (no more than 10, separate by commas)'}),
 		'target_journal': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Which journal do you want to publish in?'}),
 	    }
+	    
+	def clean(self):
+		cleaned_data = super(UploadManuscript, self).clean()
+		keywords = 
 
-	def __init__(self, *args, **kwargs):
-		super(UploadManuscript, self).__init__(*args, **kwargs)
+class ReviewPeriodForm(forms.ModelForm):
+	start_date = forms.DateField(initial=datetime.date.today, help_text="Start date of current session: ")
+	submission_deadline = forms.DateField(initial=datetime.date.today, help_text="Submission deadline: ")
+	review_deadline = forms.DateField(initial=datetime.date.today, help_text="Review deadline: ")
+	group_meeting_time = forms.DateTimeField(initial=datetime.datetime.now, help_text="Group meeting time: ")
+	group_meeting_venue = forms.CharField(max_length=1000, help_text="Group meeting venue: ", initial="Room E404, MSC, Emory University, GA 30030.")
+	is_current = forms.BooleanField(widget=forms.HiddenInput(), initial=True)
+	max_manuscript = forms.IntegerField(min_value=1, max_value=50, initial=10, help_text="Max. number of manuscripts that the system can handle: ")
+
+	def clean(self):
+		cleaned_data = super(ReviewPeriodForm, self).clean()
+		start_date = cleaned_data.get('start_date')
+		submission_deadline = cleaned_data.get('submission_deadline')
+		review_deadline = cleaned_data.get('review_deadline')
+		group_meeting_time = cleaned_data.get('group_meeting_time')
+		if start_date and submission_deadline and review_deadline and group_meeting_time:
+			print group_meeting_time.date()
+			print review_deadline
+			if start_date >= submission_deadline:
+				raise forms.ValidationError("Start date should be before submission deadline.")
+			if submission_deadline >= review_deadline:
+				raise forms.ValidationError("Submission deadline should be before review deadline.")
+			if review_deadline >= group_meeting_time.date():
+				raise forms.ValidationError("Review deadline should be before group meeting time.")
+		return cleaned_data
+
+	class Meta:
+		model = ReviewPeriod
+		fields = ['start_date', 'submission_deadline', 'review_deadline', 'group_meeting_time', 'group_meeting_venue', 'max_manuscript']
+		
+class AdminLoginForm(forms.Form):
+	''' On log in, you only need an email and a password '''
+	email = forms.EmailField()
+	password = forms.CharField()

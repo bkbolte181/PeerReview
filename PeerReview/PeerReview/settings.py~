@@ -22,6 +22,7 @@ CONTENT_TYPES = [
 MAX_UPLOAD_SIZE = 1000000
 
 UPLOAD_PATH = 'uploads/%Y/%m'
+REVIEW_DOC_PATH = 'reviewdocs/%Y/%m'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -49,10 +50,15 @@ INSTALLED_APPS = (
     'filetransfers',
 )
 
+#Authentication backends
+AUTHENTICATION_BACKENDS = (
+	'django.contrib.auth.backends.ModelBackend',
+)
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -134,7 +140,10 @@ AUTH_USER_MODEL = 'PeerReviewApp.SiteUser'
 # The default url for handling logging in. This is necessary so that views that
 # require a logged in user can redirect to the correct place.
 LOGIN_URL = '/login/'
+<<<<<<< HEAD
 
 #File Transfer Backend / Serve file Download Backend
 PREPARE_UPLOAD_BACKEND = 'filetransfers.backends.default.prepare_upload'
 SERVE_FILE_BACKEND = 'filetransfers.backends.default.serve_file'
+=======
+>>>>>>> dev

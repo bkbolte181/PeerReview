@@ -1,0 +1,66 @@
+{% extends 'admin_base.html' %}
+{% block body %}
+		<div class="row admin-nav2">
+		<div class="col-sm-12">
+		<ol class="breadcrumb">
+		  <li><a href="{% url 'admin_homepage' %}">Home</a></li>
+		  <li><a href="{% url 'admin_browselist' %}">Manuscripts/Reviewers</a></li>
+		  <li class="active">User Detail</li>
+		</ol>		
+		</div>
+		</div>	 		  	  
+	  
+        <div class = "row user_detail">
+			<div class="col-sm-8 col-sm-offset-2">
+				<table class="table table-hover">
+				  <caption>{{user.first_name}} {{user.last_name}}</caption>
+				  <thead>
+					<tr>
+					  <th class="col-sm-4"></th>
+					  <th class="col-sm-8"></th>
+					</tr>
+				  </thead>
+				  <tbody>			  
+					<tr>
+					  <td>Emory Email</td>
+					  <td>{{user.email}}</td>
+					</tr>
+					<tr>
+						<td>Job Title</td>
+						<td>.............................................
+							.........................................</td>
+					</tr>
+					<tr>
+						<td>Department</td>
+						<td>.............................................
+							.........................................</td>
+					</tr>
+
+
+					<tr>
+						<td>General Research Area</td>
+						<td>Neuroscience</td>
+					</tr>
+					<tr>
+						<td>Specific Research Area</td>
+						<td>Neurodegenerative Disorders</td>
+					</tr>
+					<tr>
+						<td>Research Interest</td>
+						<td>{{user.research_interest}}</td>
+					</tr>
+					<tr>
+						<td>Mentor</td>
+						<td>{{user.pi}}</td>
+					</tr>
+					<tr>
+						<td>Number of Manuscripts Reviewed in Real Journals</td>
+						<td>{{user.review_count}}</td>
+					</tr>
+				  </tbody>
+				</table>
+				<button type="button" class="btn btn-default pull-right" data-tooltip="tooltip" title="Go back to manuscripts/reviewers list." onclick="location.href = '{% url 'admin_browselist' %}';">Back</button>	
+			</div>
+        </div>
+		
+{% endblock %} 
