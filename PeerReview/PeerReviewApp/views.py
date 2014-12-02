@@ -210,6 +210,15 @@ def submit_manuscript(request, mid):
     context['manuscript'] = manuscript
     return render(request, 'submit_manuscript.html', context)
 
+@user_passes_test(has_agreed, login_url='/agreement/')
+def delete_manuscript(request,mid):
+    context = {}
+    manuscript = Manuscript.objects.get(id=mid)
+    manuscript.delete()
+    manuscript.save()
+    context['manuscript'] = manuscript
+    return render(request, 'delete_manuscript.html', context)
+
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def edit_manuscript(request, mid):

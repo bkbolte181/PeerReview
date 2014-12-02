@@ -4,8 +4,17 @@
 <div class="row">
     <div class="col-sm-10 col-sm-offset-1">
         {% if error %}
-        <p>{{ error }}</p>
-        <a class="btn btn-default" href="{% url 'authorhome' %}">Return</a>
+        <p>
+                <bold>
+                    <h1 class="text-center">{{ error }}
+                    </h1>
+
+                </bold>
+            </p>
+                        <div class="hot-container text-center">
+
+        <a  class="btn btn-default" href="{% url 'authorhome' %}">Return</a>
+       </div>
         {% else %}
         <form class="form-horizontal" name="uploadmanuscriptForm" role="form" method="post"
               enctype="multipart/form-data">
@@ -59,7 +68,7 @@
 
                     <div class="modal-footer">
 
-                        <a href="{% url 'edit_manuscript' manuscript.id %}" class="btn btn-default">Delete
+                        <a href="{% url 'delete_manuscript' manuscript.id %}" class="btn btn-default">Delete
                             Manuscript</a>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
