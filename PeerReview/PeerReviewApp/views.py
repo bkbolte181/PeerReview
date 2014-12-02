@@ -266,7 +266,6 @@ def edit_manuscript(request, mid):
 def browse_manuscripts(request, current_page):
     context = {}
     context['period'] = get_current_review_period()
-
     # Load all available manuscripts
     all_manuscripts = Manuscript.objects.all()
 
