@@ -97,7 +97,7 @@ class Manuscript(models.Model):
     title = models.CharField(max_length=200, unique=True)
     brief_title = models.CharField(max_length=50, unique=True)
     abstract = models.CharField(max_length=200000)
-    keywords = SeparatedValuesField(max_length=1000, choices =(('', ''), ('', '')), token=',' , help_text='Keywords, separated by a comma')  # Custom field for storing python lists
+    keywords = SeparatedValuesField(max_length=1000, help_text='Keywords, separated by a comma')  # Custom field for storing python lists
     field = models.CharField(max_length=200)
     target_journal = models.CharField(max_length=200)
 
