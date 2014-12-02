@@ -197,58 +197,60 @@ def remove_associated_file(request, fid):
         context['msg'] = 'Deleted manuscript file'
         return HttpResponse(json.dumps(context), content_type="application/json")
     else:
-		return Http404
+        return Http404
+
 
 @user_passes_test(has_agreed, login_url='/agreement/')
-def submit_manuscript(request,mid):
-	context = {}
-	manuscript = Manuscript.objects.get(id=mid)
-	manuscript.is_final = True
-	manuscript.status = 'Submitted'
-	manuscript.save()
-	context['manuscript'] = manuscript
-	return render(request,'submit_manuscript.html',context)
+def submit_manuscript(request, mid):
+    context = {}
+    manuscript = Manuscript.objects.get(id=mid)
+    manuscript.is_final = True
+    manuscript.status = 'Submitted'
+    manuscript.save()
+    context['manuscript'] = manuscript
+    return render(request, 'submit_manuscript.html', context)
 
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def edit_manuscript(request, mid):
-    context = {}
+	context = {}
 
-    # If the user has made changes
-    if request.POST:
-        # Need to write method to update form and associated files
-        man = Manuscript.objects.get(id=request.POST['id'])
-        form = UploadManuscript(request.POST, instance=man)
-        if form.is_valid():
-            form.save()
+	# If the user has made changes
+	if 'submitbutton' in request.POST:
+		# Need to write method to update form and associated files
+		man = Manuscript.objects.get(id=request.POST['id'])
+		form = UploadManuscript(request.POST, instance=man)
+		if form.is_valid():
+			form.save()
 
-        saved_files = handle_uploads(request)
-        for f in saved_files:
-            m = ManuscriptFile.objects.create(filename=f[0], upload=f[1], manuscript=man)
-            m.save()
-    
+		saved_files = handle_uploads(request)
+		for f in saved_files:
+			m = ManuscriptFile.objects.create(filename=f[0], upload=f[1], manuscript=man)
+			m.save()
+		return render(request,'uploader_home.html')
+	else:
 
-    # Get the current user and the manuscript being edited
-    user = SiteUser.objects.get(email=request.user.email)
-    manuscript = Manuscript.objects.get(id=mid)
+		#Get the current user and the manuscript being edited
+		user = SiteUser.objects.get(email=request.user.email)
+		manuscript = Manuscript.objects.get(id=mid)
 
-    # Make sure the manuscript they're trying to edit is theirs and that it can be edited
-    if user not in manuscript.authors.all():
-        context['error'] = 'You are not authorized to make changes to this manuscript.'
-        return render(request, 'edit_manuscript.html', context)
-    elif manuscript.is_final:
-        context['error'] = 'This manuscript can no longer be edited.'
-        return render(request, 'edit_manuscript.html', context)
+		# Make sure the manuscript they're trying to edit is theirs and that it can be edited
+		if user not in manuscript.authors.all():
+		    context['error'] = 'You are not authorized to make changes to this manuscript.'
+		    return render(request, 'edit_manuscript.html', context)
+		elif manuscript.is_final:
+		    context['error'] = 'This manuscript can no longer be edited.'
+		    return render(request, 'edit_manuscript.html', context)
 
-    form = UploadManuscript(instance=manuscript)
-    context['form'] = form
+		form = UploadManuscript(instance=manuscript)
+		context['form'] = form
 
-    files = ManuscriptFile.objects.filter(manuscript=manuscript)
-    context['files'] = files
+		files = ManuscriptFile.objects.filter(manuscript=manuscript)
+		context['files'] = files
 
-    context['manuscript'] = manuscript
+		context['manuscript'] = manuscript
 
-    return render(request, 'edit_manuscript.html', context)
+		return render(request, 'edit_manuscript.html', context)
 
 
 @user_passes_test(has_agreed, login_url='/agreement/')
