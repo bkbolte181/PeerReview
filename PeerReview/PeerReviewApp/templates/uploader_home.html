@@ -18,13 +18,15 @@
 						<div class="col-sm-10 col-sm-offset-1">
 							{{ manuscript.title }}
 							<button type="button" class="btn btn-default btn-sm pull-right" data-toggle="modal" style="width: 100px;" data-target="#modal{{ manuscript.id }}">View</button>
-<button                     type="button"  data-toggle="modal" data-target="#finalize{{ manuscript.id }}"
+                         <button type="button"  data-toggle="modal" data-target="#finalize{{ manuscript.id }}"
                             class="btn btn-default btn-sm pull-right" style="margin-right: 10px; width: 100px;"
                             href="#"
                             onmouseover="changeText(this, 'Submit')"
-                            onmouseout="changeText(this, '{{ manuscript.status|capfirst }}')">{{
-                            manuscript.status|capfirst }}
-                        </button>						</div>
+                            onmouseout="changeText(this, '{{ manuscript.status }}')">
+                            {{ manuscript.status }}
+
+                        </button>
+                        </div>
 					</div>
                  <div class="modal fade" id="finalize{{ manuscript.id }}" role="dialog" tabindex="-1">
                     <div class="modal-dialog">
