@@ -41,6 +41,7 @@ urlpatterns = patterns('',
 	url(r'^user_detail/(?P<pk>[0-9]+)/$', views.user_detail, name='user_detail'),
 	url(r'^admin_setting/$', views.setting, name='admin_setting'),
 	url(r'^admin_logout/$', views.admin_logout, name='admin_logout'),
+	url(r'^admin_help/$', views.admin_help, name='admin_help'),
 	# Media root for serving files when on a local dev server
 	url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 )

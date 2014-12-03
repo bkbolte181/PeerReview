@@ -118,13 +118,13 @@ class UploadManuscript(forms.ModelForm):
 	    }
 
 class ReviewPeriodForm(forms.ModelForm):
-	start_date = forms.DateField(initial=datetime.date.today, help_text="Start date of current session: ")
-	submission_deadline = forms.DateField(initial=datetime.date.today, help_text="Submission deadline: ")
-	review_deadline = forms.DateField(initial=datetime.date.today, help_text="Review deadline: ")
-	group_meeting_time = forms.DateTimeField(initial=datetime.datetime.now, help_text="Group meeting time: ")
-	group_meeting_venue = forms.CharField(max_length=1000, help_text="Group meeting venue: ", initial="Room E404, MSC, Emory University, GA 30030.")
+	start_date = forms.DateField( help_text="Start date of current session: ")
+	submission_deadline = forms.DateField( help_text="Submission deadline: ")
+	review_deadline = forms.DateField( help_text="Review deadline: ")
+	group_meeting_time = forms.DateTimeField( help_text="Group meeting time: ")
+	group_meeting_venue = forms.CharField(max_length=1000, help_text="Group meeting venue: ")
 	is_current = forms.BooleanField(widget=forms.HiddenInput(), initial=True)
-	max_manuscript = forms.IntegerField(min_value=1, max_value=50, initial=10, help_text="Max. number of manuscripts that the system can handle: ")
+	max_manuscript = forms.IntegerField(min_value=1, max_value=50, help_text="Max. number of manuscripts that the system can handle: ")
 
 	def clean(self):
 		cleaned_data = super(ReviewPeriodForm, self).clean()
