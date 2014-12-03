@@ -65,6 +65,25 @@ def get_current_review_period():
     else:
         return False
 
+def is_normal_user_(user):
+	if user.is_site_admin:
+		return False
+	else:
+		return True
+
+
+
+
+def is_normal_user_check(user):
+    if user.is_authenticated():
+        if user.is_site_admin:
+            return False
+        else:
+            return True
+    else:
+        return False
+
+
 def index(request):
     ''' Main landing page '''
     context = {}
@@ -72,6 +91,9 @@ def index(request):
 
 def about(request):
     return render(request, 'about.html', {})
+
+def help(request):
+    return render(request,'help.html',{})
 
 def terms(request):
     ''' Terms of service agreement '''
@@ -139,7 +161,9 @@ def signup(request):
     return render(request, 'signup.html', context)
 
 
-@login_required
+
+
+@user_passes_test(is_normal_user_check)
 def agreement(request):
     ''' Agree to the form '''
     context = {}
@@ -163,7 +187,7 @@ def agreement(request):
     return render(request, 'agreement.html', context)
 
 
-@login_required
+@user_passes_test(is_normal_user_check, login_url='/agreement/')
 def auth_logout(request):
     context = {}
     logout(request)
@@ -172,7 +196,10 @@ def auth_logout(request):
 
 def has_agreed(user):
     if user.is_authenticated():
-        return user.agreed_to_form
+        if user.is_site_admin:
+            return False
+        else:
+            return user.agreed_to_form
     else:
         return False
 
@@ -201,8 +228,8 @@ def remove_associated_file(request, fid):
 def submit_manuscript(request, mid):
     context = {}
     manuscript = Manuscript.objects.get(id=mid)
-    manuscript.is_final = True
     manuscript.status = 'Submitted'
+    manuscript.review_period = ReviewPeriod.objects.filter(is_current=True)[0]
     manuscript.save()
     context['period'] = ReviewPeriod.objects.filter(is_current=True)
     context['manuscript'] = manuscript
@@ -336,7 +363,8 @@ def upload_manuscript(request):
             # Set current user as author
             current_user = SiteUser.objects.get(email=request.user.email)
             man.authors = [current_user]
-
+            man.review_period = get_current_review_period()
+            man.save()
             saved_files = handle_uploads(request)
             for f in saved_files:
                 m = ManuscriptFile.objects.create(filename=f[0], upload=f[1], manuscript=man)
@@ -350,7 +378,7 @@ def upload_manuscript(request):
     return render(request, 'upload_manuscript.html', context)
 
 
-@login_required
+@user_passes_test(is_normal_user_)
 def account(request):
     context = {}
     user = SiteUser.objects.get(email=request.user.email)
@@ -600,3 +628,6 @@ def admin_logout(request):
 	context = {}
 	logout(request)
 	return HttpResponseRedirect('/admin_login')
+
+
+

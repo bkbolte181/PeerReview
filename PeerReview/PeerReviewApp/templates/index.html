@@ -15,9 +15,13 @@
 		</p>
 		<div class="hot-container" style="text-align: center;">
 			{% if user.is_authenticated %}
+            {% if not user.is_site_admin %}
 			<a href="{% url 'authorhome' %}" class="abtn btn-green">Author Center</a>
 			<a href="{% url 'review' %}" class="abtn btn-green">Reviewer Center</a>
 			{% else %}
+            <p>You are on the wrong page !</p>
+            {% endif %}
+            {% else %}
 			<a href="{% url 'signup' %}" class="abtn btn-green">New User</a>
 			<a href="{% url 'login' %}" class="abtn btn-green">Log In</a>
 			{% endif %}

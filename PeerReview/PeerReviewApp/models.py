@@ -182,7 +182,7 @@ class Manuscript(models.Model):
 		for reviewer in recommended:
 			matched = False
 			#separated field
-			for keyword in self.keywords:
+			for keyword in self.keywords.split(','):
 				if reviewer.research_interest.upper().find(keyword.upper()):
 					matched = True
 					break

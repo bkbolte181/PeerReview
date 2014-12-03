@@ -22,7 +22,7 @@
 		<div class="header">
 			<div class="container">
 				<a href="{% url 'index' %}" class="logo-icon">
-					<img src="{% static 'fig/Icon_WriteArticles.png' %}">
+          <img src="{% static 'fig/swc_logo.png' %}">
 					<p class="logo-text">Manuscript Review</p>
 				</a>
 				<!-- If the user is logged in -->
@@ -44,7 +44,7 @@
 					<li><a href="{% url 'account' %}">Account</a></li>
 					<li><a href="{% url 'about' %}">About</a></li>
 					<li><a href="mailto:b.k.bolte@emory.edu">Submit Feedback</a></li>
-					<li><a href="{% url 'admin_homepage' %}">Admin</a></li>
+                    <li><a href="{% url 'help' %}">Help</a></li>
 				</ul>
 				{% endif %}
 			</div>
