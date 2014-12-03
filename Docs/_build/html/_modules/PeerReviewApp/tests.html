@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>PeerReviewApp.tests &mdash; Manuscript Review 1.0beta1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0beta1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Manuscript Review 1.0beta1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html"><img src="../../_static/projtitle.png" width = "50%" border="0" alt="peer review"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../search.html">search</a>|&nbsp;</li>
+
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for PeerReviewApp.tests</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">timezone</span>
+<span class="kn">from</span> <span class="nn">forms</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">unittest</span>
+<span class="kn">from</span> <span class="nn">django.core.urlresolvers</span> <span class="kn">import</span> <span class="n">reverse</span>
+<span class="kn">from</span> <span class="nn">forms</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">views</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c"># Testing the Model</span>
+
+<div class="viewcode-block" id="UploadFilesTest"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.UploadFilesTest">[docs]</a><span class="k">class</span> <span class="nc">UploadFilesTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot; Test file uploads &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="UploadFilesTest.create_user"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.UploadFilesTest.create_user">[docs]</a>	<span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span> <span class="o">=</span> <span class="s">&#39;johnny@emory.edu&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span><span class="p">,</span> <span class="n">firstname</span> <span class="o">=</span> <span class="s">&#39;johnny&#39;</span><span class="p">,</span> <span class="n">lastname</span><span class="o">=</span> <span class="s">&#39;tan&#39;</span><span class="p">):</span>
+		<span class="k">return</span> <span class="n">SiteUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="n">password</span><span class="p">,</span> <span class="n">first_name</span> <span class="o">=</span> <span class="n">firstname</span><span class="p">,</span> <span class="n">last_name</span> <span class="o">=</span> <span class="n">lastname</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="UploadFilesTest.create_review_period"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.UploadFilesTest.create_review_period">[docs]</a>	<span class="k">def</span> <span class="nf">create_review_period</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">isfull</span> <span class="o">=</span> <span class="s">&#39;false&#39;</span><span class="p">,</span> <span class="n">startdate</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span> <span class="n">submissionsdeadline</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span> <span class="o">=</span> <span class="mi">30</span><span class="p">),</span> <span class="n">reviewdeadline</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span> <span class="o">=</span> <span class="mi">50</span><span class="p">),</span> <span class="n">groupmeeting</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span> <span class="o">=</span> <span class="mi">80</span><span class="p">)):</span>
+		<span class="k">return</span> <span class="n">ReviewPeriod</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">is_full</span> <span class="o">=</span> <span class="n">isfull</span><span class="p">,</span> <span class="n">start_date</span> <span class="o">=</span> <span class="n">startdate</span><span class="p">,</span> <span class="n">submission_deadline</span> <span class="o">=</span> <span class="n">submissionsdeadline</span><span class="p">,</span> <span class="n">review_deadline</span> <span class="o">=</span> <span class="n">reviewdeadline</span><span class="p">,</span> <span class="n">group_meeting_time</span> <span class="o">=</span> <span class="n">groupmeeting</span> <span class="p">)</span>
+</div>
+<div class="viewcode-block" id="UploadFilesTest.upload_image_file"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.UploadFilesTest.upload_image_file">[docs]</a>	<span class="k">def</span> <span class="nf">upload_image_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="s">&#39;anonymous.jpg&#39;</span><span class="p">):</span>
+		<span class="n">usr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_user</span><span class="p">()</span>
+		<span class="n">man</span> <span class="o">=</span> <span class="n">Manuscript</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s">&#39;submitted&#39;</span><span class="p">,</span>
+										<span class="n">title</span><span class="o">=</span><span class="s">&#39;A Silly Title: A Treatise on Modern Titles in America and the Silliness Therein&#39;</span><span class="p">,</span>
+										<span class="n">brief_title</span><span class="o">=</span><span class="s">&#39;A Silly Title&#39;</span><span class="p">,</span>
+										<span class="n">abstract</span><span class="o">=</span><span class="s">&#39;Abstract? What abstract?&#39;</span><span class="p">,</span>
+										<span class="n">keywords</span><span class="o">=</span><span class="s">&#39;f**k,s**t,m****rf****r&#39;</span><span class="p">,</span> <span class="c"># Censored for the children</span>
+										<span class="n">field</span><span class="o">=</span><span class="s">&#39;Silliness&#39;</span><span class="p">,</span>
+										<span class="n">target_journal</span><span class="o">=</span><span class="s">&#39;Silly Journal&#39;</span><span class="p">,</span>
+										<span class="n">review_period</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">create_review_period</span><span class="p">(),</span>
+										<span class="n">is_final</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">ImageFile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">file</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_ROOT</span><span class="p">,</span> <span class="nb">file</span><span class="p">),</span> <span class="n">manuscript</span><span class="o">=</span><span class="n">man</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="UploadFilesTest.test_file_upload"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.UploadFilesTest.test_file_upload">[docs]</a>	<span class="k">def</span> <span class="nf">test_file_upload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">upload_image_file</span><span class="p">()</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">ImageFile</span><span class="p">))</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
+</div></div>
+<div class="viewcode-block" id="CreateUserTest"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.CreateUserTest">[docs]</a><span class="k">class</span> <span class="nc">CreateUserTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="CreateUserTest.create_user"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.CreateUserTest.create_user">[docs]</a>    <span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span> <span class="o">=</span> <span class="s">&#39;johnny@emory.edu&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span><span class="p">,</span> <span class="n">firstname</span> <span class="o">=</span> <span class="s">&#39;johnny&#39;</span><span class="p">,</span> <span class="n">lastname</span><span class="o">=</span> <span class="s">&#39;tan&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">SiteUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="n">password</span><span class="p">,</span> <span class="n">first_name</span> <span class="o">=</span> <span class="n">firstname</span><span class="p">,</span> <span class="n">last_name</span> <span class="o">=</span> <span class="n">lastname</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="CreateUserTest.test_user_creation"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.CreateUserTest.test_user_creation">[docs]</a>    <span class="k">def</span> <span class="nf">test_user_creation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_user</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">SiteUser</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">get_short_name</span><span class="p">(),</span> <span class="s">&#39;johnny&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">get_full_name</span><span class="p">(),(</span><span class="s">&#39;johnny&#39;</span><span class="p">,</span><span class="s">&#39;tan&#39;</span><span class="p">))</span>
+
+</div></div>
+<div class="viewcode-block" id="CreateReviewPeriodTest"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.CreateReviewPeriodTest">[docs]</a><span class="k">class</span> <span class="nc">CreateReviewPeriodTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="CreateReviewPeriodTest.create_review_period"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.CreateReviewPeriodTest.create_review_period">[docs]</a>    <span class="k">def</span> <span class="nf">create_review_period</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">isfull</span> <span class="o">=</span> <span class="s">&#39;false&#39;</span><span class="p">,</span> <span class="n">startdate</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span> <span class="n">submissionsdeadline</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span> <span class="o">=</span> <span class="mi">30</span><span class="p">),</span> <span class="n">reviewdeadline</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span> <span class="o">=</span> <span class="mi">50</span><span class="p">),</span> <span class="n">groupmeeting</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span> <span class="o">=</span> <span class="mi">80</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="n">ReviewPeriod</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">is_full</span> <span class="o">=</span> <span class="n">isfull</span><span class="p">,</span> <span class="n">start_date</span> <span class="o">=</span> <span class="n">startdate</span><span class="p">,</span> <span class="n">submission_deadline</span> <span class="o">=</span> <span class="n">submissionsdeadline</span><span class="p">,</span> <span class="n">review_deadline</span> <span class="o">=</span> <span class="n">reviewdeadline</span><span class="p">,</span> <span class="n">group_meeting_time</span> <span class="o">=</span> <span class="n">groupmeeting</span> <span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="CreateReviewPeriodTest.test_review_period"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.CreateReviewPeriodTest.test_review_period">[docs]</a>    <span class="k">def</span> <span class="nf">test_review_period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_review_period</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">ReviewPeriod</span><span class="p">))</span>
+
+
+<span class="c"># class CreateManuscriptModelTest(TestCase):</span>
+
+
+<span class="c"># Testing the Views</span>
+<span class="c"># For status_code 302 is redirect urls, 200 is normal resp status code , 301 is permanently moved links</span>
+</div></div>
+<div class="viewcode-block" id="SignupTest"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.SignupTest">[docs]</a><span class="k">class</span> <span class="nc">SignupTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="SignupTest.setUp"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.SignupTest.setUp">[docs]</a>	<span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="SignupTest.test_details"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.SignupTest.test_details">[docs]</a>	<span class="k">def</span> <span class="nf">test_details</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/signup/&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+
+</div></div>
+<div class="viewcode-block" id="AdminViewTest"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.AdminViewTest">[docs]</a><span class="k">class</span> <span class="nc">AdminViewTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="AdminViewTest.setUp"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.AdminViewTest.setUp">[docs]</a>	<span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span></div>
+<div class="viewcode-block" id="AdminViewTest.test_admin"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.AdminViewTest.test_admin">[docs]</a>	<span class="k">def</span> <span class="nf">test_admin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/admin/&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">302</span><span class="p">)</span>
+</div></div>
+<div class="viewcode-block" id="TermsView"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.TermsView">[docs]</a><span class="k">class</span> <span class="nc">TermsView</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TermsView.test_term"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.TermsView.test_term">[docs]</a>	<span class="k">def</span> <span class="nf">test_term</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/terms/&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+</div></div>
+<div class="viewcode-block" id="LoginView"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.LoginView">[docs]</a><span class="k">class</span> <span class="nc">LoginView</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="LoginView.test_login"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.LoginView.test_login">[docs]</a>	<span class="k">def</span> <span class="nf">test_login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/login/&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+</div></div>
+<div class="viewcode-block" id="AccountView"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.AccountView">[docs]</a><span class="k">class</span> <span class="nc">AccountView</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="AccountView.test_account"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.AccountView.test_account">[docs]</a>	<span class="k">def</span> <span class="nf">test_account</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/account/&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">302</span><span class="p">)</span>
+</div></div>
+<div class="viewcode-block" id="LogoutView"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.LogoutView">[docs]</a><span class="k">class</span> <span class="nc">LogoutView</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="LogoutView.test_logout"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.LogoutView.test_logout">[docs]</a>	<span class="k">def</span> <span class="nf">test_logout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/logout/&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">302</span><span class="p">)</span>
+</div></div>
+<div class="viewcode-block" id="UploadView"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.UploadView">[docs]</a><span class="k">class</span> <span class="nc">UploadView</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="UploadView.test_upload"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.UploadView.test_upload">[docs]</a>	<span class="k">def</span> <span class="nf">test_upload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/upload&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">301</span><span class="p">)</span>
+</div></div>
+<div class="viewcode-block" id="ReviewView"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.ReviewView">[docs]</a><span class="k">class</span> <span class="nc">ReviewView</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ReviewView.test_review"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.ReviewView.test_review">[docs]</a>	<span class="k">def</span> <span class="nf">test_review</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/review/&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">302</span><span class="p">)</span>
+</div></div>
+<div class="viewcode-block" id="BrowseView"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.BrowseView">[docs]</a><span class="k">class</span> <span class="nc">BrowseView</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="BrowseView.test_browse"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.BrowseView.test_browse">[docs]</a>	<span class="k">def</span> <span class="nf">test_browse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/browse/1&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">301</span><span class="p">)</span>
+        <span class="c">#self.assertTrue(&#39;all_manuscript&#39; in resp.content)</span>
+</div></div>
+<div class="viewcode-block" id="AssignedManuscriptView"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.AssignedManuscriptView">[docs]</a><span class="k">class</span> <span class="nc">AssignedManuscriptView</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="AssignedManuscriptView.test_assigned"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.AssignedManuscriptView.test_assigned">[docs]</a>	<span class="k">def</span> <span class="nf">test_assigned</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/assignedmanuscripts/&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">302</span><span class="p">)</span>
+</div></div>
+<div class="viewcode-block" id="AgreementView"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.AgreementView">[docs]</a><span class="k">class</span> <span class="nc">AgreementView</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="AgreementView.test_agreement"><a class="viewcode-back" href="../../code.html#PeerReviewApp.tests.AgreementView.test_agreement">[docs]</a>	<span class="k">def</span> <span class="nf">test_agreement</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/agreement/&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">302</span><span class="p">)</span>
+
+
+<span class="c"># Form testing</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../search.html">search</a>|&nbsp;</li>
+
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014, Peng Ji and PeerReview team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b1.
+    </div>
+  </body>
+</html>

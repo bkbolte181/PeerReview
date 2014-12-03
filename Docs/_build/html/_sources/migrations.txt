@@ -1,0 +1,9 @@
+Migrations
+==========
+
+Initial module
+--------------------------------------------
+
+.. automodule:: PeerReviewApp.migrations.0001_initial
+    :members:
+    :show-inheritance:

@@ -1,0 +1,1171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Codes of Manuscript Review &mdash; Manuscript Review 1.0beta1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0beta1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Manuscript Review 1.0beta1 documentation" href="index.html" />
+    <link rel="next" title="Testing" href="test.html" />
+    <link rel="prev" title="Function list" href="function_list.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_static/projtitle.png" width = "50%" border="0" alt="peer review"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="test.html" title="Testing"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="function_list.html" title="Function list"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Codes of Manuscript Review</a><ul>
+<li><a class="reference internal" href="#module-PeerReviewApp.admin">admin module</a></li>
+<li><a class="reference internal" href="#module-PeerReviewApp.custom_fields">custom_fields module</a></li>
+<li><a class="reference internal" href="#module-PeerReviewApp.forms">forms module</a></li>
+<li><a class="reference internal" href="#models-module">models module</a></li>
+<li><a class="reference internal" href="#module-PeerReviewApp.tests">tests module</a></li>
+<li><a class="reference internal" href="#module-PeerReviewApp.urls">urls module</a></li>
+<li><a class="reference internal" href="#module-PeerReviewApp.views">views module</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="function_list.html"
+                        title="previous chapter">Function list</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="test.html"
+                        title="next chapter">Testing</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/code.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="codes-of-manuscript-review">
+<h1>Codes of Manuscript Review<a class="headerlink" href="#codes-of-manuscript-review" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-PeerReviewApp.admin">
+<span id="admin-module"></span><h2>admin module<a class="headerlink" href="#module-PeerReviewApp.admin" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PeerReviewApp.custom_fields">
+<span id="custom-fields-module"></span><h2>custom_fields module<a class="headerlink" href="#module-PeerReviewApp.custom_fields" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="PeerReviewApp.custom_fields.SeparatedValuesField">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.custom_fields.</code><code class="descname">SeparatedValuesField</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/custom_fields.html#SeparatedValuesField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.custom_fields.SeparatedValuesField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.models.fields.CharField</span></code></p>
+<p>Serializer for python lists</p>
+<dl class="method">
+<dt id="PeerReviewApp.custom_fields.SeparatedValuesField.contribute_to_class">
+<code class="descname">contribute_to_class</code><span class="sig-paren">(</span><em>cls</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#PeerReviewApp.custom_fields.SeparatedValuesField.contribute_to_class" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.custom_fields.SeparatedValuesField.get_db_prep_value">
+<code class="descname">get_db_prep_value</code><span class="sig-paren">(</span><em>value</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/custom_fields.html#SeparatedValuesField.get_db_prep_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.custom_fields.SeparatedValuesField.get_db_prep_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.custom_fields.SeparatedValuesField.to_python">
+<code class="descname">to_python</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/custom_fields.html#SeparatedValuesField.to_python"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.custom_fields.SeparatedValuesField.to_python" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.custom_fields.SeparatedValuesField.value_to_string">
+<code class="descname">value_to_string</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/custom_fields.html#SeparatedValuesField.value_to_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.custom_fields.SeparatedValuesField.value_to_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-PeerReviewApp.forms">
+<span id="forms-module"></span><h2>forms module<a class="headerlink" href="#module-PeerReviewApp.forms" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="PeerReviewApp.forms.AccountForm">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.forms.</code><code class="descname">AccountForm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/forms.html#AccountForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.AccountForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></code></p>
+<p>This is a pythonic way of changing a single user&#8217;s settings</p>
+<dl class="class">
+<dt id="PeerReviewApp.forms.AccountForm.Meta">
+<em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/PeerReviewApp/forms.html#AccountForm.Meta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.AccountForm.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="PeerReviewApp.forms.AccountForm.Meta.model">
+<code class="descname">model</code><a class="headerlink" href="#PeerReviewApp.forms.AccountForm.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">SiteUser</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.AccountForm.Meta.widgets">
+<code class="descname">widgets</code><em class="property"> = {'first_name': &lt;django.forms.widgets.TextInput object at 0x10eae7b10&gt;, 'last_name': &lt;django.forms.widgets.TextInput object at 0x10eae77d0&gt;, 'review_count': &lt;django.forms.widgets.TextInput object at 0x10eae7450&gt;, 'lab': &lt;django.forms.widgets.TextInput object at 0x10eae7e50&gt;, 'department': &lt;django.forms.widgets.TextInput object at 0x10eae7810&gt;, 'pi': &lt;django.forms.widgets.TextInput object at 0x10eae7b50&gt;, 'email': &lt;django.forms.widgets.EmailInput object at 0x10eae73d0&gt;}</em><a class="headerlink" href="#PeerReviewApp.forms.AccountForm.Meta.widgets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.AccountForm.base_fields">
+<code class="descclassname">AccountForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('password', &lt;django.forms.fields.CharField object at 0x10eae7550&gt;), ('last_login', &lt;django.forms.fields.DateTimeField object at 0x10eaa9e90&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x10eaa9bd0&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x10eaa9e50&gt;), ('department', &lt;django.forms.fields.CharField object at 0x10eaa9c50&gt;), ('lab', &lt;django.forms.fields.CharField object at 0x10eab4d50&gt;), ('pi', &lt;django.forms.fields.CharField object at 0x10eab4f50&gt;), ('review_count', &lt;django.forms.fields.CharField object at 0x10eab4e90&gt;), ('agreed_to_form', &lt;django.forms.fields.BooleanField object at 0x10eab45d0&gt;), ('research_interest', &lt;django.forms.fields.CharField object at 0x10eab4650&gt;), ('is_site_admin', &lt;django.forms.fields.BooleanField object at 0x10eab4550&gt;), ('email', &lt;django.forms.fields.EmailField object at 0x10eab4510&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.AccountForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.AccountForm.declared_fields">
+<code class="descclassname">AccountForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict()</em><a class="headerlink" href="#PeerReviewApp.forms.AccountForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.AccountForm.media">
+<code class="descclassname">AccountForm.</code><code class="descname">media</code><a class="headerlink" href="#PeerReviewApp.forms.AccountForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.forms.AdminLoginForm">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.forms.</code><code class="descname">AdminLoginForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/forms.html#AdminLoginForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.AdminLoginForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<p>On log in, you only need an email and a password</p>
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.AdminLoginForm.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('email', &lt;django.forms.fields.EmailField object at 0x10eab4290&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10eb0db10&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.AdminLoginForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.AdminLoginForm.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('email', &lt;django.forms.fields.EmailField object at 0x10eab4290&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10eb0db10&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.AdminLoginForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.AdminLoginForm.media">
+<code class="descname">media</code><a class="headerlink" href="#PeerReviewApp.forms.AdminLoginForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.forms.AgreementForm">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.forms.</code><code class="descname">AgreementForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>instance=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/forms.html#AgreementForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.AgreementForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></code></p>
+<p>This is for just the agreement form. It allows the logged in
+user to agree with the Terms of Service document</p>
+<dl class="class">
+<dt id="PeerReviewApp.forms.AgreementForm.Meta">
+<em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/PeerReviewApp/forms.html#AgreementForm.Meta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.AgreementForm.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="PeerReviewApp.forms.AgreementForm.Meta.fields">
+<code class="descname">fields</code><em class="property"> = ('agreed_to_form',)</em><a class="headerlink" href="#PeerReviewApp.forms.AgreementForm.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.AgreementForm.Meta.model">
+<code class="descname">model</code><a class="headerlink" href="#PeerReviewApp.forms.AgreementForm.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">SiteUser</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.AgreementForm.base_fields">
+<code class="descclassname">AgreementForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('agreed_to_form', &lt;django.forms.fields.BooleanField object at 0x10eab4910&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.AgreementForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.AgreementForm.declared_fields">
+<code class="descclassname">AgreementForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict()</em><a class="headerlink" href="#PeerReviewApp.forms.AgreementForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.AgreementForm.media">
+<code class="descclassname">AgreementForm.</code><code class="descname">media</code><a class="headerlink" href="#PeerReviewApp.forms.AgreementForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.forms.LoginForm">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.forms.</code><code class="descname">LoginForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/forms.html#LoginForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.LoginForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<p>On log in, you only need an email and a password</p>
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.LoginForm.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('email', &lt;django.forms.fields.EmailField object at 0x10eae7850&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10eae7b90&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.LoginForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.LoginForm.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('email', &lt;django.forms.fields.EmailField object at 0x10eae7850&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10eae7b90&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.LoginForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.LoginForm.media">
+<code class="descname">media</code><a class="headerlink" href="#PeerReviewApp.forms.LoginForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.forms.ReviewPeriodForm">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.forms.</code><code class="descname">ReviewPeriodForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>instance=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/forms.html#ReviewPeriodForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.ReviewPeriodForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></code></p>
+<dl class="class">
+<dt id="PeerReviewApp.forms.ReviewPeriodForm.Meta">
+<em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/PeerReviewApp/forms.html#ReviewPeriodForm.Meta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.ReviewPeriodForm.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="PeerReviewApp.forms.ReviewPeriodForm.Meta.fields">
+<code class="descname">fields</code><em class="property"> = ['start_date', 'submission_deadline', 'review_deadline', 'group_meeting_time', 'group_meeting_venue', 'max_manuscript']</em><a class="headerlink" href="#PeerReviewApp.forms.ReviewPeriodForm.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.ReviewPeriodForm.Meta.model">
+<code class="descname">model</code><a class="headerlink" href="#PeerReviewApp.forms.ReviewPeriodForm.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ReviewPeriod</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.ReviewPeriodForm.base_fields">
+<code class="descclassname">ReviewPeriodForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('start_date', &lt;django.forms.fields.DateField object at 0x10eae8050&gt;), ('submission_deadline', &lt;django.forms.fields.DateField object at 0x10eae8510&gt;), ('review_deadline', &lt;django.forms.fields.DateField object at 0x10eae8910&gt;), ('group_meeting_time', &lt;django.forms.fields.DateTimeField object at 0x10eae8d10&gt;), ('group_meeting_venue', &lt;django.forms.fields.CharField object at 0x10eb0d590&gt;), ('max_manuscript', &lt;django.forms.fields.IntegerField object at 0x10eb0d250&gt;), ('is_current', &lt;django.forms.fields.BooleanField object at 0x10eb0d2d0&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.ReviewPeriodForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.forms.ReviewPeriodForm.clean">
+<code class="descclassname">ReviewPeriodForm.</code><code class="descname">clean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/forms.html#ReviewPeriodForm.clean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.ReviewPeriodForm.clean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.ReviewPeriodForm.declared_fields">
+<code class="descclassname">ReviewPeriodForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict([('start_date', &lt;django.forms.fields.DateField object at 0x10eae8050&gt;), ('submission_deadline', &lt;django.forms.fields.DateField object at 0x10eae8510&gt;), ('review_deadline', &lt;django.forms.fields.DateField object at 0x10eae8910&gt;), ('group_meeting_time', &lt;django.forms.fields.DateTimeField object at 0x10eae8d10&gt;), ('group_meeting_venue', &lt;django.forms.fields.CharField object at 0x10eb0d590&gt;), ('is_current', &lt;django.forms.fields.BooleanField object at 0x10eb0d2d0&gt;), ('max_manuscript', &lt;django.forms.fields.IntegerField object at 0x10eb0d250&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.ReviewPeriodForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.ReviewPeriodForm.media">
+<code class="descclassname">ReviewPeriodForm.</code><code class="descname">media</code><a class="headerlink" href="#PeerReviewApp.forms.ReviewPeriodForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.forms.SignupForm">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.forms.</code><code class="descname">SignupForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>instance=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/forms.html#SignupForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.SignupForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></code></p>
+<p>This is the main sign-up form</p>
+<dl class="class">
+<dt id="PeerReviewApp.forms.SignupForm.Meta">
+<em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/PeerReviewApp/forms.html#SignupForm.Meta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="PeerReviewApp.forms.SignupForm.Meta.model">
+<code class="descname">model</code><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">SiteUser</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.SignupForm.Meta.widgets">
+<code class="descname">widgets</code><em class="property"> = {'first_name': &lt;django.forms.widgets.TextInput object at 0x10eab4bd0&gt;, 'last_name': &lt;django.forms.widgets.TextInput object at 0x10eab4c10&gt;, 'review_count': &lt;django.forms.widgets.TextInput object at 0x10eab4490&gt;, 'lab': &lt;django.forms.widgets.TextInput object at 0x10eab4750&gt;, 'department': &lt;django.forms.widgets.TextInput object at 0x10eab4c50&gt;, 'pi': &lt;django.forms.widgets.TextInput object at 0x10eab4190&gt;, 'email': &lt;django.forms.widgets.EmailInput object at 0x10eab4b90&gt;}</em><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.Meta.widgets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.SignupForm.base_fields">
+<code class="descclassname">SignupForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('password', &lt;django.forms.fields.CharField object at 0x10eab4990&gt;), ('last_login', &lt;django.forms.fields.DateTimeField object at 0x10eaad1d0&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x10eaad090&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x10eaad8d0&gt;), ('department', &lt;django.forms.fields.CharField object at 0x10eaad510&gt;), ('lab', &lt;django.forms.fields.CharField object at 0x10eaad390&gt;), ('pi', &lt;django.forms.fields.CharField object at 0x10eaad790&gt;), ('review_count', &lt;django.forms.fields.CharField object at 0x10eaad650&gt;), ('agreed_to_form', &lt;django.forms.fields.BooleanField object at 0x10eaad050&gt;), ('research_interest', &lt;django.forms.fields.CharField object at 0x10eaad750&gt;), ('is_site_admin', &lt;django.forms.fields.BooleanField object at 0x10eaad7d0&gt;), ('email', &lt;django.forms.fields.EmailField object at 0x10eaad110&gt;), ('retype_password', &lt;django.forms.fields.CharField object at 0x10eab4b50&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.forms.SignupForm.clean_retype_password">
+<code class="descclassname">SignupForm.</code><code class="descname">clean_retype_password</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/forms.html#SignupForm.clean_retype_password"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.clean_retype_password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.SignupForm.declared_fields">
+<code class="descclassname">SignupForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict([('password', &lt;django.forms.fields.CharField object at 0x10eab4990&gt;), ('retype_password', &lt;django.forms.fields.CharField object at 0x10eab4b50&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.SignupForm.error_messages">
+<code class="descclassname">SignupForm.</code><code class="descname">error_messages</code><em class="property"> = {'password_mismatch': &quot;The two password fields didn't match.&quot;}</em><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.error_messages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.SignupForm.media">
+<code class="descclassname">SignupForm.</code><code class="descname">media</code><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.forms.SignupForm.save">
+<code class="descclassname">SignupForm.</code><code class="descname">save</code><span class="sig-paren">(</span><em>commit=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/forms.html#SignupForm.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.save" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.forms.UploadFileForm">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.forms.</code><code class="descname">UploadFileForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/forms.html#UploadFileForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.UploadFileForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<p>Form for uploading a file - I don&#8217;t think this is being used yet</p>
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.UploadFileForm.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('upload', &lt;django.forms.fields.FileField object at 0x10eab4a50&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.UploadFileForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.forms.UploadFileForm.clean_upload">
+<code class="descname">clean_upload</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/forms.html#UploadFileForm.clean_upload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.UploadFileForm.clean_upload" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.UploadFileForm.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('upload', &lt;django.forms.fields.FileField object at 0x10eab4a50&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.UploadFileForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.UploadFileForm.media">
+<code class="descname">media</code><a class="headerlink" href="#PeerReviewApp.forms.UploadFileForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.forms.UploadManuscript">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.forms.</code><code class="descname">UploadManuscript</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>instance=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/forms.html#UploadManuscript"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.UploadManuscript" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.models.ModelForm</span></code></p>
+<dl class="class">
+<dt id="PeerReviewApp.forms.UploadManuscript.Meta">
+<em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/PeerReviewApp/forms.html#UploadManuscript.Meta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.UploadManuscript.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="PeerReviewApp.forms.UploadManuscript.Meta.exclude">
+<code class="descname">exclude</code><em class="property"> = ('review_period', 'authors', 'reviewers', 'is_final', 'manuscript')</em><a class="headerlink" href="#PeerReviewApp.forms.UploadManuscript.Meta.exclude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.UploadManuscript.Meta.fields">
+<code class="descname">fields</code><em class="property"> = ('title', 'brief_title', 'abstract', 'field', 'keywords', 'target_journal')</em><a class="headerlink" href="#PeerReviewApp.forms.UploadManuscript.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.UploadManuscript.Meta.model">
+<code class="descname">model</code><a class="headerlink" href="#PeerReviewApp.forms.UploadManuscript.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">Manuscript</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.UploadManuscript.Meta.widgets">
+<code class="descname">widgets</code><em class="property"> = {'title': &lt;django.forms.widgets.TextInput object at 0x10eab4dd0&gt;, 'target_journal': &lt;django.forms.widgets.TextInput object at 0x10eaadd50&gt;, 'abstract': &lt;django.forms.widgets.TextInput object at 0x10eaade50&gt;, 'field': &lt;django.forms.widgets.TextInput object at 0x10eaadb90&gt;, 'keywords': &lt;django.forms.widgets.TextInput object at 0x10eaad850&gt;, 'brief_title': &lt;django.forms.widgets.TextInput object at 0x10eab41d0&gt;}</em><a class="headerlink" href="#PeerReviewApp.forms.UploadManuscript.Meta.widgets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.UploadManuscript.base_fields">
+<code class="descclassname">UploadManuscript.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('title', &lt;django.forms.fields.CharField object at 0x10eae8e90&gt;), ('brief_title', &lt;django.forms.fields.CharField object at 0x10eae8e50&gt;), ('abstract', &lt;django.forms.fields.CharField object at 0x10eae8b10&gt;), ('field', &lt;django.forms.fields.CharField object at 0x10eae83d0&gt;), ('keywords', &lt;django.forms.fields.CharField object at 0x10eae8a10&gt;), ('target_journal', &lt;django.forms.fields.CharField object at 0x10eae8310&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.UploadManuscript.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.UploadManuscript.declared_fields">
+<code class="descclassname">UploadManuscript.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict()</em><a class="headerlink" href="#PeerReviewApp.forms.UploadManuscript.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.forms.UploadManuscript.media">
+<code class="descclassname">UploadManuscript.</code><code class="descname">media</code><a class="headerlink" href="#PeerReviewApp.forms.UploadManuscript.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="models-module">
+<h2>models module<a class="headerlink" href="#models-module" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-PeerReviewApp.models"></span><dl class="class">
+<dt id="PeerReviewApp.models.Manuscript">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.models.</code><code class="descname">Manuscript</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/models.html#Manuscript"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.Manuscript" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></code></p>
+<p>This is the model that links everything together.</p>
+<dl class="exception">
+<dt id="PeerReviewApp.models.Manuscript.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#PeerReviewApp.models.Manuscript.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="PeerReviewApp.models.Manuscript.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">Manuscript.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#PeerReviewApp.models.Manuscript.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.Manuscript.authors">
+<code class="descclassname">Manuscript.</code><code class="descname">authors</code><a class="headerlink" href="#PeerReviewApp.models.Manuscript.authors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.Manuscript.files">
+<code class="descclassname">Manuscript.</code><code class="descname">files</code><a class="headerlink" href="#PeerReviewApp.models.Manuscript.files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.Manuscript.is_current">
+<code class="descclassname">Manuscript.</code><code class="descname">is_current</code><a class="headerlink" href="#PeerReviewApp.models.Manuscript.is_current" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.Manuscript.objects">
+<code class="descclassname">Manuscript.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x10eaa2f10&gt;</em><a class="headerlink" href="#PeerReviewApp.models.Manuscript.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.Manuscript.recommended_reviewers">
+<code class="descclassname">Manuscript.</code><code class="descname">recommended_reviewers</code><a class="headerlink" href="#PeerReviewApp.models.Manuscript.recommended_reviewers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.Manuscript.review_period">
+<code class="descclassname">Manuscript.</code><code class="descname">review_period</code><a class="headerlink" href="#PeerReviewApp.models.Manuscript.review_period" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.Manuscript.reviewdocs">
+<code class="descclassname">Manuscript.</code><code class="descname">reviewdocs</code><a class="headerlink" href="#PeerReviewApp.models.Manuscript.reviewdocs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.Manuscript.reviewers">
+<code class="descclassname">Manuscript.</code><code class="descname">reviewers</code><a class="headerlink" href="#PeerReviewApp.models.Manuscript.reviewers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.Manuscript.warning">
+<code class="descclassname">Manuscript.</code><code class="descname">warning</code><a class="headerlink" href="#PeerReviewApp.models.Manuscript.warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.models.ManuscriptFile">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.models.</code><code class="descname">ManuscriptFile</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/models.html#ManuscriptFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.ManuscriptFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></code></p>
+<p>ManuscriptFile(id, filename, upload, manuscript_id)</p>
+<dl class="exception">
+<dt id="PeerReviewApp.models.ManuscriptFile.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#PeerReviewApp.models.ManuscriptFile.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="PeerReviewApp.models.ManuscriptFile.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">ManuscriptFile.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#PeerReviewApp.models.ManuscriptFile.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.ManuscriptFile.manuscript">
+<code class="descclassname">ManuscriptFile.</code><code class="descname">manuscript</code><a class="headerlink" href="#PeerReviewApp.models.ManuscriptFile.manuscript" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.ManuscriptFile.objects">
+<code class="descclassname">ManuscriptFile.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x10eaa99d0&gt;</em><a class="headerlink" href="#PeerReviewApp.models.ManuscriptFile.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.models.ReviewFile">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.models.</code><code class="descname">ReviewFile</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/models.html#ReviewFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.ReviewFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></code></p>
+<p>ReviewFile(id, filename, upload, manuscript_id)</p>
+<dl class="exception">
+<dt id="PeerReviewApp.models.ReviewFile.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#PeerReviewApp.models.ReviewFile.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="PeerReviewApp.models.ReviewFile.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">ReviewFile.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#PeerReviewApp.models.ReviewFile.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.ReviewFile.manuscript">
+<code class="descclassname">ReviewFile.</code><code class="descname">manuscript</code><a class="headerlink" href="#PeerReviewApp.models.ReviewFile.manuscript" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.ReviewFile.objects">
+<code class="descclassname">ReviewFile.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x10eaa9490&gt;</em><a class="headerlink" href="#PeerReviewApp.models.ReviewFile.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.models.ReviewPeriod">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.models.</code><code class="descname">ReviewPeriod</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/models.html#ReviewPeriod"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.ReviewPeriod" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></code></p>
+<p>Model for a single review period</p>
+<dl class="exception">
+<dt id="PeerReviewApp.models.ReviewPeriod.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#PeerReviewApp.models.ReviewPeriod.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="PeerReviewApp.models.ReviewPeriod.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">ReviewPeriod.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#PeerReviewApp.models.ReviewPeriod.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.models.ReviewPeriod.get_next_by_group_meeting_time">
+<code class="descclassname">ReviewPeriod.</code><code class="descname">get_next_by_group_meeting_time</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#PeerReviewApp.models.ReviewPeriod.get_next_by_group_meeting_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.models.ReviewPeriod.get_next_by_review_deadline">
+<code class="descclassname">ReviewPeriod.</code><code class="descname">get_next_by_review_deadline</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#PeerReviewApp.models.ReviewPeriod.get_next_by_review_deadline" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.models.ReviewPeriod.get_next_by_start_date">
+<code class="descclassname">ReviewPeriod.</code><code class="descname">get_next_by_start_date</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#PeerReviewApp.models.ReviewPeriod.get_next_by_start_date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.models.ReviewPeriod.get_next_by_submission_deadline">
+<code class="descclassname">ReviewPeriod.</code><code class="descname">get_next_by_submission_deadline</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#PeerReviewApp.models.ReviewPeriod.get_next_by_submission_deadline" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.models.ReviewPeriod.get_previous_by_group_meeting_time">
+<code class="descclassname">ReviewPeriod.</code><code class="descname">get_previous_by_group_meeting_time</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#PeerReviewApp.models.ReviewPeriod.get_previous_by_group_meeting_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.models.ReviewPeriod.get_previous_by_review_deadline">
+<code class="descclassname">ReviewPeriod.</code><code class="descname">get_previous_by_review_deadline</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#PeerReviewApp.models.ReviewPeriod.get_previous_by_review_deadline" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.models.ReviewPeriod.get_previous_by_start_date">
+<code class="descclassname">ReviewPeriod.</code><code class="descname">get_previous_by_start_date</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#PeerReviewApp.models.ReviewPeriod.get_previous_by_start_date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.models.ReviewPeriod.get_previous_by_submission_deadline">
+<code class="descclassname">ReviewPeriod.</code><code class="descname">get_previous_by_submission_deadline</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#PeerReviewApp.models.ReviewPeriod.get_previous_by_submission_deadline" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.ReviewPeriod.manuscripts">
+<code class="descclassname">ReviewPeriod.</code><code class="descname">manuscripts</code><a class="headerlink" href="#PeerReviewApp.models.ReviewPeriod.manuscripts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.ReviewPeriod.objects">
+<code class="descclassname">ReviewPeriod.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x10ea9e950&gt;</em><a class="headerlink" href="#PeerReviewApp.models.ReviewPeriod.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.models.SiteUser">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.models.</code><code class="descname">SiteUser</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/models.html#SiteUser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.SiteUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.contrib.auth.models.AbstractBaseUser</span></code></p>
+<p>Custom User model. Set the user model to this one in the settings.py file:
+AUTH_USER_MODEL = &#8216;PeerReviewApp.SiteUser&#8217; # Add this variable to settings.py file
+This will tell Django to use this model as the default user model. There are a fe
+required attributes for custom user models:</p>
+<blockquote>
+<div><p>-&gt; USERNAME_FIELD: Unique identifier for log in (in this case, email)</p>
+<p>-&gt; REQUIRED_FIELDS: Required fields (update this to include required fields)</p>
+<p>-&gt; get_full_name(): Return the &#8220;full name&#8221; of the user</p>
+<p>-&gt; get_short_name(): Return a &#8220;short name&#8221; identifier for the user</p>
+</div></blockquote>
+<p>Additionally, this model requires a custom user manager, and some custom handlers
+for forms to replace the built-ins that Django provides.</p>
+<dl class="exception">
+<dt id="PeerReviewApp.models.SiteUser.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#PeerReviewApp.models.SiteUser.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="PeerReviewApp.models.SiteUser.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">SiteUser.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#PeerReviewApp.models.SiteUser.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.SiteUser.REQUIRED_FIELDS">
+<code class="descclassname">SiteUser.</code><code class="descname">REQUIRED_FIELDS</code><em class="property"> = []</em><a class="headerlink" href="#PeerReviewApp.models.SiteUser.REQUIRED_FIELDS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.SiteUser.USERNAME_FIELD">
+<code class="descclassname">SiteUser.</code><code class="descname">USERNAME_FIELD</code><em class="property"> = 'email'</em><a class="headerlink" href="#PeerReviewApp.models.SiteUser.USERNAME_FIELD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.SiteUser.assigned_manuscripts">
+<code class="descclassname">SiteUser.</code><code class="descname">assigned_manuscripts</code><a class="headerlink" href="#PeerReviewApp.models.SiteUser.assigned_manuscripts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.SiteUser.assigned_num">
+<code class="descclassname">SiteUser.</code><code class="descname">assigned_num</code><a class="headerlink" href="#PeerReviewApp.models.SiteUser.assigned_num" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.models.SiteUser.get_full_name">
+<code class="descclassname">SiteUser.</code><code class="descname">get_full_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/models.html#SiteUser.get_full_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.SiteUser.get_full_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.models.SiteUser.get_next_by_last_login">
+<code class="descclassname">SiteUser.</code><code class="descname">get_next_by_last_login</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#PeerReviewApp.models.SiteUser.get_next_by_last_login" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.models.SiteUser.get_previous_by_last_login">
+<code class="descclassname">SiteUser.</code><code class="descname">get_previous_by_last_login</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#PeerReviewApp.models.SiteUser.get_previous_by_last_login" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.models.SiteUser.get_short_name">
+<code class="descclassname">SiteUser.</code><code class="descname">get_short_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/models.html#SiteUser.get_short_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.SiteUser.get_short_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.models.SiteUser.has_module_perms">
+<code class="descclassname">SiteUser.</code><code class="descname">has_module_perms</code><span class="sig-paren">(</span><em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/models.html#SiteUser.has_module_perms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.SiteUser.has_module_perms" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.models.SiteUser.has_perm">
+<code class="descclassname">SiteUser.</code><code class="descname">has_perm</code><span class="sig-paren">(</span><em>perm</em>, <em>obj=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/models.html#SiteUser.has_perm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.SiteUser.has_perm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.SiteUser.is_admin">
+<code class="descclassname">SiteUser.</code><code class="descname">is_admin</code><a class="headerlink" href="#PeerReviewApp.models.SiteUser.is_admin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.SiteUser.is_staff">
+<code class="descclassname">SiteUser.</code><code class="descname">is_staff</code><a class="headerlink" href="#PeerReviewApp.models.SiteUser.is_staff" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.SiteUser.is_superuser">
+<code class="descclassname">SiteUser.</code><code class="descname">is_superuser</code><a class="headerlink" href="#PeerReviewApp.models.SiteUser.is_superuser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.SiteUser.objects">
+<code class="descclassname">SiteUser.</code><code class="descname">objects</code><em class="property"> = &lt;PeerReviewApp.models.SiteUserManager object at 0x10ea98f50&gt;</em><a class="headerlink" href="#PeerReviewApp.models.SiteUser.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.SiteUser.star_string">
+<code class="descclassname">SiteUser.</code><code class="descname">star_string</code><a class="headerlink" href="#PeerReviewApp.models.SiteUser.star_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.models.SiteUserManager">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.models.</code><code class="descname">SiteUserManager</code><a class="reference internal" href="_modules/PeerReviewApp/models.html#SiteUserManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.SiteUserManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.contrib.auth.models.BaseUserManager</span></code></p>
+<p>Manager for SiteUser model. This replaces the default manager used by Django, since the model
+is custom. The UserManager needs two methods, create_user and create_superuser. Most other methods
+are subclassed from BaseUserManager.</p>
+<dl class="method">
+<dt id="PeerReviewApp.models.SiteUserManager.create_superuser">
+<code class="descname">create_superuser</code><span class="sig-paren">(</span><em>email</em>, <em>password</em>, <em>first_name=None</em>, <em>last_name=None</em>, <em>department=None</em>, <em>lab=None</em>, <em>pi=None</em>, <em>research_interest=None</em>, <em>**extra_fields</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/models.html#SiteUserManager.create_superuser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.SiteUserManager.create_superuser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.models.SiteUserManager.create_user">
+<code class="descname">create_user</code><span class="sig-paren">(</span><em>email</em>, <em>password</em>, <em>first_name=None</em>, <em>last_name=None</em>, <em>department=None</em>, <em>lab=None</em>, <em>pi=None</em>, <em>research_interest=None</em>, <em>**extra_fields</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/models.html#SiteUserManager.create_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.SiteUserManager.create_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-PeerReviewApp.tests">
+<span id="tests-module"></span><h2>tests module<a class="headerlink" href="#module-PeerReviewApp.tests" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="PeerReviewApp.tests.AccountView">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.tests.</code><code class="descname">AccountView</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#AccountView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.AccountView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.tests.AccountView.test_account">
+<code class="descname">test_account</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#AccountView.test_account"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.AccountView.test_account" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.tests.AdminViewTest">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.tests.</code><code class="descname">AdminViewTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#AdminViewTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.AdminViewTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.tests.AdminViewTest.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#AdminViewTest.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.AdminViewTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.tests.AdminViewTest.test_admin">
+<code class="descname">test_admin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#AdminViewTest.test_admin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.AdminViewTest.test_admin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.tests.AgreementView">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.tests.</code><code class="descname">AgreementView</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#AgreementView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.AgreementView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.tests.AgreementView.test_agreement">
+<code class="descname">test_agreement</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#AgreementView.test_agreement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.AgreementView.test_agreement" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.tests.AssignedManuscriptView">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.tests.</code><code class="descname">AssignedManuscriptView</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#AssignedManuscriptView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.AssignedManuscriptView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.tests.AssignedManuscriptView.test_assigned">
+<code class="descname">test_assigned</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#AssignedManuscriptView.test_assigned"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.AssignedManuscriptView.test_assigned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.tests.BrowseView">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.tests.</code><code class="descname">BrowseView</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#BrowseView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.BrowseView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.tests.BrowseView.test_browse">
+<code class="descname">test_browse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#BrowseView.test_browse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.BrowseView.test_browse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.tests.CreateReviewPeriodTest">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.tests.</code><code class="descname">CreateReviewPeriodTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#CreateReviewPeriodTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.CreateReviewPeriodTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.tests.CreateReviewPeriodTest.create_review_period">
+<code class="descname">create_review_period</code><span class="sig-paren">(</span><em>isfull='false'</em>, <em>startdate=datetime.datetime(2014</em>, <em>12</em>, <em>3</em>, <em>1</em>, <em>3</em>, <em>33</em>, <em>541306)</em>, <em>submissionsdeadline=datetime.datetime(2015</em>, <em>1</em>, <em>2</em>, <em>1</em>, <em>3</em>, <em>33</em>, <em>541312)</em>, <em>reviewdeadline=datetime.datetime(2015</em>, <em>1</em>, <em>22</em>, <em>1</em>, <em>3</em>, <em>33</em>, <em>541319)</em>, <em>groupmeeting=datetime.datetime(2015</em>, <em>2</em>, <em>21</em>, <em>1</em>, <em>3</em>, <em>33</em>, <em>541324)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#CreateReviewPeriodTest.create_review_period"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.CreateReviewPeriodTest.create_review_period" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.tests.CreateReviewPeriodTest.test_review_period">
+<code class="descname">test_review_period</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#CreateReviewPeriodTest.test_review_period"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.CreateReviewPeriodTest.test_review_period" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.tests.CreateUserTest">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.tests.</code><code class="descname">CreateUserTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#CreateUserTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.CreateUserTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.tests.CreateUserTest.create_user">
+<code class="descname">create_user</code><span class="sig-paren">(</span><em>email='johnny&#64;emory.edu'</em>, <em>password='123'</em>, <em>firstname='johnny'</em>, <em>lastname='tan'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#CreateUserTest.create_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.CreateUserTest.create_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.tests.CreateUserTest.test_user_creation">
+<code class="descname">test_user_creation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#CreateUserTest.test_user_creation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.CreateUserTest.test_user_creation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.tests.LoginView">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.tests.</code><code class="descname">LoginView</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#LoginView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.LoginView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.tests.LoginView.test_login">
+<code class="descname">test_login</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#LoginView.test_login"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.LoginView.test_login" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.tests.LogoutView">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.tests.</code><code class="descname">LogoutView</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#LogoutView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.LogoutView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.tests.LogoutView.test_logout">
+<code class="descname">test_logout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#LogoutView.test_logout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.LogoutView.test_logout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.tests.ReviewView">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.tests.</code><code class="descname">ReviewView</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#ReviewView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.ReviewView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.tests.ReviewView.test_review">
+<code class="descname">test_review</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#ReviewView.test_review"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.ReviewView.test_review" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.tests.SignupTest">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.tests.</code><code class="descname">SignupTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#SignupTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.SignupTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.tests.SignupTest.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#SignupTest.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.SignupTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.tests.SignupTest.test_details">
+<code class="descname">test_details</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#SignupTest.test_details"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.SignupTest.test_details" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.tests.TermsView">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.tests.</code><code class="descname">TermsView</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#TermsView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.TermsView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.tests.TermsView.test_term">
+<code class="descname">test_term</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#TermsView.test_term"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.TermsView.test_term" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.tests.UploadFilesTest">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.tests.</code><code class="descname">UploadFilesTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#UploadFilesTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.UploadFilesTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<p>Test file uploads</p>
+<dl class="method">
+<dt id="PeerReviewApp.tests.UploadFilesTest.create_review_period">
+<code class="descname">create_review_period</code><span class="sig-paren">(</span><em>isfull='false'</em>, <em>startdate=datetime.datetime(2014</em>, <em>12</em>, <em>3</em>, <em>1</em>, <em>3</em>, <em>33</em>, <em>541198)</em>, <em>submissionsdeadline=datetime.datetime(2015</em>, <em>1</em>, <em>2</em>, <em>1</em>, <em>3</em>, <em>33</em>, <em>541211)</em>, <em>reviewdeadline=datetime.datetime(2015</em>, <em>1</em>, <em>22</em>, <em>1</em>, <em>3</em>, <em>33</em>, <em>541224)</em>, <em>groupmeeting=datetime.datetime(2015</em>, <em>2</em>, <em>21</em>, <em>1</em>, <em>3</em>, <em>33</em>, <em>541231)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#UploadFilesTest.create_review_period"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.UploadFilesTest.create_review_period" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.tests.UploadFilesTest.create_user">
+<code class="descname">create_user</code><span class="sig-paren">(</span><em>email='johnny&#64;emory.edu'</em>, <em>password='123'</em>, <em>firstname='johnny'</em>, <em>lastname='tan'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#UploadFilesTest.create_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.UploadFilesTest.create_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.tests.UploadFilesTest.test_file_upload">
+<code class="descname">test_file_upload</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#UploadFilesTest.test_file_upload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.UploadFilesTest.test_file_upload" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.tests.UploadFilesTest.upload_image_file">
+<code class="descname">upload_image_file</code><span class="sig-paren">(</span><em>file='anonymous.jpg'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#UploadFilesTest.upload_image_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.UploadFilesTest.upload_image_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.tests.UploadView">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.tests.</code><code class="descname">UploadView</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#UploadView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.UploadView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.tests.UploadView.test_upload">
+<code class="descname">test_upload</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#UploadView.test_upload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.UploadView.test_upload" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-PeerReviewApp.urls">
+<span id="urls-module"></span><h2>urls module<a class="headerlink" href="#module-PeerReviewApp.urls" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PeerReviewApp.views">
+<span id="views-module"></span><h2>views module<a class="headerlink" href="#module-PeerReviewApp.views" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="PeerReviewApp.views.MatchedManuscript">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.views.</code><code class="descname">MatchedManuscript</code><a class="reference internal" href="_modules/PeerReviewApp/views.html#MatchedManuscript"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.MatchedManuscript" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="PeerReviewApp.views.MatchedManuscript.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>reviewer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#MatchedManuscript.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.MatchedManuscript.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.views.MatchedManuscript.manuscript">
+<code class="descname">manuscript</code><a class="headerlink" href="#PeerReviewApp.views.MatchedManuscript.manuscript" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">Manuscript</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.about">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">about</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#about"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.about" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.account">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">account</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#account"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.account" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.admin_ajax">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">admin_ajax</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#admin_ajax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.admin_ajax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.admin_browselist">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">admin_browselist</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#admin_browselist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.admin_browselist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.admin_confirm_ajax">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">admin_confirm_ajax</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#admin_confirm_ajax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.admin_confirm_ajax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.admin_homepage">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">admin_homepage</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#admin_homepage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.admin_homepage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.admin_login">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">admin_login</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#admin_login"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.admin_login" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.admin_logout">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">admin_logout</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#admin_logout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.admin_logout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.admin_submit_ajax">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">admin_submit_ajax</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#admin_submit_ajax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.admin_submit_ajax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.agreement">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">agreement</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#agreement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.agreement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Agree to the form</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.assigned_manuscripts">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">assigned_manuscripts</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#assigned_manuscripts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.assigned_manuscripts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.auth_admin">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">auth_admin</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#auth_admin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.auth_admin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.auth_login">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">auth_login</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#auth_login"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.auth_login" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.auth_logout">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">auth_logout</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#auth_logout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.auth_logout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.author_home">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">author_home</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#author_home"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.author_home" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.browse_manuscripts">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">browse_manuscripts</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#browse_manuscripts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.browse_manuscripts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.delete_manuscript">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">delete_manuscript</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#delete_manuscript"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.delete_manuscript" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.edit_manuscript">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">edit_manuscript</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#edit_manuscript"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.edit_manuscript" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.get_current_review_period">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">get_current_review_period</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#get_current_review_period"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.get_current_review_period" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.handle_reviewer_uploads">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">handle_reviewer_uploads</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#handle_reviewer_uploads"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.handle_reviewer_uploads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for dealing with the reviewer&#8217;s uploaded review document</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.handle_uploads">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">handle_uploads</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#handle_uploads"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.handle_uploads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for dealing with uploaded files</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.has_agreed">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">has_agreed</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#has_agreed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.has_agreed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.index">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">index</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main landing page</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.is_site_admin_check">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">is_site_admin_check</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#is_site_admin_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.is_site_admin_check" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.manuscript_detail">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">manuscript_detail</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#manuscript_detail"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.manuscript_detail" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.remove_associated_file">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">remove_associated_file</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#remove_associated_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.remove_associated_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.reviewer_home">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">reviewer_home</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#reviewer_home"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.reviewer_home" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.setting">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">setting</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#setting"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.setting" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.signup">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">signup</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#signup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.signup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.submit_manuscript">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">submit_manuscript</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#submit_manuscript"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.submit_manuscript" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.terms">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">terms</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#terms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Terms of service agreement</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.upload_manuscript">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">upload_manuscript</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#upload_manuscript"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.upload_manuscript" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.user_detail">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">user_detail</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#user_detail"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.user_detail" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="test.html" title="Testing"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="function_list.html" title="Function list"
+             >previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014, Peng Ji and PeerReview team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b1.
+    </div>
+  </body>
+</html>
