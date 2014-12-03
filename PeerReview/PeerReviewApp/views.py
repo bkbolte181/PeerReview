@@ -61,7 +61,7 @@ def handle_uploads(request):
 
 def get_current_review_period():
     if ReviewPeriod.objects.count() > 0:
-        return ReviewPeriod.objects.first()
+        return ReviewPeriod.objects.filter(is_current=True)[0];
     else:
         return False
 
@@ -204,8 +204,9 @@ def submit_manuscript(request, mid):
     manuscript.is_final = True
     manuscript.status = 'Submitted'
     manuscript.save()
+    context['period'] = ReviewPeriod.objects.filter(is_current=True)
     context['manuscript'] = manuscript
-    return render(request, 'uploader_home.html', context)
+    return render(request, 'submit_manuscript.html', context)
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def delete_manuscript(request,mid):
@@ -214,6 +215,7 @@ def delete_manuscript(request,mid):
     manuscript.delete()
     manuscript.save()
     context['manuscript'] = manuscript
+    context['period'] = get_current_review_period()
     return render(request, 'delete_manuscript.html', context)
 
 
@@ -233,7 +235,8 @@ def edit_manuscript(request, mid):
 		for f in saved_files:
 			m = ManuscriptFile.objects.create(filename=f[0], upload=f[1], manuscript=man)
 			m.save()
-		return render(request,'uploader_home.html')
+		context['period'] = get_current_review_period()
+		return render(request,'uploader_home.html',context)
 	else:
 
 		#Get the current user and the manuscript being edited
@@ -242,11 +245,11 @@ def edit_manuscript(request, mid):
 
 		# Make sure the manuscript they're trying to edit is theirs and that it can be edited
 		if user not in manuscript.authors.all():
-		    context['error'] = 'You are not authorized to make changes to this manuscript.'
-		    return render(request, 'edit_manuscript.html', context)
+			context['error'] = 'You are not authorized to make changes to this manuscript.'
+			return render(request, 'edit_manuscript.html', context)
 		elif manuscript.is_final:
-		    context['error'] = 'This manuscript can no longer be edited.'
-		    return render(request, 'edit_manuscript.html', context)
+			context['error'] = 'This manuscript can no longer be edited.'
+			return render(request, 'edit_manuscript.html', context)
 
 		form = UploadManuscript(instance=manuscript)
 		context['form'] = form
@@ -255,14 +258,13 @@ def edit_manuscript(request, mid):
 		context['files'] = files
 
 		context['manuscript'] = manuscript
-
+		context['period'] = get_current_review_period()
 		return render(request, 'edit_manuscript.html', context)
 
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def browse_manuscripts(request, current_page):
     context = {}
-    context['period'] = get_current_review_period()
     # Load all available manuscripts
     all_manuscripts = Manuscript.objects.all()
 
@@ -277,6 +279,7 @@ def browse_manuscripts(request, current_page):
         page = paginator.page(paginator.num_pages)
 
     context['page'] = page
+    context['period'] = get_current_review_period()
     return render(request, 'browse_manuscripts.html', context)
 
 
@@ -309,6 +312,7 @@ def assigned_manuscripts(request, current_page):
         page = paginator.page(paginator.num_pages)
 
     context['page'] = page
+    context['period'] = get_current_review_period()
     return render(request, 'assigned_manuscripts.html', context)
 
 
