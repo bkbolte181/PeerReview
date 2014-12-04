@@ -600,13 +600,14 @@ def setting(request):
 			for period in ReviewPeriod.objects.all():
 				period.is_current = False
 				period.save()
+
 			#ReviewPeriod.objects.all().delete();
 			period = form.save(commit=True)
 			period.is_current = True
 			period.save()
 
 			#clear the assigned manuscripts from all reviewers
-			manuscripts = Manuscript.objectsall()
+			manuscripts = Manuscript.objects.all()
 			for manuscript in manuscripts:
 				manuscript.reviewers.clear()
 
@@ -616,7 +617,9 @@ def setting(request):
 		else:
 			print form.errors
 	else:
-		form = ReviewPeriodForm()
+		period = ReviewPeriod.objects.filter(is_current=True)[0];
+		form = ReviewPeriodForm(request, instance=period)
+
 	return render_to_response('setting.html', {'form': form}, RequestContext(request))
 
 def admin_help(request):
