@@ -103,7 +103,9 @@
 		</div>
 	    <div class = "row">
             <div class="hot-container" style="text-align:left;">
+                {% if period %}
 					<a href="{% url 'upload_manuscript' %}" class="abtn btn-green">Submit a manuscript</a>
+                {% endif %}
 	    </div>
 		<div class="row">
 			<div class="col-sm-10 col-sm-offset-1">
