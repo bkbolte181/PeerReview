@@ -60,8 +60,9 @@ def handle_uploads(request):
 
 
 def get_current_review_period():
-    if ReviewPeriod.objects.count() > 0:
-        return ReviewPeriod.objects.filter(is_current=True)[0];
+    r = ReviewPeriod.objects.filter(is_current=True)
+    if r.count() > 0:
+        return r[0];
     else:
         return False
 

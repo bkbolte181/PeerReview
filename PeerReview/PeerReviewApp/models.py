@@ -135,6 +135,9 @@ class ReviewPeriod(models.Model):
 	is_current = models.BooleanField(default=False)
 	max_manuscript = models.IntegerField(default=10)
 
+	def __unicode__(self):
+		return str(self.start_date)
+
 class Manuscript(models.Model):
 	""" This is the model that links everything together. """
 	reviewers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="reviewers",
