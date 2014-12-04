@@ -103,7 +103,7 @@
 		</div>
 	    <div class = "row">
             <div class="hot-container" style="text-align:left;">
-                {% if period and period.manuscripts.count < period.max_manuscripts %}
+                {% if period %}
 					<a href="{% url 'upload_manuscript' %}" class="abtn btn-green">Submit a manuscript</a>
                 {% endif %}
 	    </div>
