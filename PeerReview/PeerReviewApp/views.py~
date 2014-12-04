@@ -1,18 +1,14 @@
 from django.shortcuts import render, render_to_response, RequestContext
-<<<<<<< HEAD
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-=======
-from django.http import HttpResponseRedirect, HttpResponse
->>>>>>> dev
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout, get_user
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.forms.models import model_to_dict
 from datetime import date
 from datetime import datetime
-<<<<<<< HEAD
 from filetransfers.api import prepare_upload
 from forms import *
+from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from PeerReviewApp.models import *
 from PeerReviewApp.forms import *
@@ -64,34 +60,46 @@ def handle_uploads(request):
 
 
 def get_current_review_period():
-    if ReviewPeriod.objects.count() > 0:
-        return ReviewPeriod.objects.first()
+    r = ReviewPeriod.objects.filter(is_current=True)
+    if r.count() > 0:
+        return r[0];
     else:
         return False
 
-=======
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import get_object_or_404
-from PeerReviewApp.models import *
-from PeerReviewApp.forms import *
-import json
->>>>>>> dev
+def is_normal_user_(user):
+	if user.is_site_admin:
+		return False
+	else:
+		return True
+
+
+
+
+def is_normal_user_check(user):
+    if user.is_authenticated():
+        if user.is_site_admin:
+            return False
+        else:
+            return True
+    else:
+        return False
+
 
 def index(request):
     ''' Main landing page '''
     context = {}
     return render(request, 'index.html', context)
 
-
 def about(request):
     return render(request, 'about.html', {})
 
+def help(request):
+    return render(request,'help.html',{})
 
 def terms(request):
     ''' Terms of service agreement '''
     context = {}
     return render(request, 'terms.html', context)
-
 
 def auth_login(request):
     context = {}
@@ -154,7 +162,9 @@ def signup(request):
     return render(request, 'signup.html', context)
 
 
-@login_required
+
+
+@user_passes_test(is_normal_user_check)
 def agreement(request):
     ''' Agree to the form '''
     context = {}
@@ -178,7 +188,7 @@ def agreement(request):
     return render(request, 'agreement.html', context)
 
 
-@login_required
+@user_passes_test(is_normal_user_check, login_url='/agreement/')
 def auth_logout(request):
     context = {}
     logout(request)
@@ -187,7 +197,10 @@ def auth_logout(request):
 
 def has_agreed(user):
     if user.is_authenticated():
-        return user.agreed_to_form
+        if user.is_site_admin:
+            return False
+        else:
+            return user.agreed_to_form
     else:
         return False
 
@@ -216,11 +229,12 @@ def remove_associated_file(request, fid):
 def submit_manuscript(request, mid):
     context = {}
     manuscript = Manuscript.objects.get(id=mid)
-    manuscript.is_final = True
     manuscript.status = 'Submitted'
+    manuscript.review_period = ReviewPeriod.objects.filter(is_current=True)[0]
     manuscript.save()
+    context['period'] = ReviewPeriod.objects.filter(is_current=True)
     context['manuscript'] = manuscript
-    return render(request, 'uploader_home.html', context)
+    return render(request, 'submit_manuscript.html', context)
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def delete_manuscript(request,mid):
@@ -229,6 +243,7 @@ def delete_manuscript(request,mid):
     manuscript.delete()
     manuscript.save()
     context['manuscript'] = manuscript
+    context['period'] = get_current_review_period()
     return render(request, 'delete_manuscript.html', context)
 
 
@@ -248,7 +263,8 @@ def edit_manuscript(request, mid):
 		for f in saved_files:
 			m = ManuscriptFile.objects.create(filename=f[0], upload=f[1], manuscript=man)
 			m.save()
-		return render(request,'uploader_home.html')
+		context['period'] = get_current_review_period()
+		return render(request,'uploader_home.html',context)
 	else:
 
 		#Get the current user and the manuscript being edited
@@ -257,11 +273,11 @@ def edit_manuscript(request, mid):
 
 		# Make sure the manuscript they're trying to edit is theirs and that it can be edited
 		if user not in manuscript.authors.all():
-		    context['error'] = 'You are not authorized to make changes to this manuscript.'
-		    return render(request, 'edit_manuscript.html', context)
+			context['error'] = 'You are not authorized to make changes to this manuscript.'
+			return render(request, 'edit_manuscript.html', context)
 		elif manuscript.is_final:
-		    context['error'] = 'This manuscript can no longer be edited.'
-		    return render(request, 'edit_manuscript.html', context)
+			context['error'] = 'This manuscript can no longer be edited.'
+			return render(request, 'edit_manuscript.html', context)
 
 		form = UploadManuscript(instance=manuscript)
 		context['form'] = form
@@ -270,15 +286,13 @@ def edit_manuscript(request, mid):
 		context['files'] = files
 
 		context['manuscript'] = manuscript
-
+		context['period'] = get_current_review_period()
 		return render(request, 'edit_manuscript.html', context)
 
 
 @user_passes_test(has_agreed, login_url='/agreement/')
 def browse_manuscripts(request, current_page):
     context = {}
-    context['period'] = get_current_review_period()
-
     # Load all available manuscripts
     all_manuscripts = Manuscript.objects.all()
 
@@ -293,6 +307,7 @@ def browse_manuscripts(request, current_page):
         page = paginator.page(paginator.num_pages)
 
     context['page'] = page
+    context['period'] = get_current_review_period()
     return render(request, 'browse_manuscripts.html', context)
 
 
@@ -325,6 +340,7 @@ def assigned_manuscripts(request, current_page):
         page = paginator.page(paginator.num_pages)
 
     context['page'] = page
+    context['period'] = get_current_review_period()
     return render(request, 'assigned_manuscripts.html', context)
 
 
@@ -348,7 +364,8 @@ def upload_manuscript(request):
             # Set current user as author
             current_user = SiteUser.objects.get(email=request.user.email)
             man.authors = [current_user]
-
+            man.review_period = get_current_review_period()
+            man.save()
             saved_files = handle_uploads(request)
             for f in saved_files:
                 m = ManuscriptFile.objects.create(filename=f[0], upload=f[1], manuscript=man)
@@ -362,7 +379,7 @@ def upload_manuscript(request):
     return render(request, 'upload_manuscript.html', context)
 
 
-@login_required
+@user_passes_test(is_normal_user_)
 def account(request):
     context = {}
     user = SiteUser.objects.get(email=request.user.email)
@@ -385,14 +402,6 @@ def account(request):
 
 @login_required
 def auth_admin(request):
-<<<<<<< HEAD
-    context = {}
-    user = SiteUser.objects.get(email=request.user.email)
-    if user.email != 'b.k.bolte@emory.edu':  # Update admin authentication at some point
-        return HttpResponseRedirect(reverse('index'))
-    context['all_users'] = SiteUser.objects.all()
-    return render(request, 'admin_home.html', context)
-=======
 	context = {}
 	user = SiteUser.objects.get(email=request.user.email)
 	if user.email != 'b.k.bolte@emory.edu': # Update admin authentication at some point
@@ -407,9 +416,7 @@ def is_site_admin_check(user):
 		return False
 
 def admin_login(request):
-	#context_dict = {}
 	context = {}
-	#context['next'] = request.GET.get('next', False)
 	if request.method == 'POST': form = AdminLoginForm(request.POST)
 	else: form = AdminLoginForm()
 	if form.is_valid() and 'email' in form.cleaned_data and 'password' in form.cleaned_data:
@@ -420,11 +427,8 @@ def admin_login(request):
 		else:
 			context['errors'] = 'Authentication failed.'
 	context['form'] = form
-	#return render_to_response('login.html', context, context_instance=RequestContext(request))
-	#return render_to_response('admin_login.html', context_dict)
 	return render_to_response('admin_login.html', context, context_instance=RequestContext(request))
 
-#@login_required(login_url='/admin_login')
 @user_passes_test(is_site_admin_check, login_url='/admin_login')
 def admin_homepage(request):
 	context_dict = {}
@@ -541,7 +545,6 @@ def admin_ajax(request):
 
 	return HttpResponse(json.dumps(response_dict), content_type='application/json')
 
-#@login_required(login_url='/admin_login')
 @user_passes_test(is_site_admin_check, login_url='/admin_login')
 def admin_browselist(request):
 	context_dict = {}
@@ -578,21 +581,17 @@ def admin_browselist(request):
 	return render_to_response('admin_browselist.html', context_dict, RequestContext(request))	
 
 
-#@login_required(login_url='/admin_login')
 @user_passes_test(is_site_admin_check, login_url='/admin_login')
 def manuscript_detail(request, pk):
 	manuscript = get_object_or_404(Manuscript, pk=pk)
-	#return render(request, 'manuscript_detail.html', {'manuscript': manuscript})
 	return render_to_response('manuscript_detail.html', {'manuscript': manuscript}, RequestContext(request))
 
-#@login_required(login_url='/admin_login')
 @user_passes_test(is_site_admin_check, login_url='/admin_login')
 def user_detail(request, pk):
 	user = get_object_or_404(SiteUser, pk=pk)
-	#return render(request, 'user_detail.html', {'user': user})
 	return render_to_response('user_detail.html', {'user': user}, RequestContext(request))
 
-#@login_required(login_url='/admin_login')
+#admin setting controller
 @user_passes_test(is_site_admin_check, login_url='/admin_login')
 def setting(request):
 	if request.method == 'POST':
@@ -605,6 +604,12 @@ def setting(request):
 			period = form.save(commit=True)
 			period.is_current = True
 			period.save()
+
+			#clear the assigned manuscripts from all reviewers
+			manuscripts = Manuscript.objectsall()
+			for manuscript in manuscripts:
+				manuscript.reviewers.clear()
+
 			for period in ReviewPeriod.objects.all():
 				print period.is_current
 			return render_to_response('setting_ok.html', {"period":period}, RequestContext(request))
@@ -614,10 +619,14 @@ def setting(request):
 		form = ReviewPeriodForm()
 	return render_to_response('setting.html', {'form': form}, RequestContext(request))
 
-#@login_required(login_url='/admin_login')
+def admin_help(request):
+    return render(request,'admin_help.html',{})
+	
 @user_passes_test(is_site_admin_check, login_url='/admin_login')
 def admin_logout(request):
 	context = {}
 	logout(request)
 	return HttpResponseRedirect('/admin_login')
->>>>>>> dev
+
+
+

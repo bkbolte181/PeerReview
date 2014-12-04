@@ -591,6 +591,7 @@ def user_detail(request, pk):
 	user = get_object_or_404(SiteUser, pk=pk)
 	return render_to_response('user_detail.html', {'user': user}, RequestContext(request))
 
+#admin setting controller
 @user_passes_test(is_site_admin_check, login_url='/admin_login')
 def setting(request):
 	if request.method == 'POST':
@@ -603,6 +604,12 @@ def setting(request):
 			period = form.save(commit=True)
 			period.is_current = True
 			period.save()
+
+			#clear the assigned manuscripts from all reviewers
+			manuscripts = Manuscript.objects.all()
+			for manuscript in manuscripts:
+				manuscript.reviewers.clear()
+
 			for period in ReviewPeriod.objects.all():
 				print period.is_current
 			return render_to_response('setting_ok.html', {"period":period}, RequestContext(request))
@@ -611,6 +618,7 @@ def setting(request):
 	else:
 		form = ReviewPeriodForm()
 	return render_to_response('setting.html', {'form': form}, RequestContext(request))
+
 def admin_help(request):
     return render(request,'admin_help.html',{})
 	
