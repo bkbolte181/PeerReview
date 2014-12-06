@@ -243,6 +243,10 @@ a.disabled {
     top: 20% !important;
     left: 0%;
 }
+.modal-body {
+    max-height: 300px;
+    overflow-y: scroll;
+}
 .btns {
   margin: 0rem 0rem 4rem 0;
 }

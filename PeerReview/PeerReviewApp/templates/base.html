@@ -28,10 +28,9 @@
 				<!-- If the user is logged in -->
 				<ul class="menu">
 					<li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a data-toggle="modal" href="#myModal1">Help</a></li>
 					<!-- <li><a href="#" rel="tooltip" data-placement="bottom" title="Help text for this page will go here.">Help</a></li> -->
 				{% if user.is_authenticated %}
-					<li><a href="{% url 'review' %}">Review</a></li>
-					<li><a href="{% url 'authorhome' %}">Submit</a></li>
 					<li><a href="{% url 'logout' %}">Log Out</a></li>
 					<li><a href="#" class="more_nav">More</a></li>
 				{% else %}
@@ -41,14 +40,99 @@
 				</ul>
 				{% if user.is_authenticated %}
 				<ul class="menu more_nav_items">
-					<li><a href="{% url 'account' %}">Account</a></li>
+					<li><a href="{% url 'review' %}">Review</a></li>
+					<li><a href="{% url 'authorhome' %}">Submit</a></li>
+					<li><a href="{% url 'account' %}">My Account</a></li>
 					<li><a href="{% url 'about' %}">About</a></li>
 					<li><a href="mailto:b.k.bolte@emory.edu">Submit Feedback</a></li>
-                    <li><a href="{% url 'help' %}">Help</a></li>
 				</ul>
 				{% endif %}
 			</div>
 		</div>
+
+		<!-- Modal 1 -->
+		<div class="row">
+			<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							<h4 class="modal-title" id="myModalLabel1">Helps</h4>
+						</div>
+						<div class="modal-body">
+							<ul>
+								<li><a href="#">On-line Help for normal users</a><ul>
+								<li><a href="#register">Register</a></li>
+								<li><a href="#login-logout">Login/Logout</a></li>
+								{% if user.is_authenticated %}
+								<li><a href="#term-of-service-form">Term of Service Form</a></li>
+								<li><a href="#manuscript-submission">Manuscript submission</a></li>
+								<li><a href="#manuscript-list-scanning">Manuscript list scanning</a></li>
+								<li><a href="#manuscript-adoption">Manuscript adoption</a></li>
+								<li><a href="#review-form-submission">Review-form submission</a></li>
+								<li><a href="#deadlines">Deadlines</a></li>
+								{% endif %}
+							</ul>
+							<h4 id="register">Register</h4>
+							<ul>
+								<li>Only EMORY email address is allowed for register.</li>
+								<li>All fields in the register page need to be filled.</li>
+								<li>Review count means how many manuscripts you have reviewed for journals.</li>
+							</ul>
+							<h4 id="login-logout">Login/Logout</h4>
+							<ul>
+								<li>The system only allows registered users, please make sure you have
+								registered.</li>
+								<li>If you forget your email address or password, please contact us.</li>
+								<li>User&#8217;s email address is shown at the bottom of all the webpages after the
+								user has logged in.</li>
+							</ul>
+							{% if user.is_authenticated %}
+							<h4 id="term-of-service-form">Term of Service Form</h4>
+							<ul>
+								<li>click the link above &#8220;Agreed to form&#8221; to view the form.</li>
+								<li>Only after agreeing with the term of service, user can submit or review
+								manuscripts.</li>
+							</ul>
+							<h4 id="manuscript-submission">Manuscript submission</h4>
+							<ul>
+								<li>Submission will be disabled after the submission deadline or the pool of
+								manuscripts are full.</li>
+								<li>To submit a manuscript, please enter the author center by clicking &#8220;submit&#8221;
+								on the top right of the homepage for submission.</li>
+							</ul>
+							<h4 id="manuscript-list-scanning">Manuscript list scanning</h4>
+							<ul>
+								<li>All submitted manuscripts can be viewed in review center.</li>
+								<li>Check the check box to show your interest to the corresponding manuscript.
+								However, please be aware of that the assigned manuscript might be a
+								different one.</li>
+							</ul>
+							<h4 id="manuscript-adoption">Manuscript adoption</h4>
+							<ul>
+								<li>Once a manuscript is assigned, the reviewer can adopt it in the page &#8220;My
+								Assigned Manuscripts&#8221; located in reviewer center.</li>
+								<li>An empty review form is available to download in reviewer center.</li>
+							</ul>
+							<h4 id="review-form-submission">Review-form submission</h4>
+							<ul>
+								<li>Download the empty review form and complete it before the review deadline.</li>
+							</ul>
+							<h4 id="deadlines">Deadlines</h4>
+							<ul>
+								<li>Manuscript submission should be done before the submission deadline.</li>
+								<li>Manuscript review should be done before the review deadline.</li>
+							</ul>
+							{% endif %}
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="content">
 			<div class="container">
 				{% block body %}{% endblock %}
