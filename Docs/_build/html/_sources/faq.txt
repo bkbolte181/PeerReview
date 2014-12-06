@@ -1,5 +1,5 @@
-Frequently Asked Questions
-==========================
+On-line Help
+============
 
 
 Admin
@@ -10,7 +10,21 @@ Admin
   * Only one admin account is available for committee members to log in.
   * If you need the admin account as well as the password, please contact us
 
-2. Manuscripts matching
+2. Manuscripts/Reviewers
+
+  * The matching decision of Manuscripts/Reviewers will be made by the admin 
+    when the "Submit final decision" button was pressed and confirmed.
+  * After the final decision was made, there is no way to edit it any more.
+  * Manuscripts with pending matching decisions are listed above all manuscripts 
+    whose final descisions have been submitted.
+  * Removing one current assigned reviewer can be done by unchecking the name 
+    after click on the button "Edit".
+  * The button "Add more reviewers" allows admin adding names which are 
+    listed neither in the list of assiged reviewers nor the list of recommend 
+    reviewers. 
+  * To add extra reviewers, click on "Edit" and then "Add more reviewers"; in 
+    the right panel, choose the names without a preceeding tick, and click the
+    "<" button.
 
 3. System setting
 
@@ -25,24 +39,30 @@ Normal User
 
 2. Log in
 
-  * The system only allows registered users, please make sure you have registered.
+  * The system only allows registered users, please make sure you have 
+    registered.
   * If you forget your email address or password, please contact us.
-  * User's email address is shown at the bottom of all the webpages after the user has logged in.
+  * User's email address is shown at the bottom of all the webpages after the 
+    user has logged in.
 
 3. Term of Service Form, click the link above "Agreed to form". 
 
 4. Manuscript submission
 
-  * To submit a manuscript, please enter the author center by clicking "submit" on the top right of the homepage for submission.
+  * To submit a manuscript, please enter the author center by clicking "submit" 
+    on the top right of the homepage for submission.
 
 5. Manuscript list scan
 
   * All submitted manuscripts can be viewed in review center.
-  * Check the check box to show your interest to the corresponding manuscript. However, please be aware of that the assigned manuscript might be a different one.
+  * Check the check box to show your interest to the corresponding manuscript. 
+    However, please be aware of that the assigned manuscript might be a 
+    different one.
 
 6. Manuscript adoption
 
-  * Once a manuscript is assigned, the reviewer can adopt it in the reviewer center->My Assigned Manuscripts.
+  * Once a manuscript is assigned, the reviewer can adopt it in the page "My 
+    Assigned Manuscripts" located in reviewer center.
   * An empty review form is also available for reviewer to download.
 
 7. Review form submission

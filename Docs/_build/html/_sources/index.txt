@@ -18,7 +18,8 @@ Contents
 
    installation
    deployment
-   faq
+   onlineHelp_admin
+   onlineHelp_normal
    function_list
    code
    test

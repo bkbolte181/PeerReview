@@ -5,7 +5,7 @@ Codes of Manuscript Review
 admin module
 --------------------------
 
-.. automodule:: PeerReview.PeerReviewApp.admin
+.. automodule:: PeerReviewApp.admin
     :members:
     :undoc-members:
     :show-inheritance:
@@ -13,7 +13,7 @@ admin module
 custom_fields module
 ----------------------------------
 
-.. automodule:: PeerReview.PeerReviewApp.custom_fields
+.. automodule:: PeerReviewApp.custom_fields
     :members:
     :undoc-members:
     :show-inheritance:
@@ -21,7 +21,7 @@ custom_fields module
 forms module
 --------------------------
 
-.. automodule:: PeerReview.PeerReviewApp.forms
+.. automodule:: PeerReviewApp.forms
     :members:
     :undoc-members:
     :show-inheritance:
@@ -29,7 +29,7 @@ forms module
 models module
 ---------------------------
 
-.. automodule:: PeerReview.PeerReviewApp.models
+.. automodule:: PeerReviewApp.models
     :members:
     :undoc-members:
     :show-inheritance:
@@ -37,7 +37,7 @@ models module
 tests module
 --------------------------
 
-.. automodule:: PeerReview.PeerReviewApp.tests
+.. automodule:: PeerReviewApp.tests
     :members:
     :undoc-members:
     :show-inheritance:
@@ -45,7 +45,7 @@ tests module
 urls module
 -------------------------
 
-.. automodule:: PeerReview.PeerReviewApp.urls
+.. automodule:: PeerReviewApp.urls
     :members:
     :undoc-members:
     :show-inheritance:
@@ -53,7 +53,7 @@ urls module
 views module
 --------------------------
 
-.. automodule:: PeerReview.PeerReviewApp.views
+.. automodule:: PeerReviewApp.views
     :members:
     :undoc-members:
     :show-inheritance:
