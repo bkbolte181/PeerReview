@@ -4,6 +4,7 @@
 <div class="row">
 	<h4 class="text-center">Deadline for Manuscript Submission:</h4>
 	<h3 class="text-center" style="color:red;">{% if period %}{{ period.submission_deadline }}{% else %}The review period is currently closed.{% endif %}</h3>
+    <h3 class="text-center" style="..."> Warning : Final decisions need to be made after upload</h4>
 </div>
 
 <div class="row">
@@ -16,8 +17,8 @@
 				{% for manuscript in user.authors.all %}
 					<div class="row">
 
-						<div class="col-sm-10 col-sm-offset-1">
-							<strong>{{ manuscript.title }}</strong>
+						<div class="col-sm-10 col-sm-offset-0">
+							{{ manuscript.title }}
                              {%if not manuscript.status == 'Submitted' %}
                          <button type="button"  data-toggle="modal" data-target="#finalize{{ manuscript.id }}"
                             class="btn btn-default btn-sm pull-right">
@@ -109,13 +110,13 @@
 	    <div class = "row">
             <div class="hot-container" style="text-align:left;">
                 {% if period %}
-					<a href="{% url 'upload_manuscript' %}" class="abtn btn-green">Submit a manuscript</a>
+					<a href="{% url 'upload_manuscript' %}" class="btn btn-green">Upload a manuscript</a>
                 {% endif %}
 	    </div>
 		<div class="row">
 			<div class="col-sm-10 col-sm-offset-1">
 				<div class="hot-container" style="text-align:right;">
-					<a href="{% url 'index' %}" class="abtn btn-green">Back</a>
+					<a href="{% url 'index' %}" class="btn btn-green">Back</a>
 				</div>
 			</div>
 		</div>
