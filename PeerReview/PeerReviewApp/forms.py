@@ -55,12 +55,13 @@ class SignupForm(forms.ModelForm):
 	class Meta:
 		model = SiteUser
 		# These are the fields that the user needs to input when they create their account
-		fields = ('email', 'first_name', 'last_name', 'department', 'lab', 'pi', 'school','review_count')
+		fields = ('email', 'first_name', 'last_name', 'department','research_interest', 'lab', 'pi', 'school','review_count')
 		widgets = {
 			'email': forms.EmailInput(attrs={'class': 'form-control text-center', 'placeholder': 'Emory Email Address'}),
 			'first_name': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'First Name'}),
 			'last_name': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Last Name'}),
 			'department': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Department'}),
+            'research_interest': forms.TextInput(attrs={'class':'form-control text-center','placeholder':'Research Interests, separated by a comma'}),
 			'lab': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Name of Lab'}),
 			'pi': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Name of Primary Investigator'}),
 			'school': forms.Select(attrs={'class': 'form-control text-center', 'placeholder': 'Choose your School'}),
@@ -111,7 +112,7 @@ class UploadManuscript(forms.ModelForm):
 	widgets = {
 		'title': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter Manuscript Title'}),
 		'brief_title': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter a shorter title which contains less than 10 words'}),
-		'abstract': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter Manuscript Abstract'}),
+		'abstract': forms.Textarea(attrs={'class': 'form-control text-center', 'placeholder': 'Enter Manuscript Abstract'}),
 		'field': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Manuscript Field (for example: CS, BIO)'}),
 		'keywords': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Keywords (no more than 10, separate by commas)'}),
 		'target_journal': forms.TextInput(attrs={'class': 'form-control text-center', 'placeholder': 'Which journal do you want to publish in?'}),

@@ -35,10 +35,11 @@
 {% endblock %}
 
 {% block body %}
-<div class="center">
-	<p class="logo">Log Out</p>
-	<p>You have been logged out. Thanks for using the site!</p>
-	<p><a href="{% url 'index' %}">Return home</a>
-	</form>
-</div>
+	<h1>You have been logged out. Thanks for using the site!</h1>
+
+<div class="col-sm-7 col-sm-offset-0">
+				<div class="hot-container" style="text-align:right;">
+					<a href="{% url 'index' %}" class="btn btn-green">Return Home</a>
+				</div>
+
 {% endblock %}

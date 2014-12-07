@@ -64,7 +64,7 @@ class SiteUser(AbstractBaseUser):
 	school = models.CharField(max_length=100, choices=[(x, x) for x in SCHOOLS], default=SCHOOLS[0])
 	review_count = models.CharField(max_length=2, help_text="Number of Manuscripts you have reviewed", default=0)
 	agreed_to_form = models.BooleanField(default=False)  # Whether or not the user has agreed to to use form
-	research_interest = models.CharField(max_length=200, default="None", help_text="Research interests, separated by a comma")
+	research_interest = models.CharField(max_length=200, default="", help_text="Research Interests, separated by a comma")
 	is_site_admin = models.BooleanField(default=False)
 	objects = SiteUserManager()
 	
