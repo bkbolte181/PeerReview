@@ -15,16 +15,21 @@
 			<div class="panel-body">
 				{% for manuscript in user.authors.all %}
 					<div class="row">
+
 						<div class="col-sm-10 col-sm-offset-1">
-							{{ manuscript.title }}
-							<button type="button" class="btn btn-default btn-sm pull-right" data-toggle="modal" style="width: 100px;" data-target="#modal{{ manuscript.id }}">View</button>
+							<strong>{{ manuscript.title }}</strong>
+                             {%if not manuscript.status == 'Submitted' %}
                          <button type="button"  data-toggle="modal" data-target="#finalize{{ manuscript.id }}"
-                            class="btn btn-default btn-sm pull-right" style="margin-right: 10px; width: 100px;"
-                            href="#"
-                            onmouseover="changeText(this, 'Submit')"
-                            onmouseout="changeText(this, '{{ manuscript.status }}')">
-                            {{ manuscript.status }}
+                            class="btn btn-default btn-sm pull-right">
+                            Submit Manuscript
                         </button>
+                            {% endif %}
+                        <button type="button" class="btn btn-default btn-sm pull-right" data-toggle="modal" style="width:" data-target="#modal{{ manuscript.id }}">View</button>
+
+                             <div>
+                                <p> Status : <strong> {{ manuscript.status }} </strong>  </p>
+                            </div>
+
                         </div>
 					</div>
                  <div class="modal fade" id="finalize{{ manuscript.id }}" role="dialog" tabindex="-1">
@@ -36,14 +41,14 @@
                                 <h4 class="modal-title">{{ manuscript.title }}</h4>
                             </div>
                             <div class="modal-body">
-                                {% if manuscript.is_final %}
+                                {% if manuscript.status == 'Submitted' %}
                                 <p>
                                     <bold>
                                         Manuscript Already Submitted
                                     </bold>
                                 </p>
                                 {% endif %}
-                                {% if not manuscript.is_final %}
+                                {% if manuscript.status == 'Saved' %}
 
                                 <p>
                                     <bold>
