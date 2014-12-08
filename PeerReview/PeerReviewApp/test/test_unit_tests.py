@@ -4,14 +4,11 @@ from django.test import Client
 from django.utils import unittest
 from django.core.urlresolvers import reverse
 import datetime
-
-#import sys
-#sys.path.append('../')
-
 from PeerReviewApp.models import *
 from PeerReviewApp.forms import *
 from PeerReviewApp.views import *
 
+#PeerReviewApp.test.test_unit_tests
 class CreateUserTest(unittest.TestCase):
 
 	def test_create_user(self):
@@ -29,6 +26,17 @@ class CreateUserTest(unittest.TestCase):
 		, first_name = 'johnny', last_name= 'tan')
 		self.assertEqual(instance.get_full_name(), ('johnny','tan'))
 
+	def test_get_star_string_true(self):
+		instance = SiteUser(email = 'jiulin@emory.edu', password = '123'
+		, review_count = 3)
+		self.assertEqual(instance._get_star_string(), ('*'))
+		
+	def test_get_star_string_false(self):
+		instance = SiteUser(email = 'jiulin@emory.edu', password = '123'
+		, review_count = 2)
+		self.assertEqual(instance._get_star_string(), (''))
+
+
 class CreateReviewPeriodTest(unittest.TestCase):
 
 	def test_create_reviewperiod(self):
@@ -45,5 +53,7 @@ class CreateManuscriptTest(unittest.TestCase):
 		, keywords = 'k1,k2,k3', is_final = 'False')
 		self.assertTrue(isinstance(instance, Manuscript))
 
+#class CreateReviewFileTest(unittest.TestCase):
 
+#class CreateManuscriptFileTest(unittest.TestCase):
 
