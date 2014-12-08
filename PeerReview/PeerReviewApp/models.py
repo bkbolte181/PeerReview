@@ -36,8 +36,8 @@ class SiteUserManager(BaseUserManager):
 	def create_superuser(self, email, password, first_name=None, last_name=None, department=None, lab=None, pi=None, research_interest=None, **extra_fields):
 		return self._create_user(email, password)
 
-
 	def get_by_natural_key(self, username):
+		""" Allow Case-Insensitive Username. """
 		return self.get(email__iexact=username)
 
 
