@@ -29,12 +29,16 @@ class SiteUserManager(BaseUserManager):
 		user.set_password(password)
 		user.save(using=self._db)
 		return user
-		
+
 	def create_user(self, email, password, first_name=None, last_name=None, department=None, lab=None, pi=None, research_interest=None, **extra_fields):
 		return self._create_user(email, password)
-		
+
 	def create_superuser(self, email, password, first_name=None, last_name=None, department=None, lab=None, pi=None, research_interest=None, **extra_fields):
 		return self._create_user(email, password)
+
+	def get_by_natural_key(self, username):
+		""" Allow Case-Insensitive Username. """
+		return self.get(email__iexact=username)
 
 
 class SiteUser(AbstractBaseUser):
@@ -67,7 +71,7 @@ class SiteUser(AbstractBaseUser):
 	research_interest = models.CharField(max_length=200, default="", help_text="Research Interests, separated by a comma")
 	is_site_admin = models.BooleanField(default=False)
 	objects = SiteUserManager()
-	
+
 	#def get_star(self): return int(self.review_count) >= 3
 	def _get_star_string(self):
 		if int(self.review_count) >=3:
@@ -79,7 +83,7 @@ class SiteUser(AbstractBaseUser):
 
 	def _get_assigned_num(self):
 		return len(self.reviewers.all())
-	
+
 	assigned_num = property(_get_assigned_num)
 
 	def _get_assigned_manuscripts(self):
@@ -87,24 +91,24 @@ class SiteUser(AbstractBaseUser):
 		for manuscript in self.reviewers.all():
 			ids.append(manuscript.id)
 		return ids
-	
+
 	assigned_manuscripts = property(_get_assigned_manuscripts)
-	
+
 	@property
 	def is_superuser(self):
 		return self.is_admin
-	
+
 	@property
 	def is_staff(self):
 		return self.is_admin
-	
+
 	@property
 	def is_admin(self):
 		return True
-	
+
 	def has_perm(self, perm, obj=None):
 		return self.is_admin
-	
+
 	def has_module_perms(self, app_label):
 		return self.is_admin
 
@@ -129,7 +133,7 @@ class ReviewPeriod(models.Model):
 	submission_deadline = models.DateField()  # Date when submissions are due
 	review_deadline = models.DateField()  # Date when reviews are due back
 	group_meeting_time = models.DateField()  # Large group meeting time
-	
+
 	# For admin
 	group_meeting_venue = models.CharField(max_length=1000, default="None")
 	is_current = models.BooleanField(default=False)
@@ -190,16 +194,16 @@ class Manuscript(models.Model):
 					matched = True
 					break
 			if not matched and len(recommended) > RECOMMENDED_NUM:
-				#cannot remove too many advanced reviewers since we need at least 3 
+				#cannot remove too many advanced reviewers since we need at least 3
 				if reviewer.star_string == '*':
 					if advanced > RECOMMENDED_AD:
 						recommended.remove(reviewer)
 						advanced -= 1
 				else:
 					recommended.remove(reviewer)
-		if len(recommended) <= RECOMMENDED_NUM: 
+		if len(recommended) <= RECOMMENDED_NUM:
 			return recommended
-		
+
 		#still too many recommended reviewers
 		#too many advanced reviewers
 		if advanced > RECOMMENDED_AD:
@@ -208,7 +212,7 @@ class Manuscript(models.Model):
 				advanced -= 1
 				if advanced == RECOMMENDED_AD:
 					break
-		else: 
+		else:
 			if advanced < RECOMMENDED_AD:
 				for reviewer in reviewers:
 					if reviewer.star_string == '*' and reviewer not in recommended and reviewer not in self.authors.all() and reviewer not in self.reviewers.all():
@@ -218,11 +222,11 @@ class Manuscript(models.Model):
 							break
 
 		for i in range(0, len(recommended)):
-			if len(recommended) > RECOMMENDED_NUM: 
-				recommended.pop()		
-			else: 
+			if len(recommended) > RECOMMENDED_NUM:
+				recommended.pop()
+			else:
 				break
-			
+
 		return recommended
 
 	recommended_reviewers = property(_get_recommended_reviewers)
