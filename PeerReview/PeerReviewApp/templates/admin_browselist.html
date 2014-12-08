@@ -40,7 +40,7 @@
 							<form class="form-inline" id="form{{manuscript.id}}" role="form" method="post">
 								{% csrf_token %}		
 								<table class="table table-no-border table-condensed">
-									<caption>{{manuscript.id}}. <a href="{% url 'manuscript_detail'  pk=manuscript.id %}">{{ manuscript.brief_title }}</a></caption>
+									<caption class='underline_href'>{{manuscript.id}}. <a href="{% url 'manuscript_detail'  pk=manuscript.id %}">{{ manuscript.brief_title }}</a></caption>
 									<thead>
 										<tr>
 										  <th class="col-sm-3"></th>
@@ -52,7 +52,7 @@
 										  <td>Author</td>
 											<td>
 											{% for author in manuscript.authors.all %}
-											<a class="user admin_author" href="{% url 'user_detail' pk=author.id%}"><span value="{{ author.id }}"></span>{{author.first_name}} {{author.last_name}}{{author.star_string}}{% if not forloop.last %},{% endif %}</a>
+											<a class="user admin_author color_href" href="{% url 'user_detail' pk=author.id%}"><span value="{{ author.id }}"></span>{{author.first_name}} {{author.last_name}}{{author.star_string}}{% if not forloop.last %}{% endif %}</a>
 											{% endfor %}
 											</td>
 										</tr>	
@@ -61,7 +61,7 @@
 										  <td>
 											  {% if manuscript.reviewers.all %}
 											{% for reviewer in manuscript.reviewers.all %}
-											<span class="checkbox hide"><input type="checkbox" checked="checked" value={{reviewer.email}} name="reviewers{{manuscript.id}}"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
+											<span class="checkbox hide"><input type="checkbox" checked="checked" value={{reviewer.email}} name="reviewers{{manuscript.id}}"></span><a class="user color_href" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}</a>{% if not forloop.last%},{% endif %}
 											{% endfor %}
 											  {% else %}
 											  <span style="color:red">No assigned reviewers for this manuscript.</span>
@@ -73,7 +73,7 @@
 										  <td>
 											  {% if manuscript.recommended_reviewers %}
 											{% for reviewer in manuscript.recommended_reviewers %}
-											<span class="checkbox hide"><input type="checkbox" value={{reviewer.email}} name="reviewers{{manuscript.id}}" ></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
+											<span class="checkbox hide"><input type="checkbox" value={{reviewer.email}} name="reviewers{{manuscript.id}}" ></span><a class="user color_href" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}</a>{% if not forloop.last%},{% endif %}
 											{% endfor %}
 											  {% else %}
 											  <span style="color:red">No recommended reviewers for this manuscript.</span>
@@ -115,7 +115,7 @@
 							<div class = "manuscript" id="manuscript{{manuscript.id}}">
 
 							<table class="table table-no-border table-condensed">
-								<caption>{{ manuscript.id }}. <a href="{% url 'manuscript_detail'  pk=manuscript.id %}">{{ manuscript.brief_title }}</a></caption>
+								<caption class='underline_href'>{{ manuscript.id }}. <a href="{% url 'manuscript_detail'  pk=manuscript.id %}">{{ manuscript.brief_title }}</a></caption>
 								<thead>
 									<tr>
 									  <th class="col-sm-3"></th>
@@ -127,7 +127,7 @@
 									  <td>Author</td>
 										<td class="admin_author">
 										{% for author in manuscript.authors.all %}
-										<a class="user" href="{% url 'user_detail' pk=author.id%}">{{author.first_name}} {{author.last_name}}{{author.star_string}}{% if not forloop.last %},{% endif %}</a>
+										<a class="user color_href" href="{% url 'user_detail' pk=author.id%}">{{author.first_name}} {{author.last_name}}{{author.star_string}}</a>{% if not forloop.last%},{% endif %}
 										{% endfor %}
 										</td>
 									</tr>	
@@ -136,7 +136,7 @@
 										<td>
 											{% if manuscript.reviewers.all %}
 											{% for reviewer in manuscript.reviewers.all %}
-											<a class="user" href="{% url 'user_detail'  pk=reviewer.id %}">{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}{% if not forloop.last%},{% endif %}</a>
+											<a class="user color_href" href="{% url 'user_detail'  pk=reviewer.id %}">{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}</a>{% if not forloop.last%},{% endif %}
 											{% endfor %}
 											{% else %}
 											<span style="color:red">No reviewers for this manuscript.</span>
@@ -154,7 +154,7 @@
 						<button type="button" class="btn btn-default"><i class="glyphicon glyphicon-chevron-left"></i></button>
 					</div>
 					<div class="col-sm-5">
-						<h5 class="subtitle">Assigned Reviewers</h5>
+						<h5 class="subtitle">Reviewers</h5>
 						<div id="reviewer-list">
 							<div class = "reviewer">
 								<table class="table table-no-border table-condensed">
@@ -176,7 +176,7 @@
 							{% for reviewer in reviewers %}
 							<div class = "reviewer" id="reviewer1">
 								<table class="table table-no-border table-condensed">
-									<caption><span class="glyphicon glyphicon-ok hide" value="{{reviewer.email}};{{reviewer.id}}"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}</a></caption>
+									<caption class='underline_href'><span class="glyphicon glyphicon-ok hide" value="{{reviewer.email}};{{reviewer.id}}"></span><a class="user" href="{% url 'user_detail'  pk=reviewer.id %}"><span value="{{ reviewer.id }}"></span>{{reviewer.first_name}} {{reviewer.last_name}}{{reviewer.star_string}}</a></caption>
 									<thead>
 										<tr>
 										  <th class="col-sm-10"></th>
@@ -209,7 +209,7 @@
 			<div class="row admin_prev_session" title="view list of manuscripts in previous sessions">
 				Previous sessions
 			</div>	
-			<ul>
+			<ul class="underline_href">
 				<li><a href="" title="view list of manuscripts in session 4">Session 4 (2013 May - 2013 July)</a></li>
 				<li><a href="">Session 3 (2012 May - 2012 July)</a></li>
 				<li><a href="">Session 2 (2012 January - 2012 March)</a></li>

@@ -351,7 +351,8 @@ span.glyphicon-ok {
 	padding-left:15px;
 	padding-bottom: 8px;
 	font-size: 1.5rem;
-	text-decoration: underline;
+	font-weight: bold;
+	/*text-decoration: underline;*/
 }
 .admin_prev_session {
 	padding-top: 15px;
@@ -438,4 +439,26 @@ a.btn.btn-green1 {
 }
 .borderless tbody tr td, .borderless thead tr th {
     border: none;
+}
+a.color_href {
+    color: #000066;
+	/*text-decoration: underline;*/
+}
+/* unvisited link */
+.underline_href a {
+    /*color: #0066CC;*/
+	text-decoration: underline;
+}
+
+/* mouse over link */
+a.color_href:hover, .underline_href a:hover {
+    color: #000066;
+}
+/*
+a.color_href:visited, .underline_href a:visited {
+    color: #000066;
+}*/
+/* selected link */
+a.color_href:active, .underline_href a:active {
+    color: #000066;
 }

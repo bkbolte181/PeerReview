@@ -88,7 +88,7 @@ $(document).ready(function() {
 				id = emailId[1];
 				href = checkedValues[i].find("a");
 				str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email +
-					'" name = "reviewers_add" checked="checked "></span><a class="user" href="'+ href.attr('href')+'">' +
+					'" name = "reviewers_add" checked="checked "></span><a class="user color_href" href="'+ href.attr('href')+'">' +
 					href.text() + "</a>";
 				str = str + " ";
 				cur_listedReviewers.push(email);
@@ -156,7 +156,8 @@ $(document).ready(function() {
 						//str = str.substring(0, str.length-2);
 					}
 					str = str + strstr;
-					str += '</p></div><p>We have successfully send emails to the author and reviewers about the decision.</p>';
+					//str += '</p></div><p>We have successfully send emails to the author and reviewers about the decision.</p>';
+					str += '</p></div>';
 					dom.html(str);
 					dom.prev().find('h4').html("Success");
 					str = '<div class='+'"btn-group pull-right"'+'><button onclick="location.href='+'\'/admin_browselist/\'"'
@@ -209,7 +210,7 @@ $(document).ready(function() {
 					id = as_reviewer.id;
 					href = href_prefix_str + id + "/";
 					name = as_reviewer.name;
-					str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers'+manuscript_id+'" checked="checked "></span><a class="user" href="'+ href+'"><span value="'+id+'"></span>' + name + "</a>";
+					str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers'+manuscript_id+'" checked="checked "></span><a class="user color_href" href="'+ href+'"><span value="'+id+'"></span>' + name + "</a>";
 					str = str + ", ";
 				}
 				if (str.length == 0) {
@@ -230,7 +231,7 @@ $(document).ready(function() {
 					id = re_reviewer.id;
 					href = href_prefix_str + id + "/";
 					name = re_reviewer.name;
-					str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers'+manuscript_id+'"></span><a class="user" href="'+ href+'"><span value="'+id+'"></span>' + name + "</a>";
+					str = str + '<span class="checkbox hide"><input type="checkbox" value = "' + email + '" name = "reviewers'+manuscript_id+'"></span><a class="user color_href" href="'+ href+'"><span value="'+id+'"></span>' + name + "</a>";
 					str = str + ", ";
 				}
 				if (str.length == 0) {

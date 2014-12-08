@@ -425,7 +425,12 @@ def admin_login(request):
 			login(request, user)
 			return HttpResponseRedirect(reverse('admin_homepage')) # Redirect to homepage when the user logs in
 		else:
+			print 'hit 3'
 			context['errors'] = 'Authentication failed.'
+			
+	if request.method == 'POST' and not(form.is_valid()):	
+		context['errors'] = 'User name or password cannot be empty.'
+
 	context['form'] = form
 	return render_to_response('admin_login.html', context, context_instance=RequestContext(request))
 
