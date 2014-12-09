@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Manuscript Review 1.0beta1 documentation" href="index.html" />
-    <link rel="next" title="Frequently Asked Questions" href="faq.html" />
+    <link rel="next" title="On-line Help for admin" href="onlineHelp_admin.html" />
     <link rel="prev" title="Installation Instruction" href="installation.html" /> 
   </head>
   <body role="document">
@@ -40,10 +40,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="faq.html" title="Frequently Asked Questions"
+          <a href="onlineHelp_admin.html" title="On-line Help for admin"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="installation.html" title="Installation Instruction"
@@ -56,12 +53,20 @@
 
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Deployment Instruction</a><ul>
+<li><a class="reference internal" href="#adding-the-app">Adding the App</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="installation.html"
                         title="previous chapter">Installation Instruction</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="faq.html"
-                        title="next chapter">Frequently Asked Questions</a></p>
+  <p class="topless"><a href="onlineHelp_admin.html"
+                        title="next chapter">On-line Help for admin</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -92,6 +97,33 @@
             
   <div class="section" id="deployment-instruction">
 <h1>Deployment Instruction<a class="headerlink" href="#deployment-instruction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="adding-the-app">
+<h2>Adding the App<a class="headerlink" href="#adding-the-app" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Create your Django app:</p>
+<div class="highlight-python"><div class="highlight"><pre>django-admin.py startproject myproj; cd myproj;
+</pre></div>
+</div>
+</li>
+<li><p class="first">Make sure it works:</p>
+<div class="highlight-python"><div class="highlight"><pre>./manage.py runserver
+</pre></div>
+</div>
+</li>
+<li><p class="first">Clone the latest PeerReviewApp:</p>
+<div class="highlight-python"><div class="highlight"><pre>git clone &#39;https://github.com/bkbolte181/PeerReviewApp.git&#39;
+</pre></div>
+</div>
+</li>
+<li><p class="first">Update the settings file using the parameters in sample-settings.py</p>
+</li>
+<li><p class="first">Test to make sure everything works:</p>
+<div class="highlight-python"><div class="highlight"><pre>./manage.py test
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
 </div>
 
 
@@ -107,10 +139,7 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="faq.html" title="Frequently Asked Questions"
+          <a href="onlineHelp_admin.html" title="On-line Help for admin"
              >next</a> |</li>
         <li class="right" >
           <a href="installation.html" title="Installation Instruction"
