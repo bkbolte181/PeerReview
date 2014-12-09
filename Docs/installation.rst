@@ -60,6 +60,6 @@ Adding the App
 
 * Update the settings file using the parameters in sample-settings.py
 
-* Test to make sure everything works
+* Test to make sure everything works::
 
     ./manage.py test
