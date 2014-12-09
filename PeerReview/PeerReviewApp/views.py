@@ -421,7 +421,8 @@ def admin_login(request):
 	else: form = AdminLoginForm()
 	if form.is_valid() and 'email' in form.cleaned_data and 'password' in form.cleaned_data:
 		user = authenticate(username=form.cleaned_data['email'], password=form.cleaned_data['password'])
-		if user is not None:
+		
+		if user is not None and user.is_site_admin:
 			login(request, user)
 			return HttpResponseRedirect(reverse('admin_homepage')) # Redirect to homepage when the user logs in
 		else:
@@ -602,28 +603,43 @@ def setting(request):
 	if request.method == 'POST':
 		form = ReviewPeriodForm(request.POST)
 		if form.is_valid():
-			for period in ReviewPeriod.objects.all():
-				period.is_current = False
-				period.save()
+			#for period in ReviewPeriod.objects.all():
+			#	period.is_current = False
+			#	period.save()
 
 			#ReviewPeriod.objects.all().delete();
-			period = form.save(commit=True)
-			period.is_current = True
-			period.save()
-
+			#period = form.save(commit=True)
+			if ReviewPeriod.objects.filter(is_current=True):
+				new_period = form.save(commit=False)
+				period = ReviewPeriod.objects.filter(is_current=True)[0];
+				period.start_date = new_period.start_date
+				period.submission_deadline = new_period.submission_deadline
+				period.review_deadline = new_period.review_deadline
+				period.group_meeting_time = new_period.group_meeting_time
+				period.group_meeting_venue = new_period.group_meeting_venue
+				period.is_current = True
+				period.max_manuscript = new_period.max_manuscript
+				period.save()
+			else:
+				period = form.save(commit=False)
+				period.is_current = True
+				period.save()
 			#clear the assigned manuscripts from all reviewers
-			manuscripts = Manuscript.objects.all()
-			for manuscript in manuscripts:
-				manuscript.reviewers.clear()
+			#manuscripts = Manuscript.objects.all()
+			#for manuscript in manuscripts:
+			#	manuscript.reviewers.clear()
 
-			for period in ReviewPeriod.objects.all():
-				print period.is_current
+			#for period in ReviewPeriod.objects.all():
+			#	print period.is_current
 			return render_to_response('setting_ok.html', {"period":period}, RequestContext(request))
 		else:
 			print form.errors
 	else:
-		period = ReviewPeriod.objects.filter(is_current=True)[0];
-		form = ReviewPeriodForm(instance=period)
+		if ReviewPeriod.objects.filter(is_current=True):
+			period = ReviewPeriod.objects.filter(is_current=True)[0];
+			form = ReviewPeriodForm(instance=period)
+		else:
+			form = ReviewPeriodForm()
 
 	return render_to_response('setting.html', {'form': form}, RequestContext(request))
 

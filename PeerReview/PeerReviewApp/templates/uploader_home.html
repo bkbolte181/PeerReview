@@ -63,7 +63,7 @@
                             	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 {% endif %}
                                 {% if not manuscript.status == 'Submitted' %}
-                                <a href="{% url 'submit_manuscript' manuscript.id %}" class="btn btn-default">Submit Manuscript</a>
+                                <a href="{% url 'submit_manuscript' manuscript.id %}" class="btn btn-default">Yes</a>
                                 {% endif %}
                             </div>
                         </div>

@@ -21,7 +21,7 @@ class SiteUserManager(BaseUserManager):
 		is custom. The UserManager needs two methods, create_user and create_superuser. Most other methods
 		are subclassed from BaseUserManager.
 	"""
-	def _create_user(self, email, password, first_name=None, last_name=None, department=None, lab=None, pi=None, research_interest=None, **extra_fields):
+	def _create_user(self, email, password, first_name=None, last_name=None, department=None, school=None, lab=None, pi=None, research_interest=None, **extra_fields):
 		if not email:
 			raise ValueError('An email must be provided to create the user.')
 		email = self.normalize_email(email)
@@ -30,10 +30,10 @@ class SiteUserManager(BaseUserManager):
 		user.save(using=self._db)
 		return user
 
-	def create_user(self, email, password, first_name=None, last_name=None, department=None, lab=None, pi=None, research_interest=None, **extra_fields):
+	def create_user(self, email, password, first_name=None, last_name=None, department=None, school=None, lab=None, pi=None, research_interest=None, **extra_fields):
 		return self._create_user(email, password)
 
-	def create_superuser(self, email, password, first_name=None, last_name=None, department=None, lab=None, pi=None, research_interest=None, **extra_fields):
+	def create_superuser(self, email, password, first_name=None, last_name=None, department=None, school=None, lab=None, pi=None, research_interest=None, **extra_fields):
 		return self._create_user(email, password)
 
 	def get_by_natural_key(self, username):
@@ -161,6 +161,9 @@ class Manuscript(models.Model):
 	review_period = models.ForeignKey(ReviewPeriod, related_name="manuscripts", related_query_name="manuscript", default=0)
 	is_final = models.BooleanField(default=False)  # If the final decision of this manuscript has been made
 
+	def __unicode__(self):
+		return str(self.brief_title)
+		
 	def _get_period(self):
 		return self.review_period.is_current
 

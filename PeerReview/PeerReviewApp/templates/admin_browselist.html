@@ -35,7 +35,7 @@
 						<div id="manuscript-list">
 							{% if manuscripts %}
 							{% for manuscript in manuscripts %}
-							{% if not manuscript.is_final %}
+							{% if not manuscript.is_final and manuscript.status == "Submitted"%}
 							<div class = "manuscript" id="manuscript{{manuscript.id}}">
 							<form class="form-inline" id="form{{manuscript.id}}" role="form" method="post">
 								{% csrf_token %}		
@@ -111,7 +111,7 @@
 							<span style="color:red">No manuscripts available in current session.</span>
 							{% endif %}
 							{% for manuscript in manuscripts %}
-							{% if manuscript.is_final %}
+							{% if manuscript.is_final and manuscript.status == "Submitted" %}
 							<div class = "manuscript" id="manuscript{{manuscript.id}}">
 
 							<table class="table table-no-border table-condensed">
