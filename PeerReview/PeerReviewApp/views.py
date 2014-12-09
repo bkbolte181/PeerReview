@@ -568,12 +568,17 @@ def admin_browselist(request):
 		#review period constrain
 		for manuscript in manuscripts_all:
 			if manuscript.review_period.is_current:
+				if manuscript.review_period.review_deadline < date.today():
+					manuscript.is_final = True
+					manuscript.save()
 				manuscripts.append(manuscript)	
 	else:
 		submission_deadline = ''
 		review_deadline = ''
 		group_meeting_time = ''
 		group_meeting_venue = ''
+
+
 
 	reviewers = SiteUser.objects.filter(agreed_to_form=True)
 
