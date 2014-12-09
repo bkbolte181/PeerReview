@@ -1,39 +1,117 @@
-from django.test import TestCase
-from django.utils import timezone
-from django.test import Client
 from django.utils import unittest
-from django.core.urlresolvers import reverse
+from django.utils import timezone
+from django.test import TestCase
+from django.test import Client
 from django.db import transaction
-import datetime
+from django.core.urlresolvers import reverse
+
 from PeerReviewApp.models import *
 from PeerReviewApp.forms import *
 from PeerReviewApp.views import *
 
+import datetime
+
+#test the operations of SiteUser model
 class UserModelTest(TestCase):
 
-	def test_user_model(self):
+	#test get instance
+	def test_user_model_get_user(self):
 		#sid = transaction.savepoint()
 		instance = SiteUser.objects.create(email='jhu39@emory.edu', password='123'
 		, first_name='Jiulin', last_name='Hu')
 
-		''' test get '''
 		get = SiteUser.objects.get(email='jhu39@emory.edu')
+
 		self.assertEqual(instance.password, get.password)
 		self.assertEqual(instance.first_name, get.first_name)
 		self.assertEqual(instance.last_name, get.last_name)
 		#transaction.savepoint_rollback(sid)
 
-		''' test update '''
+	#test update 
+	def test_user_model_update_user(self):
+		instance = SiteUser.objects.create(email='jhu39@emory.edu', password='123'
+		, first_name='Jiulin', last_name='Hu')
+
+		get = SiteUser.objects.get(email='jhu39@emory.edu')
+
 		self.assertFalse(get.agreed_to_form)
 		get.agreed_to_form = True
 		get.save()
 
-		updated = SiteUser.objects.get(email='jhu39@emory.edu')
-		self.assertTrue(updated.agreed_to_form)
+	#test register with exist email		
+	def test_user_model_register_with_exist_email(self):
+		instance = SiteUser.objects.create(email='jhu39@emory.edu', password='123'
+		, first_name='Jiulin', last_name='Hu')	
+
+		#instance1 = SiteUser.objects.create(email='jhu39@emory.edu', password='123'
+		#, first_name='Jiulin', last_name='Hu')
+
+		#updated = SiteUser.objects.get(email='jhu39@emory.edu')
+		#self.assertTrue(updated.agreed_to_form)
+
+	#test delete user
+	def test_user_model_delete_user(self):
+		instance = SiteUser.objects.create(email='jhu39@emory.edu', password='123'
+		, first_name='Jiulin', last_name='Hu')	
+
+		get = SiteUser.objects.all()
+		self.assertEqual(len(get), 1)
+	
+		instance.delete()
+				
+		get = SiteUser.objects.all()
+		self.assertEqual(len(get), 0)
+
+	#test delete a list of users
+	def test_user_model_delete_user_list(self):
+		instance1 = SiteUser.objects.create(email='jhu39@emory.edu', password='123'
+		, first_name='Jiulin', last_name='Hu')	
+		instance2 = SiteUser.objects.create(email='jhu38@emory.edu', password='123'
+		, first_name='Jiulin', last_name='Hu')	
+		instance2 = SiteUser.objects.create(email='jhu37@emory.edu', password='123'
+		, first_name='Jiulin', last_name='Hu')			
+
+		get = SiteUser.objects.all()
+		self.assertEqual(len(get), 3)
+
+		SiteUser.objects.all().delete()
 		
+		get = SiteUser.objects.all()
+		self.assertEqual(len(get), 0)
+
+	#test assign manuscript to user
+	def test_user_model_assign_manuscript(self):
+		instance = SiteUser.objects.create(email='jhu39@emory.edu', password='123'
+		, first_name='Jiulin', last_name='Hu')			
+
+		period = ReviewPeriod.objects.get_or_create(submission_deadline=datetime.date(year=2015, month=1, day=10), review_deadline=datetime.date(year=2015, month=2, day=10), group_meeting_time=datetime.date(year=2015, month=2, day=25), group_meeting_venue='Room E404, MSC, Emory University, GA 30030.', is_current=True)
+		
+		manuscript1 = Manuscript.objects.get_or_create(keywords='math,Physics', title = 'LAD VS PDA5******', brief_title='LAD VS PDA4', abstract='ooooooo', review_period=period[0], field='Software Engineering', target_journal='target_journal', is_final=True)
+		instance.reviewers.add(manuscript1[0])
+		#self.assertEqual(instance.reviewers.all()[0], manuscript1)		
+		self.assertEqual(1, len(instance.reviewers.all()))		
+		self.assertEqual(instance.reviewers.all()[0].id, manuscript1[0].id)
+
+	#test get assigned manuscript number of a user
+	def test_user_model_assigned_num(self):
+		instance = SiteUser.objects.create(email='jhu39@emory.edu', password='123'
+		, first_name='Jiulin', last_name='Hu')			
+
+		period = ReviewPeriod.objects.get_or_create(submission_deadline=datetime.date(year=2015, month=1, day=10), review_deadline=datetime.date(year=2015, month=2, day=10), group_meeting_time=datetime.date(year=2015, month=2, day=25), group_meeting_venue='Room E404, MSC, Emory University, GA 30030.', is_current=True)
+		
+		manuscript1 = Manuscript.objects.get_or_create(keywords='math,Physics', title = 'LAD VS PDA5******', brief_title='LAD VS PDA4', abstract='ooooooo', review_period=period[0], field='Software Engineering', target_journal='target_journal', is_final=True)
+
+		manuscript2 = Manuscript.objects.get_or_create(keywords='lsa,bsa,tsa', title = 'PCA versus LDA PCA versus LDA PCA versus LDA', brief_title='PCA versus LDA', abstract='In the context of the appearance-based paradigm for object recognition, it is generally believed that algorithms based on LDA (Linear Discriminant Analysis) are superior to those based on PCA (Principal Components Analysis). In this communication, we show that this is not always the case. We present our case first by using intuitively plausible arguments and, then, by showing actual results on a face database. Our overall conclusion is that when the training data set is small, PCA can outperform LDA and, also, that PCA is less sensitive to different training data sets.', review_period=period[0], field='computer science', target_journal='IEEE Transaction on Machine Learning', is_final=False)
+
+		instance.reviewers.add(manuscript1[0])
+		instance.reviewers.add(manuscript2[0])
+		self.assertEqual(instance.assigned_num, 2)		
+
+
 class ReviewPeriodModelTest(TestCase):
 
-	def test_reviewperiod_model(self):
+	#test get review period
+	def test_reviewperiod_get(self):
 		instance = ReviewPeriod(is_full = 'False', start_date = timezone.now()
 		, submission_deadline = timezone.now()
 		, review_deadline = timezone.now()+datetime.timedelta(days = 30)
@@ -43,6 +121,36 @@ class ReviewPeriodModelTest(TestCase):
 
 		get = ReviewPeriod.objects.all()
 		self.assertEqual(len(get),1)
+
+	#test update review period
+	def test_reviewperiod_update(self):
+		instance = ReviewPeriod(is_full = 'False', start_date = timezone.now()
+		, submission_deadline = timezone.now()
+		, review_deadline = timezone.now()+datetime.timedelta(days = 30)
+		, group_meeting_time = timezone.now()+datetime.timedelta(days = 50)
+		, is_current=True)
+		instance.save()
+
+		get = ReviewPeriod.objects.all()[0]
+		get.is_current = False
+		get.save()
+	
+		self.assertEqual(ReviewPeriod.objects.all()[0].is_current, False)
+
+	#test delete review period
+	def test_reviewperiod_delete(self):
+		instance = ReviewPeriod(is_full = 'False', start_date = timezone.now()
+		, submission_deadline = timezone.now()
+		, review_deadline = timezone.now()+datetime.timedelta(days = 30)
+		, group_meeting_time = timezone.now()+datetime.timedelta(days = 50)
+		, is_current=True)
+		instance.save()		
+
+		get = ReviewPeriod.objects.all()[0]
+		get.delete()
+		get = ReviewPeriod.objects.all()
+		
+		self.assertEqual(len(get), 0)
 
 class ManuscriptModelTest(TestCase):
 	def add_user(self, email, password, first_name="", last_name="", department="", lab="", pi="", research_interest="", review_count="",
@@ -61,9 +169,10 @@ class ManuscriptModelTest(TestCase):
 	    site_user.agreed_to_form=agreed_to_form
 	    site_user.is_site_admin=is_site_admin
 	    site_user.save()
-	    user = authenticate(username=email, password=password)
+	    #user = authenticate(username=email, password=password)
 
-	def test_manuscript_model(self):
+	#test manuscript get
+	def test_manuscript_get(self):
 		admin_site_user = self.add_user(email='admin@gmail.com', password='123', agreed_to_form=False, is_site_admin=True)
 
 		site_user1 = self.add_user(email='johnlee@emory.edu', password='123', first_name='John', last_name='Lee', department='Math & CS', lab='Gee\'s Lab1', pi='Gee\'s PI1', research_interest='Computer science, Software Engineering', review_count='5', agreed_to_form=True)
