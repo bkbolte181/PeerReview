@@ -16,7 +16,7 @@ Install requirements: <code>cd PeerReview; pip install -r requirements.txt;  </c
 
 
 Original Design
-============================
+----------------------------
 We have presented our mockup demo twice, you can check the design in the 
 folder [Design/Mockup/html demo/](https://github.com/bkbolte181/PeerReview/tree/master/Design/Mockup/html\ demo)
 
