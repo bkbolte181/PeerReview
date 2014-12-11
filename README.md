@@ -61,6 +61,8 @@ Documents, sitting in the folder [Docs/_build/html/](https://github.com/bkbolte1
 * On-line help for both admin and normal user
 * Function list for implemented and planned functions
 
+____________________________
+
 Functions delivered in version 1.0 (2014/12)
 ---------------------------------------------
 * Admin
@@ -75,7 +77,6 @@ Functions delivered in version 1.0 (2014/12)
   4. Submit manuscripts.
   5. Save and edit a partially completed submission.
   6. Browse the list of submitted manuscripts.
-____________________________
 
 Functions designed and planned for future
 --------------------------------------------
