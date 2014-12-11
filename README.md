@@ -1,8 +1,7 @@
-Peer-Review
-===========
-
-Peer Review project for CS 485/540.
-____________
+Introduction
+============================
+The Peer Review project is a course project for CS 485/540. This project aims at building a Manuscript Review System to assist SCIENCE WRITERS COMMITTEE which aims at helping Emory researchers improve their manuscripts, learn from different research areas and gain more experience of reviewing others’ paper.
+____________________________
 <h3>How to edit:</h3>
 
 Install virtual environment: <code>pip install virtualenv</code><br>
