@@ -32,7 +32,7 @@ Deployment
 
 Try Our System
 ----------------------------
-** In your own machine **
+**In your own machine**
 * Download all the codes from github
 * Follow the installation instructions
 * Enter the folder containing the file manage.py, run
@@ -42,14 +42,14 @@ Try Our System
 * [normal user](http://127.0.0.1:8000/)
 * [admin](http://127.0.0.1:8000/admin_login)
 
-** Deploymented version **
+**Deploymented version**
 *  [normal user](http://5ae8d563.ngrok.com/)
 *  [admin](http://5ae8d563.ngrok.com/admin_login)
 *  [docs](http://peerreview.readthedocs.org)
 
-Original Design
+Mockups and codes
 ----------------------------
-Mockups: [Design/Mockup/html demo/](https://github.com/bkbolte181/PeerReview/tree/master/Design/Mockup/html\ demo)
+Mockups: [Design/Mockup/html demo/](https://github.com/bkbolte181/PeerReview/tree/master/Design/Mockup/html\ demo)<br>
 Django codes: [PeerReview/PeerReviewApp/](https://github.com/bkbolte181/PeerReview/tree/master/PeerReview/PeerReviewApp)
 
 Documents
