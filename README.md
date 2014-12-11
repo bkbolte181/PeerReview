@@ -30,7 +30,7 @@ Installation
 **In Windows**
 * Install virtual environment: <code>pip install virtualenv;</code>
 * Start virtual environment: <code>virtualenv prenv; prenv\Scripts\activate;</code>
-* Install requirements: cd PeerReview: <code>pip install -r requirements.txt;</code>
+* Install requirements: <code>cd PeerReview; pip install -r requirements.txt;</code>
 
 Deployment
 ----------------------------
