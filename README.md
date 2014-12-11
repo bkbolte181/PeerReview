@@ -39,6 +39,7 @@ Documents, sitting in the folder [Docs/_build/html/](https://github.com/bkbolte1
 Try the system locally
 ============================
 Download all the codes and enter the folder containing the file manage.py, run<br>
+<code>cd PeerReview</code><br>
 <code>python manage.py migrate</code><br>
 <code>python manage.py runserver</code>
 
