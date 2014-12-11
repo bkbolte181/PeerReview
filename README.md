@@ -35,7 +35,7 @@ Try Our System
 **In your own machine**
 * Download all the codes from github
 * Follow the installation instructions
-* Enter the folder containing the file manage.py, run
+* Enter the folder containing the file manage.py, run<br>
 <code>cd PeerReview</code><br>
 <code>python manage.py migrate</code><br>
 <code>python manage.py runserver</code>
