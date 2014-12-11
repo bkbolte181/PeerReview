@@ -1,6 +1,6 @@
-Introduction
+Manuscript Review System
 ============================
-The Peer Review project is a course project for CS 485/540. This project aims at building a Manuscript Review System to assist SCIENCE WRITERS COMMITTEE which aims at helping Emory researchers improve their manuscripts, learn from different research areas and gain more experience of reviewing others’ paper.
+This course project for [*CS 485/540*](http://www.mathcs.emory.edu/~cs540000/) aims at building a Manuscript Review System to assist SCIENCE WRITERS COMMITTEE to help Emory researchers improve their manuscripts, learn from different research areas and gain more experience of reviewing others’ paper.
 ____________________________
 <h3>How to edit:</h3>
 
