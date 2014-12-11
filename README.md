@@ -14,6 +14,32 @@ Install virtual environment: <code>pip install virtualenv</code><br>
 Start virtual environment: <code>virtualenv prenv; prenv\Scripts\activate;</code><br>
 Install requirements: <code>cd PeerReview; pip install -r requirements.txt;  </code><br>
 
+Installation
+----------------------------
+**Pre-requested programs**
+* This system is written in [python / Django](https://www.djangoproject.com/). 
+* Please download [python](https://www.python.org/) and install. 
+* Please install [pip](), a tool for installing and managing Python packages
+* `[OPTION]`Please install [sphinx](http://sphinx-doc.org/), a python documentation generator
+
+**In Unix**
+* Install virtual environment: <code>pip install virtualenv</code>
+* Start virtual environment: <code>virtualenv prenv; source prenv/bin/activate</code>
+* Install requirements: <code>cd PeerReview; pip install -r requirements.txt</code>
+
+**In Windows**
+* Install virtual environment: <code>pip install virtualenv;</code>
+* Start virtual environment: <code>virtualenv prenv; prenv\Scripts\activate;</code>
+* Install requirements: cd PeerReview: <code>pip install -r requirements.txt;</code>
+
+Deployment
+----------------------------
+**Adding the App**
+* Create your Django app: <code>django-admin.py startproject myproj; cd myproj;</code>
+* Make sure it works: <code>./manage.py runserver<code>
+* Clone the latest PeerReviewApp: <code>git clone 'https://github.com/bkbolte181/PeerReviewApp.git'</code>
+* Update the settings file using the parameters in sample-settings.py
+* Test to make sure everything works: <code>./manage.py test<code>
 
 Original Design
 ----------------------------
