@@ -43,7 +43,7 @@ Try Our System
 * [admin](http://127.0.0.1:8000/admin_login)
 
 **Deploymented version**
-*  [normal user](http://5ae8d563.ngrok.com/)
+*  [normal user](http://istanbul.mathcs.emory.edu/PeerReview/)
 *  [admin](http://5ae8d563.ngrok.com/admin_login)
 *  [docs](http://peerreview.readthedocs.org)
 
