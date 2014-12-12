@@ -79,270 +79,277 @@
 <span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">AbstractBaseUser</span><span class="p">,</span> <span class="n">BaseUserManager</span>
 <span class="kn">from</span> <span class="nn">custom_fields</span> <span class="kn">import</span> <span class="n">SeparatedValuesField</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="c">#from PeerReview.PeerReview.settings import SCHOOLS</span>
+<span class="kn">from</span> <span class="nn">.settings</span> <span class="kn">import</span> <span class="n">SCHOOLS</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="c"># All valid schools</span>
-<span class="c"># SCHOOLS = settings.SCHOOLS</span>
+<span class="c">#SCHOOLS = settings.SCHOOLS</span>
 
-<span class="n">RECOMMENDED_NUM</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c"># The maximum number of recommended reviewers for each manuscript</span>
+<span class="n">RECOMMENDED_NUM</span> <span class="o">=</span> <span class="mi">6</span>	<span class="c"># The maximum number of recommended reviewers for each manuscript</span>
 <span class="n">RECOMMENDED_AD</span> <span class="o">=</span> <span class="mi">3</span> <span class="c"># The minimum number of advanced reviewers for recommendation</span>
 <span class="n">MAXIMUM_PER_REVIEWER</span> <span class="o">=</span> <span class="mi">3</span> <span class="c"># The maximum number of manuscripts assigned to a reviewer</span>
 
 
-<div class="viewcode-block" id="SiteUserManager"><a class="viewcode-back" href="../../code.html#PeerReviewApp.models.SiteUserManager">[docs]</a><span class="k">class</span> <span class="nc">SiteUserManager</span><span class="p">(</span><span class="n">BaseUserManager</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Manager for SiteUser model. This replaces the default manager used by Django, since the model</span>
-<span class="sd">    is custom. The UserManager needs two methods, create_user and create_superuser. Most other methods</span>
-<span class="sd">    are subclassed from BaseUserManager.</span>
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="k">def</span> <span class="nf">_create_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">first_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">department</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">lab</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pi</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">research_interest</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_fields</span><span class="p">):</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">email</span><span class="p">:</span>
-      <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;An email must be provided to create the user.&#39;</span><span class="p">)</span>
-    <span class="n">email</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize_email</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span>
-    <span class="n">user</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
-    <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">using</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_db</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">user</span>
+<div class="viewcode-block" id="SiteUserManager"><a class="viewcode-back" href="../../code.html#PeerReviewApp.forms.SiteUserManager">[docs]</a><span class="k">class</span> <span class="nc">SiteUserManager</span><span class="p">(</span><span class="n">BaseUserManager</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Manager for SiteUser model. This replaces the default manager used by Django, since the model</span>
+<span class="sd">		is custom. The UserManager needs two methods, create_user and create_superuser. Most other methods</span>
+<span class="sd">		are subclassed from BaseUserManager.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">def</span> <span class="nf">_create_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">first_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">department</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">school</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">lab</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pi</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">research_interest</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_fields</span><span class="p">):</span>
+		<span class="k">if</span> <span class="ow">not</span> <span class="n">email</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;An email must be provided to create the user.&#39;</span><span class="p">)</span>
+		<span class="n">email</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize_email</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+		<span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span>
+		<span class="n">user</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+		<span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">using</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_db</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">user</span>
 
-<div class="viewcode-block" id="SiteUserManager.create_user"><a class="viewcode-back" href="../../code.html#PeerReviewApp.models.SiteUserManager.create_user">[docs]</a>  <span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">first_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">department</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">lab</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pi</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">research_interest</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_fields</span><span class="p">):</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_user</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<div class="viewcode-block" id="SiteUserManager.create_user"><a class="viewcode-back" href="../../code.html#PeerReviewApp.forms.SiteUserManager.create_user">[docs]</a>	<span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">first_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">department</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">school</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">lab</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pi</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">research_interest</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_fields</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_user</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="SiteUserManager.create_superuser"><a class="viewcode-back" href="../../code.html#PeerReviewApp.models.SiteUserManager.create_superuser">[docs]</a>  <span class="k">def</span> <span class="nf">create_superuser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">first_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">department</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">lab</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pi</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">research_interest</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_fields</span><span class="p">):</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_user</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<div class="viewcode-block" id="SiteUserManager.create_superuser"><a class="viewcode-back" href="../../code.html#PeerReviewApp.forms.SiteUserManager.create_superuser">[docs]</a>	<span class="k">def</span> <span class="nf">create_superuser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">first_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">department</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">school</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">lab</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pi</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">research_interest</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_fields</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_user</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="SiteUserManager.get_by_natural_key"><a class="viewcode-back" href="../../code.html#PeerReviewApp.forms.SiteUserManager.get_by_natural_key">[docs]</a>	<span class="k">def</span> <span class="nf">get_by_natural_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot; Allow Case-Insensitive Username. &quot;&quot;&quot;</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">email__iexact</span><span class="o">=</span><span class="n">username</span><span class="p">)</span>
 
 </div></div>
-<div class="viewcode-block" id="SiteUser"><a class="viewcode-back" href="../../code.html#PeerReviewApp.models.SiteUser">[docs]</a><span class="k">class</span> <span class="nc">SiteUser</span><span class="p">(</span><span class="n">AbstractBaseUser</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Custom User model. Set the user model to this one in the settings.py file:</span>
-<span class="sd">    AUTH_USER_MODEL = &#39;PeerReviewApp.SiteUser&#39; # Add this variable to settings.py file</span>
-<span class="sd">    This will tell Django to use this model as the default user model. There are a fe</span>
-<span class="sd">    required attributes for custom user models:</span>
+<div class="viewcode-block" id="SiteUser"><a class="viewcode-back" href="../../code.html#PeerReviewApp.forms.SiteUser">[docs]</a><span class="k">class</span> <span class="nc">SiteUser</span><span class="p">(</span><span class="n">AbstractBaseUser</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Custom User model. Set the user model to this one in the settings.py file:</span>
+<span class="sd">		AUTH_USER_MODEL = &#39;PeerReviewApp.SiteUser&#39; # Add this variable to settings.py file</span>
+<span class="sd">		This will tell Django to use this model as the default user model. There are a fe</span>
+<span class="sd">		required attributes for custom user models:</span>
+<span class="sd">			-&gt; USERNAME_FIELD: Unique identifier for log in (in this case, email)</span>
+<span class="sd">			-&gt; REQUIRED_FIELDS: Required fields (update this to include required fields)</span>
+<span class="sd">			-&gt; get_full_name(): Return the &quot;full name&quot; of the user</span>
+<span class="sd">			-&gt; get_short_name(): Return a &quot;short name&quot; identifier for the user</span>
+<span class="sd">		Additionally, this model requires a custom user manager, and some custom handlers</span>
+<span class="sd">		for forms to replace the built-ins that Django provides.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">email</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span><span class="s">&#39;email address&#39;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+							  <span class="n">error_messages</span><span class="o">=</span><span class="p">{</span>
+							  <span class="s">&#39;unique&#39;</span><span class="p">:</span> <span class="s">&#39;A user with that email already exists.&#39;</span><span class="p">,</span>
+							  <span class="p">},</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;Emory Email Address&quot;</span><span class="p">)</span>
+	<span class="n">first_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;First Name&quot;</span><span class="p">)</span>
+	<span class="n">last_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;Last Name&quot;</span><span class="p">)</span>
 
-<span class="sd">      -&gt; USERNAME_FIELD: Unique identifier for log in (in this case, email)</span>
+	<span class="c"># Information about the user&#39;s scientific background</span>
+	<span class="n">department</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;Department&quot;</span><span class="p">)</span>
+	<span class="n">lab</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;Name of Lab&quot;</span><span class="p">)</span>
+	<span class="n">pi</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;Name of Primary Investigator&quot;</span><span class="p">)</span>
+	<span class="n">school</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">SCHOOLS</span><span class="p">],</span> <span class="n">default</span><span class="o">=</span><span class="n">SCHOOLS</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+	<span class="n">review_count</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;Number of Manuscripts you have reviewed&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+	<span class="n">agreed_to_form</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>  <span class="c"># Whether or not the user has agreed to to use form</span>
+	<span class="n">research_interest</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;Research Interests, separated by a comma&quot;</span><span class="p">)</span>
+	<span class="n">is_site_admin</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+	<span class="n">objects</span> <span class="o">=</span> <span class="n">SiteUserManager</span><span class="p">()</span>
 
-<span class="sd">      -&gt; REQUIRED_FIELDS: Required fields (update this to include required fields)</span>
+	<span class="c">#def get_star(self): return int(self.review_count) &gt;= 3</span>
+	<span class="k">def</span> <span class="nf">_get_star_string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">review_count</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">3</span><span class="p">:</span>
+			<span class="k">return</span> <span class="s">&quot;*&quot;</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">return</span> <span class="s">&quot;&quot;</span>
 
-<span class="sd">      -&gt; get_full_name(): Return the &quot;full name&quot; of the user</span>
+	<span class="n">star_string</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_star_string</span><span class="p">)</span>
 
-<span class="sd">      -&gt; get_short_name(): Return a &quot;short name&quot; identifier for the user</span>
+	<span class="k">def</span> <span class="nf">_get_assigned_num</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reviewers</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
 
-<span class="sd">    Additionally, this model requires a custom user manager, and some custom handlers</span>
-<span class="sd">    for forms to replace the built-ins that Django provides.</span>
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="n">email</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span><span class="s">&#39;email address&#39;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-                <span class="n">error_messages</span><span class="o">=</span><span class="p">{</span>
-                <span class="s">&#39;unique&#39;</span><span class="p">:</span> <span class="s">&#39;A user with that email already exists.&#39;</span><span class="p">,</span>
-                <span class="p">},</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;Emory Email Address&quot;</span><span class="p">)</span>
-  <span class="n">first_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;First Name&quot;</span><span class="p">)</span>
-  <span class="n">last_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;Last Name&quot;</span><span class="p">)</span>
+	<span class="n">assigned_num</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_assigned_num</span><span class="p">)</span>
 
-  <span class="c"># Information about the user&#39;s scientific background</span>
-  <span class="n">department</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;Department&quot;</span><span class="p">)</span>
-  <span class="n">lab</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;Name of Lab&quot;</span><span class="p">)</span>
-  <span class="n">pi</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;Name of Primary Investigator&quot;</span><span class="p">)</span>
-  <span class="c"># school = models.CharField(max_length=100, choices=[(x, x) for x in SCHOOLS], default=SCHOOLS[0])</span>
-  <span class="n">review_count</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;Number of Manuscripts you have reviewed&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-  <span class="n">agreed_to_form</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>  <span class="c"># Whether or not the user has agreed to to use form</span>
-  <span class="n">research_interest</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&quot;None&quot;</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;Research interests, separated by a comma&quot;</span><span class="p">)</span>
-  <span class="n">is_site_admin</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-  <span class="n">objects</span> <span class="o">=</span> <span class="n">SiteUserManager</span><span class="p">()</span>
+	<span class="k">def</span> <span class="nf">_get_assigned_manuscripts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">ids</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="k">for</span> <span class="n">manuscript</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reviewers</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+			<span class="n">ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">manuscript</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">ids</span>
 
-  <span class="c">#def get_star(self): return int(self.review_count) &gt;= 3</span>
-  <span class="k">def</span> <span class="nf">_get_star_string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">review_count</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">3</span><span class="p">:</span>
-      <span class="k">return</span> <span class="s">&quot;*&quot;</span>
-    <span class="k">else</span><span class="p">:</span>
-      <span class="k">return</span> <span class="s">&quot;&quot;</span>
+	<span class="n">assigned_manuscripts</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_assigned_manuscripts</span><span class="p">)</span>
 
-  <span class="n">star_string</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_star_string</span><span class="p">)</span>
+	<span class="nd">@property</span>
+	<span class="k">def</span> <span class="nf">is_superuser</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_admin</span>
 
-  <span class="k">def</span> <span class="nf">_get_assigned_num</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reviewers</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+	<span class="nd">@property</span>
+	<span class="k">def</span> <span class="nf">is_staff</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_admin</span>
 
-  <span class="n">assigned_num</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_assigned_num</span><span class="p">)</span>
+	<span class="nd">@property</span>
+	<span class="k">def</span> <span class="nf">is_admin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">True</span>
 
-  <span class="k">def</span> <span class="nf">_get_assigned_manuscripts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">ids</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">manuscript</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reviewers</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
-      <span class="n">ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">manuscript</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">ids</span>
-
-  <span class="n">assigned_manuscripts</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_assigned_manuscripts</span><span class="p">)</span>
-
-  <span class="nd">@property</span>
-  <span class="k">def</span> <span class="nf">is_superuser</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_admin</span>
-
-  <span class="nd">@property</span>
-  <span class="k">def</span> <span class="nf">is_staff</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_admin</span>
-
-  <span class="nd">@property</span>
-  <span class="k">def</span> <span class="nf">is_admin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="bp">True</span>
-
-<div class="viewcode-block" id="SiteUser.has_perm"><a class="viewcode-back" href="../../code.html#PeerReviewApp.models.SiteUser.has_perm">[docs]</a>  <span class="k">def</span> <span class="nf">has_perm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perm</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_admin</span>
+<div class="viewcode-block" id="SiteUser.has_perm"><a class="viewcode-back" href="../../code.html#PeerReviewApp.forms.SiteUser.has_perm">[docs]</a>	<span class="k">def</span> <span class="nf">has_perm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perm</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_admin</span>
 </div>
-<div class="viewcode-block" id="SiteUser.has_module_perms"><a class="viewcode-back" href="../../code.html#PeerReviewApp.models.SiteUser.has_module_perms">[docs]</a>  <span class="k">def</span> <span class="nf">has_module_perms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_label</span><span class="p">):</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_admin</span>
+<div class="viewcode-block" id="SiteUser.has_module_perms"><a class="viewcode-back" href="../../code.html#PeerReviewApp.forms.SiteUser.has_module_perms">[docs]</a>	<span class="k">def</span> <span class="nf">has_module_perms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_label</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_admin</span>
 
-  <span class="c"># Required for custom user model</span></div>
-  <span class="n">USERNAME_FIELD</span> <span class="o">=</span> <span class="s">&#39;email&#39;</span>
-  <span class="n">REQUIRED_FIELDS</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="c"># Required for custom user model</span></div>
+	<span class="n">USERNAME_FIELD</span> <span class="o">=</span> <span class="s">&#39;email&#39;</span>
+	<span class="n">REQUIRED_FIELDS</span> <span class="o">=</span> <span class="p">[]</span>
 
-<div class="viewcode-block" id="SiteUser.get_full_name"><a class="viewcode-back" href="../../code.html#PeerReviewApp.models.SiteUser.get_full_name">[docs]</a>  <span class="k">def</span> <span class="nf">get_full_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_name</span>
+<div class="viewcode-block" id="SiteUser.get_full_name"><a class="viewcode-back" href="../../code.html#PeerReviewApp.forms.SiteUser.get_full_name">[docs]</a>	<span class="k">def</span> <span class="nf">get_full_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_name</span>
 </div>
-<div class="viewcode-block" id="SiteUser.get_short_name"><a class="viewcode-back" href="../../code.html#PeerReviewApp.models.SiteUser.get_short_name">[docs]</a>  <span class="k">def</span> <span class="nf">get_short_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span></div>
-  <span class="n">email</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span><span class="s">&#39;email address&#39;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-    <span class="n">error_messages</span><span class="o">=</span><span class="p">{</span>
-      <span class="s">&#39;unique&#39;</span><span class="p">:</span> <span class="s">&#39;A user with that email already exists.&#39;</span><span class="p">,</span>
-    <span class="p">},</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;Emory Email Address&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="SiteUser.get_short_name"><a class="viewcode-back" href="../../code.html#PeerReviewApp.forms.SiteUser.get_short_name">[docs]</a>	<span class="k">def</span> <span class="nf">get_short_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span></div>
+	<span class="n">email</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span><span class="s">&#39;email address&#39;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+		<span class="n">error_messages</span><span class="o">=</span><span class="p">{</span>
+			<span class="s">&#39;unique&#39;</span><span class="p">:</span> <span class="s">&#39;A user with that email already exists.&#39;</span><span class="p">,</span>
+		<span class="p">},</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&quot;Emory Email Address&quot;</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="ReviewPeriod"><a class="viewcode-back" href="../../code.html#PeerReviewApp.models.ReviewPeriod">[docs]</a><span class="k">class</span> <span class="nc">ReviewPeriod</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot; Model for a single review period &quot;&quot;&quot;</span>
-  <span class="n">is_full</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>  <span class="c"># If this review period is full or not</span>
-  <span class="n">start_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>  <span class="c"># Date when this period becomes open</span>
-  <span class="n">submission_deadline</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">()</span>  <span class="c"># Date when submissions are due</span>
-  <span class="n">review_deadline</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">()</span>  <span class="c"># Date when reviews are due back</span>
-  <span class="n">group_meeting_time</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">()</span>  <span class="c"># Large group meeting time</span>
+<div class="viewcode-block" id="ReviewPeriod"><a class="viewcode-back" href="../../code.html#PeerReviewApp.forms.ReviewPeriod">[docs]</a><span class="k">class</span> <span class="nc">ReviewPeriod</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot; Model for a single review period &quot;&quot;&quot;</span>
+	<span class="n">is_full</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>  <span class="c"># If this review period is full or not</span>
+	<span class="n">start_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>  <span class="c"># Date when this period becomes open</span>
+	<span class="n">submission_deadline</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">()</span>  <span class="c"># Date when submissions are due</span>
+	<span class="n">review_deadline</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">()</span>  <span class="c"># Date when reviews are due back</span>
+	<span class="n">group_meeting_time</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">()</span>  <span class="c"># Large group meeting time</span>
 
-  <span class="c"># For admin</span>
-  <span class="n">group_meeting_venue</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&quot;None&quot;</span><span class="p">)</span>
-  <span class="n">is_current</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-  <span class="n">max_manuscript</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+	<span class="c"># For admin</span>
+	<span class="n">group_meeting_venue</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&quot;None&quot;</span><span class="p">)</span>
+	<span class="n">is_current</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+	<span class="n">max_manuscript</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_date</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="Manuscript"><a class="viewcode-back" href="../../code.html#PeerReviewApp.models.Manuscript">[docs]</a><span class="k">class</span> <span class="nc">Manuscript</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot; This is the model that links everything together. &quot;&quot;&quot;</span>
-  <span class="n">reviewers</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">AUTH_USER_MODEL</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s">&quot;reviewers&quot;</span><span class="p">,</span>
-                     <span class="n">related_query_name</span><span class="o">=</span><span class="s">&quot;reviewer&quot;</span><span class="p">)</span>
-  <span class="n">authors</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">AUTH_USER_MODEL</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s">&quot;authors&quot;</span><span class="p">,</span> <span class="n">related_query_name</span><span class="o">=</span><span class="s">&quot;author&quot;</span><span class="p">)</span>
-  <span class="n">status</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&#39;Saved&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="Manuscript"><a class="viewcode-back" href="../../code.html#PeerReviewApp.forms.Manuscript">[docs]</a><span class="k">class</span> <span class="nc">Manuscript</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot; This is the model that links everything together. &quot;&quot;&quot;</span>
+	<span class="n">reviewers</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">AUTH_USER_MODEL</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s">&quot;reviewers&quot;</span><span class="p">,</span>
+									   <span class="n">related_query_name</span><span class="o">=</span><span class="s">&quot;reviewer&quot;</span><span class="p">)</span>
+	<span class="n">authors</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">AUTH_USER_MODEL</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s">&quot;authors&quot;</span><span class="p">,</span> <span class="n">related_query_name</span><span class="o">=</span><span class="s">&quot;author&quot;</span><span class="p">)</span>
+	<span class="n">status</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&#39;Saved&#39;</span><span class="p">)</span>
 
-  <span class="c"># Semantic elements</span>
-  <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-  <span class="n">brief_title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-  <span class="n">abstract</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200000</span><span class="p">)</span>
-  <span class="n">keywords</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&#39;Keywords, separated by a comma&#39;</span><span class="p">)</span>  <span class="c"># Custom field for storing python lists</span>
-  <span class="n">field</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-  <span class="n">target_journal</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+	<span class="c"># Semantic elements</span>
+	<span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+	<span class="n">brief_title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+	<span class="n">abstract</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200000</span><span class="p">)</span>
+	<span class="n">keywords</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s">&#39;Keywords, separated by a comma&#39;</span><span class="p">)</span>  <span class="c"># Custom field for storing python lists</span>
+	<span class="n">field</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+	<span class="n">target_journal</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 
-  <span class="c"># Link to review period</span>
-  <span class="n">review_period</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">ReviewPeriod</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s">&quot;manuscripts&quot;</span><span class="p">,</span> <span class="n">related_query_name</span><span class="o">=</span><span class="s">&quot;manuscript&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-  <span class="n">is_final</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>  <span class="c"># If the final decision of this manuscript has been made</span>
+	<span class="c"># Link to review period</span>
+	<span class="n">review_period</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">ReviewPeriod</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s">&quot;manuscripts&quot;</span><span class="p">,</span> <span class="n">related_query_name</span><span class="o">=</span><span class="s">&quot;manuscript&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+	<span class="n">is_final</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>  <span class="c"># If the final decision of this manuscript has been made</span>
 
-  <span class="k">def</span> <span class="nf">_get_period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">review_period</span><span class="o">.</span><span class="n">is_current</span>
+	<span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">brief_title</span><span class="p">)</span>
 
-  <span class="n">is_current</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_period</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">_get_period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">review_period</span><span class="o">.</span><span class="n">is_current</span>
 
-  <span class="k">def</span> <span class="nf">_get_recommended_reviewers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">advanced</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">recommended</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">reviewers</span> <span class="o">=</span> <span class="n">SiteUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">agreed_to_form</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+	<span class="n">is_current</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_period</span><span class="p">)</span>
 
-    <span class="c">#first match: research_interest&amp;field</span>
-    <span class="k">for</span> <span class="n">reviewer</span> <span class="ow">in</span> <span class="n">reviewers</span><span class="p">:</span>
-      <span class="k">if</span> <span class="n">reviewer</span><span class="o">.</span><span class="n">research_interest</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">field</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> <span class="ow">and</span> <span class="n">reviewer</span><span class="o">.</span><span class="n">assigned_num</span> <span class="o">&lt;</span> <span class="n">MAXIMUM_PER_REVIEWER</span> <span class="ow">and</span> <span class="n">reviewer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">and</span> <span class="n">reviewer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reviewers</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
-        <span class="c">#make sure advanced reviewers are before novices</span>
-        <span class="k">if</span> <span class="n">reviewer</span><span class="o">.</span><span class="n">star_string</span> <span class="o">==</span> <span class="s">&#39;*&#39;</span><span class="p">:</span>
-          <span class="n">recommended</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">reviewer</span><span class="p">)</span>
-          <span class="n">advanced</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-          <span class="n">recommended</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reviewer</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">_get_recommended_reviewers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">advanced</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">recommended</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="n">reviewers</span> <span class="o">=</span> <span class="n">SiteUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">agreed_to_form</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-    <span class="c">#if the recommended list hasn&#39;t full</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">recommended</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">RECOMMENDED_NUM</span><span class="p">:</span>
-      <span class="k">return</span> <span class="n">recommended</span>
+		<span class="c">#first match: research_interest&amp;field</span>
+		<span class="k">for</span> <span class="n">reviewer</span> <span class="ow">in</span> <span class="n">reviewers</span><span class="p">:</span>
+			<span class="k">if</span> <span class="n">reviewer</span><span class="o">.</span><span class="n">research_interest</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">field</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> <span class="ow">and</span> <span class="n">reviewer</span><span class="o">.</span><span class="n">assigned_num</span> <span class="o">&lt;</span> <span class="n">MAXIMUM_PER_REVIEWER</span> <span class="ow">and</span> <span class="n">reviewer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">and</span> <span class="n">reviewer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reviewers</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+				<span class="c">#make sure advanced reviewers are before novices</span>
+				<span class="k">if</span> <span class="n">reviewer</span><span class="o">.</span><span class="n">star_string</span> <span class="o">==</span> <span class="s">&#39;*&#39;</span><span class="p">:</span>
+					<span class="n">recommended</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">reviewer</span><span class="p">)</span>
+					<span class="n">advanced</span> <span class="o">+=</span> <span class="mi">1</span>
+				<span class="k">else</span><span class="p">:</span>
+					<span class="n">recommended</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reviewer</span><span class="p">)</span>
 
-    <span class="c">#second match: research_interest&amp;keywords</span>
-    <span class="k">for</span> <span class="n">reviewer</span> <span class="ow">in</span> <span class="n">recommended</span><span class="p">:</span>
-      <span class="n">matched</span> <span class="o">=</span> <span class="bp">False</span>
-      <span class="c">#separated field</span>
-      <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keywords</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">reviewer</span><span class="o">.</span><span class="n">research_interest</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">upper</span><span class="p">()):</span>
-          <span class="n">matched</span> <span class="o">=</span> <span class="bp">True</span>
-          <span class="k">break</span>
-      <span class="k">if</span> <span class="ow">not</span> <span class="n">matched</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">recommended</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">RECOMMENDED_NUM</span><span class="p">:</span>
-        <span class="c">#cannot remove too many advanced reviewers since we need at least 3</span>
-        <span class="k">if</span> <span class="n">reviewer</span><span class="o">.</span><span class="n">star_string</span> <span class="o">==</span> <span class="s">&#39;*&#39;</span><span class="p">:</span>
-          <span class="k">if</span> <span class="n">advanced</span> <span class="o">&gt;</span> <span class="n">RECOMMENDED_AD</span><span class="p">:</span>
-            <span class="n">recommended</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">reviewer</span><span class="p">)</span>
-            <span class="n">advanced</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-          <span class="n">recommended</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">reviewer</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">recommended</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">RECOMMENDED_NUM</span><span class="p">:</span>
-      <span class="k">return</span> <span class="n">recommended</span>
+		<span class="c">#if the recommended list hasn&#39;t full</span>
+		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">recommended</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">RECOMMENDED_NUM</span><span class="p">:</span>
+			<span class="k">return</span> <span class="n">recommended</span>
 
-    <span class="c">#still too many recommended reviewers</span>
-    <span class="c">#too many advanced reviewers</span>
-    <span class="k">if</span> <span class="n">advanced</span> <span class="o">&gt;</span> <span class="n">RECOMMENDED_AD</span><span class="p">:</span>
-      <span class="k">for</span> <span class="n">reviewer</span> <span class="ow">in</span> <span class="n">recommended</span><span class="p">:</span>
-        <span class="n">recommended</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">advanced</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">advanced</span> <span class="o">==</span> <span class="n">RECOMMENDED_AD</span><span class="p">:</span>
-          <span class="k">break</span>
-    <span class="k">else</span><span class="p">:</span>
-      <span class="k">if</span> <span class="n">advanced</span> <span class="o">&lt;</span> <span class="n">RECOMMENDED_AD</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">reviewer</span> <span class="ow">in</span> <span class="n">reviewers</span><span class="p">:</span>
-          <span class="k">if</span> <span class="n">reviewer</span><span class="o">.</span><span class="n">star_string</span> <span class="o">==</span> <span class="s">&#39;*&#39;</span> <span class="ow">and</span> <span class="n">reviewer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">recommended</span> <span class="ow">and</span> <span class="n">reviewer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">and</span> <span class="n">reviewer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reviewers</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
-            <span class="n">recommended</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">reviewer</span><span class="p">)</span>
-            <span class="n">advanced</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="k">if</span> <span class="n">advanced</span> <span class="o">==</span> <span class="n">RECOMMENDED_AD</span><span class="p">:</span>
-              <span class="k">break</span>
+		<span class="c">#second match: research_interest&amp;keywords</span>
+		<span class="k">for</span> <span class="n">reviewer</span> <span class="ow">in</span> <span class="n">recommended</span><span class="p">:</span>
+			<span class="n">matched</span> <span class="o">=</span> <span class="bp">False</span>
+			<span class="c">#separated field</span>
+			<span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keywords</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">):</span>
+				<span class="k">if</span> <span class="n">reviewer</span><span class="o">.</span><span class="n">research_interest</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">upper</span><span class="p">()):</span>
+					<span class="n">matched</span> <span class="o">=</span> <span class="bp">True</span>
+					<span class="k">break</span>
+			<span class="k">if</span> <span class="ow">not</span> <span class="n">matched</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">recommended</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">RECOMMENDED_NUM</span><span class="p">:</span>
+				<span class="c">#cannot remove too many advanced reviewers since we need at least 3</span>
+				<span class="k">if</span> <span class="n">reviewer</span><span class="o">.</span><span class="n">star_string</span> <span class="o">==</span> <span class="s">&#39;*&#39;</span><span class="p">:</span>
+					<span class="k">if</span> <span class="n">advanced</span> <span class="o">&gt;</span> <span class="n">RECOMMENDED_AD</span><span class="p">:</span>
+						<span class="n">recommended</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">reviewer</span><span class="p">)</span>
+						<span class="n">advanced</span> <span class="o">-=</span> <span class="mi">1</span>
+				<span class="k">else</span><span class="p">:</span>
+					<span class="n">recommended</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">reviewer</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">recommended</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">RECOMMENDED_NUM</span><span class="p">:</span>
+			<span class="k">return</span> <span class="n">recommended</span>
 
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">recommended</span><span class="p">)):</span>
-      <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">recommended</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">RECOMMENDED_NUM</span><span class="p">:</span>
-        <span class="n">recommended</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-      <span class="k">else</span><span class="p">:</span>
-        <span class="k">break</span>
+		<span class="c">#still too many recommended reviewers</span>
+		<span class="c">#too many advanced reviewers</span>
+		<span class="k">if</span> <span class="n">advanced</span> <span class="o">&gt;</span> <span class="n">RECOMMENDED_AD</span><span class="p">:</span>
+			<span class="k">for</span> <span class="n">reviewer</span> <span class="ow">in</span> <span class="n">recommended</span><span class="p">:</span>
+				<span class="n">recommended</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+				<span class="n">advanced</span> <span class="o">-=</span> <span class="mi">1</span>
+				<span class="k">if</span> <span class="n">advanced</span> <span class="o">==</span> <span class="n">RECOMMENDED_AD</span><span class="p">:</span>
+					<span class="k">break</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">if</span> <span class="n">advanced</span> <span class="o">&lt;</span> <span class="n">RECOMMENDED_AD</span><span class="p">:</span>
+				<span class="k">for</span> <span class="n">reviewer</span> <span class="ow">in</span> <span class="n">reviewers</span><span class="p">:</span>
+					<span class="k">if</span> <span class="n">reviewer</span><span class="o">.</span><span class="n">star_string</span> <span class="o">==</span> <span class="s">&#39;*&#39;</span> <span class="ow">and</span> <span class="n">reviewer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">recommended</span> <span class="ow">and</span> <span class="n">reviewer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">and</span> <span class="n">reviewer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reviewers</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+						<span class="n">recommended</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">reviewer</span><span class="p">)</span>
+						<span class="n">advanced</span> <span class="o">+=</span> <span class="mi">1</span>
+						<span class="k">if</span> <span class="n">advanced</span> <span class="o">==</span> <span class="n">RECOMMENDED_AD</span><span class="p">:</span>
+							<span class="k">break</span>
 
-    <span class="k">return</span> <span class="n">recommended</span>
+		<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">recommended</span><span class="p">)):</span>
+			<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">recommended</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">RECOMMENDED_NUM</span><span class="p">:</span>
+				<span class="n">recommended</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="k">break</span>
 
-  <span class="n">recommended_reviewers</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_recommended_reviewers</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">recommended</span>
 
-  <span class="k">def</span> <span class="nf">_get_warning</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">constraint</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-    <span class="n">advance</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">reviewer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reviewers</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
-      <span class="k">if</span> <span class="n">reviewer</span><span class="o">.</span><span class="n">star_string</span> <span class="o">==</span> <span class="s">&#39;*&#39;</span><span class="p">:</span>
-        <span class="n">advance</span> <span class="o">+=</span> <span class="mi">1</span>
+	<span class="n">recommended_reviewers</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_recommended_reviewers</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reviewers</span><span class="o">.</span><span class="n">all</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-      <span class="n">constraint</span> <span class="o">=</span> <span class="s">&#39;no reviewers&#39;</span>
-    <span class="k">else</span><span class="p">:</span>
-      <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reviewers</span><span class="o">.</span><span class="n">all</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
-        <span class="n">constraint</span> <span class="o">=</span> <span class="s">&#39;too few reviewers&#39;</span>
+	<span class="k">def</span> <span class="nf">_get_warning</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">constraint</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+		<span class="n">advance</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="k">for</span> <span class="n">reviewer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reviewers</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+			<span class="k">if</span> <span class="n">reviewer</span><span class="o">.</span><span class="n">star_string</span> <span class="o">==</span> <span class="s">&#39;*&#39;</span><span class="p">:</span>
+				<span class="n">advance</span> <span class="o">+=</span> <span class="mi">1</span>
 
-      <span class="k">if</span>  <span class="n">advance</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">constraint</span> <span class="o">==</span> <span class="s">&#39;&#39;</span><span class="p">:</span>
-          <span class="n">constraint</span> <span class="o">=</span> <span class="s">&#39;too few advance reviewers&#39;</span>
-        <span class="k">else</span><span class="p">:</span>
-          <span class="n">constraint</span> <span class="o">+=</span> <span class="s">&#39;, too few advance reviewers&#39;</span>
+		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reviewers</span><span class="o">.</span><span class="n">all</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+			<span class="n">constraint</span> <span class="o">=</span> <span class="s">&#39;no reviewers&#39;</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reviewers</span><span class="o">.</span><span class="n">all</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+				<span class="n">constraint</span> <span class="o">=</span> <span class="s">&#39;too few reviewers&#39;</span>
 
-    <span class="k">return</span> <span class="n">constraint</span>
+			<span class="k">if</span>  <span class="n">advance</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+				<span class="k">if</span> <span class="n">constraint</span> <span class="o">==</span> <span class="s">&#39;&#39;</span><span class="p">:</span>
+					<span class="n">constraint</span> <span class="o">=</span> <span class="s">&#39;too few advance reviewers&#39;</span>
+				<span class="k">else</span><span class="p">:</span>
+					<span class="n">constraint</span> <span class="o">+=</span> <span class="s">&#39;, too few advance reviewers&#39;</span>
 
-  <span class="n">warning</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_warning</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">constraint</span>
 
-</div>
-<div class="viewcode-block" id="ReviewFile"><a class="viewcode-back" href="../../code.html#PeerReviewApp.models.ReviewFile">[docs]</a><span class="k">class</span> <span class="nc">ReviewFile</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-  <span class="n">filename</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
-  <span class="n">upload</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FileField</span><span class="p">(</span><span class="n">upload_to</span><span class="o">=</span><span class="s">&#39;reviewdocs/%Y/%m/</span><span class="si">%d</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-  <span class="n">manuscript</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">&#39;Manuscript&#39;</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s">&#39;reviewdocs&#39;</span><span class="p">,</span> <span class="n">related_query_name</span><span class="o">=</span><span class="s">&#39;reviewdoc&#39;</span><span class="p">)</span>
-
-  <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s">u&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+	<span class="n">warning</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_warning</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="ManuscriptFile"><a class="viewcode-back" href="../../code.html#PeerReviewApp.models.ManuscriptFile">[docs]</a><span class="k">class</span> <span class="nc">ManuscriptFile</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-  <span class="n">filename</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
-  <span class="n">upload</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FileField</span><span class="p">(</span><span class="n">upload_to</span><span class="o">=</span><span class="s">&#39;uploads/%Y/%m/</span><span class="si">%d</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-  <span class="n">manuscript</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">&#39;Manuscript&#39;</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s">&#39;files&#39;</span><span class="p">,</span> <span class="n">related_query_name</span><span class="o">=</span><span class="s">&#39;file&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="ReviewFile"><a class="viewcode-back" href="../../code.html#PeerReviewApp.forms.ReviewFile">[docs]</a><span class="k">class</span> <span class="nc">ReviewFile</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+	<span class="n">filename</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+	<span class="n">upload</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FileField</span><span class="p">(</span><span class="n">upload_to</span><span class="o">=</span><span class="s">&#39;reviewdocs/%Y/%m/</span><span class="si">%d</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+	<span class="n">manuscript</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">&#39;Manuscript&#39;</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s">&#39;reviewdocs&#39;</span><span class="p">,</span> <span class="n">related_query_name</span><span class="o">=</span><span class="s">&#39;reviewdoc&#39;</span><span class="p">)</span>
 
-  <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s">u&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span></div>
+	<span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="s">u&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="ManuscriptFile"><a class="viewcode-back" href="../../code.html#PeerReviewApp.forms.ManuscriptFile">[docs]</a><span class="k">class</span> <span class="nc">ManuscriptFile</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+	<span class="n">filename</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+	<span class="n">upload</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FileField</span><span class="p">(</span><span class="n">upload_to</span><span class="o">=</span><span class="s">&#39;uploads/%Y/%m/</span><span class="si">%d</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+	<span class="n">manuscript</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">&#39;Manuscript&#39;</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s">&#39;files&#39;</span><span class="p">,</span> <span class="n">related_query_name</span><span class="o">=</span><span class="s">&#39;file&#39;</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="s">u&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span></div>
 </pre></div>
 
           </div>

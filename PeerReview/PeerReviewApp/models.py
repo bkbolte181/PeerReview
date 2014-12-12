@@ -5,10 +5,12 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from custom_fields import SeparatedValuesField
 from datetime import datetime
+#from PeerReview.PeerReview.settings import SCHOOLS
+from .settings import SCHOOLS
 import os
 
 # All valid schools
-SCHOOLS = settings.SCHOOLS
+#SCHOOLS = settings.SCHOOLS
 
 RECOMMENDED_NUM = 6	# The maximum number of recommended reviewers for each manuscript
 RECOMMENDED_AD = 3 # The minimum number of advanced reviewers for recommendation
@@ -163,7 +165,7 @@ class Manuscript(models.Model):
 
 	def __unicode__(self):
 		return str(self.brief_title)
-		
+
 	def _get_period(self):
 		return self.review_period.is_current
 

@@ -96,6 +96,7 @@
  | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
+ | <a href="#X"><strong>X</strong></a>
  
 </div>
 <h2 id="A">A</h2>
@@ -122,11 +123,11 @@
   </dt>
 
       
-  <dt><a href="test.html#PeerReviewApp.test.test_integration_tests.AccountViewTest">AccountViewTest (class in PeerReviewApp.test.test_integration_tests)</a>
+  <dt><a href="code.html#PeerReviewApp.views.MatchedManuscript.add">add() (PeerReviewApp.views.MatchedManuscript method)</a>
   </dt>
 
       
-  <dt><a href="code.html#PeerReviewApp.views.MatchedManuscript.add">add() (PeerReviewApp.views.MatchedManuscript method)</a>
+  <dt><a href="test.html#PeerReviewApp.test.test_system_tests.ManuscriptModelTest.add_user">add_user() (PeerReviewApp.test.test_system_tests.ManuscriptModelTest method)</a>
   </dt>
 
       
@@ -139,6 +140,10 @@
 
       
   <dt><a href="code.html#PeerReviewApp.views.admin_confirm_ajax">admin_confirm_ajax() (in module PeerReviewApp.views)</a>
+  </dt>
+
+      
+  <dt><a href="code.html#PeerReviewApp.views.admin_help">admin_help() (in module PeerReviewApp.views)</a>
   </dt>
 
       
@@ -161,6 +166,8 @@
   <dt><a href="code.html#PeerReviewApp.forms.AdminLoginForm">AdminLoginForm (class in PeerReviewApp.forms)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="test.html#PeerReviewApp.test.test_integration_tests.AdminViewTest">AdminViewTest (class in PeerReviewApp.test.test_integration_tests)</a>
   </dt>
@@ -171,8 +178,6 @@
   </dt>
 
       </dl></dd>
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="code.html#PeerReviewApp.views.agreement">agreement() (in module PeerReviewApp.views)</a>
   </dt>
@@ -436,12 +441,20 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="code.html#PeerReviewApp.forms.AgreementForm.Meta.fields">fields (PeerReviewApp.forms.AgreementForm.Meta attribute)</a>
+  <dt><a href="code.html#PeerReviewApp.forms.AccountForm.Meta.fields">fields (PeerReviewApp.forms.AccountForm.Meta attribute)</a>
   </dt>
 
       <dd><dl>
         
+  <dt><a href="code.html#PeerReviewApp.forms.AgreementForm.Meta.fields">(PeerReviewApp.forms.AgreementForm.Meta attribute)</a>
+  </dt>
+
+        
   <dt><a href="code.html#PeerReviewApp.forms.ReviewPeriodForm.Meta.fields">(PeerReviewApp.forms.ReviewPeriodForm.Meta attribute)</a>
+  </dt>
+
+        
+  <dt><a href="code.html#PeerReviewApp.forms.SignupForm.Meta.fields">(PeerReviewApp.forms.SignupForm.Meta attribute)</a>
   </dt>
 
         
@@ -461,6 +474,10 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="code.html#PeerReviewApp.models.SiteUserManager.get_by_natural_key">get_by_natural_key() (PeerReviewApp.models.SiteUserManager method)</a>
+  </dt>
+
       
   <dt><a href="code.html#PeerReviewApp.views.get_current_review_period">get_current_review_period() (in module PeerReviewApp.views)</a>
   </dt>
@@ -489,8 +506,6 @@
   <dt><a href="code.html#PeerReviewApp.models.ReviewPeriod.get_next_by_start_date">get_next_by_start_date() (PeerReviewApp.models.ReviewPeriod method)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="code.html#PeerReviewApp.models.ReviewPeriod.get_next_by_submission_deadline">get_next_by_submission_deadline() (PeerReviewApp.models.ReviewPeriod method)</a>
   </dt>
@@ -499,6 +514,8 @@
   <dt><a href="code.html#PeerReviewApp.models.ReviewPeriod.get_previous_by_group_meeting_time">get_previous_by_group_meeting_time() (PeerReviewApp.models.ReviewPeriod method)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="code.html#PeerReviewApp.models.SiteUser.get_previous_by_last_login">get_previous_by_last_login() (PeerReviewApp.models.SiteUser method)</a>
   </dt>
@@ -516,7 +533,23 @@
   </dt>
 
       
+  <dt><a href="code.html#PeerReviewApp.models.SiteUser.get_school_display">get_school_display() (PeerReviewApp.models.SiteUser method)</a>
+  </dt>
+
+      
   <dt><a href="code.html#PeerReviewApp.models.SiteUser.get_short_name">get_short_name() (PeerReviewApp.models.SiteUser method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.GetFullNameTest">GetFullNameTest (class in PeerReviewApp.test.test_unit_tests)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.GetShortNameTest">GetShortNameTest (class in PeerReviewApp.test.test_unit_tests)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.GetStarStringTest">GetStarStringTest (class in PeerReviewApp.test.test_unit_tests)</a>
   </dt>
 
   </dl></td>
@@ -537,14 +570,22 @@
   <dt><a href="code.html#PeerReviewApp.views.has_agreed">has_agreed() (in module PeerReviewApp.views)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="code.html#PeerReviewApp.models.SiteUser.has_module_perms">has_module_perms() (PeerReviewApp.models.SiteUser method)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="code.html#PeerReviewApp.models.SiteUser.has_perm">has_perm() (PeerReviewApp.models.SiteUser method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.HasAgreedTest">HasAgreedTest (class in PeerReviewApp.test.test_unit_tests)</a>
+  </dt>
+
+      
+  <dt><a href="code.html#PeerReviewApp.views.help">help() (in module PeerReviewApp.views)</a>
   </dt>
 
   </dl></td>
@@ -569,6 +610,14 @@
   <dt><a href="code.html#PeerReviewApp.models.Manuscript.is_current">is_current (PeerReviewApp.models.Manuscript attribute)</a>
   </dt>
 
+      
+  <dt><a href="code.html#PeerReviewApp.views.is_normal_user_">is_normal_user_() (in module PeerReviewApp.views)</a>
+  </dt>
+
+      
+  <dt><a href="code.html#PeerReviewApp.views.is_normal_user_check">is_normal_user_check() (in module PeerReviewApp.views)</a>
+  </dt>
+
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
@@ -581,6 +630,18 @@
 
       
   <dt><a href="code.html#PeerReviewApp.models.SiteUser.is_superuser">is_superuser (PeerReviewApp.models.SiteUser attribute)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.IsAuthenticatedAdminTest">IsAuthenticatedAdminTest (class in PeerReviewApp.test.test_unit_tests)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.IsAuthenticatedNormalUserTest">IsAuthenticatedNormalUserTest (class in PeerReviewApp.test.test_unit_tests)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.IsNormalUserTest">IsNormalUserTest (class in PeerReviewApp.test.test_unit_tests)</a>
   </dt>
 
   </dl></td>
@@ -651,14 +712,18 @@
   <dt><a href="code.html#PeerReviewApp.models.ManuscriptFile">ManuscriptFile (class in PeerReviewApp.models)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="code.html#PeerReviewApp.models.ManuscriptFile.DoesNotExist">ManuscriptFile.DoesNotExist</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="code.html#PeerReviewApp.models.ManuscriptFile.MultipleObjectsReturned">ManuscriptFile.MultipleObjectsReturned</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_system_tests.ManuscriptModelTest">ManuscriptModelTest (class in PeerReviewApp.test.test_system_tests)</a>
   </dt>
 
       
@@ -791,10 +856,6 @@
 
       
   <dt><a href="code.html#module-PeerReviewApp.tests">PeerReviewApp.tests (module)</a>
-  </dt>
-
-      
-  <dt><a href="code.html#module-PeerReviewApp.urls">PeerReviewApp.urls (module)</a>
   </dt>
 
       
@@ -974,15 +1035,9 @@
   </dt>
 
       
-  <dt><a href="test.html#PeerReviewApp.test.test_integration_tests.AccountViewTest.test_account">test_account() (PeerReviewApp.test.test_integration_tests.AccountViewTest method)</a>
+  <dt><a href="code.html#PeerReviewApp.tests.AccountView.test_account">test_account() (PeerReviewApp.tests.AccountView method)</a>
   </dt>
 
-      <dd><dl>
-        
-  <dt><a href="code.html#PeerReviewApp.tests.AccountView.test_account">(PeerReviewApp.tests.AccountView method)</a>
-  </dt>
-
-      </dl></dd>
       
   <dt><a href="test.html#PeerReviewApp.test.test_integration_tests.AdminViewTest.test_admin">test_admin() (PeerReviewApp.test.test_integration_tests.AdminViewTest method)</a>
   </dt>
@@ -1044,13 +1099,57 @@
   </dt>
 
       
-  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.CreateUserTest.test_get_full_name">test_get_full_name() (PeerReviewApp.test.test_unit_tests.CreateUserTest method)</a>
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.GetFullNameTest.test_get_full_name">test_get_full_name() (PeerReviewApp.test.test_unit_tests.GetFullNameTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.GetShortNameTest.test_get_short_name">test_get_short_name() (PeerReviewApp.test.test_unit_tests.GetShortNameTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.GetStarStringTest.test_get_star_string_false">test_get_star_string_false() (PeerReviewApp.test.test_unit_tests.GetStarStringTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.GetStarStringTest.test_get_star_string_true">test_get_star_string_true() (PeerReviewApp.test.test_unit_tests.GetStarStringTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.HasAgreedTest.test_has_agreed_admin">test_has_agreed_admin() (PeerReviewApp.test.test_unit_tests.HasAgreedTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.HasAgreedTest.test_has_agreed_false">test_has_agreed_false() (PeerReviewApp.test.test_unit_tests.HasAgreedTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.HasAgreedTest.test_has_agreed_true">test_has_agreed_true() (PeerReviewApp.test.test_unit_tests.HasAgreedTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.IsAuthenticatedNormalUserTest.test_is_normal_user_check_false">test_is_normal_user_check_false() (PeerReviewApp.test.test_unit_tests.IsAuthenticatedNormalUserTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.IsAuthenticatedNormalUserTest.test_is_normal_user_check_true">test_is_normal_user_check_true() (PeerReviewApp.test.test_unit_tests.IsAuthenticatedNormalUserTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.IsNormalUserTest.test_is_normal_user_false">test_is_normal_user_false() (PeerReviewApp.test.test_unit_tests.IsNormalUserTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.IsNormalUserTest.test_is_normal_user_true">test_is_normal_user_true() (PeerReviewApp.test.test_unit_tests.IsNormalUserTest method)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.CreateUserTest.test_get_short_name">test_get_short_name() (PeerReviewApp.test.test_unit_tests.CreateUserTest method)</a>
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.IsAuthenticatedAdminTest.test_is_site_admin_check_false">test_is_site_admin_check_false() (PeerReviewApp.test.test_unit_tests.IsAuthenticatedAdminTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_unit_tests.IsAuthenticatedAdminTest.test_is_site_admin_check_true">test_is_site_admin_check_true() (PeerReviewApp.test.test_unit_tests.IsAuthenticatedAdminTest method)</a>
   </dt>
 
       
@@ -1074,6 +1173,10 @@
 
       </dl></dd>
       
+  <dt><a href="test.html#PeerReviewApp.test.test_system_tests.ManuscriptModelTest.test_manuscript_get">test_manuscript_get() (PeerReviewApp.test.test_system_tests.ManuscriptModelTest method)</a>
+  </dt>
+
+      
   <dt><a href="test.html#PeerReviewApp.test.test_integration_tests.IntegrationTest.test_redirect">test_redirect() (PeerReviewApp.test.test_integration_tests.IntegrationTest method)</a>
   </dt>
 
@@ -1092,7 +1195,15 @@
   </dt>
 
       
-  <dt><a href="test.html#PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest.test_reviewperiod_model">test_reviewperiod_model() (PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest method)</a>
+  <dt><a href="test.html#PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest.test_reviewperiod_delete">test_reviewperiod_delete() (PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest.test_reviewperiod_get">test_reviewperiod_get() (PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest.test_reviewperiod_update">test_reviewperiod_update() (PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest method)</a>
   </dt>
 
       
@@ -1124,7 +1235,31 @@
   </dt>
 
       
-  <dt><a href="test.html#PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model">test_user_model() (PeerReviewApp.test.test_system_tests.UserModelTest method)</a>
+  <dt><a href="test.html#PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_assign_manuscript">test_user_model_assign_manuscript() (PeerReviewApp.test.test_system_tests.UserModelTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_assigned_num">test_user_model_assigned_num() (PeerReviewApp.test.test_system_tests.UserModelTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_delete_user">test_user_model_delete_user() (PeerReviewApp.test.test_system_tests.UserModelTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_delete_user_list">test_user_model_delete_user_list() (PeerReviewApp.test.test_system_tests.UserModelTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_get_user">test_user_model_get_user() (PeerReviewApp.test.test_system_tests.UserModelTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_register_with_exist_email">test_user_model_register_with_exist_email() (PeerReviewApp.test.test_system_tests.UserModelTest method)</a>
+  </dt>
+
+      
+  <dt><a href="test.html#PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_update_user">test_user_model_update_user() (PeerReviewApp.test.test_system_tests.UserModelTest method)</a>
   </dt>
 
       
@@ -1219,6 +1354,16 @@
   </dt>
 
       </dl></dd>
+  </dl></td>
+</tr></table>
+
+<h2 id="X">X</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="code.html#PeerReviewApp.models.SiteUser.x">x (PeerReviewApp.models.SiteUser attribute)</a>
+  </dt>
+
   </dl></td>
 </tr></table>
 

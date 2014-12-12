@@ -98,17 +98,6 @@
 <div class="section" id="module-PeerReviewApp.test.test_integration_tests">
 <span id="integration-tests-module"></span><h2>Integration_tests module<a class="headerlink" href="#module-PeerReviewApp.test.test_integration_tests" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="PeerReviewApp.test.test_integration_tests.AccountViewTest">
-<em class="property">class </em><code class="descclassname">PeerReviewApp.test.test_integration_tests.</code><code class="descname">AccountViewTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_integration_tests.html#AccountViewTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_integration_tests.AccountViewTest" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
-<dl class="method">
-<dt id="PeerReviewApp.test.test_integration_tests.AccountViewTest.test_account">
-<code class="descname">test_account</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_integration_tests.html#AccountViewTest.test_account"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_integration_tests.AccountViewTest.test_account" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
 <dt id="PeerReviewApp.test.test_integration_tests.AdminViewTest">
 <em class="property">class </em><code class="descclassname">PeerReviewApp.test.test_integration_tests.</code><code class="descname">AdminViewTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_integration_tests.html#AdminViewTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_integration_tests.AdminViewTest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
@@ -233,12 +222,38 @@
 <div class="section" id="module-PeerReviewApp.test.test_system_tests">
 <span id="system-tests-module"></span><h2>System_tests module<a class="headerlink" href="#module-PeerReviewApp.test.test_system_tests" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
+<dt id="PeerReviewApp.test.test_system_tests.ManuscriptModelTest">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.test.test_system_tests.</code><code class="descname">ManuscriptModelTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_system_tests.html#ManuscriptModelTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_system_tests.ManuscriptModelTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.test.test_system_tests.ManuscriptModelTest.add_user">
+<code class="descname">add_user</code><span class="sig-paren">(</span><em>email</em>, <em>password</em>, <em>first_name=''</em>, <em>last_name=''</em>, <em>department=''</em>, <em>lab=''</em>, <em>pi=''</em>, <em>research_interest=''</em>, <em>review_count=''</em>, <em>agreed_to_form=''</em>, <em>is_site_admin=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_system_tests.html#ManuscriptModelTest.add_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_system_tests.ManuscriptModelTest.add_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.test.test_system_tests.ManuscriptModelTest.test_manuscript_get">
+<code class="descname">test_manuscript_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_system_tests.html#ManuscriptModelTest.test_manuscript_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_system_tests.ManuscriptModelTest.test_manuscript_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest">
 <em class="property">class </em><code class="descclassname">PeerReviewApp.test.test_system_tests.</code><code class="descname">ReviewPeriodModelTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_system_tests.html#ReviewPeriodModelTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
 <dl class="method">
-<dt id="PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest.test_reviewperiod_model">
-<code class="descname">test_reviewperiod_model</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_system_tests.html#ReviewPeriodModelTest.test_reviewperiod_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest.test_reviewperiod_model" title="Permalink to this definition">¶</a></dt>
+<dt id="PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest.test_reviewperiod_delete">
+<code class="descname">test_reviewperiod_delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_system_tests.html#ReviewPeriodModelTest.test_reviewperiod_delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest.test_reviewperiod_delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest.test_reviewperiod_get">
+<code class="descname">test_reviewperiod_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_system_tests.html#ReviewPeriodModelTest.test_reviewperiod_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest.test_reviewperiod_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest.test_reviewperiod_update">
+<code class="descname">test_reviewperiod_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_system_tests.html#ReviewPeriodModelTest.test_reviewperiod_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_system_tests.ReviewPeriodModelTest.test_reviewperiod_update" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -248,8 +263,38 @@
 <em class="property">class </em><code class="descclassname">PeerReviewApp.test.test_system_tests.</code><code class="descname">UserModelTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_system_tests.html#UserModelTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_system_tests.UserModelTest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
 <dl class="method">
-<dt id="PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model">
-<code class="descname">test_user_model</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_system_tests.html#UserModelTest.test_user_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model" title="Permalink to this definition">¶</a></dt>
+<dt id="PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_assign_manuscript">
+<code class="descname">test_user_model_assign_manuscript</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_system_tests.html#UserModelTest.test_user_model_assign_manuscript"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_assign_manuscript" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_assigned_num">
+<code class="descname">test_user_model_assigned_num</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_system_tests.html#UserModelTest.test_user_model_assigned_num"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_assigned_num" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_delete_user">
+<code class="descname">test_user_model_delete_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_system_tests.html#UserModelTest.test_user_model_delete_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_delete_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_delete_user_list">
+<code class="descname">test_user_model_delete_user_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_system_tests.html#UserModelTest.test_user_model_delete_user_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_delete_user_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_get_user">
+<code class="descname">test_user_model_get_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_system_tests.html#UserModelTest.test_user_model_get_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_get_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_register_with_exist_email">
+<code class="descname">test_user_model_register_with_exist_email</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_system_tests.html#UserModelTest.test_user_model_register_with_exist_email"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_register_with_exist_email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_update_user">
+<code class="descname">test_user_model_update_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_system_tests.html#UserModelTest.test_user_model_update_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_system_tests.UserModelTest.test_user_model_update_user" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -288,14 +333,111 @@
 <code class="descname">test_create_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#CreateUserTest.test_create_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.CreateUserTest.test_create_user" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.test.test_unit_tests.GetFullNameTest">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.test.test_unit_tests.</code><code class="descname">GetFullNameTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#GetFullNameTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.GetFullNameTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
 <dl class="method">
-<dt id="PeerReviewApp.test.test_unit_tests.CreateUserTest.test_get_full_name">
-<code class="descname">test_get_full_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#CreateUserTest.test_get_full_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.CreateUserTest.test_get_full_name" title="Permalink to this definition">¶</a></dt>
+<dt id="PeerReviewApp.test.test_unit_tests.GetFullNameTest.test_get_full_name">
+<code class="descname">test_get_full_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#GetFullNameTest.test_get_full_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.GetFullNameTest.test_get_full_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.test.test_unit_tests.GetShortNameTest">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.test.test_unit_tests.</code><code class="descname">GetShortNameTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#GetShortNameTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.GetShortNameTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.test.test_unit_tests.GetShortNameTest.test_get_short_name">
+<code class="descname">test_get_short_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#GetShortNameTest.test_get_short_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.GetShortNameTest.test_get_short_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.test.test_unit_tests.GetStarStringTest">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.test.test_unit_tests.</code><code class="descname">GetStarStringTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#GetStarStringTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.GetStarStringTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.test.test_unit_tests.GetStarStringTest.test_get_star_string_false">
+<code class="descname">test_get_star_string_false</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#GetStarStringTest.test_get_star_string_false"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.GetStarStringTest.test_get_star_string_false" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="PeerReviewApp.test.test_unit_tests.CreateUserTest.test_get_short_name">
-<code class="descname">test_get_short_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#CreateUserTest.test_get_short_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.CreateUserTest.test_get_short_name" title="Permalink to this definition">¶</a></dt>
+<dt id="PeerReviewApp.test.test_unit_tests.GetStarStringTest.test_get_star_string_true">
+<code class="descname">test_get_star_string_true</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#GetStarStringTest.test_get_star_string_true"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.GetStarStringTest.test_get_star_string_true" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.test.test_unit_tests.HasAgreedTest">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.test.test_unit_tests.</code><code class="descname">HasAgreedTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#HasAgreedTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.HasAgreedTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.test.test_unit_tests.HasAgreedTest.test_has_agreed_admin">
+<code class="descname">test_has_agreed_admin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#HasAgreedTest.test_has_agreed_admin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.HasAgreedTest.test_has_agreed_admin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.test.test_unit_tests.HasAgreedTest.test_has_agreed_false">
+<code class="descname">test_has_agreed_false</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#HasAgreedTest.test_has_agreed_false"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.HasAgreedTest.test_has_agreed_false" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.test.test_unit_tests.HasAgreedTest.test_has_agreed_true">
+<code class="descname">test_has_agreed_true</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#HasAgreedTest.test_has_agreed_true"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.HasAgreedTest.test_has_agreed_true" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.test.test_unit_tests.IsAuthenticatedAdminTest">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.test.test_unit_tests.</code><code class="descname">IsAuthenticatedAdminTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#IsAuthenticatedAdminTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.IsAuthenticatedAdminTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.test.test_unit_tests.IsAuthenticatedAdminTest.test_is_site_admin_check_false">
+<code class="descname">test_is_site_admin_check_false</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#IsAuthenticatedAdminTest.test_is_site_admin_check_false"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.IsAuthenticatedAdminTest.test_is_site_admin_check_false" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.test.test_unit_tests.IsAuthenticatedAdminTest.test_is_site_admin_check_true">
+<code class="descname">test_is_site_admin_check_true</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#IsAuthenticatedAdminTest.test_is_site_admin_check_true"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.IsAuthenticatedAdminTest.test_is_site_admin_check_true" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.test.test_unit_tests.IsAuthenticatedNormalUserTest">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.test.test_unit_tests.</code><code class="descname">IsAuthenticatedNormalUserTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#IsAuthenticatedNormalUserTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.IsAuthenticatedNormalUserTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.test.test_unit_tests.IsAuthenticatedNormalUserTest.test_is_normal_user_check_false">
+<code class="descname">test_is_normal_user_check_false</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#IsAuthenticatedNormalUserTest.test_is_normal_user_check_false"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.IsAuthenticatedNormalUserTest.test_is_normal_user_check_false" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.test.test_unit_tests.IsAuthenticatedNormalUserTest.test_is_normal_user_check_true">
+<code class="descname">test_is_normal_user_check_true</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#IsAuthenticatedNormalUserTest.test_is_normal_user_check_true"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.IsAuthenticatedNormalUserTest.test_is_normal_user_check_true" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PeerReviewApp.test.test_unit_tests.IsNormalUserTest">
+<em class="property">class </em><code class="descclassname">PeerReviewApp.test.test_unit_tests.</code><code class="descname">IsNormalUserTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#IsNormalUserTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.IsNormalUserTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="PeerReviewApp.test.test_unit_tests.IsNormalUserTest.test_is_normal_user_false">
+<code class="descname">test_is_normal_user_false</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#IsNormalUserTest.test_is_normal_user_false"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.IsNormalUserTest.test_is_normal_user_false" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.test.test_unit_tests.IsNormalUserTest.test_is_normal_user_true">
+<code class="descname">test_is_normal_user_true</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/test/test_unit_tests.html#IsNormalUserTest.test_is_normal_user_true"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.test.test_unit_tests.IsNormalUserTest.test_is_normal_user_true" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

@@ -72,10 +72,10 @@
           <div class="body" role="main">
             
   <h1>Source code for PeerReviewApp.test.test_integration_tests</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">TestCase</span>
-<span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">timezone</span>
-<span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">Client</span>
 <span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">unittest</span>
+<span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">timezone</span>
+<span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">Client</span>
 <span class="kn">from</span> <span class="nn">django.core.urlresolvers</span> <span class="kn">import</span> <span class="n">reverse</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
 
@@ -84,19 +84,19 @@
 <div class="viewcode-block" id="IntegrationTest.test_redirect"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_integration_tests.IntegrationTest.test_redirect">[docs]</a>	<span class="k">def</span> <span class="nf">test_redirect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 		<span class="n">c</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
 
-		<span class="n">response</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/login/&#39;</span><span class="p">,</span> <span class="n">follow</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+		<span class="c">#response = c.get(&#39;/login/&#39;, follow = True)</span>
+		<span class="c">#self.assertEquals(response.status_code,200)</span>
 
 		<span class="c"># Test if logout is a redirect</span>
-		<span class="n">response</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/logout/&#39;</span><span class="p">,</span><span class="n">follow</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">assertRedirects</span><span class="p">(</span><span class="n">response</span><span class="p">,</span><span class="s">&#39;http://testserver/login/?next=/logout/&#39;</span>
-		<span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">302</span><span class="p">,</span><span class="n">target_status_code</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="n">msg_prefix</span> <span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+		<span class="c">#response = c.get(&#39;/logout/&#39;,follow = True)</span>
+		<span class="c">#self.assertRedirects(response,&#39;http://testserver/login/?next=/logout/&#39;</span>
+		<span class="c">#, status_code=302,target_status_code = 200, msg_prefix =&#39;&#39;)</span>
 
-		<span class="n">response</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/signup/&#39;</span><span class="p">)</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+		<span class="c">#response = c.get(&#39;/signup/&#39;)</span>
+		<span class="c">#self.assertEquals(response.status_code, 200)</span>
 
-		<span class="n">response</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&#39;/login/?next=/agreement/&#39;</span><span class="p">)</span> 
-		<span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+		<span class="c">#response = c.post(&#39;/login/?next=/agreement/&#39;) </span>
+		<span class="c">#self.assertEquals(response.status_code, 200)</span>
 
 		<span class="c">#response = c.get(&#39;/login/?next=/agreement/&#39;)</span>
 		<span class="c">#self.assertRedirects(response,&#39;/agreement/&#39;, status_code=302, target_status_code = 200, msg_prefix = &#39;&#39;)</span>
@@ -145,12 +145,12 @@
 <div class="viewcode-block" id="LoginViewTest.test_login"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_integration_tests.LoginViewTest.test_login">[docs]</a>    <span class="k">def</span> <span class="nf">test_login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/login/&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
-</div></div>
-<div class="viewcode-block" id="AccountViewTest"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_integration_tests.AccountViewTest">[docs]</a><span class="k">class</span> <span class="nc">AccountViewTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
 
-<div class="viewcode-block" id="AccountViewTest.test_account"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_integration_tests.AccountViewTest.test_account">[docs]</a>    <span class="k">def</span> <span class="nf">test_account</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/account/&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">302</span><span class="p">)</span>
+<span class="c">#class AccountViewTest(TestCase):</span>
+
+<span class="c">#    def test_account(self):</span>
+<span class="c">#        resp = self.client.get(&#39;/account/&#39;)</span>
+<span class="c">#        self.assertEquals(resp.status_code,302)</span>
 </div></div>
 <div class="viewcode-block" id="LogoutViewTest"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_integration_tests.LogoutViewTest">[docs]</a><span class="k">class</span> <span class="nc">LogoutViewTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
 
@@ -161,8 +161,8 @@
 <div class="viewcode-block" id="UploadViewTest"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_integration_tests.UploadViewTest">[docs]</a><span class="k">class</span> <span class="nc">UploadViewTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
 
 <div class="viewcode-block" id="UploadViewTest.test_upload"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_integration_tests.UploadViewTest.test_upload">[docs]</a>    <span class="k">def</span> <span class="nf">test_upload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/upload&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">301</span><span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/uploadmanuscript/&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">302</span><span class="p">)</span>
 </div></div>
 <div class="viewcode-block" id="ReviewViewTest"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_integration_tests.ReviewViewTest">[docs]</a><span class="k">class</span> <span class="nc">ReviewViewTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
 
@@ -180,8 +180,8 @@
 <div class="viewcode-block" id="AssignedManuscriptViewTest"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_integration_tests.AssignedManuscriptViewTest">[docs]</a><span class="k">class</span> <span class="nc">AssignedManuscriptViewTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
 
 <div class="viewcode-block" id="AssignedManuscriptViewTest.test_assigned"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_integration_tests.AssignedManuscriptViewTest.test_assigned">[docs]</a>    <span class="k">def</span> <span class="nf">test_assigned</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/assignedmanuscripts/&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">302</span><span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/assignedmanuscripts/1&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="mi">301</span><span class="p">)</span>
 </div></div>
 <div class="viewcode-block" id="AgreementViewTest"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_integration_tests.AgreementViewTest">[docs]</a><span class="k">class</span> <span class="nc">AgreementViewTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
 
