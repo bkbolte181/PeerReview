@@ -64,7 +64,7 @@
 <li><a class="reference internal" href="#module-PeerReviewApp.forms">forms module</a></li>
 <li><a class="reference internal" href="#models-module">models module</a></li>
 <li><a class="reference internal" href="#module-PeerReviewApp.tests">tests module</a></li>
-<li><a class="reference internal" href="#module-PeerReviewApp.urls">urls module</a></li>
+<li><a class="reference internal" href="#urls-module">urls module</a></li>
 <li><a class="reference internal" href="#module-PeerReviewApp.views">views module</a></li>
 </ul>
 </li>
@@ -150,6 +150,11 @@
 <dt id="PeerReviewApp.forms.AccountForm.Meta">
 <em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/PeerReviewApp/forms.html#AccountForm.Meta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.AccountForm.Meta" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
+<dt id="PeerReviewApp.forms.AccountForm.Meta.fields">
+<code class="descname">fields</code><em class="property"> = ('email', 'first_name', 'last_name', 'department', 'lab', 'pi', 'school', 'review_count', 'agreed_to_form')</em><a class="headerlink" href="#PeerReviewApp.forms.AccountForm.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="PeerReviewApp.forms.AccountForm.Meta.model">
 <code class="descname">model</code><a class="headerlink" href="#PeerReviewApp.forms.AccountForm.Meta.model" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">SiteUser</span></code></p>
@@ -157,14 +162,14 @@
 
 <dl class="attribute">
 <dt id="PeerReviewApp.forms.AccountForm.Meta.widgets">
-<code class="descname">widgets</code><em class="property"> = {'first_name': &lt;django.forms.widgets.TextInput object at 0x1019b7a10&gt;, 'last_name': &lt;django.forms.widgets.TextInput object at 0x1019b7a50&gt;, 'review_count': &lt;django.forms.widgets.TextInput object at 0x101982650&gt;, 'lab': &lt;django.forms.widgets.TextInput object at 0x101982c50&gt;, 'department': &lt;django.forms.widgets.TextInput object at 0x1019b7990&gt;, 'pi': &lt;django.forms.widgets.TextInput object at 0x101982dd0&gt;, 'email': &lt;django.forms.widgets.EmailInput object at 0x1019b7a90&gt;}</em><a class="headerlink" href="#PeerReviewApp.forms.AccountForm.Meta.widgets" title="Permalink to this definition">¶</a></dt>
+<code class="descname">widgets</code><em class="property"> = {'first_name': &lt;django.forms.widgets.TextInput object at 0x10aadab90&gt;, 'last_name': &lt;django.forms.widgets.TextInput object at 0x10aada850&gt;, 'review_count': &lt;django.forms.widgets.TextInput object at 0x10aada410&gt;, 'school': &lt;django.forms.widgets.Select object at 0x10aada4d0&gt;, 'department': &lt;django.forms.widgets.TextInput object at 0x10aada890&gt;, 'pi': &lt;django.forms.widgets.TextInput object at 0x10aadabd0&gt;, 'email': &lt;django.forms.widgets.EmailInput object at 0x10aada450&gt;, 'lab': &lt;django.forms.widgets.TextInput object at 0x10aadaed0&gt;}</em><a class="headerlink" href="#PeerReviewApp.forms.AccountForm.Meta.widgets" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.forms.AccountForm.base_fields">
-<code class="descclassname">AccountForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('password', &lt;django.forms.fields.CharField object at 0x101982ed0&gt;), ('last_login', &lt;django.forms.fields.DateTimeField object at 0x101982910&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x101982850&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x101982810&gt;), ('department', &lt;django.forms.fields.CharField object at 0x101982d10&gt;), ('lab', &lt;django.forms.fields.CharField object at 0x101982190&gt;), ('pi', &lt;django.forms.fields.CharField object at 0x101982790&gt;), ('review_count', &lt;django.forms.fields.CharField object at 0x101982b10&gt;), ('agreed_to_form', &lt;django.forms.fields.BooleanField object at 0x101982a10&gt;), ('research_interest', &lt;django.forms.fields.CharField object at 0x10197be50&gt;), ('is_site_admin', &lt;django.forms.fields.BooleanField object at 0x10197bad0&gt;), ('email', &lt;django.forms.fields.EmailField object at 0x10197ba10&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.AccountForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">AccountForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('email', &lt;django.forms.fields.EmailField object at 0x10aa9bbd0&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x10aadaf50&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x10aadae90&gt;), ('department', &lt;django.forms.fields.CharField object at 0x10aada490&gt;), ('lab', &lt;django.forms.fields.CharField object at 0x10aada5d0&gt;), ('pi', &lt;django.forms.fields.CharField object at 0x10aada810&gt;), ('school', &lt;django.forms.fields.TypedChoiceField object at 0x10aada590&gt;), ('review_count', &lt;django.forms.fields.CharField object at 0x10aada790&gt;), ('agreed_to_form', &lt;django.forms.fields.BooleanField object at 0x10aa9bfd0&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.AccountForm.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -186,12 +191,12 @@
 <p>On log in, you only need an email and a password</p>
 <dl class="attribute">
 <dt id="PeerReviewApp.forms.AdminLoginForm.base_fields">
-<code class="descname">base_fields</code><em class="property"> = OrderedDict([('email', &lt;django.forms.fields.EmailField object at 0x1019fa990&gt;), ('password', &lt;django.forms.fields.CharField object at 0x1019fa690&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.AdminLoginForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('email', &lt;django.forms.fields.EmailField object at 0x10aaa1b50&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10aaa1a90&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.AdminLoginForm.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.forms.AdminLoginForm.declared_fields">
-<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('email', &lt;django.forms.fields.EmailField object at 0x1019fa990&gt;), ('password', &lt;django.forms.fields.CharField object at 0x1019fa690&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.AdminLoginForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('email', &lt;django.forms.fields.EmailField object at 0x10aaa1b50&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10aaa1a90&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.AdminLoginForm.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -225,7 +230,7 @@ user to agree with the Terms of Service document</p>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.forms.AgreementForm.base_fields">
-<code class="descclassname">AgreementForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('agreed_to_form', &lt;django.forms.fields.BooleanField object at 0x10197b710&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.AgreementForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">AgreementForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('agreed_to_form', &lt;django.forms.fields.BooleanField object at 0x10aa9bdd0&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.AgreementForm.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -247,12 +252,12 @@ user to agree with the Terms of Service document</p>
 <p>On log in, you only need an email and a password</p>
 <dl class="attribute">
 <dt id="PeerReviewApp.forms.LoginForm.base_fields">
-<code class="descname">base_fields</code><em class="property"> = OrderedDict([('email', &lt;django.forms.fields.EmailField object at 0x1019b78d0&gt;), ('password', &lt;django.forms.fields.CharField object at 0x1019b7150&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.LoginForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('email', &lt;django.forms.fields.EmailField object at 0x10aada8d0&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10aadac10&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.LoginForm.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.forms.LoginForm.declared_fields">
-<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('email', &lt;django.forms.fields.EmailField object at 0x1019b78d0&gt;), ('password', &lt;django.forms.fields.CharField object at 0x1019b7150&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.LoginForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('email', &lt;django.forms.fields.EmailField object at 0x10aada8d0&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10aadac10&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.LoginForm.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -284,7 +289,7 @@ user to agree with the Terms of Service document</p>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.forms.ReviewPeriodForm.base_fields">
-<code class="descclassname">ReviewPeriodForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('start_date', &lt;django.forms.fields.DateField object at 0x1019fa090&gt;), ('submission_deadline', &lt;django.forms.fields.DateField object at 0x1019fa110&gt;), ('review_deadline', &lt;django.forms.fields.DateField object at 0x1019fa190&gt;), ('group_meeting_time', &lt;django.forms.fields.DateTimeField object at 0x1019fa210&gt;), ('group_meeting_venue', &lt;django.forms.fields.CharField object at 0x1019fa290&gt;), ('max_manuscript', &lt;django.forms.fields.IntegerField object at 0x1019fa3d0&gt;), ('is_current', &lt;django.forms.fields.BooleanField object at 0x1019fa390&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.ReviewPeriodForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">ReviewPeriodForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('start_date', &lt;django.forms.fields.DateField object at 0x10aaa1450&gt;), ('submission_deadline', &lt;django.forms.fields.DateField object at 0x10aaa1390&gt;), ('review_deadline', &lt;django.forms.fields.DateField object at 0x10aaa1050&gt;), ('group_meeting_time', &lt;django.forms.fields.DateTimeField object at 0x10aaa10d0&gt;), ('group_meeting_venue', &lt;django.forms.fields.CharField object at 0x10aaa1590&gt;), ('max_manuscript', &lt;django.forms.fields.IntegerField object at 0x10aaa11d0&gt;), ('is_current', &lt;django.forms.fields.BooleanField object at 0x10aaa1790&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.ReviewPeriodForm.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -294,7 +299,7 @@ user to agree with the Terms of Service document</p>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.forms.ReviewPeriodForm.declared_fields">
-<code class="descclassname">ReviewPeriodForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict([('start_date', &lt;django.forms.fields.DateField object at 0x1019fa090&gt;), ('submission_deadline', &lt;django.forms.fields.DateField object at 0x1019fa110&gt;), ('review_deadline', &lt;django.forms.fields.DateField object at 0x1019fa190&gt;), ('group_meeting_time', &lt;django.forms.fields.DateTimeField object at 0x1019fa210&gt;), ('group_meeting_venue', &lt;django.forms.fields.CharField object at 0x1019fa290&gt;), ('is_current', &lt;django.forms.fields.BooleanField object at 0x1019fa390&gt;), ('max_manuscript', &lt;django.forms.fields.IntegerField object at 0x1019fa3d0&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.ReviewPeriodForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">ReviewPeriodForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict([('start_date', &lt;django.forms.fields.DateField object at 0x10aaa1450&gt;), ('submission_deadline', &lt;django.forms.fields.DateField object at 0x10aaa1390&gt;), ('review_deadline', &lt;django.forms.fields.DateField object at 0x10aaa1050&gt;), ('group_meeting_time', &lt;django.forms.fields.DateTimeField object at 0x10aaa10d0&gt;), ('group_meeting_venue', &lt;django.forms.fields.CharField object at 0x10aaa1590&gt;), ('is_current', &lt;django.forms.fields.BooleanField object at 0x10aaa1790&gt;), ('max_manuscript', &lt;django.forms.fields.IntegerField object at 0x10aaa11d0&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.ReviewPeriodForm.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -313,6 +318,11 @@ user to agree with the Terms of Service document</p>
 <dt id="PeerReviewApp.forms.SignupForm.Meta">
 <em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="_modules/PeerReviewApp/forms.html#SignupForm.Meta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.Meta" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
+<dt id="PeerReviewApp.forms.SignupForm.Meta.fields">
+<code class="descname">fields</code><em class="property"> = ('email', 'first_name', 'last_name', 'department', 'research_interest', 'lab', 'pi', 'school', 'review_count')</em><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="PeerReviewApp.forms.SignupForm.Meta.model">
 <code class="descname">model</code><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.Meta.model" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">SiteUser</span></code></p>
@@ -320,14 +330,14 @@ user to agree with the Terms of Service document</p>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.forms.SignupForm.Meta.widgets">
-<code class="descname">widgets</code><em class="property"> = {'first_name': &lt;django.forms.widgets.TextInput object at 0x10197bc50&gt;, 'last_name': &lt;django.forms.widgets.TextInput object at 0x10197be90&gt;, 'review_count': &lt;django.forms.widgets.TextInput object at 0x10197be10&gt;, 'lab': &lt;django.forms.widgets.TextInput object at 0x10197bdd0&gt;, 'department': &lt;django.forms.widgets.TextInput object at 0x10197b890&gt;, 'pi': &lt;django.forms.widgets.TextInput object at 0x10197bed0&gt;, 'email': &lt;django.forms.widgets.EmailInput object at 0x10197bd10&gt;}</em><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.Meta.widgets" title="Permalink to this definition">¶</a></dt>
+<code class="descname">widgets</code><em class="property"> = {'first_name': &lt;django.forms.widgets.TextInput object at 0x10aaa7a90&gt;, 'last_name': &lt;django.forms.widgets.TextInput object at 0x10aaa7950&gt;, 'review_count': &lt;django.forms.widgets.TextInput object at 0x10aaa7c10&gt;, 'research_interest': &lt;django.forms.widgets.TextInput object at 0x10aaa79d0&gt;, 'school': &lt;django.forms.widgets.Select object at 0x10aaa7bd0&gt;, 'department': &lt;django.forms.widgets.TextInput object at 0x10aaa7990&gt;, 'pi': &lt;django.forms.widgets.TextInput object at 0x10aaa7d90&gt;, 'email': &lt;django.forms.widgets.EmailInput object at 0x10aaa7810&gt;, 'lab': &lt;django.forms.widgets.TextInput object at 0x10aaa7a10&gt;}</em><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.Meta.widgets" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.forms.SignupForm.base_fields">
-<code class="descclassname">SignupForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('password', &lt;django.forms.fields.CharField object at 0x10197b810&gt;), ('last_login', &lt;django.forms.fields.DateTimeField object at 0x1019f4290&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x1019f4350&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x1019f43d0&gt;), ('department', &lt;django.forms.fields.CharField object at 0x1019f4490&gt;), ('lab', &lt;django.forms.fields.CharField object at 0x1019f4550&gt;), ('pi', &lt;django.forms.fields.CharField object at 0x1019f4610&gt;), ('review_count', &lt;django.forms.fields.CharField object at 0x1019f46d0&gt;), ('agreed_to_form', &lt;django.forms.fields.BooleanField object at 0x1019f4790&gt;), ('research_interest', &lt;django.forms.fields.CharField object at 0x1019f4810&gt;), ('is_site_admin', &lt;django.forms.fields.BooleanField object at 0x1019f4910&gt;), ('email', &lt;django.forms.fields.EmailField object at 0x1019f49d0&gt;), ('retype_password', &lt;django.forms.fields.CharField object at 0x10197bd50&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">SignupForm.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('email', &lt;django.forms.fields.EmailField object at 0x10aaa7290&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x10aaa7910&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x10aaa7b50&gt;), ('department', &lt;django.forms.fields.CharField object at 0x10aaa7b90&gt;), ('research_interest', &lt;django.forms.fields.CharField object at 0x10aaa7250&gt;), ('lab', &lt;django.forms.fields.CharField object at 0x10aaa7790&gt;), ('pi', &lt;django.forms.fields.CharField object at 0x10aaa76d0&gt;), ('school', &lt;django.forms.fields.TypedChoiceField object at 0x10aaa7350&gt;), ('review_count', &lt;django.forms.fields.CharField object at 0x10aaa7410&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10aa9bed0&gt;), ('retype_password', &lt;django.forms.fields.CharField object at 0x10aa9bd90&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -337,7 +347,7 @@ user to agree with the Terms of Service document</p>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.forms.SignupForm.declared_fields">
-<code class="descclassname">SignupForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict([('password', &lt;django.forms.fields.CharField object at 0x10197b810&gt;), ('retype_password', &lt;django.forms.fields.CharField object at 0x10197bd50&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">SignupForm.</code><code class="descname">declared_fields</code><em class="property"> = OrderedDict([('password', &lt;django.forms.fields.CharField object at 0x10aa9bed0&gt;), ('retype_password', &lt;django.forms.fields.CharField object at 0x10aa9bd90&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.SignupForm.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -364,7 +374,7 @@ user to agree with the Terms of Service document</p>
 <p>Form for uploading a file - I don&#8217;t think this is being used yet</p>
 <dl class="attribute">
 <dt id="PeerReviewApp.forms.UploadFileForm.base_fields">
-<code class="descname">base_fields</code><em class="property"> = OrderedDict([('upload', &lt;django.forms.fields.FileField object at 0x1019bf350&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.UploadFileForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('upload', &lt;django.forms.fields.FileField object at 0x10aaa7d10&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.UploadFileForm.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -374,7 +384,7 @@ user to agree with the Terms of Service document</p>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.forms.UploadFileForm.declared_fields">
-<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('upload', &lt;django.forms.fields.FileField object at 0x1019bf350&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.UploadFileForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('upload', &lt;django.forms.fields.FileField object at 0x10aaa7d10&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.UploadFileForm.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -409,14 +419,14 @@ user to agree with the Terms of Service document</p>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.forms.UploadManuscript.Meta.widgets">
-<code class="descname">widgets</code><em class="property"> = {'title': &lt;django.forms.widgets.TextInput object at 0x1019bf8d0&gt;, 'target_journal': &lt;django.forms.widgets.TextInput object at 0x1019f4b10&gt;, 'abstract': &lt;django.forms.widgets.TextInput object at 0x1019f4a50&gt;, 'field': &lt;django.forms.widgets.TextInput object at 0x1019f4a90&gt;, 'keywords': &lt;django.forms.widgets.TextInput object at 0x1019f4ad0&gt;, 'brief_title': &lt;django.forms.widgets.TextInput object at 0x1019bf450&gt;}</em><a class="headerlink" href="#PeerReviewApp.forms.UploadManuscript.Meta.widgets" title="Permalink to this definition">¶</a></dt>
+<code class="descname">widgets</code><em class="property"> = {'title': &lt;django.forms.widgets.TextInput object at 0x10aaa7590&gt;, 'target_journal': &lt;django.forms.widgets.TextInput object at 0x10aaa7f10&gt;, 'abstract': &lt;django.forms.widgets.Textarea object at 0x10aaa7750&gt;, 'field': &lt;django.forms.widgets.TextInput object at 0x10aaa7f50&gt;, 'keywords': &lt;django.forms.widgets.TextInput object at 0x10aaa7f90&gt;, 'brief_title': &lt;django.forms.widgets.TextInput object at 0x10aaa7610&gt;}</em><a class="headerlink" href="#PeerReviewApp.forms.UploadManuscript.Meta.widgets" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.forms.UploadManuscript.base_fields">
-<code class="descclassname">UploadManuscript.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('title', &lt;django.forms.fields.CharField object at 0x1019f4c50&gt;), ('brief_title', &lt;django.forms.fields.CharField object at 0x1019f4cd0&gt;), ('abstract', &lt;django.forms.fields.CharField object at 0x1019f4d90&gt;), ('field', &lt;django.forms.fields.CharField object at 0x1019f4f10&gt;), ('keywords', &lt;django.forms.fields.CharField object at 0x1019f4e50&gt;), ('target_journal', &lt;django.forms.fields.CharField object at 0x1019f4fd0&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.UploadManuscript.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">UploadManuscript.</code><code class="descname">base_fields</code><em class="property"> = OrderedDict([('title', &lt;django.forms.fields.CharField object at 0x10aaa7210&gt;), ('brief_title', &lt;django.forms.fields.CharField object at 0x10aaa7090&gt;), ('abstract', &lt;django.forms.fields.CharField object at 0x10aaa7890&gt;), ('field', &lt;django.forms.fields.CharField object at 0x10aaa1c50&gt;), ('keywords', &lt;django.forms.fields.CharField object at 0x10aaa74d0&gt;), ('target_journal', &lt;django.forms.fields.CharField object at 0x10aaa13d0&gt;)])</em><a class="headerlink" href="#PeerReviewApp.forms.UploadManuscript.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -468,7 +478,7 @@ user to agree with the Terms of Service document</p>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.models.Manuscript.objects">
-<code class="descclassname">Manuscript.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x1019789d0&gt;</em><a class="headerlink" href="#PeerReviewApp.models.Manuscript.objects" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Manuscript.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x10aa9b090&gt;</em><a class="headerlink" href="#PeerReviewApp.models.Manuscript.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -522,7 +532,7 @@ user to agree with the Terms of Service document</p>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.models.ManuscriptFile.objects">
-<code class="descclassname">ManuscriptFile.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x10197b410&gt;</em><a class="headerlink" href="#PeerReviewApp.models.ManuscriptFile.objects" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">ManuscriptFile.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x10aa9ba90&gt;</em><a class="headerlink" href="#PeerReviewApp.models.ManuscriptFile.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -551,7 +561,7 @@ user to agree with the Terms of Service document</p>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.models.ReviewFile.objects">
-<code class="descclassname">ReviewFile.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x101978f10&gt;</em><a class="headerlink" href="#PeerReviewApp.models.ReviewFile.objects" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">ReviewFile.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x10aa9b550&gt;</em><a class="headerlink" href="#PeerReviewApp.models.ReviewFile.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -620,7 +630,7 @@ user to agree with the Terms of Service document</p>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.models.ReviewPeriod.objects">
-<code class="descclassname">ReviewPeriod.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x101971390&gt;</em><a class="headerlink" href="#PeerReviewApp.models.ReviewPeriod.objects" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">ReviewPeriod.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x10aa91a10&gt;</em><a class="headerlink" href="#PeerReviewApp.models.ReviewPeriod.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -634,11 +644,10 @@ AUTH_USER_MODEL = &#8216;PeerReviewApp.SiteUser&#8217; # Add this variable to se
 This will tell Django to use this model as the default user model. There are a fe
 required attributes for custom user models:</p>
 <blockquote>
-<div><p>-&gt; USERNAME_FIELD: Unique identifier for log in (in this case, email)</p>
-<p>-&gt; REQUIRED_FIELDS: Required fields (update this to include required fields)</p>
-<p>-&gt; get_full_name(): Return the &#8220;full name&#8221; of the user</p>
-<p>-&gt; get_short_name(): Return a &#8220;short name&#8221; identifier for the user</p>
-</div></blockquote>
+<div>-&gt; USERNAME_FIELD: Unique identifier for log in (in this case, email)
+-&gt; REQUIRED_FIELDS: Required fields (update this to include required fields)
+-&gt; get_full_name(): Return the &#8220;full name&#8221; of the user
+-&gt; get_short_name(): Return a &#8220;short name&#8221; identifier for the user</div></blockquote>
 <p>Additionally, this model requires a custom user manager, and some custom handlers
 for forms to replace the built-ins that Django provides.</p>
 <dl class="exception">
@@ -689,6 +698,11 @@ for forms to replace the built-ins that Django provides.</p>
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="PeerReviewApp.models.SiteUser.get_school_display">
+<code class="descclassname">SiteUser.</code><code class="descname">get_school_display</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#PeerReviewApp.models.SiteUser.get_school_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="PeerReviewApp.models.SiteUser.get_short_name">
 <code class="descclassname">SiteUser.</code><code class="descname">get_short_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/models.html#SiteUser.get_short_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.SiteUser.get_short_name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -720,12 +734,17 @@ for forms to replace the built-ins that Django provides.</p>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.models.SiteUser.objects">
-<code class="descclassname">SiteUser.</code><code class="descname">objects</code><em class="property"> = &lt;PeerReviewApp.models.SiteUserManager object at 0x10196ca10&gt;</em><a class="headerlink" href="#PeerReviewApp.models.SiteUser.objects" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">SiteUser.</code><code class="descname">objects</code><em class="property"> = &lt;PeerReviewApp.models.SiteUserManager object at 0x10aa910d0&gt;</em><a class="headerlink" href="#PeerReviewApp.models.SiteUser.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="PeerReviewApp.models.SiteUser.star_string">
 <code class="descclassname">SiteUser.</code><code class="descname">star_string</code><a class="headerlink" href="#PeerReviewApp.models.SiteUser.star_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="PeerReviewApp.models.SiteUser.x">
+<code class="descclassname">SiteUser.</code><code class="descname">x</code><em class="property"> = 'Other'</em><a class="headerlink" href="#PeerReviewApp.models.SiteUser.x" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -739,13 +758,19 @@ is custom. The UserManager needs two methods, create_user and create_superuser. 
 are subclassed from BaseUserManager.</p>
 <dl class="method">
 <dt id="PeerReviewApp.models.SiteUserManager.create_superuser">
-<code class="descname">create_superuser</code><span class="sig-paren">(</span><em>email</em>, <em>password</em>, <em>first_name=None</em>, <em>last_name=None</em>, <em>department=None</em>, <em>lab=None</em>, <em>pi=None</em>, <em>research_interest=None</em>, <em>**extra_fields</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/models.html#SiteUserManager.create_superuser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.SiteUserManager.create_superuser" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_superuser</code><span class="sig-paren">(</span><em>email</em>, <em>password</em>, <em>first_name=None</em>, <em>last_name=None</em>, <em>department=None</em>, <em>school=None</em>, <em>lab=None</em>, <em>pi=None</em>, <em>research_interest=None</em>, <em>**extra_fields</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/models.html#SiteUserManager.create_superuser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.SiteUserManager.create_superuser" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="PeerReviewApp.models.SiteUserManager.create_user">
-<code class="descname">create_user</code><span class="sig-paren">(</span><em>email</em>, <em>password</em>, <em>first_name=None</em>, <em>last_name=None</em>, <em>department=None</em>, <em>lab=None</em>, <em>pi=None</em>, <em>research_interest=None</em>, <em>**extra_fields</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/models.html#SiteUserManager.create_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.SiteUserManager.create_user" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_user</code><span class="sig-paren">(</span><em>email</em>, <em>password</em>, <em>first_name=None</em>, <em>last_name=None</em>, <em>department=None</em>, <em>school=None</em>, <em>lab=None</em>, <em>pi=None</em>, <em>research_interest=None</em>, <em>**extra_fields</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/models.html#SiteUserManager.create_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.SiteUserManager.create_user" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="method">
+<dt id="PeerReviewApp.models.SiteUserManager.get_by_natural_key">
+<code class="descname">get_by_natural_key</code><span class="sig-paren">(</span><em>username</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/models.html#SiteUserManager.get_by_natural_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.models.SiteUserManager.get_by_natural_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allow Case-Insensitive Username.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -818,7 +843,7 @@ are subclassed from BaseUserManager.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.test.testcases.TestCase</span></code></p>
 <dl class="method">
 <dt id="PeerReviewApp.tests.CreateReviewPeriodTest.create_review_period">
-<code class="descname">create_review_period</code><span class="sig-paren">(</span><em>isfull='false'</em>, <em>startdate=datetime.datetime(2014</em>, <em>12</em>, <em>5</em>, <em>19</em>, <em>19</em>, <em>51</em>, <em>273327)</em>, <em>submissionsdeadline=datetime.datetime(2015</em>, <em>1</em>, <em>4</em>, <em>19</em>, <em>19</em>, <em>51</em>, <em>273333)</em>, <em>reviewdeadline=datetime.datetime(2015</em>, <em>1</em>, <em>24</em>, <em>19</em>, <em>19</em>, <em>51</em>, <em>273340)</em>, <em>groupmeeting=datetime.datetime(2015</em>, <em>2</em>, <em>23</em>, <em>19</em>, <em>19</em>, <em>51</em>, <em>273346)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#CreateReviewPeriodTest.create_review_period"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.CreateReviewPeriodTest.create_review_period" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_review_period</code><span class="sig-paren">(</span><em>isfull='false'</em>, <em>startdate=datetime.datetime(2014</em>, <em>12</em>, <em>11</em>, <em>20</em>, <em>1</em>, <em>44</em>, <em>995246)</em>, <em>submissionsdeadline=datetime.datetime(2015</em>, <em>1</em>, <em>10</em>, <em>20</em>, <em>1</em>, <em>44</em>, <em>995260)</em>, <em>reviewdeadline=datetime.datetime(2015</em>, <em>1</em>, <em>30</em>, <em>20</em>, <em>1</em>, <em>44</em>, <em>995279)</em>, <em>groupmeeting=datetime.datetime(2015</em>, <em>3</em>, <em>1</em>, <em>20</em>, <em>1</em>, <em>44</em>, <em>995295)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#CreateReviewPeriodTest.create_review_period"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.CreateReviewPeriodTest.create_review_period" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -911,7 +936,7 @@ are subclassed from BaseUserManager.</p>
 <p>Test file uploads</p>
 <dl class="method">
 <dt id="PeerReviewApp.tests.UploadFilesTest.create_review_period">
-<code class="descname">create_review_period</code><span class="sig-paren">(</span><em>isfull='false'</em>, <em>startdate=datetime.datetime(2014</em>, <em>12</em>, <em>5</em>, <em>19</em>, <em>19</em>, <em>51</em>, <em>273228)</em>, <em>submissionsdeadline=datetime.datetime(2015</em>, <em>1</em>, <em>4</em>, <em>19</em>, <em>19</em>, <em>51</em>, <em>273242)</em>, <em>reviewdeadline=datetime.datetime(2015</em>, <em>1</em>, <em>24</em>, <em>19</em>, <em>19</em>, <em>51</em>, <em>273255)</em>, <em>groupmeeting=datetime.datetime(2015</em>, <em>2</em>, <em>23</em>, <em>19</em>, <em>19</em>, <em>51</em>, <em>273262)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#UploadFilesTest.create_review_period"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.UploadFilesTest.create_review_period" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_review_period</code><span class="sig-paren">(</span><em>isfull='false'</em>, <em>startdate=datetime.datetime(2014</em>, <em>12</em>, <em>11</em>, <em>20</em>, <em>1</em>, <em>44</em>, <em>995008)</em>, <em>submissionsdeadline=datetime.datetime(2015</em>, <em>1</em>, <em>10</em>, <em>20</em>, <em>1</em>, <em>44</em>, <em>995032)</em>, <em>reviewdeadline=datetime.datetime(2015</em>, <em>1</em>, <em>30</em>, <em>20</em>, <em>1</em>, <em>44</em>, <em>995062)</em>, <em>groupmeeting=datetime.datetime(2015</em>, <em>3</em>, <em>1</em>, <em>20</em>, <em>1</em>, <em>44</em>, <em>995079)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/tests.html#UploadFilesTest.create_review_period"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.tests.UploadFilesTest.create_review_period" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -943,8 +968,8 @@ are subclassed from BaseUserManager.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-PeerReviewApp.urls">
-<span id="urls-module"></span><h2>urls module<a class="headerlink" href="#module-PeerReviewApp.urls" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="urls-module">
+<h2>urls module<a class="headerlink" href="#urls-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-PeerReviewApp.views">
 <span id="views-module"></span><h2>views module<a class="headerlink" href="#module-PeerReviewApp.views" title="Permalink to this headline">¶</a></h2>
@@ -987,6 +1012,11 @@ are subclassed from BaseUserManager.</p>
 <dl class="function">
 <dt id="PeerReviewApp.views.admin_confirm_ajax">
 <code class="descclassname">PeerReviewApp.views.</code><code class="descname">admin_confirm_ajax</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#admin_confirm_ajax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.admin_confirm_ajax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.admin_help">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">admin_help</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#admin_help"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.admin_help" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
@@ -1078,10 +1108,25 @@ are subclassed from BaseUserManager.</p>
 <dd></dd></dl>
 
 <dl class="function">
+<dt id="PeerReviewApp.views.help">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">help</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#help"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.help" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
 <dt id="PeerReviewApp.views.index">
 <code class="descclassname">PeerReviewApp.views.</code><code class="descname">index</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Main landing page</p>
 </dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.is_normal_user_">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">is_normal_user_</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#is_normal_user_"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.is_normal_user_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="PeerReviewApp.views.is_normal_user_check">
+<code class="descclassname">PeerReviewApp.views.</code><code class="descname">is_normal_user_check</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PeerReviewApp/views.html#is_normal_user_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PeerReviewApp.views.is_normal_user_check" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="function">
 <dt id="PeerReviewApp.views.is_site_admin_check">

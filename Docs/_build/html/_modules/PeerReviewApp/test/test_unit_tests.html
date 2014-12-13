@@ -72,37 +72,114 @@
           <div class="body" role="main">
             
   <h1>Source code for PeerReviewApp.test.test_unit_tests</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">TestCase</span>
-<span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">timezone</span>
-<span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">Client</span>
 <span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">unittest</span>
+<span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">timezone</span>
+<span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">Client</span>
 <span class="kn">from</span> <span class="nn">django.core.urlresolvers</span> <span class="kn">import</span> <span class="n">reverse</span>
-<span class="kn">import</span> <span class="nn">datetime</span>
-
-<span class="c">#import sys</span>
-<span class="c">#sys.path.append(&#39;../&#39;)</span>
 
 <span class="kn">from</span> <span class="nn">PeerReviewApp.models</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">PeerReviewApp.forms</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">PeerReviewApp.views</span> <span class="kn">import</span> <span class="o">*</span>
 
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="c">#PeerReviewApp.test.test_unit_tests</span>
+<span class="c">#test create user</span>
 <div class="viewcode-block" id="CreateUserTest"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.CreateUserTest">[docs]</a><span class="k">class</span> <span class="nc">CreateUserTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
 <div class="viewcode-block" id="CreateUserTest.test_create_user"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.CreateUserTest.test_create_user">[docs]</a>	<span class="k">def</span> <span class="nf">test_create_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 		<span class="n">instance</span> <span class="o">=</span> <span class="n">SiteUser</span><span class="p">(</span><span class="n">email</span> <span class="o">=</span> <span class="s">&#39;johnny@emory.edu&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span>
 		<span class="p">,</span> <span class="n">first_name</span> <span class="o">=</span> <span class="s">&#39;johnny&#39;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span> <span class="s">&#39;tan&#39;</span><span class="p">)</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">SiteUser</span><span class="p">))</span>
-</div>
-<div class="viewcode-block" id="CreateUserTest.test_get_short_name"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.CreateUserTest.test_get_short_name">[docs]</a>	<span class="k">def</span> <span class="nf">test_get_short_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="c">#test get_short_name</span></div></div>
+<div class="viewcode-block" id="GetShortNameTest"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.GetShortNameTest">[docs]</a><span class="k">class</span> <span class="nc">GetShortNameTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="GetShortNameTest.test_get_short_name"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.GetShortNameTest.test_get_short_name">[docs]</a>	<span class="k">def</span> <span class="nf">test_get_short_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 		<span class="n">instance</span> <span class="o">=</span> <span class="n">SiteUser</span><span class="p">(</span><span class="n">email</span> <span class="o">=</span> <span class="s">&#39;johnny@emory.edu&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span>
 		<span class="p">,</span> <span class="n">first_name</span> <span class="o">=</span> <span class="s">&#39;johnny&#39;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span> <span class="s">&#39;tan&#39;</span><span class="p">)</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">get_short_name</span><span class="p">(),</span> <span class="s">&#39;johnny&#39;</span><span class="p">)</span>
-</div>
-<div class="viewcode-block" id="CreateUserTest.test_get_full_name"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.CreateUserTest.test_get_full_name">[docs]</a>	<span class="k">def</span> <span class="nf">test_get_full_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="c">#test get_full_name</span></div></div>
+<div class="viewcode-block" id="GetFullNameTest"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.GetFullNameTest">[docs]</a><span class="k">class</span> <span class="nc">GetFullNameTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="GetFullNameTest.test_get_full_name"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.GetFullNameTest.test_get_full_name">[docs]</a>	<span class="k">def</span> <span class="nf">test_get_full_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 		<span class="n">instance</span> <span class="o">=</span> <span class="n">SiteUser</span><span class="p">(</span><span class="n">email</span> <span class="o">=</span> <span class="s">&#39;johnny@emory.edu&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span>
 		<span class="p">,</span> <span class="n">first_name</span> <span class="o">=</span> <span class="s">&#39;johnny&#39;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span> <span class="s">&#39;tan&#39;</span><span class="p">)</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">get_full_name</span><span class="p">(),</span> <span class="p">(</span><span class="s">&#39;johnny&#39;</span><span class="p">,</span><span class="s">&#39;tan&#39;</span><span class="p">))</span>
-</div></div>
+
+<span class="c">#test get_star_string</span></div></div>
+<div class="viewcode-block" id="GetStarStringTest"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.GetStarStringTest">[docs]</a><span class="k">class</span> <span class="nc">GetStarStringTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="GetStarStringTest.test_get_star_string_true"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.GetStarStringTest.test_get_star_string_true">[docs]</a>	<span class="k">def</span> <span class="nf">test_get_star_string_true</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">instance</span> <span class="o">=</span> <span class="n">SiteUser</span><span class="p">(</span><span class="n">email</span> <span class="o">=</span> <span class="s">&#39;jiulin@emory.edu&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span>
+		<span class="p">,</span> <span class="n">review_count</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">_get_star_string</span><span class="p">(),</span> <span class="p">(</span><span class="s">&#39;*&#39;</span><span class="p">))</span>
+		</div>
+<div class="viewcode-block" id="GetStarStringTest.test_get_star_string_false"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.GetStarStringTest.test_get_star_string_false">[docs]</a>	<span class="k">def</span> <span class="nf">test_get_star_string_false</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">instance</span> <span class="o">=</span> <span class="n">SiteUser</span><span class="p">(</span><span class="n">email</span> <span class="o">=</span> <span class="s">&#39;jiulin@emory.edu&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span>
+		<span class="p">,</span> <span class="n">review_count</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">_get_star_string</span><span class="p">(),</span> <span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">))</span>
+
+<span class="c">#test is_normal_user_ </span></div></div>
+<div class="viewcode-block" id="IsNormalUserTest"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.IsNormalUserTest">[docs]</a><span class="k">class</span> <span class="nc">IsNormalUserTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+	
+<div class="viewcode-block" id="IsNormalUserTest.test_is_normal_user_true"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.IsNormalUserTest.test_is_normal_user_true">[docs]</a>	<span class="k">def</span> <span class="nf">test_is_normal_user_true</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">instance</span> <span class="o">=</span> <span class="n">SiteUser</span><span class="p">(</span><span class="n">email</span> <span class="o">=</span> <span class="s">&#39;jiulin@emory.edu&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span>
+		<span class="p">,</span> <span class="n">review_count</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">is_site_admin</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">is_normal_user_</span><span class="p">(</span><span class="n">instance</span><span class="p">),</span> <span class="bp">True</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="IsNormalUserTest.test_is_normal_user_false"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.IsNormalUserTest.test_is_normal_user_false">[docs]</a>	<span class="k">def</span> <span class="nf">test_is_normal_user_false</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">instance</span> <span class="o">=</span> <span class="n">SiteUser</span><span class="p">(</span><span class="n">email</span> <span class="o">=</span> <span class="s">&#39;jiulin@emory.edu&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span>
+		<span class="p">,</span> <span class="n">review_count</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">is_site_admin</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">is_normal_user_</span><span class="p">(</span><span class="n">instance</span><span class="p">),</span> <span class="bp">False</span><span class="p">)</span>
+
+<span class="c">#test is_normal_user_check</span></div></div>
+<div class="viewcode-block" id="IsAuthenticatedNormalUserTest"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.IsAuthenticatedNormalUserTest">[docs]</a><span class="k">class</span> <span class="nc">IsAuthenticatedNormalUserTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+	
+<div class="viewcode-block" id="IsAuthenticatedNormalUserTest.test_is_normal_user_check_true"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.IsAuthenticatedNormalUserTest.test_is_normal_user_check_true">[docs]</a>	<span class="k">def</span> <span class="nf">test_is_normal_user_check_true</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">instance</span> <span class="o">=</span> <span class="n">SiteUser</span><span class="p">(</span><span class="n">email</span> <span class="o">=</span> <span class="s">&#39;jiulin@emory.edu&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span>
+		<span class="p">,</span> <span class="n">review_count</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">is_site_admin</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">is_normal_user_check</span><span class="p">(</span><span class="n">instance</span><span class="p">),</span> <span class="bp">True</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="IsAuthenticatedNormalUserTest.test_is_normal_user_check_false"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.IsAuthenticatedNormalUserTest.test_is_normal_user_check_false">[docs]</a>	<span class="k">def</span> <span class="nf">test_is_normal_user_check_false</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">instance</span> <span class="o">=</span> <span class="n">SiteUser</span><span class="p">(</span><span class="n">email</span> <span class="o">=</span> <span class="s">&#39;jiulin@emory.edu&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span>
+		<span class="p">,</span> <span class="n">review_count</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">is_site_admin</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">is_normal_user_check</span><span class="p">(</span><span class="n">instance</span><span class="p">),</span> <span class="bp">False</span><span class="p">)</span>
+
+<span class="c">#test is_site_admin_check</span></div></div>
+<div class="viewcode-block" id="IsAuthenticatedAdminTest"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.IsAuthenticatedAdminTest">[docs]</a><span class="k">class</span> <span class="nc">IsAuthenticatedAdminTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+	
+<div class="viewcode-block" id="IsAuthenticatedAdminTest.test_is_site_admin_check_true"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.IsAuthenticatedAdminTest.test_is_site_admin_check_true">[docs]</a>	<span class="k">def</span> <span class="nf">test_is_site_admin_check_true</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">instance</span> <span class="o">=</span> <span class="n">SiteUser</span><span class="p">(</span><span class="n">email</span> <span class="o">=</span> <span class="s">&#39;jiulin@emory.edu&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span>
+		<span class="p">,</span> <span class="n">review_count</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">is_site_admin</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">is_site_admin_check</span><span class="p">(</span><span class="n">instance</span><span class="p">),</span> <span class="bp">True</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="IsAuthenticatedAdminTest.test_is_site_admin_check_false"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.IsAuthenticatedAdminTest.test_is_site_admin_check_false">[docs]</a>	<span class="k">def</span> <span class="nf">test_is_site_admin_check_false</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">instance</span> <span class="o">=</span> <span class="n">SiteUser</span><span class="p">(</span><span class="n">email</span> <span class="o">=</span> <span class="s">&#39;jiulin@emory.edu&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span>
+		<span class="p">,</span> <span class="n">review_count</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">is_site_admin</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">is_site_admin_check</span><span class="p">(</span><span class="n">instance</span><span class="p">),</span> <span class="bp">False</span><span class="p">)</span>
+
+<span class="c">#test has_agreed</span></div></div>
+<div class="viewcode-block" id="HasAgreedTest"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.HasAgreedTest">[docs]</a><span class="k">class</span> <span class="nc">HasAgreedTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="HasAgreedTest.test_has_agreed_admin"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.HasAgreedTest.test_has_agreed_admin">[docs]</a>	<span class="k">def</span> <span class="nf">test_has_agreed_admin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">instance</span> <span class="o">=</span> <span class="n">SiteUser</span><span class="p">(</span><span class="n">email</span> <span class="o">=</span> <span class="s">&#39;jiulin@emory.edu&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span>
+		<span class="p">,</span> <span class="n">review_count</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">is_site_admin</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">has_agreed</span><span class="p">(</span><span class="n">instance</span><span class="p">),</span> <span class="bp">False</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="HasAgreedTest.test_has_agreed_true"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.HasAgreedTest.test_has_agreed_true">[docs]</a>	<span class="k">def</span> <span class="nf">test_has_agreed_true</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">instance</span> <span class="o">=</span> <span class="n">SiteUser</span><span class="p">(</span><span class="n">email</span> <span class="o">=</span> <span class="s">&#39;jiulin@emory.edu&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span>
+		<span class="p">,</span> <span class="n">review_count</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">is_site_admin</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">agreed_to_form</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">is_normal_user_check</span><span class="p">(</span><span class="n">instance</span><span class="p">),</span> <span class="bp">True</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="HasAgreedTest.test_has_agreed_false"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.HasAgreedTest.test_has_agreed_false">[docs]</a>	<span class="k">def</span> <span class="nf">test_has_agreed_false</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">instance</span> <span class="o">=</span> <span class="n">SiteUser</span><span class="p">(</span><span class="n">email</span> <span class="o">=</span> <span class="s">&#39;jiulin@emory.edu&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span>
+		<span class="p">,</span> <span class="n">review_count</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">is_site_admin</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">agreed_to_form</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">is_normal_user_check</span><span class="p">(</span><span class="n">instance</span><span class="p">),</span> <span class="bp">False</span><span class="p">)</span>
+
+<span class="c">#test create review period</span></div></div>
 <div class="viewcode-block" id="CreateReviewPeriodTest"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.CreateReviewPeriodTest">[docs]</a><span class="k">class</span> <span class="nc">CreateReviewPeriodTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
 <div class="viewcode-block" id="CreateReviewPeriodTest.test_create_reviewperiod"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.CreateReviewPeriodTest.test_create_reviewperiod">[docs]</a>	<span class="k">def</span> <span class="nf">test_create_reviewperiod</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -111,13 +188,28 @@
 		<span class="p">,</span> <span class="n">review_deadline</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span>
 		<span class="p">,</span> <span class="n">group_meeting_time</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span> <span class="o">=</span> <span class="mi">50</span><span class="p">))</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">ReviewPeriod</span><span class="p">))</span>
-</div></div>
+
+<span class="c">#test get current review period</span>
+<span class="c">#class GetCurrentReviewPeriodTest(unittest.TestCase):</span>
+
+<span class="c">#	def test_get_current_review_period():</span>
+<span class="c">#		instance = ReviewPeriod(is_full = &#39;False&#39;, start_date = timezone.now()</span>
+<span class="c">#		, submission_deadline = timezone.now()</span>
+<span class="c">#		, review_deadline = timezone.now()+datetime.timedelta(days = 30)</span>
+<span class="c">#		, group_meeting_time = timezone.now()+datetime.timedelta(days = 50)</span>
+<span class="c">#		, is_current = True)		</span>
+
+<span class="c">#test create manuscript </span></div></div>
 <div class="viewcode-block" id="CreateManuscriptTest"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.CreateManuscriptTest">[docs]</a><span class="k">class</span> <span class="nc">CreateManuscriptTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
 <div class="viewcode-block" id="CreateManuscriptTest.test_create_manuscript"><a class="viewcode-back" href="../../../test.html#PeerReviewApp.test.test_unit_tests.CreateManuscriptTest.test_create_manuscript">[docs]</a>	<span class="k">def</span> <span class="nf">test_create_manuscript</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 		<span class="n">instance</span> <span class="o">=</span> <span class="n">Manuscript</span><span class="p">(</span><span class="n">status</span> <span class="o">=</span> <span class="s">&#39;submitted&#39;</span><span class="p">,</span> <span class="n">abstract</span> <span class="o">=</span> <span class="s">&#39;abstract&#39;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&#39;title&#39;</span>
 		<span class="p">,</span> <span class="n">keywords</span> <span class="o">=</span> <span class="s">&#39;k1,k2,k3&#39;</span><span class="p">,</span> <span class="n">is_final</span> <span class="o">=</span> <span class="s">&#39;False&#39;</span><span class="p">)</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">Manuscript</span><span class="p">))</span>
+
+<span class="c">#class CreateReviewFileTest(unittest.TestCase):</span>
+
+<span class="c">#class CreateManuscriptFileTest(unittest.TestCase):</span>
 </pre></div></div></div>
 
           </div>

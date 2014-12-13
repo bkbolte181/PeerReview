@@ -4,15 +4,15 @@ from models import *
 from django.conf import settings
 import datetime
 
-SCHOOLS = settings.SCHOOLS
-	
+#SCHOOLS = settings.SCHOOLS
+
 class LoginForm(forms.Form):
 	''' On log in, you only need an email and a password '''
 	email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Emory Email Address'}))
 	password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
 
 class AccountForm(forms.ModelForm):
-	''' This is a pythonic way of changing a single user's settings ''' 
+	''' This is a pythonic way of changing a single user's settings '''
 	def __init__(self, *args, **kwargs):
 		super(AccountForm, self).__init__(*args, **kwargs)
 		try:
@@ -21,7 +21,7 @@ class AccountForm(forms.ModelForm):
 			has_agreed = True
 		if has_agreed:
 			self.fields['agreed_to_form'].widget = forms.widgets.HiddenInput()
-		
+
 	class Meta:
 		model = SiteUser
 		fields = ('email', 'first_name', 'last_name', 'department', 'lab', 'pi', 'school','review_count','agreed_to_form')
@@ -51,7 +51,7 @@ class SignupForm(forms.ModelForm):
 	# Form needs two passwords to make sure the user doesn't mistype
 	password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control text-center', 'placeholder': 'Enter your Password'}), label='Password', help_text='Choose a password')
 	retype_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control text-center', 'placeholder': 'Re-enter your password, for verification'}), label='Retype Password', help_text='Enter the same password as above, for verification.')
-	
+
 	class Meta:
 		model = SiteUser
 		# These are the fields that the user needs to input when they create their account
@@ -67,7 +67,7 @@ class SignupForm(forms.ModelForm):
 			'school': forms.Select(attrs={'class': 'form-control text-center', 'placeholder': 'Choose your School'}),
             'review_count': forms.TextInput(attrs={'class': 'form-control text-center','placeholder': 'Number of manuscripts previous reviewed'}),
 		    }
-	
+
 	# This method validates that the two passwords are the same
 	# If they don't match it throws an error
 	def clean_retype_password(self):
@@ -79,7 +79,7 @@ class SignupForm(forms.ModelForm):
 				code='password_mismatch',
 			    )
 		return retype_password
-	
+
 	# This is the method for saving the newly created user
 	def save(self, commit=True):
 		user = super(SignupForm, self).save(commit=False)
@@ -91,7 +91,7 @@ class SignupForm(forms.ModelForm):
 class UploadFileForm(forms.Form):
 	''' Form for uploading a file - I don't think this is being used yet '''
 	upload = forms.FileField()
-	
+
 	def clean_upload(self):
 		upload = self.cleaned_data['upload']
 		content_type = upload.content_type
@@ -100,7 +100,7 @@ class UploadFileForm(forms.Form):
 				raise forms.ValidationEngineer('Exceeded maximum file size')
 		else:
 			raise forms.ValidationError('File type is not allowed.')
-		
+
 		return upload
 
 class UploadManuscript(forms.ModelForm):
@@ -147,7 +147,7 @@ class ReviewPeriodForm(forms.ModelForm):
 	class Meta:
 		model = ReviewPeriod
 		fields = ['start_date', 'submission_deadline', 'review_deadline', 'group_meeting_time', 'group_meeting_venue', 'max_manuscript']
-		
+
 class AdminLoginForm(forms.Form):
 	''' On log in, you only need an email and a password '''
 	email = forms.EmailField()
