@@ -1,22 +1,65 @@
-Deployment Instruction
-======================
+PeerReview Deployment Instructions
+==================================
 
-Adding the App
----------------
-* Create your Django app::
+Using Django with WSGI
+----------------------
 
-    django-admin.py startproject myproj; cd myproj;
+* A guide for using Django wish WSGI can be found here::
 
-* Make sure it works::
+    https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/ 
 
-    ./manage.py runserver
+* Detailed instructions for installing and configuring Apache can be found elsewhere, such as here::
 
-* Clone the latest PeerReviewApp::
+    http://httpd.apache.org/docs/2.4/install.html
 
-    git clone 'https://github.com/bkbolte181/PeerReviewApp.git'
+* Once Apache has been installed, you need to install and configure modwsgi. Complete instructions for this can be found here::
 
-* Update the settings file using the parameters in sample-settings.py
+    http://httpd.apache.org/docs/2.4/install.html.
 
-* Test to make sure everything works::
+* The instructions below will assume you are running a Linux distribution.
+
+* Download tarball for modwsgi from here::
+
+    https://github.com/GrahamDumpleton/mod_wsgi/releases
+
+* Unpack the tarball::
+
+    tar xvfz mod_wsgi-4.4.0.tar.gz
+
+* Run::
+
+    make
+
+Installations
+-------------
+
+* Python 2.7.6
+* Pip
+* Virtualenv (optional – use this if you plan to use shared hosting)
+* Use the requirements document in the Django application database to install the dependencies for the project::
+
+    (sudo) pip install -r requirements.txt
+
+Clone the Project from Github
+-----------------------------
+
+* Clone the project::
+
+    git clone https://github.com/bkbolte181/PeerReview.git
+
+* Run tests::
 
     ./manage.py test
+
+* The file wsgi.py will be in the project directory
+
+Configure modwsgi
+-----------------
+
+* The steps for configuring modwsgi can be found here::
+
+    https://code.google.com/p/modwsgi/wiki/QuickConfigurationGuide
+
+* Instructions for serving static files with Apache can be found here::
+
+    https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/modwsgi/
