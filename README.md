@@ -3,7 +3,7 @@ Manuscript Review System
 This course project for [*CS 485/540*](http://www.mathcs.emory.edu/~cs540000/) aims at building a Manuscript Review System to assist SCIENCE WRITERS COMMITTEE to help Emory researchers improve their manuscripts, learn from different research areas and gain more experience of reviewing others’ paper.
 ____________________________
 
-Installation(Docs/installation.rst)
+[Installation](Docs/installation.rst)
 ----------------------------------------
 **Pre-requested programs**
 * This system is written in [python / Django](https://www.djangoproject.com/). 
@@ -21,16 +21,16 @@ Installation(Docs/installation.rst)
 * Start virtual environment: <br><code>virtualenv prenv; prenv\Scripts\activate</code>
 * Install requirements: <br><code>cd PeerReview; pip install -r requirements.txt</code>
 
-Deployment(Docs/deployment.rst)
+[Deployment](Docs/deployment.rst)
 ----------------------------------------
 
 **Using Django with WSGI
 
-* A guide for using Django wish WSGI can be found here(https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/)
-* Detailed instructions for installing and configuring Apache can be found elsewhere, such as here(http://httpd.apache.org/docs/2.4/install.html)
-* Once Apache has been installed, you need to install and configure modwsgi. Complete instructions for this can be found here(http://httpd.apache.org/docs/2.4/install.html)
+* A guide for using Django wish WSGI can be found [here](https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/)
+* Detailed instructions for installing and configuring Apache can be found elsewhere, such as [here](http://httpd.apache.org/docs/2.4/install.html)
+* Once Apache has been installed, you need to install and configure modwsgi. Complete instructions for this can be found [here](http://httpd.apache.org/docs/2.4/install.html)
 * The instructions below will assume you are running a Linux distribution.
-* Download tarball for modwsgi from here(https://github.com/GrahamDumpleton/mod_wsgi/releases)
+* Download tarball for modwsgi from [here](https://github.com/GrahamDumpleton/mod_wsgi/releases)
 * Unpack the tarball:<code>tar xvfz mod_wsgi-4.4.0.tar.gz</code>
 * Run:<code>make</code>
 
@@ -49,8 +49,8 @@ Deployment(Docs/deployment.rst)
 
 **Configure modwsgi
 
-* The steps for configuring modwsgi can be found here(https://code.google.com/p/modwsgi/wiki/QuickConfigurationGuide)
-* Instructions for serving static files with Apache can be found here(https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/modwsgi/)
+* The steps for configuring modwsgi can be found [here](https://code.google.com/p/modwsgi/wiki/QuickConfigurationGuide)
+* Instructions for serving static files with Apache can be found [here](https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/modwsgi/)
 
 Try Our System
 ----------------------------
@@ -69,12 +69,12 @@ Try Our System
 *  [admin](http://5ae8d563.ngrok.com/admin_login)
 *  [docs](http://peerreview.readthedocs.org)
 
-Mockups and codes
+[Mockups](Design/Mockup/html\ demo/) and [codes](PeerReview/PeerReviewApp)
 ----------------------------
 Mockups: [Design/Mockup/html demo/](https://github.com/bkbolte181/PeerReview/tree/master/Design/Mockup/html\ demo)<br>
 Django codes: [PeerReview/PeerReviewApp/](https://github.com/bkbolte181/PeerReview/tree/master/PeerReview/PeerReviewApp)
 
-Documents
+[Documents](Docs)
 ----------------------------
 Documents, sitting in the folder [Docs/_build/html/](https://github.com/bkbolte181/PeerReview/tree/master/Docs/_build/html), contains:
 * Installation Instruction
