@@ -3,8 +3,8 @@ Manuscript Review System
 This course project for [*CS 485/540*](http://www.mathcs.emory.edu/~cs540000/) aims at building a Manuscript Review System to assist SCIENCE WRITERS COMMITTEE to help Emory researchers improve their manuscripts, learn from different research areas and gain more experience of reviewing others’ paper.
 ____________________________
 
-Installation
-----------------------------
+Installation(Docs/installation.rst)
+----------------------------------------
 **Pre-requested programs**
 * This system is written in [python / Django](https://www.djangoproject.com/). 
 * Please download [python](https://www.python.org/) and install. 
@@ -21,14 +21,36 @@ Installation
 * Start virtual environment: <br><code>virtualenv prenv; prenv\Scripts\activate</code>
 * Install requirements: <br><code>cd PeerReview; pip install -r requirements.txt</code>
 
-Deployment
-----------------------------
-**Adding the App**
-* Create your Django app: <br><code>django-admin.py startproject myproj; cd myproj;</code>
-* Make sure it works: <br><code>./manage.py runserver<code>
-* Clone the latest PeerReviewApp: <br><code>git clone 'https://github.com/bkbolte181/PeerReviewApp.git'</code>
-* Update the settings file using the parameters in sample-settings.py
-* Test to make sure everything works: <br><code>./manage.py test<code>
+Deployment(Docs/deployment.rst)
+----------------------------------------
+
+**Using Django with WSGI
+
+* A guide for using Django wish WSGI can be found here(https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/)
+* Detailed instructions for installing and configuring Apache can be found elsewhere, such as here(http://httpd.apache.org/docs/2.4/install.html)
+* Once Apache has been installed, you need to install and configure modwsgi. Complete instructions for this can be found here(http://httpd.apache.org/docs/2.4/install.html)
+* The instructions below will assume you are running a Linux distribution.
+* Download tarball for modwsgi from here(https://github.com/GrahamDumpleton/mod_wsgi/releases)
+* Unpack the tarball:<code>tar xvfz mod_wsgi-4.4.0.tar.gz</code>
+* Run:<code>make</code>
+
+**Installations
+
+* Python 2.7.6
+* Pip
+* Virtualenv (optional – use this if you plan to use shared hosting)
+* Use the requirements document in the Django application database to install the dependencies for the project:<code>(sudo) pip install -r requirements.txt</code>
+
+**Clone the Project from Github
+
+* Clone the project:<code>git clone https://github.com/bkbolte181/PeerReview.git</code>
+* Run tests:<code>./manage.py test</cdoe>
+* The file wsgi.py will be in the project directory
+
+**Configure modwsgi
+
+* The steps for configuring modwsgi can be found here(https://code.google.com/p/modwsgi/wiki/QuickConfigurationGuide)
+* Instructions for serving static files with Apache can be found here(https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/modwsgi/)
 
 Try Our System
 ----------------------------
