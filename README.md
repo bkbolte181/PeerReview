@@ -24,7 +24,7 @@ ____________________________
 [Deployment](Docs/deployment.rst)
 ----------------------------------------
 
-**Using Django with WSGI
+**Using Django with WSGI**
 
 * A guide for using Django wish WSGI can be found [here](https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/)
 * Detailed instructions for installing and configuring Apache can be found elsewhere, such as [here](http://httpd.apache.org/docs/2.4/install.html)
@@ -34,20 +34,20 @@ ____________________________
 * Unpack the tarball:<code>tar xvfz mod_wsgi-4.4.0.tar.gz</code>
 * Run:<code>make</code>
 
-**Installations
+**Installations**
 
 * Python 2.7.6
 * Pip
 * Virtualenv (optional – use this if you plan to use shared hosting)
 * Use the requirements document in the Django application database to install the dependencies for the project:<code>(sudo) pip install -r requirements.txt</code>
 
-**Clone the Project from Github
+**Clone the Project from Github**
 
 * Clone the project:<code>git clone https://github.com/bkbolte181/PeerReview.git</code>
 * Run tests:<code>./manage.py test</cdoe>
 * The file wsgi.py will be in the project directory
 
-**Configure modwsgi
+**Configure modwsgi**
 
 * The steps for configuring modwsgi can be found [here](https://code.google.com/p/modwsgi/wiki/QuickConfigurationGuide)
 * Instructions for serving static files with Apache can be found [here](https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/modwsgi/)
