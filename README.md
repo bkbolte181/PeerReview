@@ -66,7 +66,7 @@ Try Our System
 
 **Deploymented version**
 *  [normal user](http://istanbul.mathcs.emory.edu/PeerReview/)
-*  [admin](http://5ae8d563.ngrok.com/admin_login)
+*  [admin](http://istanbul.mathcs.emory.edu/PeerReview/admin_login/)
 *  [docs](http://peerreview.readthedocs.org)
 
 [Mockups](Design/Mockup/html\ demo/) and [codes](PeerReview/PeerReviewApp)
